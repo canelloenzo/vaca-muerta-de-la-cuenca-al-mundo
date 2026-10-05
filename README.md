@@ -19,8 +19,8 @@ El pipeline limpia los archivos crudos en Python (pandas). Las tablas resultante
 - **Modelo de Power BI:** terminado, 6 páginas.
 - **Dashboard web** (`docs/index.html`): terminado.
 
-- Dashboard web: [URL_PAGES]
-- Power BI (.pbix): descargar desde Releases → [URL_RELEASE]
+- Dashboard web: [https://canelloenzo.github.io/vaca-muerta-de-la-cuenca-al-mundo/]
+- Power BI (.pbix): descargar desde Releases → [https://github.com/canelloenzo/vaca-muerta-de-la-cuenca-al-mundo/releases/tag/v1.0]
 
 ---
 
@@ -186,4 +186,4 @@ correcciones hechas al armar las páginas del reporte y la versión web (medidas
 
 ## Autor
 
-Enzo · Buenos Aires · LinkedIn: [URL_LINKEDIN]
+Enzo · Buenos Aires · LinkedIn: [www.linkedin.com/in/enzocanello]
