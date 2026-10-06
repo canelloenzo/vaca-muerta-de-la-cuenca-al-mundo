@@ -145,6 +145,12 @@ def p20_raw() -> pd.DataFrame:
     return pd.read_csv(raw_dir() / RAW_P20, encoding="utf-8-sig", low_memory=False)
 
 
+def p20_dedup() -> pd.DataFrame:
+    """Planilla 20 sin duplicados exactos ni filas repetidas solo por `longitud_tramo` (F13: doble conteo por tramo)."""
+    t = p20_raw().drop_duplicates()
+    return t.drop_duplicates(subset=[c for c in t.columns if c != "longitud_tramo"])
+
+
 def anexo2a_raw() -> pd.DataFrame:
     a = pd.read_csv(raw_dir() / RAW_ANEXO2A, encoding="utf-8-sig", low_memory=False)
     a.columns = [c.strip().lower() for c in a.columns]
@@ -199,7 +205,7 @@ def util_ducto_mes() -> pd.DataFrame:
     paths = [raw_dir() / RAW_P20, raw_dir() / RAW_ANEXO2A]
 
     def build():
-        t = p20_raw()
+        t = p20_dedup()
         pn = t.producto.fillna("").map(norm).str.replace(r"\s+", " ", regex=True)
         t["liq"] = ~((t.tipo_producto == "Gas") | (t.tipo_producto.isna() & pn.isin(GAS_PRODUCTOS)))
         a = anexo2a_raw()
@@ -217,7 +223,7 @@ def util_ducto_mes() -> pd.DataFrame:
         mes["dias"] = pd.to_datetime(dict(year=mes.anio, month=mes.mes, day=1)).dt.days_in_month
         return mes.merge(ca, on=["idducto", "anio"], how="inner")
 
-    return _cached("util_ducto_mes_v2_gas_natural", paths, build)   # el nombre cambia si cambia la definición de líquido
+    return _cached("util_ducto_mes_v3_sin_doble_conteo_tramo", paths, build)   # el nombre cambia si cambia la definición de líquido
 
 
 def utilizacion(df: pd.DataFrame, num: str, cap: str = "op") -> float:
@@ -264,7 +270,7 @@ def reglas_capacidad(util: pd.DataFrame, r1=5.0, r3=2.0, r5=90):
     ca = a.groupby(["idducto", "anio"]).agg(op=("capacidad_operativa_maxima", "first"), dis=("capacidad_disenio", "first"),
                                             emp=("capacidad_empleada", "first"), diasop=("dias_operativos", "first")).reset_index()
     ca = ca.sort_values(["idducto", "anio"]).reset_index(drop=True)
-    out = {"R1": set(), "R3": set(), "R4": set(), "R5": set(), "R2": set()}
+    out = {"R1": set(), "R3": set(), "R4": set(), "R5": set(), "R2": set(), "R6": set()}
     for i, d in ca.groupby("idducto"):
         d = d.reset_index(drop=True)
         for k in range(1, len(d)):
@@ -283,6 +289,8 @@ def reglas_capacidad(util: pd.DataFrame, r1=5.0, r3=2.0, r5=90):
             out["R4"].add(key)
         if r.op > 0 and r.diasop <= r5:
             out["R5"].add(key)
+        if r.op > 0 and r.op == r.dis == r.emp:
+            out["R6"].add(key)
     trip = ca[ca.op > 0].groupby(["op", "dis", "emp"]).idducto.nunique()
     trip = set(trip[trip > 1].index)
     for _, r in ca.iterrows():

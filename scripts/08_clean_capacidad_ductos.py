@@ -144,14 +144,17 @@ trip = set(trip[trip > 1].index)
 en_trip = np.array([(a, b, c) in trip for a, b, c in zip(op, dis, emp)])
 m_r2 = en_trip & (op > 0).to_numpy()
 r2 = set(zip(ca.loc[m_r2, "idducto"], ca.loc[m_r2, "anio"]))
+# R6 (solo marca): capacidad operativa = de diseno = empleada (valor que parece copiado, p. ej. Allen - Puerto Rosales 2024)
+m_r6 = ((op > 0) & (op == dis) & (op == emp)).to_numpy()
+r6 = set(zip(ca.loc[m_r6, "idducto"], ca.loc[m_r6, "anio"]))
 reglas = {"R1": r1, "R3": r3, "R4": r4, "R5": r5, "D2": set(DUCTOS_RETIRADOS_D2)}
 claves = list(zip(ca["idducto"], ca["anio"]))
 ca["motivo_capacidad_dudosa"] = [",".join(k for k, v in reglas.items() if key in v) for key in claves]
 ca["capacidad_dudosa"] = ca["motivo_capacidad_dudosa"] != ""
-ca["a_revisar_capacidad"] = [(key in r2) and not d for key, d in zip(claves, ca["capacidad_dudosa"])]
+ca["a_revisar_capacidad"] = [((key in r2) or (key in r6)) and not d for key, d in zip(claves, ca["capacidad_dudosa"])]
 print(f"\nReglas de capacidad dudosa (R1 {R1_UMBRAL}x, R3 {R3_UMBRAL}x, R5 <= {R5_DIAS} dias): duct-anios con capacidad > 0 =",
       int((op > 0).sum()), "| dudosos =", int(ca["capacidad_dudosa"].sum()),
-      {k: len(v) for k, v in reglas.items()}, "| a revisar (R2 solo) =", int(ca["a_revisar_capacidad"].sum()))
+      {k: len(v) for k, v in reglas.items()}, "| a revisar (R2/R6 solo) =", int(ca["a_revisar_capacidad"].sum()))
 fact = fact.merge(ca[["idducto", "anio", "capacidad_dudosa", "a_revisar_capacidad", "motivo_capacidad_dudosa"]],
                   on=["idducto", "anio"], how="left")
 

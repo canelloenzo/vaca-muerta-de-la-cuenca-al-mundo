@@ -1,5 +1,5 @@
 posicion,idducto_logico,denominacion_ducto,anio,meses_con_dato,parcial,utilizacion_segmento_mas_cargado_pct,utilizacion_liquidos_total_pct,multi_segmento,a_revisar_capacidad,capacidad_operativa_m3_dia,capacidad_disenio_m3_dia,capacidad_empleada_m3_dia,sobre_100_pct
-1,216,Allen - Puerto Rosales,2024,12,False,129.7,129.7,False,False,36000.0,36000.0,36000.0,True
+1,216,Allen - Puerto Rosales,2024,12,False,129.7,129.7,False,True,36000.0,36000.0,36000.0,True
 2,69,LINDERO ATRAVESADO- CENTENARIO,2023,2,True,111.1,111.1,False,True,1800.0,1800.0,1087.0,True
 3,382,Centenario - Allen L14,2024,12,False,106.9,106.9,False,False,9845.0,9720.0,8944.0,True
 4,356,BMo_La Escondida 12,2025,10,True,83.7,136.1,True,False,10756.29,9300.0,7704.06,False
@@ -10,7 +10,7 @@ posicion,idducto_logico,denominacion_ducto,anio,meses_con_dato,parcial,utilizaci
 9,149,Brandsen - Campana,2024,12,False,73.6,73.6,False,False,18000.0,15600.0,15600.0,False
 10,379,Puesto Hernandez - Buta Mallin,2025,12,False,73.1,73.1,False,False,17400.0,18500.0,13534.51,False
 11,97,Entre Lomas - Intersección oleoducto Medanito - Allen (PTCCB_OLDELVAL),2023,11,True,72.5,72.5,False,False,8956.0,9000.0,6190.81,False
-12,240,Pampa del Castillo-La Guitarra- intersección El trebol,2021,12,False,72.3,72.3,False,False,1000.0,1000.0,1000.0,False
+12,240,Pampa del Castillo-La Guitarra- intersección El trebol,2021,12,False,72.3,72.3,False,True,1000.0,1000.0,1000.0,False
 13,500,Sierras blancas - Allen,2025,12,False,71.3,71.3,False,False,12462.0,19873.0,8885.0,False
 14,517,Vaca Muerta Oleoducto Norte (VMON),2025,12,False,67.5,69.4,True,False,25000.0,25000.0,19531.0,False
 15,45,Puerto Rosales - La Plata,2025,12,False,64.5,88.8,True,False,54360.0,54360.0,50667.0,False
@@ -31,14 +31,15 @@ posicion,idducto_logico,denominacion_ducto,anio,meses_con_dato,parcial,utilizaci
 30,100,Aguada Pichana - Loma La Lata,2024,12,False,31.3,31.3,False,False,1226.0,1240.0,384.0,False
 31,332,Derivación Balbuena,2023,4,True,26.1,26.1,False,False,737.7,2880.0,198.63,False
 32,64,Estancia La Escondida - Cerro Tortuga III,2025,12,False,24.8,24.8,False,False,250.0,250.0,60.0,False
-33,37,La Plata - Dock Sud,2025,12,False,21.4,21.4,False,False,22344.0,22344.0,6872.0,False
-34,161, PTC.CM a UL-CM  (a YPF en Cañadón León),2024,12,False,21.0,21.0,False,False,1128.0,1410.0,237.34,False
-35,76,El Tordillo - Caleta Córdova,2024,12,False,17.8,22.4,True,False,4493.0,5616.0,1398.78,False
-36,348,BMo Oeste - PTC Entre Lomas 6 (1BMo_PTCCB),2025,12,False,17.0,21.2,True,False,1431.0,1800.0,718.29,False
-37,252,Cerro Bayo- Puesto Hernandez ,2024,12,False,16.4,16.4,False,False,2407.0,10000.0,402.0,False
-38,333,Derivación Aguaray,2021,12,False,14.1,14.1,False,False,1569.8,2640.0,416.6,False
-39,222,Loma Negra PTC  - Allen Planta Oldelval,2022,10,True,12.6,12.6,False,False,2500.0,2500.0,650.0,False
-40,160,PTC-PCO a ULACT-PCO ( YPF  - Tupungato) ,2024,12,False,12.2,12.2,False,False,1777.6,2222.0,217.36,False
-41,374,BANDURRIA CENTRO - LOMA CAMPANA,2026,5,True,11.6,11.6,False,True,2500.0,2500.0,636.7,False
+33,489,PTC CS a ULACT CS,2024,12,False,23.3,23.3,False,False,2304.0,2880.0,537.8,False
+34,37,La Plata - Dock Sud,2025,12,False,21.4,21.4,False,False,22344.0,22344.0,6872.0,False
+35,161, PTC.CM a UL-CM  (a YPF en Cañadón León),2024,12,False,21.0,21.0,False,False,1128.0,1410.0,237.34,False
+36,76,El Tordillo - Caleta Córdova,2024,12,False,17.8,22.4,True,False,4493.0,5616.0,1398.78,False
+37,348,BMo Oeste - PTC Entre Lomas 6 (1BMo_PTCCB),2025,12,False,17.0,21.2,True,False,1431.0,1800.0,718.29,False
+38,252,Cerro Bayo- Puesto Hernandez ,2024,12,False,16.4,16.4,False,False,2407.0,10000.0,402.0,False
+39,333,Derivación Aguaray,2021,12,False,14.1,14.1,False,False,1569.8,2640.0,416.6,False
+40,222,Loma Negra PTC  - Allen Planta Oldelval,2022,10,True,12.6,12.6,False,False,2500.0,2500.0,650.0,False
+41,160,PTC-PCO a ULACT-PCO ( YPF  - Tupungato) ,2024,12,False,12.2,12.2,False,False,1777.6,2222.0,217.36,False
 42,308,SAN ROQUE - LOMA LA LATA,2024,12,False,6.8,6.8,False,False,2963.0,3000.0,202.0,False
-43,75,Chango Norte - Balbuena ,2024,12,False,0.0,0.0,False,False,537.6,672.0,8.03,False
+43,374,BANDURRIA CENTRO - LOMA CAMPANA,2026,5,True,5.8,5.8,False,True,2500.0,2500.0,636.7,False
+44,75,Chango Norte - Balbuena ,2024,12,False,0.0,0.0,False,False,537.6,672.0,8.03,False

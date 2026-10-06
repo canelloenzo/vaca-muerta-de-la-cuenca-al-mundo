@@ -95,6 +95,11 @@ p20["producto_norm"] = (
     .str.normalize("NFKD").str.encode("ascii", errors="ignore").str.decode("utf-8")
 )
 p20 = p20.drop_duplicates()
+# F13: 344 filas son identicas en todo salvo `longitud_tramo` (el volumen del ducto repetido por tramo: ductos 374, 489 y
+# 156). Es doble conteo (con la repeticion, caudal/capacidad empleada da ~2,0; sin ella ~1,0). Se conserva una por grupo.
+_n20 = len(p20)
+p20 = p20.drop_duplicates(subset=[c for c in p20.columns if c != "longitud_tramo"])
+print(f"planilla 20: {_n20 - len(p20)} filas repetidas por tramo eliminadas (F13)")
 p20.to_csv(os.path.join(CLEAN, "fact_transporte_ductos.csv"), index=False, encoding="utf-8-sig")
 print(f"fact_transporte_ductos.csv -> {p20.shape}")
 print("cobertura idducto vs dim_ducto:", round(p20["idducto"].isin(ductos["idducto"]).mean(), 3))

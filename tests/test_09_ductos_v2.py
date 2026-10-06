@@ -42,7 +42,7 @@ def test_reglas_de_capacidad_dudosa_igual_implementacion_independiente(util, cle
     got = {(i, y) for i, y, d in zip(c.idducto, c.anio, c.capacidad_dudosa) if d}
     assert got == dud & present
     rev = {(i, y) for i, y, d in zip(c.idducto, c.anio, c.a_revisar_capacidad) if d}
-    assert rev == (r["R2"] & present) - dud                       # R2 solo marca "a revisar"
+    assert rev == ((r["R2"] | r["R6"]) & present) - dud         # R2 y R6 solo marcan "a revisar"
     motivos = dict(zip(zip(c.idducto, c.anio), c.motivo_capacidad_dudosa.fillna("")))
     assert motivos[(539, 2025)] == "D2" and "R5" in motivos[(516, 2025)] and "R1" in motivos[(42, 2021)]
 
@@ -74,7 +74,7 @@ def _ranking_independiente(util, r1=5.0):
 def test_ranking_igual_recalculo_independiente(util):
     ind = _ranking_independiente(util)
     r = H.web("utilizacion_ductos_ranking.csv")
-    assert len(r) == len(ind) == 43
+    assert len(r) == len(ind) == 44
     got = {int(i): (int(a), u) for i, a, u in zip(r.idducto_logico, r.anio, r.utilizacion_segmento_mas_cargado_pct)}
     assert set(got) == set(ind)
     for i in ind:
@@ -104,13 +104,13 @@ def test_clasificacion_de_ductos_que_mueven_petroleo(raw):
     pet = set(t[(t.volumen > 0) & (t.tipo_producto == "Petroleo")].idducto.map(lambda i: ALIAS.get(i, i)))
     cl = H.web("clasificacion_ductos_petroleo.csv")
     assert len(cl) == len(pet) == 83 and set(cl.idducto_logico) == pet
-    assert cl.categoria.value_counts().to_dict() == {"EN_RANKING": 43, "SIN_CAPACIDAD_EN_ANEXO_2A": 34, "CAPACIDAD_DUDOSA_TODOS_LOS_ANIOS": 6}
+    assert cl.categoria.value_counts().to_dict() == {"EN_RANKING": 44, "SIN_CAPACIDAD_EN_ANEXO_2A": 34, "CAPACIDAD_DUDOSA_TODOS_LOS_ANIOS": 5}
     vmoc = cl[cl.denominacion_ducto.str.contains("VMOC")].iloc[0]
     assert vmoc.categoria == "CAPACIDAD_DUDOSA_TODOS_LOS_ANIOS" and vmoc.anios_con_capacidad_dudosa == "2025"
     d = H.web("ductos_capacidad_dudosa.csv")
     assert d[d.idducto_logico == 539].motivo_capacidad_dudosa.tolist() == ["D2"]
     r = json.loads((H.WEB / "resumen_ductos.json").read_text(encoding="utf-8"))
-    assert r["ductos_logicos_que_mueven_petroleo"] == 83 and r["ranking_n_ductos"] == 43 and r["ranking_sobre_100"] == 3
+    assert r["ductos_logicos_que_mueven_petroleo"] == 83 and r["ranking_n_ductos"] == 44 and r["ranking_sobre_100"] == 3
 
 
 def test_ningun_archivo_nuevo_publica_171_de_vmoc():

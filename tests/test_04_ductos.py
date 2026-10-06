@@ -9,9 +9,11 @@ EXCL = H.DUCTOS_EXCLUIDOS_ORIGINAL
 
 
 def test_planilla20_raw_igual_clean(raw, clean_ok):
-    r = H.p20_raw()
+    raw_ = H.p20_raw()
+    r = H.p20_dedup()
     c = H.clean("fact_transporte_ductos.csv")
-    assert len(r) == len(c) == 56_566 and not r.duplicated().any()
+    assert len(raw_) == 56_566 and len(raw_) - len(r) == 195   # 195 filas repetidas por tramo (F13)
+    assert len(r) == len(c) and not r.duplicated().any()
     assert abs(r.volumen.sum() - c.volumen.sum()) < 1e-3
 
 

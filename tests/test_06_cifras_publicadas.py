@@ -103,7 +103,7 @@ def test_s4_cobertura_de_capacidad(raw, clean_ok):
     m = mes.merge(cap[["idducto", "anio", "mes"]], how="left", indicator=True)
     assert len(mes) == 7939 and int((m._merge == "both").sum()) == 3603
     v = cap[cap.capacidad_valida]
-    assert round(v.utilizacion_pct.median(), 2) == 0.54 and int((v.utilizacion_pct > 1).sum()) == 291 and len(v) == 3483
+    assert round(v.utilizacion_pct.median(), 2) == 0.53 and int((v.utilizacion_pct > 1).sum()) == 291 and len(v) == 3483
 
 
 def test_s4_locale_en_power_query():
