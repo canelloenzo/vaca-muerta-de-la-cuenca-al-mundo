@@ -54,8 +54,7 @@ si es un solo mes, doce si es un año, todos los que tengan datos si no hay filt
 `dias_mes` real (vía `AVERAGE`, seguro porque dentro de un solo mes el valor es constante) — funciona
 correctamente para cualquier granularidad, y como no toca `Dim_Fecha`, es inmune al problema de dirección de la
 relación. Verificado: 31 días para un mes puntual, 365 para 2022 y para 2025, 7.305 para todo 2006-2025 (bbl/día
-resultante: 243.237 en 2022, 501.956 en 2025 — consistente con el año récord que cuenta la historia del
-proyecto).
+resultante: 243.237 en 2022, 501.956 en 2025 — coherente con la serie de producción anual del proyecto).
 
 **Bug 2 — `Var Interanual Prod` con `LASTDATE(Dim_Fecha[fecha])`:** bajo un filtro de año, `LASTDATE(Dim_Fecha[fecha])`
 devuelve el 31 de diciembre CALENDARIO — pero `Fact_Produccion` nunca tiene una fila con `fecha` = día 31 (solo
@@ -189,12 +188,13 @@ CALCULATE(
 )
 ```
 > Complemento para ductos sin cobertura en el Anexo 2A (~55% de los ducto-mes) — mostrar como serie de
-> "volumen transportado" en vez de forzar un % de utilización sin denominador confiable.
+> "volumen transportado" en vez de forzar un % de utilización sin denominador válido.
 
 > **Medida retirada (`% Ductos con Capacidad Reportada`).** Dividía 57 ductos con capacidad (13 de ellos sin
 > petróleo) por 133 ductos de transporte: universos distintos. La cobertura se informa con la clasificación de los
-> 83 ductos lógicos que mueven petróleo (`data/web/clasificacion_ductos_petroleo.csv`): 43 con capacidad no dudosa
-> (entran al ranking), 34 sin capacidad en el Anexo 2A y 6 con capacidad dudosa en todos los años.
+> ductos lógicos que mueven petróleo (`data/web/clasificacion_ductos_petroleo.csv`): con capacidad no dudosa (entran al
+> ranking), sin capacidad en el Anexo 2A y con capacidad dudosa en todos los años. Los conteos vigentes están en
+> `data/web/registro_cifras.json`.
 
 ---
 
@@ -308,117 +308,94 @@ RETURN
 
 ---
 
-## Grupo E — Índices base 100 (Página 3 — evolución en el tiempo)
+## Grupo E — Índices base 2022 (Página 3)
 
-### Por qué el mes base cambió de "enero 2018" a "promedio de 2019" (corregido 2026-09-21)
-
-La primera versión usaba enero 2018 como base porque es el primer mes donde `Fact_Produccion` y
-`Fact_MovimientosExportacion` tienen datos simultáneamente. Se validó esa elección contra los datos reales y
-**no era representativa** — enero 2018 es un mes de cobertura de reporte incompleta, no un punto de partida
-real de la serie:
-
-| | ene-2018 | promedio 2020 | promedio 2023 |
-|---|---|---|---|
-| Filas con `tipo_operacion="Exportacion"` | 1 | 10,6/mes | 17,4/mes |
-| Empresas distintas | **1** | 3,6 | 3,25 |
-| Cargadores distintos | 1 | 8,3 | 15,0 |
-| Volumen exportado | 17.022 m³ | 423.042 m³ | 563.258 m³ |
-
-Todo 2018 tiene **una sola empresa reportando** y 3 de los 12 meses (marzo, mayo, agosto) no tienen ninguna
-fila. Recién en 2019 aparecen 2-4 empresas reportando de forma más regular, y el volumen salta a un rango de
-220.000-460.000 m³/mes — un salto de hasta 20x que es **cobertura de reporte mejorando, no crecimiento físico
-de exportación**. Indexar contra enero 2018 mezclaba las dos cosas: el índice iba a mostrar un "crecimiento"
-de +1.761% (17.022 → 316.714 m³) solo entre enero 2018 y el promedio de 2019, antes de que pase nada relacionado con VMOS/Oldelval o
-con el boom real de Vaca Muerta.
-
-**Corrección:** se usa el **promedio de los 12 meses de 2019** como base = 100 — el primer año calendario
-completo con varias empresas reportando de forma consistente (2019 sigue teniendo un enero débil, con una sola
-empresa, pero promediar 12 meses diluye ese arranque en vez de anclar todo el índice a él). Promedios de
-referencia verificados: **316.714 m³/mes** de volumen exportado y **90.014 bbl/día** de producción en 2019. Con
-esta base, enero 2018 pasa de "=100 por definición" a un valor real y bajo (≈5,4), que es justamente lo que
-tiene que mostrar un mes de reporte incompleto — ya no distorsiona el resto de la serie.
-
-**También se alineó la base de `Indice Produccion (base 100)` al mismo período (promedio 2019)**, aunque
-`Fact_Produccion` no tiene el problema de cobertura de exportación — no había una razón de corrección para
-tocarla, pero si las dos medidas usan bases de tiempo distintas (una anclada a un mes puntual de 2018, la otra
-a un promedio de 2019), dejan de ser comparables como "ambas arrancan en el mismo punto de referencia", que es
-el objetivo completo de este gráfico en la Página 3. Si preferís mantener `Indice Produccion` con su propia
-base independiente, es cuestión de volver a poner `Dim_Fecha[fecha] = DATE(2018,1,1)` en esa medida — no hay
-ningún problema de datos que lo impida.
-
-### Bug de columnas distintas en el mismo CALCULATE (detectado por el usuario en Power BI, 2026-09-21)
-
-La primera versión de estas medidas (`CALCULATE(AVERAGEX(...), Dim_Fecha[anio] = 2019)`, sin más) se probó en
-un gráfico de líneas con `Dim_Fecha[fecha]`/`anio_mes` en el eje X, y dio **exactamente 100,00 en cualquier mes
-de 2019** (confirmado en febrero y octubre) — cuando debería oscilar cerca de 100, no ser idéntico mes a mes,
-porque la base es un promedio de 12 meses distintos.
-
-**Causa confirmada:** cuando dos argumentos de filtro de `CALCULATE` apuntan a **columnas distintas de la misma
-tabla** (`Dim_Fecha[fecha]`, ya filtrada por el eje del gráfico a un mes puntual, y `Dim_Fecha[anio] = 2019`,
-agregado por la medida), DAX **no reemplaza** el primer filtro con el segundo — los combina con AND. El filtro
-efectivo termina siendo "`fecha` = ese mes puntual **Y** `anio` = 2019", que para cualquier mes DENTRO de 2019
-colapsa a una intersección de un solo mes (el mismo que se está evaluando) — `AVERAGEX` promedia una tabla de
-un solo valor, que es igual al valor actual, y el índice da 100 siempre. Verificado contra los datos reales:
-
-| Mes en el eje | `ValorBase` con el bug | Índice con el bug |
-|---|---|---|
-| Febrero 2019 | 314.891,6 (= el valor de febrero) | 100,00 |
-| Octubre 2019 | 352.843,4 (= el valor de octubre) | 100,00 |
-
-**Síntoma adicional, no reportado pero verificado:** para cualquier mes **fuera** de 2019 (ej. febrero 2020),
-la intersección "`fecha`=feb-2020 **Y** `anio`=2019" da 0 filas — `AVERAGEX` sobre una tabla vacía es `BLANK`,
-y `DIVIDE(actual, BLANK)` también es `BLANK`. El bug no solo aplanaba 2019 en 100: probablemente dejaba el
-índice completamente en blanco para todos los demás años del gráfico (2018, 2020-2026) — más notorio que el
-"siempre 100" pero fácil de no atribuir a la misma causa si se mira por separado.
-
-**Corrección:** agregar `ALL(Dim_Fecha)` como argumento de filtro **antes** de `Dim_Fecha[anio] = 2019`, en el
-mismo `CALCULATE`. `ALL(Dim_Fecha)` descarta cualquier filtro previo sobre la tabla completa — sin importar en
-qué columna estuviera (`fecha` del eje del gráfico, un slicer de año, o ninguno) — y recién sobre esa base
-limpia se aplica el filtro `anio = 2019`, dejando los 12 meses de 2019 disponibles para el `AVERAGEX` sin
-importar qué esté filtrado afuera:
+> **Reemplaza al Grupo E original (base 2019, exportación de todas las terminales del país).** Motivos (auditoría F1):
+> la base 2019 estaba compuesta casi en su totalidad por TERMAP (Golfo San Jorge) y la serie de exportación incluía
+> terminales de todo el país. Ahora la serie de exportación es el crudo exportado por los terminales neuquinos
+> (Oiltanking + Refinería Bahía Blanca) y la base es el promedio de 2022: primer año con exportación neuquina en 12 de 12
+> meses y exportación mayor o igual al 10% de la producción de Vaca Muerta. Las conclusiones usan promedios anuales y
+> medias móviles de 12 meses, no un mes aislado.
+>
+> **Estas medidas no se pudieron ejecutar en Power BI Desktop (NO VERIFICADO).** Los valores esperados están en
+> `CAMBIOS_POWERBI.md` y salen de `data/web/registro_cifras.json`.
 
 ```dax
-Indice Produccion (base 100) =
+Volumen Exportado Neuquino =
+CALCULATE(
+    [Volumen Exportado],
+    Fact_MovimientosExportacion[empresa] IN { "Oiltanking EBYTEM S.A.", "Refineria Bahia Blanca SAU" }
+)
+```
+> Alcance: crudo exportado por los terminales neuquinos (planilla 21). No incluye el oleoducto a Chile. Devuelve vacío
+> (no cero) en los meses sin filas de esos operadores.
+
+```dax
+Exportacion Neuquina (bbl-dia) =
+VAR Dias = SUMX(VALUES(Dim_Fecha[anio_mes]), DAY(EOMONTH(MIN(Dim_Fecha[fecha]), 0)))
+RETURN
+    DIVIDE([Volumen Exportado Neuquino] * 6.2898, Dias)
+```
+> 1 m³ = 6,2898 bbl, el mismo factor del resto del proyecto. Los días se cuentan una vez por mes.
+
+```dax
+Indice Produccion VM (base 2022) =
 VAR ValorBase =
-    CALCULATE(
-        AVERAGEX(VALUES(Dim_Fecha[anio_mes]), [Prod Petroleo (bbl-dia)]),
-        ALL(Dim_Fecha),
-        Dim_Fecha[anio] = 2019
-    )
+    CALCULATE([Prod Petroleo (bbl-dia)], ALL(Dim_Fecha), Dim_Fecha[anio] = 2022)
 RETURN
     DIVIDE([Prod Petroleo (bbl-dia)], ValorBase) * 100
 ```
 
 ```dax
-Indice Exportacion (base 100) =
+Indice Exportacion Neuquina (base 2022) =
 VAR ValorBase =
-    CALCULATE(
-        AVERAGEX(VALUES(Dim_Fecha[anio_mes]), [Volumen Exportado]),
-        ALL(Dim_Fecha),
-        Dim_Fecha[anio] = 2019
-    )
+    CALCULATE([Exportacion Neuquina (bbl-dia)], ALL(Dim_Fecha), Dim_Fecha[anio] = 2022)
 RETURN
-    DIVIDE([Volumen Exportado], ValorBase) * 100
+    DIVIDE([Exportacion Neuquina (bbl-dia)], ValorBase) * 100
+```
+> Con `Dim_Fecha[anio]` en el eje o en una tarjeta con un año filtrado, da el promedio anual. `ALL(Dim_Fecha)` limpia el
+> filtro de fecha antes de fijar el año base (mismo cuidado que en las demás medidas de índice).
+
+```dax
+Indice Produccion VM MA12 (base 2022) =
+VAR Fin = MAX(Dim_Fecha[fecha])
+VAR Ventana = DATESINPERIOD(Dim_Fecha[fecha], Fin, -12, MONTH)
+VAR Base =
+    CALCULATE(AVERAGEX(VALUES(Dim_Fecha[anio_mes]), [Prod Petroleo (bbl-dia)]), ALL(Dim_Fecha), Dim_Fecha[anio] = 2022)
+VAR Meses = CALCULATE(COUNTROWS(VALUES(Dim_Fecha[anio_mes])), Ventana)
+VAR Media = CALCULATE(AVERAGEX(VALUES(Dim_Fecha[anio_mes]), [Prod Petroleo (bbl-dia)]), Ventana)
+RETURN
+    IF(Meses = 12, DIVIDE(Media, Base) * 100)
 ```
 
-**Verificado con los datos reales, ya con el fix:**
+```dax
+Indice Exportacion Neuquina MA12 (base 2022) =
+VAR Fin = MAX(Dim_Fecha[fecha])
+VAR Ventana = DATESINPERIOD(Dim_Fecha[fecha], Fin, -12, MONTH)
+VAR Base =
+    CALCULATE(AVERAGEX(VALUES(Dim_Fecha[anio_mes]), [Exportacion Neuquina (bbl-dia)]), ALL(Dim_Fecha), Dim_Fecha[anio] = 2022)
+VAR Meses = CALCULATE(COUNTROWS(VALUES(Dim_Fecha[anio_mes])), Ventana)
+VAR Media = CALCULATE(AVERAGEX(VALUES(Dim_Fecha[anio_mes]), [Exportacion Neuquina (bbl-dia)]), Ventana)
+RETURN
+    IF(Meses = 12, DIVIDE(Media, Base) * 100)
+```
+> Media móvil de 12 meses (promedio simple de los 12 valores mensuales), vacía mientras no haya 12 meses. No poner un
+> filtro de año en el gráfico: dejaría la ventana sin los meses anteriores. Los meses sin dato quedan como vacío, no cero.
 
-| Mes en el eje | `ValorBase` corregido | Índice corregido |
-|---|---|---|
-| Febrero 2019 | 316.714,1 (promedio de los 12 meses) | 99,42 |
-| Octubre 2019 | 316.714,1 (promedio de los 12 meses) | 111,41 |
-
-Ahora oscila alrededor de 100 en vez de ser idéntico — y el índice deja de depender de qué mes puntual esté
-activo en el eje del gráfico, así que también funciona igual de bien en una tarjeta con un slicer de año en vez
-de en el gráfico de líneas (el `ALL(Dim_Fecha)` limpia esa selección también antes de fijar el año base). Es el
-mismo cuidado que ya había aparecido con `Var Interanual Prod` en el Grupo A, pero en su variante más engañosa:
-ahí el filtro roto vivía en una tabla distinta (relación de un solo sentido); acá vive en la **misma tabla**,
-por eso pasa desapercibido más fácil — dos columnas de `Dim_Fecha` conviven en el mismo `CALCULATE` sin que se
-reemplacen entre sí a menos que se lo pidas explícitamente con `ALL`.
-
-**Ya no hay meses en blanco:** con el fix, todo el rango 2018-2026 tiene un valor de índice calculable — 2018
-va a mostrar números bajos (~5-8), reflejando fielmente que era un período de reporte incompleto, no un error
-de la medida ni un hueco en el gráfico.
+```dax
+Utilizacion % (anio mas reciente valido) =
+VAR UltimoAnio =
+    CALCULATE(
+        MAX(Fact_CapacidadDuctos[anio]),
+        Fact_CapacidadDuctos[capacidad_valida] = TRUE,
+        Fact_CapacidadDuctos[capacidad_dudosa] = FALSE,
+        ALL(Dim_Fecha)
+    )
+RETURN
+    CALCULATE([Utilizacion %], Fact_CapacidadDuctos[anio] = UltimoAnio, ALL(Dim_Fecha))
+```
+> Equivale al ranking de la versión web: para cada ducto, el año más reciente con capacidad válida y no dudosa. Usar
+> `Dim_Ducto[denominacion_logica]` en el eje, para que los dos `idducto` de un mismo ducto cuenten una sola vez.
 
 ---
 

@@ -126,6 +126,7 @@ reg("ductos_petroleo_n", rd["ductos_logicos_que_mueven_petroleo"], "ductos", "du
 reg("ductos_ranking_n", rd["ranking_n_ductos"], "ductos", "ductos de petroleo con capacidad informada valida tras las reglas R1, R3, R4, R5 y D2")
 reg("ductos_sin_capacidad_n", rd["categorias"]["SIN_CAPACIDAD_EN_ANEXO_2A"], "ductos", "ductos de petroleo sin fila en el Anexo 2A")
 reg("ductos_cap_dudosa_todos_n", rd["categorias"]["CAPACIDAD_DUDOSA_TODOS_LOS_ANIOS"], "ductos", "ductos de petroleo con capacidad dudosa en todos los anios")
+reg("ductos_sin_cap_utilizable_n", rd["categorias"]["SIN_CAPACIDAD_EN_ANEXO_2A"] + rd["categorias"]["CAPACIDAD_DUDOSA_TODOS_LOS_ANIOS"], "ductos", "ductos de petroleo sin capacidad utilizable (sin Anexo 2A o dudosa en todos los anios)")
 reg("ductos_sobre_100_n", rd["ranking_sobre_100"], "ductos", "ductos del ranking con utilizacion del segmento mas cargado > 100% en su anio mas reciente valido")
 reg("ductos_ranking_parcial_n", rd["ranking_con_anio_parcial"], "ductos", "ductos del ranking cuyo anio mas reciente tiene menos de 12 meses")
 reg("ductos_ranking_a_revisar_n", rd["ranking_a_revisar"], "ductos", "ductos del ranking marcados a revisar (R2 o R6)")

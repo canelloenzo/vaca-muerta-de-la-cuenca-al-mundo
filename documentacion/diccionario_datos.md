@@ -104,8 +104,8 @@ Movimientos de hidrocarburos por ducto/tramo (fuente: `volumnenes-de-transporte-
 | fecha_data | str | Fecha de corte del reporte (texto original) |
 | es_operacion_exportacion | bool | `tipo_operacion == "Exportacion"` — bandera booleana lista para usar |
 
-**Hallazgo crítico:** no existe ningún campo de capacidad nominal en este archivo, ni en `dim_ducto.csv`
-(solo trae longitud en km, no m³/día). El KPI de la guía "Utilización % = flujo / capacidad nominal"
+**Hallazgo crítico:** no existe ningún campo de capacidad de transporte en este archivo, ni en `dim_ducto.csv`
+(solo trae longitud en km, no m³/día). El KPI de la guía "Utilización % = flujo / capacidad"
 **no se puede calcular con los datos entregados**.
 
 ---
@@ -174,7 +174,7 @@ Capacidad de transporte por ducto vs. volumen realmente transportado, a nivel **
 `data/scripts/08_clean_capacidad_ductos.py`):**
 - **Clave de unión:** `idtramo` NO es un espacio de IDs compartido entre el Anexo 2A y `fact_transporte_ductos`
   — de 88 valores de `idtramo` que coinciden numéricamente entre ambos archivos, el `idducto` asociado solo
-  coincide en 1/88 (match espurio). La clave correcta y confiable es **`idducto`**.
+  coincide en 1/88 (match espurio). La clave correcta es **`idducto`**.
 - **Grano real del Anexo 2A:** idducto × idtramo × cargador × año. Se verificó que `capacidad_operativa_maxima`
   es idéntica entre todos los cargadores de un mismo tramo, y también idéntica entre todos los tramos de un
   mismo ducto-año (0/77 grupos con más de un tramo mostraron variación) — sumar por tramo o por cargador
@@ -195,13 +195,14 @@ ducto-mes, 3.603/7.939 (**45,4%**) — la cobertura NO es total: 55% del transpo
 asociada, principalmente ductos menores/provinciales que no reportan al Anexo 2A. El KPI de utilización solo
 es representativo para los ductos con cobertura, no para el universo completo.
 
-**Calidad de los datos resultantes:** con `capacidad_valida = True`, la mediana de `utilizacion_pct` es 0,54
-(rango intercuartílico 0,25-0,81) — valores fisicamente razonables. 291/3.483 filas (8,4%) superan el 100%,
-concentradas en solo 6 ductos de los ~91 con datos; el caso extremo es **idducto 329 "Oleoducto AM6-AM3"**
-(hasta 876x en 2023), donde `capacidad_operativa_maxima_m3_dia` = 330 pero el volumen mensual real implica un
-caudal diario de ~266.000 m³ — inconsistencia que parece un error de carga en el Anexo 2A de origen (no un
-error del cruce), no un caso real de sobre-operación. **Recomendación: excluir o verificar manualmente estos
-6 ductos (42, 97, 149, 171, 221, 329) antes de mostrar el KPI de utilización a nivel dashboard.**
+**Calidad de los datos resultantes (corregido tras la auditoría).** `volumen_transportado` y `utilizacion_pct` se conservan
+por compatibilidad, pero están **deprecadas**: suman todos los productos (incluido el gas natural) y todos los tramos en
+serie contra la capacidad de una sola fila. Los valores absurdos de esas columnas (por ejemplo, el ducto 329 con cifras de
+miles de veces la capacidad) venían de sumar volumen de gas, no de un error de carga del Anexo 2A. Para calcular
+utilización se usan `volumen_liquidos` y `volumen_segmento_mas_cargado`, y se excluyen por ducto-año las capacidades dudosas
+(`capacidad_dudosa`, `motivo_capacidad_dudosa`; reglas R1, R3, R4, R5 y D2). `a_revisar_capacidad` marca, sin excluir, los casos
+R2 y R6. Las reglas y sus umbrales están en `scripts/08_clean_capacidad_ductos.py` y los conteos vigentes en
+`data/web/registro_cifras.json`. Ya no se excluyen ductos completos.
 
 ---
 
@@ -221,7 +222,7 @@ crudo), no precios absolutos — no sumar directamente con las otras series sin 
 **Limitación crítica (detectada 2026-09-10):** la serie completa cubre solo **30 meses, enero 2019 a junio
 2021** — verificado contra el Excel original (`precio-exportacion-crudo.xlsx`, hoja "precios"), no es un
 recorte introducido en la limpieza. **No hay ningún precio disponible para 2022 en adelante**, que es
-justo el período del "boom" de exportación que el proyecto quiere narrar (2025 récord, entrada en operación de
+justo el período del "boom" de exportación que el proyecto quiere narrar (el crecimiento de la exportación en 2025 y la entrada en operación de
 VMOS). En la práctica esto vuelve inutilizable el KPI "Valor USD Estimado" para la parte más relevante de la
 historia — solo podría mostrarse, con esta fuente, para 2019-2021. Si el valor en USD es importante para el
 storytelling, hace falta conseguir una fuente de precios más actualizada (no viene en los 16 archivos
@@ -296,4 +297,4 @@ Anexo 2A — `capacidad_operativa` se repite idéntica entre cargadores de la mi
 
 **Recomendación:** dejarlos documentados acá (no en `data/clean/`) y revisarlos si en una futura iteración el
 proyecto suma explícitamente un cuarto acto de "almacenamiento" a la narrativa — por ejemplo, si se quiere
-mostrar que la capacidad de tanques en Neuquén es también un cuello de botella, no solo el ducto.
+mostrar que la capacidad de tanques en Neuquén es también una restricción, no solo el ducto (hipótesis que estos datos no evalúan).
