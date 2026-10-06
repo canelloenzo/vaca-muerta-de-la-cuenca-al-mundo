@@ -1,8 +1,7 @@
 import os
 import pandas as pd
 
-ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-CLEAN = os.path.join(ROOT, "clean")
+from _rutas import RAW, CLEAN, WEB  # noqa: F401  (rutas configurables, ver _rutas.py)
 
 for f in ["fact_produccion_pozo_mes_vaca_muerta.csv", "fact_produccion_yacimiento_mes_vaca_muerta.csv"]:
     df = pd.read_csv(os.path.join(CLEAN, f), encoding="utf-8-sig", low_memory=False)

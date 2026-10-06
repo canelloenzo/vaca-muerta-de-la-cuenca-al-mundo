@@ -7,8 +7,7 @@ indice, generando ~37% de nulos espurios).
 import os
 import pandas as pd
 
-ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-CLEAN = os.path.join(ROOT, "clean")
+from _rutas import RAW, CLEAN, WEB  # noqa: F401  (rutas configurables, ver _rutas.py)
 
 full = pd.read_csv(os.path.join(CLEAN, "fact_produccion_pozo_mes_vaca_muerta.csv"), encoding="utf-8-sig", low_memory=False)
 full["fecha"] = pd.to_datetime(full["fecha"])

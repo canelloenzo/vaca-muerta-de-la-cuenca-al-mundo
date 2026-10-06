@@ -33,9 +33,7 @@ import numpy as np
 import pandas as pd
 import ftfy
 
-ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-RAW = os.path.join(ROOT, "raw")
-CLEAN = os.path.join(ROOT, "clean")
+from _rutas import RAW, CLEAN, WEB  # noqa: F401  (rutas configurables, ver _rutas.py)
 
 
 def read_raw_csv(fname):
@@ -98,10 +96,78 @@ fact["capacidad_mensual_m3"] = fact["capacidad_operativa_maxima_m3_dia"] * fact[
 fact["capacidad_valida"] = fact["capacidad_operativa_maxima_m3_dia"] > 0
 fact["utilizacion_pct"] = np.where(fact["capacidad_valida"], fact["volumen_transportado"] / fact["capacidad_mensual_m3"], np.nan)
 
-cols = ["fecha", "anio", "mes", "idducto", "denominacion_ducto", "empresa", "tipo_jurisdiccion",
+# ------------------------------------------------------------------------------------------------------
+# Correcciones de la auditoria (F2, F3, F5). Las columnas `volumen_transportado` y `utilizacion_pct` se
+# conservan por compatibilidad pero estan DEPRECADAS: suman TODOS los productos (incluido gas natural) y todos
+# los segmentos en serie contra la capacidad de una sola fila. Las columnas nuevas corrigen eso.
+# ------------------------------------------------------------------------------------------------------
+R1_UMBRAL = float(os.environ.get("VM_R1_UMBRAL", 5))   # salto interanual de la capacidad operativa (veces)
+R3_UMBRAL = float(os.environ.get("VM_R3_UMBRAL", 2))   # caudal liquido observado / capacidad empleada informada
+R5_DIAS = int(os.environ.get("VM_R5_DIAS", 90))        # dias operativos informados en el Anexo 2A
+DUCTOS_RETIRADOS_D2 = {(539, 2025): "D2"}               # VMOC 2025: decision del autor (capacidad vs caudal)
+GAS_PRODUCTOS = {"gas", "gas natural", "gas 9300", "gas @9300"}   # solo si `tipo_producto` viene vacio
+ALIAS_DUCTOS = {532: 255, 533: 122}                     # ver 02_clean_transporte_ductos.py (inferencia)
+
+# 1) Numerador: solo liquidos (todo salvo gas natural). "Derivados del Gas" (GLP, LGN) son liquidos en m3.
+p20["es_gas"] = (p20["tipo_producto"] == "Gas") | (p20["tipo_producto"].isna() & p20["producto_norm"].isin(GAS_PRODUCTOS))
+liq = p20[~p20["es_gas"]]
+llave = ["idducto", "anio", "mes"]
+seg = liq.groupby(llave + ["nodo_origen", "nodo_destino"], dropna=False)["volumen"].sum().reset_index()
+seg_mes = seg.groupby(llave).agg(volumen_segmento_mas_cargado=("volumen", "max"),
+                                 n_segmentos_con_volumen=("volumen", lambda v: int((v > 0).sum()))).reset_index()
+liq_mes = liq.groupby(llave)["volumen"].sum().rename("volumen_liquidos").reset_index()
+gas_mes = p20[p20["es_gas"]].groupby(llave)["volumen"].sum().rename("volumen_gas").reset_index()
+for extra in (liq_mes, gas_mes, seg_mes):
+    fact = fact.merge(extra, on=llave, how="left")
+for c in ("volumen_liquidos", "volumen_gas", "volumen_segmento_mas_cargado", "n_segmentos_con_volumen"):
+    fact[c] = fact[c].fillna(0)
+fact["n_segmentos_con_volumen"] = fact["n_segmentos_con_volumen"].astype(int)
+
+# 2) Reglas de capacidad dudosa, por ducto-anio (la capacidad del Anexo 2A es anual)
+ca = cap_anual[["idducto", "anio", "capacidad_operativa_maxima_m3_dia", "capacidad_disenio_m3_dia",
+                "capacidad_empleada_m3_dia", "dias_operativos"]].sort_values(["idducto", "anio"]).reset_index(drop=True)
+op, dis, emp = ca["capacidad_operativa_maxima_m3_dia"], ca["capacidad_disenio_m3_dia"], ca["capacidad_empleada_m3_dia"]
+ca["_op_prev"] = op.groupby(ca["idducto"]).shift()
+ca["_anio_prev"] = ca["anio"].groupby(ca["idducto"]).shift()
+razon = op / ca["_op_prev"]
+salto = ((ca["anio"] - ca["_anio_prev"]) == 1) & (op > 0) & (ca["_op_prev"] > 0) & (np.maximum(razon, 1 / razon) > R1_UMBRAL)
+r1 = set(zip(ca.loc[salto, "idducto"], ca.loc[salto, "anio"])) | set(zip(ca.loc[salto, "idducto"], ca.loc[salto, "anio"] - 1))
+# R3: caudal diario medio de liquidos (segmento mas cargado) en los meses con transporte / capacidad empleada informada
+obs = fact.groupby(["idducto", "anio"]).apply(
+    lambda d: d["volumen_segmento_mas_cargado"].sum() / d["dias_mes"].sum()).rename("_obs").reset_index()
+ca = ca.merge(obs, on=["idducto", "anio"], how="left")
+r3 = set(zip(ca.loc[(emp > 0) & (ca["_obs"] / emp > R3_UMBRAL), "idducto"], ca.loc[(emp > 0) & (ca["_obs"] / emp > R3_UMBRAL), "anio"]))     | set(zip(ca.loc[(emp == 0) & (op > 0) & (ca["_obs"] > 0), "idducto"], ca.loc[(emp == 0) & (op > 0) & (ca["_obs"] > 0), "anio"]))
+r4 = set(zip(ca.loc[(op > 0) & (emp > 0) & (op < emp), "idducto"], ca.loc[(op > 0) & (emp > 0) & (op < emp), "anio"]))
+r5 = set(zip(ca.loc[(op > 0) & (ca["dias_operativos"] <= R5_DIAS), "idducto"], ca.loc[(op > 0) & (ca["dias_operativos"] <= R5_DIAS), "anio"]))
+trip = ca[op > 0].groupby(["capacidad_operativa_maxima_m3_dia", "capacidad_disenio_m3_dia", "capacidad_empleada_m3_dia"])["idducto"].nunique()
+trip = set(trip[trip > 1].index)
+en_trip = np.array([(a, b, c) in trip for a, b, c in zip(op, dis, emp)])
+m_r2 = en_trip & (op > 0).to_numpy()
+r2 = set(zip(ca.loc[m_r2, "idducto"], ca.loc[m_r2, "anio"]))
+reglas = {"R1": r1, "R3": r3, "R4": r4, "R5": r5, "D2": set(DUCTOS_RETIRADOS_D2)}
+claves = list(zip(ca["idducto"], ca["anio"]))
+ca["motivo_capacidad_dudosa"] = [",".join(k for k, v in reglas.items() if key in v) for key in claves]
+ca["capacidad_dudosa"] = ca["motivo_capacidad_dudosa"] != ""
+ca["a_revisar_capacidad"] = [(key in r2) and not d for key, d in zip(claves, ca["capacidad_dudosa"])]
+print(f"\nReglas de capacidad dudosa (R1 {R1_UMBRAL}x, R3 {R3_UMBRAL}x, R5 <= {R5_DIAS} dias): duct-anios con capacidad > 0 =",
+      int((op > 0).sum()), "| dudosos =", int(ca["capacidad_dudosa"].sum()),
+      {k: len(v) for k, v in reglas.items()}, "| a revisar (R2 solo) =", int(ca["a_revisar_capacidad"].sum()))
+fact = fact.merge(ca[["idducto", "anio", "capacidad_dudosa", "a_revisar_capacidad", "motivo_capacidad_dudosa"]],
+                  on=["idducto", "anio"], how="left")
+
+# 3) Utilizacion nueva (razon 0-1, igual que el campo historico `utilizacion_pct`)
+fact["utilizacion_liquidos_ratio"] = np.where(fact["capacidad_valida"], fact["volumen_liquidos"] / fact["capacidad_mensual_m3"], np.nan)
+fact["utilizacion_segmento_mas_cargado_ratio"] = np.where(
+    fact["capacidad_valida"], fact["volumen_segmento_mas_cargado"] / fact["capacidad_mensual_m3"], np.nan)
+fact["idducto_logico"] = fact["idducto"].map(lambda i: ALIAS_DUCTOS.get(i, i))
+
+cols = ["fecha", "anio", "mes", "idducto", "idducto_logico", "denominacion_ducto", "empresa", "tipo_jurisdiccion",
         "n_tramos_reportados", "capacidad_operativa_maxima_m3_dia", "capacidad_disenio_m3_dia",
         "capacidad_empleada_m3_dia", "dias_mes", "capacidad_mensual_m3", "volumen_transportado",
-        "capacidad_valida", "utilizacion_pct"]
+        "capacidad_valida", "utilizacion_pct",
+        "volumen_liquidos", "volumen_gas", "volumen_segmento_mas_cargado", "n_segmentos_con_volumen",
+        "utilizacion_liquidos_ratio", "utilizacion_segmento_mas_cargado_ratio",
+        "capacidad_dudosa", "a_revisar_capacidad", "motivo_capacidad_dudosa"]
 fact = fact[cols].sort_values(["idducto", "fecha"])
 fact.to_csv(os.path.join(CLEAN, "fact_capacidad_ductos.csv"), index=False, encoding="utf-8-sig")
 print(f"\nfact_capacidad_ductos.csv -> {fact.shape}")

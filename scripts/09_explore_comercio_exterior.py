@@ -1,8 +1,7 @@
 import os
 import pandas as pd
 
-ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-RAW = os.path.join(ROOT, "raw")
+from _rutas import RAW, CLEAN, WEB  # noqa: F401  (rutas configurables, ver _rutas.py)
 FILE = "TD_comercioexterior.xlsx"
 
 path = os.path.join(RAW, FILE)

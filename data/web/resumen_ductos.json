@@ -1,0 +1,20 @@
+{
+  "ductos_logicos_que_mueven_petroleo": 83,
+  "categorias": {
+    "EN_RANKING": 43,
+    "SIN_CAPACIDAD_EN_ANEXO_2A": 34,
+    "CAPACIDAD_DUDOSA_TODOS_LOS_ANIOS": 6
+  },
+  "ranking_n_ductos": 43,
+  "ranking_sobre_100": 3,
+  "ranking_con_anio_parcial": 7,
+  "ranking_multi_segmento": 7,
+  "ranking_a_revisar": 2,
+  "duct_anios_con_capacidad_dudosa": 40,
+  "ductos_con_algun_anio_dudoso": 20,
+  "reglas": {
+    "R1_umbral_veces": 5.0,
+    "R3_umbral_veces": 2.0,
+    "R5_dias": 90
+  }
+}

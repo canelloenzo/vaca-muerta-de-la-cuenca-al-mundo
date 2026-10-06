@@ -27,7 +27,7 @@ def test_f1_serie_exportacion_cuenca_neuquina_existe():
     p = H.WEB / "exportacion_cuenca_neuquina_mensual.csv"
     assert p.exists(), "falta data/web/exportacion_cuenca_neuquina_mensual.csv"
     d = pd.read_csv(p)
-    assert {"fecha", "exportacion_bbl_dia"} <= set(d.columns)
+    assert {"fecha", "exportacion_terminales_bbl_dia"} <= set(d.columns)
 
 
 def test_f1_comparacion_cierra_en_dic_2025():
@@ -38,13 +38,13 @@ def test_f1_comparacion_cierra_en_dic_2025():
 
 
 def test_f1_indice_con_base_documentada_y_sensibilidad():
-    k = H.web_json("resumen_kpis.json")
+    k = H.web_json("kpis_resumen.json")
     assert k.get("indice_anio_base") == 2022
     assert set(k.get("indice_sensibilidad_bases", [])) == {2021, 2022, 2023}
 
 
 def test_f6_tarjeta_produccion_jun_2026_rotulada():
-    k = H.web_json("resumen_kpis.json")
+    k = H.web_json("kpis_resumen.json")
     assert k["fecha_ultimo_mes_produccion"] == "2026-06-01"
     assert "no convencional" in k.get("produccion_alcance", "").lower()
 
@@ -57,7 +57,7 @@ def test_f7_serie_nacional_muestra_no_identificado():
 
 
 def test_f8_concentracion_por_cargador_publicada():
-    k = H.web_json("resumen_kpis.json")
+    k = H.web_json("kpis_resumen.json")
     assert "concentracion_top3_cargadores_pct_2020_2025" in k
     assert "concentracion_top3_operadores_terminal_pct_2020_2025" in k
 
@@ -119,7 +119,8 @@ def test_f17_no_dice_238_convencionales():
 
 # ---------------- Power BI / DAX (F12, F16) ----------------
 def test_f12_dax_sin_allexcept_con_tabla():
-    assert "ALLEXCEPT(Fact_MovimientosExportacion, Dim_Pais)" not in DAX()
+    codigo = "\n".join(re.findall(r"```dax\n(.*?)```", DAX(), re.S))           # solo los bloques de código, no las notas
+    assert "ALLEXCEPT(Fact_MovimientosExportacion, Dim_Pais)" not in codigo
 
 
 def test_f12_dax_balance_corrige_el_signo():

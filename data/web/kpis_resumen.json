@@ -1,0 +1,63 @@
+{
+  "corte_comparaciones": "2025-12-01",
+  "fecha_ultimo_mes_produccion": "2026-06-01",
+  "produccion_ultimo_mes_bbl_dia": 633371.1,
+  "produccion_alcance": "Solo no convencional (archivo no convencional; el convencional de 2026 no esta en las fuentes cargadas, y en 2022-2025 fue 0,08%-0,20% del volumen anual de Vaca Muerta)",
+  "variacion_interanual_produccion_pct": 33.0,
+  "variacion_interanual_base": "jun-2026 vs jun-2025, ambos solo no convencional",
+  "produccion_vm_dic_2025_bbl_dia": 590754.6,
+  "variacion_interanual_vm_dic_2025_pct": 31.92,
+  "produccion_cuenca_2025_bbl_dia": 592112.6,
+  "vm_sobre_cuenca_2025_pct": 84.8,
+  "pct_no_convencional_2006_2025": 99.91,
+  "pct_no_convencional_2022_2025": 99.88,
+  "pct_no_convencional_nota": "2006-2021 solo incluye no convencional (los archivos anuales previos a 2022 no estan cargados)",
+  "fecha_ultimo_mes_exportacion": "2026-06-01",
+  "exportacion_terminales_neuquinos_ultimo_mes_bbl_dia": 258874.5,
+  "exportacion_terminales_neuquinos_ultimo_mes_m3": 1234734.7,
+  "exportacion_nacional_terminales_ultimo_mes_m3": 1268381.1,
+  "exportacion_nacional_terminales_total_2018_2026_m3": 53755750.1,
+  "volumen_no_identificado_m3": 15044986.0,
+  "pct_no_identificado": 27.99,
+  "pct_con_pais_identificado": 72.01,
+  "pct_exportado_cuenca_por_anio": {
+    "2022": 20.8,
+    "2023": 19.4,
+    "2024": 18.2,
+    "2025": 28.1
+  },
+  "pct_exportado_vm_por_anio": {
+    "2019": 1.8,
+    "2020": 16.4,
+    "2021": 17.4,
+    "2022": 30.1,
+    "2023": 26.0,
+    "2024": 22.9,
+    "2025": 33.1
+  },
+  "pct_exportado_nota": "Numerador: crudo exportado por terminales neuquinos (proxy). Denominador: produccion total de la cuenca (solo 2022-2025). No incluye el oleoducto a Chile (planilla 20).",
+  "indice_anio_base": 2022,
+  "indice_criterio_base": "primer anio calendario con exportacion neuquina en 12 de 12 meses y exportacion >= 10% de la produccion de Vaca Muerta (promedio anual)",
+  "indice_sensibilidad_bases": [
+    2021,
+    2022,
+    2023
+  ],
+  "indice_meses_con_exportacion_por_anio": {
+    "2019": 2,
+    "2020": 6,
+    "2021": 11,
+    "2022": 12,
+    "2023": 12,
+    "2024": 12,
+    "2025": 12
+  },
+  "concentracion_top3_operadores_terminal_pct_2020_2025": 94.25,
+  "concentracion_top3_cargadores_pct_2020_2025": 47.02,
+  "volatilidad_mensual_2022_2025_exportacion_terminales_pct": 34.02,
+  "volatilidad_mensual_2022_2025_produccion_vm_pct": 2.55,
+  "volatilidad_mensual_2020_2025_exportacion_nacional_terminales_pct": 76.85,
+  "volatilidad_mensual_2020_2025_produccion_vm_pct": 5.18,
+  "oleoducto_chile_2025_bbl_dia": 79998.3,
+  "oleoducto_chile_nota": "Planilla 20, ducto 'Puesto Hernandez - Buta Mallin' (Oleoducto Trasandino Argentina S.A.), 2023-05 a 2026-06. No se suma a la serie principal (pendiente de decision)."
+}

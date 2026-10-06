@@ -1,0 +1,3 @@
+idpozo,sigla,yacimiento,longitud,latitud,med_lon,med_lat,pozos_con_coordenada,distancia_a_mediana_del_yacimiento_km,produccion_acumulada_bbl,motivo
+153751,YPF.Nq.LLL-902(d),LOMA CAMPANA-LLL,-69.3164,-38.3502,-68.774,-38.3387,633,47.3,42748.0,coordenada a mas de 30 km de la mediana de su yacimiento
+159086,PAE.Nq.CAS.x-14(r)(h),COIRON AMARGO SUR ESTE,-68.5932,-38.6441,-68.3781,-38.3114,31,41.5,437068.0,coordenada a mas de 30 km de la mediana de su yacimiento

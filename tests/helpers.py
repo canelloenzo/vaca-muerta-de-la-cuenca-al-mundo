@@ -31,6 +31,7 @@ RAW_ANEXO2A = "anexo-2a-capacidad-de-transporte-de-hidrocarburos-a-travs-de-duct
 RAW_BALANCE = {2023: "Balance_2023_V0_H.xlsx", 2024: "Balance_2024_V0_H.xlsx", 2025: "balance_2025_v0_h.xlsx"}
 DUCTOS_EXCLUIDOS_ORIGINAL = {42, 97, 149, 171, 221, 329}
 OPERADORES_NEUQUINOS = ["Oiltanking EBYTEM S.A.", "Refineria Bahia Blanca SAU"]
+GAS_PRODUCTOS = {"gas", "gas natural", "gas 9300", "gas @9300"}   # gas natural; los derivados del gas (GLP, LGN) son liquidos
 
 
 def data_root() -> Path:
@@ -199,7 +200,8 @@ def util_ducto_mes() -> pd.DataFrame:
 
     def build():
         t = p20_raw()
-        t["liq"] = ~t.tipo_producto.isin(["Gas", "Derivados del Gas"])
+        pn = t.producto.fillna("").map(norm).str.replace(r"\s+", " ", regex=True)
+        t["liq"] = ~((t.tipo_producto == "Gas") | (t.tipo_producto.isna() & pn.isin(GAS_PRODUCTOS)))
         a = anexo2a_raw()
         ca = a.groupby(["idducto", "anio"]).agg(
             op=("capacidad_operativa_maxima", "first"), dis=("capacidad_disenio", "first"),
@@ -215,9 +217,75 @@ def util_ducto_mes() -> pd.DataFrame:
         mes["dias"] = pd.to_datetime(dict(year=mes.anio, month=mes.mes, day=1)).dt.days_in_month
         return mes.merge(ca, on=["idducto", "anio"], how="inner")
 
-    return _cached("util_ducto_mes", paths, build)
+    return _cached("util_ducto_mes_v2_gas_natural", paths, build)   # el nombre cambia si cambia la definición de líquido
 
 
 def utilizacion(df: pd.DataFrame, num: str, cap: str = "op") -> float:
     d = df[df[cap] > 0]
     return 100 * d[num].sum() / (d[cap] * d.dias).sum()
+
+
+# ----------------------------------------------------------------------------------------------
+# Cuenca Neuquina (producción total) y exportación por terminal
+# ----------------------------------------------------------------------------------------------
+def cuenca_raw():
+    """Producción mensual (m3) de toda la cuenca NEUQUINA desde los archivos anuales 2022-2025 (conv + NC) y NC histórico."""
+    paths = [raw_dir() / f for f in RAW_ANUALES + [RAW_NC]]
+
+    def build():
+        cols = ["idempresa", "anio", "mes", "idpozo", "prod_pet", "formacion", "cuenca", "tipo_de_recurso"]
+
+        def leer(f):
+            d = pd.read_csv(raw_dir() / f, encoding="utf-8-sig", usecols=cols, low_memory=False)
+            d = d[d.cuenca.fillna("").map(norm) == "neuquina"].drop_duplicates(["idempresa", "idpozo", "anio", "mes"])
+            d["vm"] = d.formacion.fillna("").map(norm).str.contains("vaca muerta")
+            d["fecha"] = pd.to_datetime(dict(year=d.anio, month=d.mes, day=1))
+            return d
+        ann = pd.concat([leer(f) for f in RAW_ANUALES], ignore_index=True)
+        ncd = leer(RAW_NC)
+        return {"anual": ann.groupby("fecha").prod_pet.sum(), "anual_conv": ann[ann.tipo_de_recurso == "CONVENCIONAL"].groupby("fecha").prod_pet.sum(),
+                "anual_vm": ann[ann.vm].groupby("fecha").prod_pet.sum(), "nc": ncd.groupby("fecha").prod_pet.sum(),
+                "nc_vm": ncd[ncd.vm].groupby("fecha").prod_pet.sum(), "nc_anual": ann[ann.tipo_de_recurso == "NO CONVENCIONAL"].groupby("fecha").prod_pet.sum()}
+
+    return _cached("cuenca_raw", paths, build)
+
+
+def export_neuquina_mensual(ex: pd.DataFrame) -> pd.Series:
+    return ex[ex.empresa.isin(OPERADORES_NEUQUINOS)].groupby("fecha").volumen.sum()
+
+
+def bbl_dia(m3, fechas):
+    return m3 * BBL_PER_M3 / pd.DatetimeIndex(fechas).days_in_month
+
+
+def reglas_capacidad(util: pd.DataFrame, r1=5.0, r3=2.0, r5=90):
+    """Implementación independiente de las reglas R1, R3, R4, R5 y R2 (a revisar). Devuelve sets de (idducto, anio)."""
+    a = anexo2a_raw()
+    ca = a.groupby(["idducto", "anio"]).agg(op=("capacidad_operativa_maxima", "first"), dis=("capacidad_disenio", "first"),
+                                            emp=("capacidad_empleada", "first"), diasop=("dias_operativos", "first")).reset_index()
+    ca = ca.sort_values(["idducto", "anio"]).reset_index(drop=True)
+    out = {"R1": set(), "R3": set(), "R4": set(), "R5": set(), "R2": set()}
+    for i, d in ca.groupby("idducto"):
+        d = d.reset_index(drop=True)
+        for k in range(1, len(d)):
+            o0, o1 = d.op[k - 1], d.op[k]
+            if d.anio[k] - d.anio[k - 1] == 1 and o0 > 0 and o1 > 0 and max(o1 / o0, o0 / o1) > r1:
+                out["R1"] |= {(i, int(d.anio[k])), (i, int(d.anio[k - 1]))}
+    obs = util.groupby(["idducto", "anio"]).apply(lambda g: g.vol_segmax.sum() / g.dias.sum(), include_groups=False)
+    for _, r in ca.iterrows():
+        key = (r.idducto, int(r.anio))
+        o = obs.get(key, np.nan)
+        if r.emp > 0 and o / r.emp > r3:
+            out["R3"].add(key)
+        if r.emp == 0 and r.op > 0 and o > 0:
+            out["R3"].add(key)
+        if r.op > 0 and r.emp > 0 and r.op < r.emp:
+            out["R4"].add(key)
+        if r.op > 0 and r.diasop <= r5:
+            out["R5"].add(key)
+    trip = ca[ca.op > 0].groupby(["op", "dis", "emp"]).idducto.nunique()
+    trip = set(trip[trip > 1].index)
+    for _, r in ca.iterrows():
+        if r.op > 0 and (r.op, r.dis, r.emp) in trip:
+            out["R2"].add((r.idducto, int(r.anio)))
+    return out

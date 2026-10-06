@@ -23,10 +23,7 @@ import json
 import numpy as np
 import pandas as pd
 
-ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-CLEAN = os.path.join(ROOT, "clean")
-WEB = os.path.join(ROOT, "data", "web")
-os.makedirs(WEB, exist_ok=True)
+from _rutas import RAW, CLEAN, WEB  # noqa: F401  (rutas configurables, ver _rutas.py)
 
 DUCTOS_SOSPECHOSOS = {42, 97, 149, 171, 221, 329}
 

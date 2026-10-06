@@ -164,15 +164,22 @@ DIVIDE(
 Utilizacion % =
 CALCULATE(
     DIVIDE(
-        SUM(Fact_CapacidadDuctos[volumen_transportado]),
+        SUM(Fact_CapacidadDuctos[volumen_segmento_mas_cargado]),
         SUM(Fact_CapacidadDuctos[capacidad_mensual_m3])
     ),
-    Fact_CapacidadDuctos[capacidad_valida] = TRUE
+    Fact_CapacidadDuctos[capacidad_valida] = TRUE,
+    Fact_CapacidadDuctos[capacidad_dudosa] = FALSE
 )
 ```
-> Los 6 ductos con utilización sospechosa (42, 97, 149, 171, 221, 329) ya se excluyeron en la consulta de Power
-> Query (`Fact_CapacidadDuctos`, ver `power_query_m.md`) — esta medida no necesita filtrarlos de nuevo. El
-> filtro `capacidad_valida = TRUE` cubre el otro caso (120 filas con capacidad reportada en cero).
+> **Corregida tras la auditoría (F2, F3, F5).** El numerador era `volumen_transportado`, que suma todos los
+> productos (incluido gas natural) y todos los segmentos en serie del ducto contra la capacidad de una sola
+> fila. Ahora usa `volumen_segmento_mas_cargado` (solo líquidos; el mayor volumen entre los segmentos
+> origen→destino de cada ducto-mes). No es una cota: coincide con la utilización real solo si la capacidad
+> informada corresponde a ese tramo (el Anexo 2A y la planilla 20 no comparten identificador de tramo).
+> `capacidad_dudosa = FALSE` reemplaza a la exclusión por ducto completo de los 6 `idducto` (42, 97, 149, 171,
+> 221, 329): ahora se descartan **ducto-años** según las reglas R1, R3, R4, R5 y la decisión D2 (ver
+> `diccionario_datos.md`), y esos ducto-años se listan aparte en `data/web/ductos_capacidad_dudosa.csv`, sin
+> publicar su utilización. `capacidad_valida = TRUE` sigue cubriendo las 120 filas con capacidad en cero.
 
 ```dax
 Volumen Transportado (respaldo) =
@@ -184,15 +191,10 @@ CALCULATE(
 > Complemento para ductos sin cobertura en el Anexo 2A (~55% de los ducto-mes) — mostrar como serie de
 > "volumen transportado" en vez de forzar un % de utilización sin denominador confiable.
 
-```dax
-% Ductos con Capacidad Reportada =
-DIVIDE(
-    CALCULATE(DISTINCTCOUNT(Fact_CapacidadDuctos[idducto]), Fact_CapacidadDuctos[capacidad_valida] = TRUE),
-    DISTINCTCOUNT(Fact_TransporteDuctos[idducto])
-)
-```
-> Útil como nota al pie visible en la página de infraestructura ("el % de utilización cubre solo el X% de los
-> ductos") — transparencia sobre la limitación de cobertura del Anexo 2A.
+> **Medida retirada (`% Ductos con Capacidad Reportada`).** Dividía 57 ductos con capacidad (13 de ellos sin
+> petróleo) por 133 ductos de transporte: universos distintos. La cobertura se informa con la clasificación de los
+> 83 ductos lógicos que mueven petróleo (`data/web/clasificacion_ductos_petroleo.csv`): 43 con capacidad no dudosa
+> (entran al ranking), 34 sin capacidad en el Anexo 2A y 6 con capacidad dudosa en todos los años.
 
 ---
 
@@ -212,10 +214,16 @@ CALCULATE(
 ```dax
 % Pais =
 DIVIDE(
-    CALCULATE([Volumen Exportado], ALLEXCEPT(Fact_MovimientosExportacion, Dim_Pais)),
+    [Volumen Exportado],
     CALCULATE([Volumen Exportado], ALL(Dim_Pais))
 )
 ```
+> **Corregida (F12).** La versión anterior usaba `ALLEXCEPT(Fact_MovimientosExportacion, Dim_Pais)`, que pasa una
+> tabla donde DAX espera columnas de la tabla indicada y no es una sintaxis válida. El numerador es el volumen del
+> país en contexto y el denominador el volumen total sin filtro de país. **El denominador incluye el volumen sin
+> país identificado** (27,99% del total: rótulo "NO IDENTIFICADO" de la planilla 21, todo de TERMAP), de modo que
+> los porcentajes por país suman 72,01% y no 100%. Para repartir solo entre países identificados, usar como
+> denominador `CALCULATE([Volumen Exportado], ALL(Dim_Pais), NOT(ISBLANK(Fact_MovimientosExportacion[pais])), Fact_MovimientosExportacion[pais] <> "")`.
 
 ```dax
 Var Interanual Exportacion =
@@ -229,13 +237,11 @@ RETURN
 > en Power BI (el bug reportado fue solo en Grupo A), pero el patrón es idéntico, así que se corrigió
 > preventivamente.
 
-```dax
-Ratio Exportado (vol) =
-DIVIDE([Volumen Exportado], SUM(Fact_Produccion[prod_pet_m3]))
-```
-> En volumen (m³), no en USD — `Fact_Produccion[prod_pet_m3]` ya está en m³ igual que
-> `Fact_MovimientosExportacion[volumen]`, así que no hace falta convertir unidades acá (a diferencia de
-> `prod_pet_bbl`, que está en barriles).
+> **Medida retirada (`Ratio Exportado (vol)`).** Dividía la exportación de las 6 terminales de todo el país (el
+> 62% es crudo neuquino; el 28% es del Golfo San Jorge) por la producción de Vaca Muerta: el numerador no es un
+> subconjunto del denominador y la razón supera 1 en 5 meses (máx 1,79). El reemplazo es el `% exportado de la
+> cuenca` (crudo exportado por terminales neuquinos / producción total de la Cuenca Neuquina, solo 2022–2025),
+> calculado en `scripts/11_series_cuenca_neuquina.py` y publicado en `data/web/comparacion_produccion_exportacion.csv`.
 
 ### Valor USD Estimado — opcional, con dos caveats importantes (uno de ellos grave)
 
@@ -282,12 +288,15 @@ para que quede claro cuánta cobertura real tiene la estimación.
 
 ```dax
 % Exportado sobre Produccion (anual, contexto) =
-VAR Exportado = CALCULATE(SUM(Fact_BalanceEnergetico[valor_miles_tep]), Fact_BalanceEnergetico[subcategoria] = "EXPORTACION Y BUNKER", SEARCH("petr", Fact_BalanceEnergetico[producto], 1, 0) = 1)
+VAR Exportado = ABS(CALCULATE(SUM(Fact_BalanceEnergetico[valor_miles_tep]), Fact_BalanceEnergetico[subcategoria] = "EXPORTACION Y BUNKER", SEARCH("petr", Fact_BalanceEnergetico[producto], 1, 0) = 1))
 VAR Producido = CALCULATE(SUM(Fact_BalanceEnergetico[valor_miles_tep]), Fact_BalanceEnergetico[subcategoria] = "PRODUCCION", SEARCH("petr", Fact_BalanceEnergetico[producto], 1, 0) = 1)
 RETURN
     DIVIDE(Exportado, Producido)
 ```
-> Solo tiene sentido a nivel **año** (no hay mes en esta tabla) y es a nivel **nacional**, no específico de
+> **Corregida (F12):** en el Balance las exportaciones figuran con signo negativo (convención de balance: las
+> salidas restan); sin `ABS` la medida devolvía −19,0% (2023), −26,6% (2024) y −28,8% (2025). Con `ABS`: 19,0%,
+> 26,6% y 28,8%. "EXPORTACION Y BUNKER" incluye además el combustible vendido a buques (bunker), así que no es
+> exportación pura. Solo tiene sentido a nivel **año** (no hay mes en esta tabla) y es a nivel **nacional**, no específico de
 > Vaca Muerta — usar como cifra de contexto/validación cruzada en la página de resumen ejecutivo, con esa
 > aclaración en el texto ("a nivel país, no solo Vaca Muerta"). `subcategoria` viene en mayúsculas sin tilde
 > (`"PRODUCCION"`, `"EXPORTACION Y BUNKER"`, verificado contra los datos reales) — **no** "Producción"/"Exportación
@@ -319,7 +328,7 @@ Todo 2018 tiene **una sola empresa reportando** y 3 de los 12 meses (marzo, mayo
 fila. Recién en 2019 aparecen 2-4 empresas reportando de forma más regular, y el volumen salta a un rango de
 220.000-460.000 m³/mes — un salto de hasta 20x que es **cobertura de reporte mejorando, no crecimiento físico
 de exportación**. Indexar contra enero 2018 mezclaba las dos cosas: el índice iba a mostrar un "crecimiento"
-de +1.660% solo entre enero 2018 y el promedio de 2019, antes de que pase nada relacionado con VMOS/Oldelval o
+de +1.761% (17.022 → 316.714 m³) solo entre enero 2018 y el promedio de 2019, antes de que pase nada relacionado con VMOS/Oldelval o
 con el boom real de Vaca Muerta.
 
 **Corrección:** se usa el **promedio de los 12 meses de 2019** como base = 100 — el primer año calendario
@@ -437,14 +446,21 @@ DIVIDE(
 > Participación de cada empresa sobre el total exportado. `ALL(empresa)` en el denominador evita que el filtro visual Top N recalcule el % solo sobre las empresas visibles.
 
 ```dax
-Tiene Capacidad Confiable =
+Tiene Capacidad No Dudosa =
 IF(
-    CALCULATE(COUNTROWS(Fact_CapacidadDuctos), Fact_CapacidadDuctos[capacidad_valida] = TRUE) > 0,
+    CALCULATE(
+        COUNTROWS(Fact_CapacidadDuctos),
+        Fact_CapacidadDuctos[capacidad_valida] = TRUE,
+        Fact_CapacidadDuctos[capacidad_dudosa] = FALSE
+    ) > 0,
     1,
     0
 )
 ```
-> Da 1 si el ducto tiene al menos un registro con `capacidad_valida = TRUE`. Filtrada en 0, deja en el visual de `Volumen Transportado (respaldo)` solo los ductos sin capacidad confiable.
+> Reemplaza a `Tiene Capacidad Confiable` (F5: "confiable" solo significaba `capacidad operativa > 0`). Da 1 si el
+> ducto tiene al menos un ducto-año con capacidad informada y no dudosa. Depende del contexto de fecha: con un
+> filtro de año, un ducto con capacidad solo en otros años da 0. Filtrada en 0, deja en el visual de
+> `Volumen Transportado (respaldo)` los ductos sin capacidad utilizable.
 
 ```dax
 Var Interanual Prod - Ultimo Mes =

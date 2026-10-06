@@ -1,0 +1,44 @@
+posicion,idducto_logico,denominacion_ducto,anio,meses_con_dato,parcial,utilizacion_segmento_mas_cargado_pct,utilizacion_liquidos_total_pct,multi_segmento,a_revisar_capacidad,capacidad_operativa_m3_dia,capacidad_disenio_m3_dia,capacidad_empleada_m3_dia,sobre_100_pct
+1,216,Allen - Puerto Rosales,2024,12,False,129.7,129.7,False,False,36000.0,36000.0,36000.0,True
+2,69,LINDERO ATRAVESADO- CENTENARIO,2023,2,True,111.1,111.1,False,True,1800.0,1800.0,1087.0,True
+3,382,Centenario - Allen L14,2024,12,False,106.9,106.9,False,False,9845.0,9720.0,8944.0,True
+4,356,BMo_La Escondida 12,2025,10,True,83.7,136.1,True,False,10756.29,9300.0,7704.06,False
+5,150,Puerto Rosales - Puerto Galvan,2024,12,False,81.5,81.5,False,False,6000.0,5808.0,4928.0,False
+6,46,Puesto Hernandez - Lujan de Cuyo,2025,12,False,80.3,92.1,True,False,16800.0,16800.0,15510.0,False
+7,291,Loma Campana - Lago Pellegrini,2025,12,False,78.8,78.8,False,False,25000.0,25000.0,24960.0,False
+8,211,Medanito - Allen,2024,12,False,77.5,77.5,False,False,35395.0,20400.0,27678.0,False
+9,149,Brandsen - Campana,2024,12,False,73.6,73.6,False,False,18000.0,15600.0,15600.0,False
+10,379,Puesto Hernandez - Buta Mallin,2025,12,False,73.1,73.1,False,False,17400.0,18500.0,13534.51,False
+11,97,Entre Lomas - Intersección oleoducto Medanito - Allen (PTCCB_OLDELVAL),2023,11,True,72.5,72.5,False,False,8956.0,9000.0,6190.81,False
+12,240,Pampa del Castillo-La Guitarra- intersección El trebol,2021,12,False,72.3,72.3,False,False,1000.0,1000.0,1000.0,False
+13,500,Sierras blancas - Allen,2025,12,False,71.3,71.3,False,False,12462.0,19873.0,8885.0,False
+14,517,Vaca Muerta Oleoducto Norte (VMON),2025,12,False,67.5,69.4,True,False,25000.0,25000.0,19531.0,False
+15,45,Puerto Rosales - La Plata,2025,12,False,64.5,88.8,True,False,54360.0,54360.0,50667.0,False
+16,223,Challaco- D. Plaza Huincul ,2024,12,False,59.9,59.9,False,False,3417.0,6120.0,2051.0,False
+17,93,El Corcobo-Puesto Hernandez,2024,12,False,55.9,55.9,False,False,5508.0,5760.0,3080.0,False
+18,213,Challaco-Centenario ,2024,12,False,55.9,55.9,False,False,3672.0,5184.0,2048.0,False
+19,135,Oleoducto Entrega BRM - ULACT,2024,12,False,55.7,55.7,False,False,757.2,1700.0,423.2,False
+20,214,Centenario-Challaco (D. Pza Huincul),2024,12,False,55.6,55.6,False,False,4538.0,9720.0,2524.0,False
+21,360,Fortín de Piedra - Loma Campana,2024,12,False,50.4,61.4,True,False,3440.0,4300.0,1734.0,False
+22,218,Puesto Hernandez-Medanito ,2024,12,False,48.9,48.9,False,False,12383.0,12500.0,6083.0,False
+23,274,25 de Mayo - Intersección Medanito - Allen (PTCMED_ULACTMED),2025,12,False,45.7,45.7,False,False,1328.0,5450.0,606.82,False
+24,114,María Inés - Punta Loyola,2024,12,False,42.5,42.5,False,False,1000.0,5320.0,425.7,False
+25,255,El condor - Punta Loyola,2024,12,False,40.0,40.0,False,False,1250.0,1400.0,503.0,False
+26,221,Centenario - Allen L10,2024,12,False,36.4,36.4,False,False,5639.0,4800.0,3662.0,False
+27,171,PTC-EH-1 a ULACT PT,2024,12,False,35.2,35.2,False,False,2304.0,2880.0,811.6,False
+28,391,ADC-Oleoducto PTC a PDC,2021,3,True,33.5,33.5,False,False,200.0,470.0,120.0,False
+29,329,Oleoducto AM6-AM3,2024,12,False,32.7,32.7,False,False,480.9,1700.0,261.3,False
+30,100,Aguada Pichana - Loma La Lata,2024,12,False,31.3,31.3,False,False,1226.0,1240.0,384.0,False
+31,332,Derivación Balbuena,2023,4,True,26.1,26.1,False,False,737.7,2880.0,198.63,False
+32,64,Estancia La Escondida - Cerro Tortuga III,2025,12,False,24.8,24.8,False,False,250.0,250.0,60.0,False
+33,37,La Plata - Dock Sud,2025,12,False,21.4,21.4,False,False,22344.0,22344.0,6872.0,False
+34,161, PTC.CM a UL-CM  (a YPF en Cañadón León),2024,12,False,21.0,21.0,False,False,1128.0,1410.0,237.34,False
+35,76,El Tordillo - Caleta Córdova,2024,12,False,17.8,22.4,True,False,4493.0,5616.0,1398.78,False
+36,348,BMo Oeste - PTC Entre Lomas 6 (1BMo_PTCCB),2025,12,False,17.0,21.2,True,False,1431.0,1800.0,718.29,False
+37,252,Cerro Bayo- Puesto Hernandez ,2024,12,False,16.4,16.4,False,False,2407.0,10000.0,402.0,False
+38,333,Derivación Aguaray,2021,12,False,14.1,14.1,False,False,1569.8,2640.0,416.6,False
+39,222,Loma Negra PTC  - Allen Planta Oldelval,2022,10,True,12.6,12.6,False,False,2500.0,2500.0,650.0,False
+40,160,PTC-PCO a ULACT-PCO ( YPF  - Tupungato) ,2024,12,False,12.2,12.2,False,False,1777.6,2222.0,217.36,False
+41,374,BANDURRIA CENTRO - LOMA CAMPANA,2026,5,True,11.6,11.6,False,True,2500.0,2500.0,636.7,False
+42,308,SAN ROQUE - LOMA LA LATA,2024,12,False,6.8,6.8,False,False,2963.0,3000.0,202.0,False
+43,75,Chango Norte - Balbuena ,2024,12,False,0.0,0.0,False,False,537.6,672.0,8.03,False

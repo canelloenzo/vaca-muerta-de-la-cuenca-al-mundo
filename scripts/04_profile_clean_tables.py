@@ -1,8 +1,7 @@
 import os
 import pandas as pd
 
-ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-CLEAN = os.path.join(ROOT, "clean")
+from _rutas import RAW, CLEAN, WEB  # noqa: F401  (rutas configurables, ver _rutas.py)
 
 pd.set_option("display.max_columns", 50)
 pd.set_option("display.width", 200)

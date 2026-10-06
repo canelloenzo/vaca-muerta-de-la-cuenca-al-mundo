@@ -132,6 +132,8 @@ let
         {"tipo_mercado", type text}, {"volumen", type number},
         {"longitud_ducto", type number}, {"longitud_tramo", type number},
         {"tipo_operacion", type text}, {"pais", type text},
+        {"pais_original", type text}, {"pais_estado", type text},
+        {"idducto_logico", Int64.Type}, {"denominacion_logica", type text},
         {"idtramo_transporte", type number}, {"tramo_transporte", type text},
         {"obs", type text}, {"fecha_data", type text},
         {"es_operacion_exportacion", type logical},
@@ -161,17 +163,24 @@ let
         {"capacidad_empleada_m3_dia", type number},
         {"dias_mes", Int64.Type}, {"capacidad_mensual_m3", type number},
         {"volumen_transportado", type number},
-        {"capacidad_valida", type logical}, {"utilizacion_pct", type number}
-    }, "en-US"),
-    // Excluir los 6 ductos con utilizacion sospechosa detectados en la limpieza (ver diccionario_datos.md)
-    ExcluirDuctosSospechosos = Table.SelectRows(Tipos, each not List.Contains({42, 97, 149, 171, 221, 329}, [idducto]))
+        {"capacidad_valida", type logical}, {"utilizacion_pct", type number},
+        {"idducto_logico", Int64.Type},
+        {"volumen_liquidos", type number}, {"volumen_gas", type number},
+        {"volumen_segmento_mas_cargado", type number}, {"n_segmentos_con_volumen", Int64.Type},
+        {"utilizacion_liquidos_ratio", type number}, {"utilizacion_segmento_mas_cargado_ratio", type number},
+        {"capacidad_dudosa", type logical}, {"a_revisar_capacidad", type logical},
+        {"motivo_capacidad_dudosa", type text}
+    }, "en-US")
 in
-    ExcluirDuctosSospechosos
+    Tipos
 ```
 
-> Se filtran acá los 6 `idducto` con utilización >5x (error de carga del Anexo 2A en origen, según
-> `diccionario_datos.md`) para no arrastrar el problema a las medidas DAX. Si preferís mantenerlos visibles con
-> una bandera en vez de excluirlos, sacá el paso `ExcluirDuctosSospechosos` y filtrá en la medida DAX en su lugar.
+> **Cambio tras la auditoría (F2, F3, F5).** Se eliminó el paso que excluía los 6 `idducto` (42, 97, 149, 171, 221,
+> 329): para 97, 171 y 329 el valor absurdo venía de sumar gas al numerador, no de un error de carga del Anexo 2A, y
+> todos sus otros años son utilizables. Ahora la tabla trae todas las filas y las medidas filtran por
+> `capacidad_dudosa = FALSE` (reglas R1, R3, R4, R5 y D2, calculadas por ducto-año en
+> `scripts/08_clean_capacidad_ductos.py`). Las columnas `volumen_transportado` y `utilizacion_pct` se conservan
+> pero están **deprecadas** (suman gas y segmentos en serie): no usarlas en medidas nuevas.
 
 ---
 
@@ -188,6 +197,7 @@ let
         {"fecha", type date}, {"anio", Int64.Type}, {"mes", Int64.Type},
         {"idnodo", Int64.Type}, {"nodo_origen", type text},
         {"tipo_mercado", type text}, {"tipo_operacion", type text}, {"pais", type text},
+        {"pais_original", type text}, {"pais_estado", type text},
         {"cargador", type text}, {"producto", type text}, {"volumen", type number},
         {"idnodo_destino", type number}, {"nodo_destino", type text}, {"obs", type text},
         {"fecha_data", type text}

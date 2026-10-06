@@ -31,9 +31,7 @@ import pandas as pd
 import numpy as np
 import ftfy
 
-ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-RAW = os.path.join(ROOT, "raw")
-CLEAN = os.path.join(ROOT, "clean")
+from _rutas import RAW, CLEAN, WEB  # noqa: F401  (rutas configurables, ver _rutas.py)
 
 BBL_PER_M3 = 6.2898
 

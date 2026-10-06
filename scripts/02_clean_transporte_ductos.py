@@ -16,9 +16,25 @@ import os
 import pandas as pd
 import ftfy
 
-ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-RAW = os.path.join(ROOT, "raw")
-CLEAN = os.path.join(ROOT, "clean")
+from _rutas import RAW, CLEAN, WEB  # noqa: F401  (rutas configurables, ver _rutas.py)
+
+# Un mismo ducto figura con dos idducto en el registro (INFERENCIA, no dato de origen): mismo nombre (salvo
+# mayusculas), periodos contiguos y sin solape (255: 2018-01..2025-04 / 532: 2025-05..2026-06;
+# 122: 2019-01..2025-04 / 533: 2025-05..2026-06). Se conservan los ids originales y se agregan
+# `idducto_logico` / `denominacion_logica`; el alias se usa solo para contar ductos y unir nombres.
+ALIAS_DUCTOS = {532: 255, 533: 122}
+
+
+def estado_pais(original, corregido):
+    """Conserva el motivo por el que `pais` queda vacio (la etiqueta original se pierde en PAIS_FIX)."""
+    if isinstance(corregido, str):
+        return "identificado"
+    if original == "NO IDENTIFICADO":
+        return "no_identificado"
+    if original == "no aplica":
+        return "no_aplica"
+    return "sin_dato"
+
 
 PAIS_FIX = {
     "GRAN BRETA�A": "GRAN BRETAÑA", "GRAN BRETAÃA": "GRAN BRETAÑA",
@@ -53,6 +69,7 @@ ductos["tipo_ducto"] = ductos["tipo_ducto"].str.strip()
 ductos["anio_construccion"] = ductos["anio_construccion"].astype("Int64")
 ductos["fechacargainfo"] = pd.to_datetime(ductos["fechacargainfo"], errors="coerce", utc=True).dt.tz_localize(None)
 ductos = ductos.rename(columns={"longitud": "longitud_km"})
+ductos["idducto_logico"] = ductos["idducto"].map(lambda i: ALIAS_DUCTOS.get(i, i))
 ductos.to_csv(os.path.join(CLEAN, "dim_ducto.csv"), index=False, encoding="utf-8-sig")
 print(f"dim_ducto.csv -> {ductos.shape}")
 
@@ -63,7 +80,12 @@ text_cols_20 = ["empresa", "denominacion_ducto", "tipo_ducto", "tipo_jurisdiccio
                  "nodo_destino", "tipo_destino", "area", "cargador", "tipo_producto", "producto",
                  "tipo_mercado", "tipo_operacion", "pais", "tramo_transporte", "obs"]
 p20 = clean_text_columns(p20, text_cols_20)
+p20["pais_original"] = p20["pais"]
 p20["pais"] = p20["pais"].replace(PAIS_FIX)
+p20["pais_estado"] = [estado_pais(o, c) for o, c in zip(p20["pais_original"], p20["pais"])]
+p20["idducto_logico"] = p20["idducto"].map(lambda i: ALIAS_DUCTOS.get(i, i))
+_den = p20.drop_duplicates("idducto").set_index("idducto")["denominacion_ducto"]
+p20["denominacion_logica"] = p20["idducto_logico"].map(_den)
 p20["fecha"] = pd.to_datetime(dict(year=p20["anio"], month=p20["mes"], day=1))
 p20["es_operacion_exportacion"] = p20["tipo_operacion"].eq("Exportacion")
 # `producto` trae 156 variantes de escritura (mayus/minus, espacios, tildes) para ~15 categorias reales
@@ -83,7 +105,9 @@ p21 = read_raw_csv("volumenes-de-transporte-de-hidrocarburos-planilla-21.csv")
 text_cols_21 = ["empresa", "nodo_origen", "tipo_mercado", "tipo_operacion", "pais", "cargador",
                  "producto", "obs", "nodo_destino"]
 p21 = clean_text_columns(p21, text_cols_21)
+p21["pais_original"] = p21["pais"]
 p21["pais"] = p21["pais"].replace(PAIS_FIX)
+p21["pais_estado"] = [estado_pais(o, c) for o, c in zip(p21["pais_original"], p21["pais"])]
 p21["producto"] = p21["producto"].str.strip().str.rstrip(".")
 p21["fecha"] = pd.to_datetime(dict(year=p21["anio"], month=p21["mes"], day=1))
 p21 = p21.drop_duplicates()
