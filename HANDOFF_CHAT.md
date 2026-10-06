@@ -7,7 +7,7 @@ Insumo para escribir, en otra conversación, el posteo de LinkedIn, la entrada d
 - Repositorio: <https://github.com/canelloenzo/vaca-muerta-de-la-cuenca-al-mundo>
 - Dashboard web (GitHub Pages): <https://canelloenzo.github.io/vaca-muerta-de-la-cuenca-al-mundo/>
 - Release con el `.pbix`: <https://github.com/canelloenzo/vaca-muerta-de-la-cuenca-al-mundo/releases/latest>
-- LinkedIn del autor: sin completar (el autor lo agrega al publicar el posteo).
+- LinkedIn del autor: <https://www.linkedin.com/in/enzocanello>
 
 ## 2. Qué es el proyecto, en cuatro líneas
 

@@ -127,4 +127,4 @@ Los documentos de trabajo anteriores a la auditoría están en `documentacion/hi
 
 ## Autor
 
-Enzo · Buenos Aires.
+Enzo · Buenos Aires · [LinkedIn](https://www.linkedin.com/in/enzocanello)
