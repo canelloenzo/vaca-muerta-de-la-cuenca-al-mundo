@@ -499,6 +499,21 @@
   "unidad": "%",
   "alcance": "2020-2025, 3 mayores operadores de terminal / 6 operadores (no es concentracion de exportadores)"
  },
+ "conc_op1_pct": {
+  "valor": 61.08,
+  "unidad": "%",
+  "alcance": "2020-2025, operador de terminal n.1 (Oiltanking EBYTEM S.A.) / total de los operadores"
+ },
+ "conc_op2_pct": {
+  "valor": 27.94,
+  "unidad": "%",
+  "alcance": "2020-2025, operador de terminal n.2 (TERMAP S.A.) / total de los operadores"
+ },
+ "conc_op3_pct": {
+  "valor": 5.23,
+  "unidad": "%",
+  "alcance": "2020-2025, operador de terminal n.3 (COMPAÑÍA GENERAL DE COMBUSTIBLES S.A.) / total de los operadores"
+ },
  "conc_top3_cargadores_pct": {
   "valor": 47.02,
   "unidad": "%",
@@ -543,6 +558,11 @@
   "valor": 5,
   "unidad": "ductos",
   "alcance": "ductos de petroleo con capacidad dudosa en todos los anios"
+ },
+ "ductos_sin_cap_utilizable_n": {
+  "valor": 39,
+  "unidad": "ductos",
+  "alcance": "ductos de petroleo sin capacidad utilizable (sin Anexo 2A o dudosa en todos los anios)"
  },
  "ductos_sobre_100_n": {
   "valor": 3,
@@ -608,6 +628,11 @@
   "valor": 39.81481481481482,
   "unidad": "%",
   "alcance": "ducto-anio con capacidad operativa > 0 / ducto-anio con transporte (todos los productos)"
+ },
+ "hallazgos_n": {
+  "valor": 19,
+  "unidad": "hallazgos",
+  "alcance": "auditoria de 2026-10-05, F1 a F19"
  },
  "bbl_por_m3": {
   "valor": 6.2898,

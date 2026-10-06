@@ -1,15 +1,15 @@
 # Changelog de correcciones (rama `correcciones-auditoria`)
 
 Base: commit `Estado auditado`. Todo lo que sigue responde a `AUDITORIA_2026-10-05.md` y a las decisiones D1–D3.
-Este documento se completa fase por fase. **Estado actual: Fases 1 y 2 terminadas; Fase 3 (textos), Fase 4 (Power BI) y Fase 5 (registro) pendientes.**
+Este documento se completa fase por fase. **Estado actual: Fases 1 a 3 terminadas (datos, cálculos, textos, README, HTML y registro de cifras); Fase 4 (Power BI) pendiente de la parte manual: ver `CAMBIOS_POWERBI.md`.**
 
 ## Pendientes de tu parte
 
 | marcador / tema | estado |
 |---|---|
-| `[URL_PAGES]`, `[URL_RELEASE]`, `[URL_LINKEDIN]` (README) | se dejan como marcador: el proyecto todavía no está publicado. No se cuentan como afirmaciones |
+| Enlaces de Pages y Release | el README usa las direcciones del repositorio; se comprueban con `curl` tras publicar. El enlace de LinkedIn se quitó: lo agrega el autor |
 | `.pbit` del reporte | necesario antes de la Fase 4 para verificar medidas y relaciones reales |
-| Decisiones abiertas de la Fase 2 | ver la sección "Decisiones abiertas" más abajo |
+| Decisiones de la Fase 2 | resueltas: ver "Decisiones tomadas" más abajo |
 
 ## Fase 1 — Pruebas y línea de base
 
@@ -52,9 +52,9 @@ Los archivos históricos de `data/web/` (`indices_mensuales.csv`, `capacidad_duc
 | "Brecha ≥120 puntos desde 2023 y creciente" | afirmación causal sobre la serie nacional | media móvil 12m, base 2022, a diciembre: 2023 → VM 125,8 · cuenca 116,6 · exportación 108,8; 2024 → 159,1 · 138,1 · 121,4; 2025 → 206,2 · 168,0 · 226,5 | la exportación neuquina por terminales queda por detrás de la producción en 2023–2024 y la supera en 2025 |
 | % exportado (nuevo) | — | de la cuenca: 20,8% (2022) · 19,4% · 18,2% · 28,1% (2025); de VM: 30,1% · 26,0% · 22,9% · 33,1% | solo 2022–2025 para la cuenca |
 | VMOC | 171,1% | retirado (D2); 123,3% / 89,3% con un solo segmento no se publican | numerador sumaba 2 segmentos en serie |
-| Ductos sobre 100% | 6 (web) / 3 (Power BI) | 3 en un ranking de 43 ductos: Allen–Puerto Rosales 129,7 · LINDERO ATRAVESADO-CENTENARIO 111,1 (2 meses, "a revisar") · Centenario–Allen L14 106,9 | numerador, segmentos, reglas de capacidad |
-| "57 con capacidad / 85 sin capacidad" | 142 ductos mezclando universos | 83 ductos lógicos que mueven petróleo: 43 en ranking · 6 con capacidad dudosa en todos los años · 34 sin capacidad en el Anexo 2A | F4 |
-| Exclusión de ductos | 6 ductos completos (42, 97, 149, 171, 221, 329) | 40 ducto-años en 20 ductos (R1 4 · R3 23 · R4 2 · R5 11 · D2 1) | 97, 171 y 329 daban valores absurdos por sumar gas, no por error del Anexo |
+| Ductos sobre 100% | 6 (web) / 3 (Power BI) | 3 en un ranking de 44 ductos: Allen–Puerto Rosales 129,7 · LINDERO ATRAVESADO-CENTENARIO 111,1 (2 meses, "a revisar") · Centenario–Allen L14 106,9 | numerador, segmentos, reglas de capacidad |
+| "57 con capacidad / 85 sin capacidad" | 142 ductos mezclando universos | 83 ductos lógicos que mueven petróleo: 44 en ranking · 5 con capacidad dudosa en todos los años · 34 sin capacidad en el Anexo 2A | F4 |
+| Exclusión de ductos | 6 ductos completos (42, 97, 149, 171, 221, 329) | 36 ducto-años en 18 ductos (R1 4 · R3 18 · R4 2 · R5 11 · D2 1), tras corregir el doble conteo por tramo | 97, 171 y 329 daban valores absurdos por sumar gas, no por error del Anexo |
 | Concentración | "94% en 3 empresas/terminales" | 94,25% por operador de terminal · 47,02% top 3 por cargador | F8 |
 | Volatilidad mensual | 76,85% vs 5,18% (14,8×, 2020–25, exportación nacional) | exportación neuquina 34,02% vs producción VM 2,55% (13,3×, 2022–25); nacional 76,85% como contexto | misma serie y ventana de los datos completos |
 | Volumen sin país | no se mostraba en el HTML | 27,99% (15.044.986 m³), 100% TERMAP; 79% del volumen de 2019 y 4% del de 2026 | F7 |
@@ -64,13 +64,26 @@ Los archivos históricos de `data/web/` (`indices_mensuales.csv`, `capacidad_duc
 | Oleoducto a Chile (nuevo, aparte) | no considerado | 35.039 · 71.020 · 79.998 bbl/día (2023 · 2024 · 2025) | B |
 | Pozos con coordenada dudosa | 0 marcados | 2 (153751 y 159086; 0,066% de la producción) | F18 |
 
-## Decisiones abiertas (a resolver con tu OK)
+## Decisiones tomadas
 
-1. **Oleoducto a Chile en la serie principal.** La planilla 20 trae exportaciones de petróleo por el ducto "Puesto Hernandez - Buta Mallin" (Oleoducto Trasandino Argentina S.A.), de 2023-05 a 2026-06. Equivalen al 48% del volumen de los terminales neuquinos en 2025. Con ellos, el % exportado de la cuenca sería 27,9% (2023) · 32,8% (2024) · 41,6% (2025). Hoy va aparte y no se suma.
-2. **F13, planilla 20.** Evidencia fuerte de doble conteo en los ductos 374 y 489 (volumen repetido por tramo). Corregirlo cambia poco: el ranking pasa de 43 a 44 ductos y los ductos sobre 100% siguen siendo 3.
-3. **Meses sin exportación 2019–2021.** Oiltanking reportó operaciones pero ninguna exportación en 10 meses de 2019, 6 de 2020 y 1 de 2021; se tratan como cero reportado (no afecta 2022 en adelante).
-4. **Allen–Puerto Rosales 2024** encabeza el ranking con operativa = diseño = empleada = 36.000 m³/día. Propongo marcarlo "a revisar" (regla R6, solo marca).
-5. **Producción de la cuenca antes de 2022.** El portal oficial publica una "Serie histórica de producción de petróleo por cuenca y sub tipo de recurso (Capítulo IV)" que permitiría reconstruirla; hace falta tu OK para descargarla.
+1. **Oleoducto a Chile:** serie aparte y rotulada; no se suma a la serie principal (terminales neuquinos).
+2. **F13, planilla 20:** corregido. Se eliminan las filas repetidas solo por `longitud_tramo` (195 filas; ductos 374, 489 y 156). El ranking pasó de 43 a 44 ductos y los ductos sobre 100% siguen siendo 3.
+3. **Meses sin exportación 2019–2021:** cero informado (Oiltanking informó operaciones sin exportación); no afecta 2022 en adelante. Los meses sin ningún reporte son "sin dato".
+4. **Allen–Puerto Rosales 2024** (operativa = diseño = empleada): regla R6, solo marca "a revisar"; sigue en el ranking.
+5. **Producción de la cuenca antes de 2022:** no se descarga nada nuevo; queda como trabajo futuro.
+
+## Fase 3 — Textos, README, HTML y registro de cifras
+
+| cambio | detalle |
+|---|---|
+| Registro de cifras | `scripts/14_registro_cifras.py` genera `data/web/registro_cifras.json` (valor, unidad y alcance de cada cifra) |
+| Textos generados | `scripts/15_render_textos.py` produce `docs/index.html`, `README.md`, `CAMBIOS_POWERBI.md` y `HANDOFF_CHAT.md` desde `documentacion/plantillas/`; una prueba falla si un texto contiene una cifra que no está en el registro |
+| HTML | reescrito: serie de exportación neuquina, índices base 2022 en media móvil de 12 meses con tablas de promedios y sensibilidad, % exportado, oleoducto a Chile aparte, ranking de utilización con ducto-años excluidos, volumen sin país, concentración por operador y por cargador, sección Limitaciones, años parciales fuera de los gráficos anuales, mapa sin los 2 pozos dudosos |
+| Palabras | sin las palabras prohibidas en README, HTML y HANDOFF (prueba automática) |
+| Archivos retirados de `data/web/` | `capacidad_ductos.csv`, `resumen_kpis.json`, `indices_mensuales.csv`, `exportacion_por_pais_anual.csv`, `exportacion_por_empresa.csv`: superados por las tablas nuevas (siguen en el historial de git) |
+| Documentación técnica | `diccionario_datos.md` y `dax_measures.md` corregidos (F9, F12, F16, F17); `RESUMEN_PROYECTO.md` y `plan_powerbi.md` pasaron a `documentacion/historico/` con aviso |
+| Nombre de empresa | se restituye "COMPAÑÍA GENERAL DE COMBUSTIBLES" solo al publicar (la fuente trae caracteres de reemplazo) |
+| Pruebas | suite completa, incluida la apertura del HTML en Chromium headless en escritorio y celular |
 
 ## Investigación F13 (sin corregir)
 

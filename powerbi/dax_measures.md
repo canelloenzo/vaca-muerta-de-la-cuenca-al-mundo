@@ -317,6 +317,8 @@ RETURN
 > meses y exportación mayor o igual al 10% de la producción de Vaca Muerta. Las conclusiones usan promedios anuales y
 > medias móviles de 12 meses, no un mes aislado.
 >
+> Nota (F16): el salto de enero de 2018 contra el promedio de 2019, que se citaba con un valor no reproducible, recalculado da +1.761%; con la base 2022 ese contraste ya no se usa.
+>
 > **Estas medidas no se pudieron ejecutar en Power BI Desktop (NO VERIFICADO).** Los valores esperados están en
 > `CAMBIOS_POWERBI.md` y salen de `data/web/registro_cifras.json`.
 

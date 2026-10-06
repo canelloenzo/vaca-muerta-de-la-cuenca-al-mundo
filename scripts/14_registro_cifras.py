@@ -115,6 +115,9 @@ termap = tt[tt["operador_terminal"].str.startswith("TERMAP")]
 reg("termap_pct_2019", 100 * termap.loc[termap["anio"] == 2019, "volumen_total_m3"].sum() / tt.loc[tt["anio"] == 2019, "volumen_total_m3"].sum(), "%", "TERMAP / total de los 6 operadores, 2019")
 reg("termap_pct_2026", 100 * termap.loc[termap["anio"] == 2026, "volumen_total_m3"].sum() / tt.loc[tt["anio"] == 2026, "volumen_total_m3"].sum(), "%", "TERMAP / total de los 6 operadores, ene-jun 2026")
 reg("conc_top3_operadores_pct", k["concentracion_top3_operadores_terminal_pct_2020_2025"], "%", "2020-2025, 3 mayores operadores de terminal / 6 operadores (no es concentracion de exportadores)")
+_op = conc[conc["nivel"] == "operador_terminal"].head(3)
+for _i, _r in enumerate(_op.itertuples(), 1):
+    reg(f"conc_op{_i}_pct", _r.pct, "%", f"2020-2025, operador de terminal n.{_i} ({_r.nombre}) / total de los operadores")
 reg("conc_top3_cargadores_pct", k["concentracion_top3_cargadores_pct_2020_2025"], "%", "2020-2025, 3 mayores cargadores (quien exporta, agrupando variantes de nombre) / total de los 6 operadores")
 reg("vol_mensual_exp_neu_pct", k["volatilidad_mensual_2022_2025_exportacion_terminales_pct"], "%", "desvio estandar de la variacion mensual, 2022-2025, exportacion neuquina por terminales")
 reg("vol_mensual_prod_vm_pct", k["volatilidad_mensual_2022_2025_produccion_vm_pct"], "%", "desvio estandar de la variacion mensual, 2022-2025, produccion de Vaca Muerta")
@@ -146,6 +149,7 @@ da_cap = cap[cap["capacidad_valida"]][["idducto", "anio"]].drop_duplicates()
 reg("cobertura_capacidad_ducto_anio_pct", 100 * len(da_cap) / len(da_tr), "%", "ducto-anio con capacidad operativa > 0 / ducto-anio con transporte (todos los productos)")
 
 # ------------------------------------------------------------------ parametros metodologicos (definidos en los scripts 11 y 13)
+reg("hallazgos_n", 19, "hallazgos", "auditoria de 2026-10-05, F1 a F19")
 reg("bbl_por_m3", 6.2898, "bbl/m3", "factor de conversion usado en todo el proyecto")
 reg("umbral_km", 30, "km", "script 13: distancia a la mediana de las coordenadas de su yacimiento a partir de la cual se omite un pozo del mapa")
 reg("umbral_exp_pct", 10, "%", "script 11: exportacion / produccion de Vaca Muerta minima para elegir el anio base del indice")

@@ -78,7 +78,16 @@ def tabla_pct():
     return tabla(["Año", "De la cuenca", "De Vaca Muerta"], filas)
 
 
-FRAGMENTOS = {"LISTA_SOBRE_100": lista_sobre_100, "TABLA_INDICES": tabla_indices, "TABLA_SENSIBILIDAD": tabla_sensibilidad,
+def tabla_registro():
+    def f(v):
+        if isinstance(v, float) and abs(v) < 1000:
+            return fnum(v, 2)
+        return fnum(v, 0) if isinstance(v, (int, float)) else str(v)
+    filas = "\n".join(f"| `{k}` | {f(r['valor'])} | {r['unidad']} | {r['alcance']} |" for k, r in REG.items())
+    return "| Clave | Valor | Unidad | Alcance |\n|---|---|---|---|\n" + filas
+
+
+FRAGMENTOS = {"TABLA_REGISTRO": tabla_registro, "LISTA_SOBRE_100": lista_sobre_100, "TABLA_INDICES": tabla_indices, "TABLA_SENSIBILIDAD": tabla_sensibilidad,
               "TABLA_PCT_EXPORTADO": tabla_pct}
 PAT = re.compile(r"\{\{([A-Za-z_0-9]+)(?::(\d))?\}\}")
 
@@ -170,4 +179,5 @@ def render_md(plantilla, destino):
 if __name__ == "__main__":
     render_html()
     render_md("README.plantilla.md", "README.md")
+    render_md("CAMBIOS_POWERBI.plantilla.md", "CAMBIOS_POWERBI.md")
     render_md("HANDOFF.plantilla.md", "HANDOFF_CHAT.md")

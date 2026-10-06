@@ -40,6 +40,7 @@ def _publicados():
 def test_los_archivos_publicados_son_la_salida_de_las_plantillas():
     assert (H.REPO / "docs" / "index.html").read_text(encoding="utf-8") == R15.generar_html()
     assert (H.REPO / "README.md").read_text(encoding="utf-8") == R15.generar_md("README.plantilla.md")
+    assert (H.REPO / "CAMBIOS_POWERBI.md").read_text(encoding="utf-8") == R15.generar_md("CAMBIOS_POWERBI.plantilla.md")
     if (H.REPO / "HANDOFF_CHAT.md").exists():
         assert (H.REPO / "HANDOFF_CHAT.md").read_text(encoding="utf-8") == R15.generar_md("HANDOFF.plantilla.md")
 
