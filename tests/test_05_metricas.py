@@ -11,9 +11,9 @@ def test_bbl_dia_dic_2025_y_variacion(vm):
     assert round(s["2025-12-01"], 1) == 590_754.6
     assert round(s["2024-12-01"], 1) == 447_804.6
     assert round(100 * (s["2025-12-01"] / s["2024-12-01"] - 1), 2) == 31.92
-    k = H.web_json("resumen_kpis.json")
-    assert k["produccion_ultimo_mes_bbl_dia"] == round(s["2025-12-01"], 1)
-    assert k["variacion_interanual_produccion_pct"] == 31.92
+    k = H.web_json("kpis_resumen.json")
+    assert k["produccion_vm_dic_2025_bbl_dia"] == round(s["2025-12-01"], 1)
+    assert k["variacion_interanual_vm_dic_2025_pct"] == 31.92
 
 
 def test_dias_se_cuentan_una_vez_por_mes(vm):
@@ -38,15 +38,12 @@ def test_top_yacimientos_igual_recalculo(vm):
     assert w.iloc[9].areayacimiento == "CRUZ DE LORENA" and w.iloc[9].produccion_bbl_dia == 6135.0
 
 
-def test_indices_base_2019_identicos_a_web(vm, export_raw):
+def test_indices_base_2019_solo_referencia(vm, export_raw):
     sp = H.monthly_bbl_dia(vm)
     se = export_raw.groupby("fecha").volumen.sum()
     bp, be = sp[sp.index.year == 2019].mean(), se[se.index.year == 2019].mean()
     assert round(bp, 1) == 90_014.4 and round(be, 1) == 316_714.1
-    w = H.web("indices_mensuales.csv").set_index("anio_mes")
-    assert round(sp["2025-12-01"] / bp * 100, 2) == w.loc["2025-12", "indice_produccion"] == 656.29
-    assert round(se["2026-06-01"] / be * 100, 2) == w.loc["2026-06", "indice_exportacion"] == 400.48
-    assert len(w) == 102 and (w.dropna() > 0).all().all()
+    assert round(sp["2025-12-01"] / bp * 100, 2) == 656.29      # solo referencia: la base 2019 ya no se publica (F1)
 
 
 def test_volatilidad_mensual_2020_2025(vm, export_raw):

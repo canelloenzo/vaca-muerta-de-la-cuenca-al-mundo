@@ -127,6 +127,9 @@ pm["prod_vm_nc_bbl_dia"] = bbl_dia(pm["prod_vm_nc_m3"], pm["dias_mes"])
 print("2. Exportacion...")
 mov = pd.read_csv(os.path.join(CLEAN, "fact_movimientos_exportacion_ductos.csv"), encoding="utf-8-sig", low_memory=False)
 mov["fecha"] = pd.to_datetime(mov["fecha"])
+# El archivo de origen trae "COMPA��A" (caracteres de reemplazo ya grabados en la fuente): se restituye el nombre solo para publicar.
+for _c in ("empresa", "cargador"):
+    mov[_c] = mov[_c].map(lambda v: v.replace("COMPA��A", "COMPAÑÍA") if isinstance(v, str) else v)
 exp = mov[mov["tipo_operacion"] == "Exportacion"].copy()
 neu = mov[mov["empresa"].isin(OPERADORES_NEUQUINOS)]
 neu_exp = exp[exp["empresa"].isin(OPERADORES_NEUQUINOS)].groupby("fecha")["volumen"].sum()

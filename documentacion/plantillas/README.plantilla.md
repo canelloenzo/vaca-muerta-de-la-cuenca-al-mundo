@@ -12,14 +12,14 @@ El pipeline limpia los archivos crudos con Python (pandas). Las tablas alimentan
 
 | Cifra | Valor | Alcance |
 |---|---|---|
-| Producción de petróleo, junio de 2026 | 633.371 bbl/día (+33,0% interanual) | solo no convencional; el convencional de 2026 no está en las fuentes cargadas |
-| Incidencia no convencional | 99,88% | volumen de Vaca Muerta 2022–2025, el único período con ambos tipos observables |
-| Exportación de crudo neuquino, 2025 | 166.161 bbl/día, 28,1% de la producción de la cuenca | terminales neuquinos (Oiltanking + Refinería Bahía Blanca), planilla 21; sin oleoducto a Chile |
-| Oleoducto a Chile | 71.020 bbl/día (2024) y 79.998 bbl/día (2025) | planilla 20, serie aparte; no se suma a la anterior |
-| Índice base 2.022, promedio 2025 | exportación 227,0 · producción de Vaca Muerta 206,4 · producción de la cuenca 168,1 | con sensibilidad a las bases 2021 y 2023; en 2024 la dirección entre exportación y producción cambia según la base, por eso no se afirma una tendencia |
-| Concentración 2020–2025 | 47,0% top 3 cargadores · 94,25% top 3 operadores de terminal | son dos medidas distintas; 6 operadores de terminal de todo el país |
-| Volumen exportado sin país identificado | 28,0% | planilla 21, 2018–junio 2026; todo de TERMAP |
-| Ductos con capacidad válida | 44 de 83 que mueven petróleo; 3 superan el 100% en su tramo más cargado | capacidad operativa informada en el Anexo 2A; ver Limitaciones |
+| Producción de petróleo, junio de 2026 | {{prod_ultimo_mes_bbl_dia:0}} bbl/día (+{{prod_var_interanual_pct:1}}% interanual) | solo no convencional; el convencional de 2026 no está en las fuentes cargadas |
+| Incidencia no convencional | {{pct_nc_2022_2025:2}}% | volumen de Vaca Muerta 2022–2025, el único período con ambos tipos observables |
+| Exportación de crudo neuquino, 2025 | {{exp_neu_2025_bbl_dia:0}} bbl/día, {{pct_exp_cuenca_2025:1}}% de la producción de la cuenca | terminales neuquinos (Oiltanking + Refinería Bahía Blanca), planilla 21; sin oleoducto a Chile |
+| Oleoducto a Chile | {{chile_2024_bbl_dia:0}} bbl/día (2024) y {{chile_2025_bbl_dia:0}} bbl/día (2025) | planilla 20, serie aparte; no se suma a la anterior |
+| Índice base {{anio_base_indice:0}}, promedio 2025 | exportación {{idx_exp_2025_base2022:1}} · producción de Vaca Muerta {{idx_vm_2025_base2022:1}} · producción de la cuenca {{idx_cuenca_2025_base2022:1}} | con sensibilidad a las bases 2021 y 2023; en 2024 la dirección entre exportación y producción cambia según la base, por eso no se afirma una tendencia |
+| Concentración 2020–2025 | {{conc_top3_cargadores_pct:1}}% top 3 cargadores · {{conc_top3_operadores_pct:2}}% top 3 operadores de terminal | son dos medidas distintas; 6 operadores de terminal de todo el país |
+| Volumen exportado sin país identificado | {{sin_pais_pct:1}}% | planilla 21, 2018–junio 2026; todo de TERMAP |
+| Ductos con capacidad válida | {{ductos_ranking_n:0}} de {{ductos_petroleo_n:0}} que mueven petróleo; {{ductos_sobre_100_n:0}} superan el 100% en su tramo más cargado | capacidad operativa informada en el Anexo 2A; ver Limitaciones |
 
 ## Estado y enlaces
 
@@ -31,7 +31,7 @@ El pipeline limpia los archivos crudos con Python (pandas). Las tablas alimentan
 
 1. Vaca Muerta: de la cuenca al mundo (resumen)
 2. Acto I · Producción: de dónde sale el petróleo
-3. Producción y exportación: índices base 2.022
+3. Producción y exportación: índices base {{anio_base_indice:0}}
 4. Acto II · Transporte: capacidad informada de los ductos
 5. Acto III · Exportación: adónde va
 6. Acto III · Exportación: quién la despacha
@@ -98,18 +98,18 @@ Pruebas: `python -m pytest -q`. Las que leen `raw/` tardan unos minutos la prime
 
 1. Crear el parámetro `RutaClean` apuntando a la carpeta de las tablas limpias (sección 0 de `powerbi/power_query_m.md`).
 2. Pegar los bloques de Power Query; todos fijan el locale `"en-US"`.
-3. Control: el total de `prod_pet_bbl` en `Fact_Produccion` tiene que dar 722.439.535.
+3. Control: el total de `prod_pet_bbl` en `Fact_Produccion` tiene que dar {{prod_acum_2006_2025_bbl:0}}.
 4. Armar las relaciones y pegar las medidas de `powerbi/dax_measures.md`.
 5. Aplicar los cambios de `CAMBIOS_POWERBI.md`.
 
 ## Limitaciones
 
-- **Alcance de la exportación.** La planilla 21 recoge movimientos de 6 operadores de terminal de todo el país; solo el 62,2% del volumen es crudo neuquino. La serie principal usa Oiltanking y Refinería Bahía Blanca como indicador de la cuenca; esos terminales también despachan crudo convencional.
+- **Alcance de la exportación.** La planilla 21 recoge movimientos de {{operadores_n:0}} operadores de terminal de todo el país; solo el {{exp_neuquina_pct_del_nacional:1}}% del volumen es crudo neuquino. La serie principal usa Oiltanking y Refinería Bahía Blanca como indicador de la cuenca; esos terminales también despachan crudo convencional.
 - **Cobertura por serie.** La producción de la cuenca existe solo para 2022–2025; el % exportado de la cuenca, solo en esos años. 2018 y 2026 son años parciales. El último mes de exportación puede estar subreportado, por eso las comparaciones cierran en diciembre de 2025. La producción de la cuenca antes de 2022 queda como trabajo futuro.
 - **Huecos.** Los meses sin dato figuran como "sin dato", no como cero. Los meses de 2019–2021 en que Oiltanking informó operaciones sin exportación se tratan como cero informado.
-- **Capacidad de ductos.** El Anexo 2A es anual y su capacidad se repite en los 12 meses; no comparte identificador de tramo con la planilla 20. La utilización es un cociente aproximado (tramo más cargado de líquidos sobre capacidad operativa informada). La cobertura es parcial: capacidad en el 45,4% de los ducto-mes con transporte. Se excluyen 36 ducto-años de 18 ductos por las reglas R1, R3, R4, R5 y D2; R2 y R6 solo marcan "a revisar". VMOC 2025 queda excluido (D2) y no se publica su utilización.
+- **Capacidad de ductos.** El Anexo 2A es anual y su capacidad se repite en los 12 meses; no comparte identificador de tramo con la planilla 20. La utilización es un cociente aproximado (tramo más cargado de líquidos sobre capacidad operativa informada). La cobertura es parcial: capacidad en el {{cobertura_capacidad_ducto_mes_pct:1}}% de los ducto-mes con transporte. Se excluyen {{ducto_anios_excluidos_n:0}} ducto-años de {{ductos_con_anio_excluido_n:0}} ductos por las reglas R1, R3, R4, R5 y D2; R2 y R6 solo marcan "a revisar". VMOC 2025 queda excluido (D2) y no se publica su utilización.
 - **Volúmenes repetidos.** En la planilla 21 hay pares de cargadores con volumen idéntico; no hay evidencia suficiente para llamarlo doble conteo y no se corrigió.
-- **Mapa.** Se omiten 2 pozos con coordenadas a más de 30 km de la mediana de su yacimiento. Los pozos convencionales no tienen coordenadas.
+- **Mapa.** Se omiten {{pozos_mapa_omitidos:0}} pozos con coordenadas a más de {{umbral_km:0}} km de la mediana de su yacimiento. Los pozos convencionales no tienen coordenadas.
 - **Volumen, no USD.** La tabla de precios cubre solo hasta junio de 2021, así que no se estima ningún valor en dólares.
 - **Sin validación externa.** El análisis es descriptivo y no fue contrastado con la Secretaría de Energía ni con los operadores.
 

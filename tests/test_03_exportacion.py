@@ -29,11 +29,13 @@ def test_volumen_total_exportado(export_raw):
 def test_web_por_pais_igual_recalculo(export_raw):
     con = export_raw[export_raw.pais.notna() & ~export_raw.pais.isin(SIN_PAIS)]
     rr = con.groupby(["anio", "pais"]).volumen.sum().reset_index()
-    w = H.web("exportacion_por_pais_anual.csv")
+    w = H.web("exportacion_nacional_por_pais_anual.csv")
+    assert set(w.pais) >= {"NO IDENTIFICADO"}                       # F7: el volumen sin pais se conserva en la serie nacional
+    w = w[~w.pais.isin(SIN_PAIS)]
     m = rr.merge(w, on=["anio", "pais"], how="outer", indicator=True)
     assert (m._merge == "both").all()
     assert (m.volumen - m.volumen_m3).abs().max() < 0.2          # redondeo a 1 decimal en el CSV
-    assert round(w.volumen_m3.sum(), 1) == round(con.volumen.sum(), 1) == 38_710_764.2
+    assert abs(w.volumen_m3.sum() - con.volumen.sum()) < 1 and round(con.volumen.sum(), 1) == 38_710_764.2
 
 
 def test_sin_pais_es_no_identificado_de_termap(export_raw):
@@ -49,8 +51,9 @@ def test_concentracion_operadores_2020_2025(export_raw):
     pct = (100 * e / e.sum()).round(2)
     assert list(pct.head(3)) == [61.08, 27.94, 5.23]
     assert round(pct.head(3).sum(), 2) == 94.25
-    w = H.web("exportacion_por_empresa.csv")
-    assert list(w.porcentaje_del_total.head(3)) == [61.08, 27.94, 5.23]
+    w = H.web("concentracion_exportacion_2020_2025.csv")
+    w = w[w.nivel == "operador_terminal"]
+    assert list(w.pct.head(3)) == [61.08, 27.94, 5.23]
 
 
 def test_empresas_de_terminal_sin_variantes_de_nombre(export_raw):

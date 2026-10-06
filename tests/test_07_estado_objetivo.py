@@ -113,7 +113,7 @@ def test_f10_sin_lenguaje_causal_sin_evidencia(frase):
 
 
 def test_f17_no_dice_238_convencionales():
-    for t in (README(), DICC(), (H.REPO / "documentacion" / "RESUMEN_PROYECTO.md").read_text(encoding="utf-8")):
+    for t in (README(), DICC(), (H.REPO / "documentacion" / "historico" / "RESUMEN_PROYECTO.md").read_text(encoding="utf-8")):
         assert not _hay(t, r"238\s+(pozos\s+)?convencionales")
 
 

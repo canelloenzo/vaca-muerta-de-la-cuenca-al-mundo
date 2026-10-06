@@ -1,0 +1,632 @@
+{
+ "prod_ultimo_mes_bbl_dia": {
+  "valor": 633371.1,
+  "unidad": "bbl/dia",
+  "alcance": "jun-2026, solo no convencional (el convencional de 2026 no esta en las fuentes cargadas)"
+ },
+ "prod_var_interanual_pct": {
+  "valor": 33.0,
+  "unidad": "%",
+  "alcance": "jun-2026 vs jun-2025, ambos solo no convencional"
+ },
+ "prod_vm_dic2025_bbl_dia": {
+  "valor": 590754.6,
+  "unidad": "bbl/dia",
+  "alcance": "dic-2025, Vaca Muerta convencional + no convencional"
+ },
+ "prod_var_dic2025_pct": {
+  "valor": 31.92,
+  "unidad": "%",
+  "alcance": "dic-2025 vs dic-2024, Vaca Muerta"
+ },
+ "pct_nc_2022_2025": {
+  "valor": 99.88,
+  "unidad": "%",
+  "alcance": "volumen de petroleo de Vaca Muerta 2022-2025 (unico periodo con convencional observable)"
+ },
+ "prod_acum_2006_2025_bbl": {
+  "valor": 722439535.1074313,
+  "unidad": "bbl",
+  "alcance": "Vaca Muerta, 2006-2025, fuentes cargadas"
+ },
+ "yacimientos_n": {
+  "valor": 146,
+  "unidad": "yacimientos",
+  "alcance": "Vaca Muerta, fuentes cargadas"
+ },
+ "yac_top1_bbl_dia": {
+  "valor": 31386.5,
+  "unidad": "bbl/dia",
+  "alcance": "BAJADA DEL PALO OESTE, promedio de los meses con dato del yacimiento"
+ },
+ "pct_conv_min_2022_2025": {
+  "valor": 0.07511489425890866,
+  "unidad": "%",
+  "alcance": "convencional / total de Vaca Muerta, anual 2022-2025"
+ },
+ "pct_conv_max_2022_2025": {
+  "valor": 0.19552444870228483,
+  "unidad": "%",
+  "alcance": "convencional / total de Vaca Muerta, anual 2022-2025"
+ },
+ "conv_2022_bbl": {
+  "valor": 173589.8173918194,
+  "unidad": "bbl",
+  "alcance": "produccion convencional de Vaca Muerta, 2022"
+ },
+ "pozos_nc_con_coordenadas": {
+  "valor": 3062,
+  "unidad": "pozos",
+  "alcance": "pozos no convencionales con coordenadas en la fuente"
+ },
+ "pozos_mapa_omitidos": {
+  "valor": 2,
+  "unidad": "pozos",
+  "alcance": "coordenada a mas de 30 km de la mediana de su yacimiento"
+ },
+ "pozos_mapa": {
+  "valor": 3060,
+  "unidad": "pozos",
+  "alcance": "pozos dibujados en el mapa"
+ },
+ "pozos_omitidos_pct_prod": {
+  "valor": 0.06641607728855099,
+  "unidad": "%",
+  "alcance": "produccion acumulada de los pozos omitidos / total"
+ },
+ "prod_cuenca_2022_bbl_dia": {
+  "valor": 352234.543,
+  "unidad": "bbl/dia",
+  "alcance": "2022, produccion total de petroleo de la cuenca Neuquina, solo 2022-2025 (archivos anuales + no convencional historico)"
+ },
+ "prod_vm_2022_bbl_dia": {
+  "valor": 243237.377,
+  "unidad": "bbl/dia",
+  "alcance": "2022, Vaca Muerta"
+ },
+ "exp_neu_2022_bbl_dia": {
+  "valor": 73201.297,
+  "unidad": "bbl/dia",
+  "alcance": "2022, promedio de 12 meses, crudo exportado por los terminales neuquinos (Oiltanking + Refineria Bahia Blanca, planilla 21); no incluye el oleoducto a Chile"
+ },
+ "pct_exp_cuenca_2022": {
+  "valor": 20.782,
+  "unidad": "%",
+  "alcance": "2022: exportacion de terminales neuquinos / produccion total de petroleo de la cuenca Neuquina, solo 2022-2025 (archivos anuales + no convencional historico)"
+ },
+ "pct_exp_vm_2022": {
+  "valor": 30.095,
+  "unidad": "%",
+  "alcance": "2022: exportacion de terminales neuquinos / produccion de Vaca Muerta"
+ },
+ "vm_sobre_cuenca_2022": {
+  "valor": 69.056,
+  "unidad": "%",
+  "alcance": "2022: Vaca Muerta / cuenca Neuquina"
+ },
+ "idx_exp_2022_base2021": {
+  "valor": 258.179,
+  "unidad": "indice",
+  "alcance": "promedio anual 2022, base 2021 = 100 (exportacion neuquina por terminales)"
+ },
+ "idx_vm_2022_base2021": {
+  "valor": 149.582,
+  "unidad": "indice",
+  "alcance": "promedio anual 2022, base 2021 = 100 (produccion de Vaca Muerta)"
+ },
+ "idx_exp_2022_base2022": {
+  "valor": 100.0,
+  "unidad": "indice",
+  "alcance": "promedio anual 2022, base 2022 = 100 (exportacion neuquina por terminales)"
+ },
+ "idx_vm_2022_base2022": {
+  "valor": 100.0,
+  "unidad": "indice",
+  "alcance": "promedio anual 2022, base 2022 = 100 (produccion de Vaca Muerta)"
+ },
+ "idx_cuenca_2022_base2022": {
+  "valor": 100.0,
+  "unidad": "indice",
+  "alcance": "promedio anual 2022, base 2022 = 100 (produccion de la cuenca)"
+ },
+ "idx_exp_2022_base2023": {
+  "valor": 92.035,
+  "unidad": "indice",
+  "alcance": "promedio anual 2022, base 2023 = 100 (exportacion neuquina por terminales)"
+ },
+ "idx_vm_2022_base2023": {
+  "valor": 79.483,
+  "unidad": "indice",
+  "alcance": "promedio anual 2022, base 2023 = 100 (produccion de Vaca Muerta)"
+ },
+ "idx_cuenca_2022_base2023": {
+  "valor": 85.777,
+  "unidad": "indice",
+  "alcance": "promedio anual 2022, base 2023 = 100 (produccion de la cuenca)"
+ },
+ "prod_cuenca_2023_bbl_dia": {
+  "valor": 410639.501,
+  "unidad": "bbl/dia",
+  "alcance": "2023, produccion total de petroleo de la cuenca Neuquina, solo 2022-2025 (archivos anuales + no convencional historico)"
+ },
+ "prod_vm_2023_bbl_dia": {
+  "valor": 306022.627,
+  "unidad": "bbl/dia",
+  "alcance": "2023, Vaca Muerta"
+ },
+ "exp_neu_2023_bbl_dia": {
+  "valor": 79536.308,
+  "unidad": "bbl/dia",
+  "alcance": "2023, promedio de 12 meses, crudo exportado por los terminales neuquinos (Oiltanking + Refineria Bahia Blanca, planilla 21); no incluye el oleoducto a Chile"
+ },
+ "pct_exp_cuenca_2023": {
+  "valor": 19.369,
+  "unidad": "%",
+  "alcance": "2023: exportacion de terminales neuquinos / produccion total de petroleo de la cuenca Neuquina, solo 2022-2025 (archivos anuales + no convencional historico)"
+ },
+ "pct_exp_vm_2023": {
+  "valor": 25.99,
+  "unidad": "%",
+  "alcance": "2023: exportacion de terminales neuquinos / produccion de Vaca Muerta"
+ },
+ "vm_sobre_cuenca_2023": {
+  "valor": 74.523,
+  "unidad": "%",
+  "alcance": "2023: Vaca Muerta / cuenca Neuquina"
+ },
+ "idx_exp_2023_base2021": {
+  "valor": 280.523,
+  "unidad": "indice",
+  "alcance": "promedio anual 2023, base 2021 = 100 (exportacion neuquina por terminales)"
+ },
+ "idx_vm_2023_base2021": {
+  "valor": 188.193,
+  "unidad": "indice",
+  "alcance": "promedio anual 2023, base 2021 = 100 (produccion de Vaca Muerta)"
+ },
+ "idx_exp_2023_base2022": {
+  "valor": 108.654,
+  "unidad": "indice",
+  "alcance": "promedio anual 2023, base 2022 = 100 (exportacion neuquina por terminales)"
+ },
+ "idx_vm_2023_base2022": {
+  "valor": 125.812,
+  "unidad": "indice",
+  "alcance": "promedio anual 2023, base 2022 = 100 (produccion de Vaca Muerta)"
+ },
+ "idx_cuenca_2023_base2022": {
+  "valor": 116.581,
+  "unidad": "indice",
+  "alcance": "promedio anual 2023, base 2022 = 100 (produccion de la cuenca)"
+ },
+ "idx_exp_2023_base2023": {
+  "valor": 100.0,
+  "unidad": "indice",
+  "alcance": "promedio anual 2023, base 2023 = 100 (exportacion neuquina por terminales)"
+ },
+ "idx_vm_2023_base2023": {
+  "valor": 100.0,
+  "unidad": "indice",
+  "alcance": "promedio anual 2023, base 2023 = 100 (produccion de Vaca Muerta)"
+ },
+ "idx_cuenca_2023_base2023": {
+  "valor": 100.0,
+  "unidad": "indice",
+  "alcance": "promedio anual 2023, base 2023 = 100 (produccion de la cuenca)"
+ },
+ "prod_cuenca_2024_bbl_dia": {
+  "valor": 486549.106,
+  "unidad": "bbl/dia",
+  "alcance": "2024, produccion total de petroleo de la cuenca Neuquina, solo 2022-2025 (archivos anuales + no convencional historico)"
+ },
+ "prod_vm_2024_bbl_dia": {
+  "valor": 387221.394,
+  "unidad": "bbl/dia",
+  "alcance": "2024, Vaca Muerta"
+ },
+ "exp_neu_2024_bbl_dia": {
+  "valor": 88782.171,
+  "unidad": "bbl/dia",
+  "alcance": "2024, promedio de 12 meses, crudo exportado por los terminales neuquinos (Oiltanking + Refineria Bahia Blanca, planilla 21); no incluye el oleoducto a Chile"
+ },
+ "pct_exp_cuenca_2024": {
+  "valor": 18.247,
+  "unidad": "%",
+  "alcance": "2024: exportacion de terminales neuquinos / produccion total de petroleo de la cuenca Neuquina, solo 2022-2025 (archivos anuales + no convencional historico)"
+ },
+ "pct_exp_vm_2024": {
+  "valor": 22.928,
+  "unidad": "%",
+  "alcance": "2024: exportacion de terminales neuquinos / produccion de Vaca Muerta"
+ },
+ "vm_sobre_cuenca_2024": {
+  "valor": 79.585,
+  "unidad": "%",
+  "alcance": "2024: Vaca Muerta / cuenca Neuquina"
+ },
+ "idx_exp_2024_base2021": {
+  "valor": 313.133,
+  "unidad": "indice",
+  "alcance": "promedio anual 2024, base 2021 = 100 (exportacion neuquina por terminales)"
+ },
+ "idx_vm_2024_base2021": {
+  "valor": 238.127,
+  "unidad": "indice",
+  "alcance": "promedio anual 2024, base 2021 = 100 (produccion de Vaca Muerta)"
+ },
+ "idx_exp_2024_base2022": {
+  "valor": 121.285,
+  "unidad": "indice",
+  "alcance": "promedio anual 2024, base 2022 = 100 (exportacion neuquina por terminales)"
+ },
+ "idx_vm_2024_base2022": {
+  "valor": 159.195,
+  "unidad": "indice",
+  "alcance": "promedio anual 2024, base 2022 = 100 (produccion de Vaca Muerta)"
+ },
+ "idx_cuenca_2024_base2022": {
+  "valor": 138.132,
+  "unidad": "indice",
+  "alcance": "promedio anual 2024, base 2022 = 100 (produccion de la cuenca)"
+ },
+ "idx_exp_2024_base2023": {
+  "valor": 111.625,
+  "unidad": "indice",
+  "alcance": "promedio anual 2024, base 2023 = 100 (exportacion neuquina por terminales)"
+ },
+ "idx_vm_2024_base2023": {
+  "valor": 126.534,
+  "unidad": "indice",
+  "alcance": "promedio anual 2024, base 2023 = 100 (produccion de Vaca Muerta)"
+ },
+ "idx_cuenca_2024_base2023": {
+  "valor": 118.486,
+  "unidad": "indice",
+  "alcance": "promedio anual 2024, base 2023 = 100 (produccion de la cuenca)"
+ },
+ "prod_cuenca_2025_bbl_dia": {
+  "valor": 592112.642,
+  "unidad": "bbl/dia",
+  "alcance": "2025, produccion total de petroleo de la cuenca Neuquina, solo 2022-2025 (archivos anuales + no convencional historico)"
+ },
+ "prod_vm_2025_bbl_dia": {
+  "valor": 501956.181,
+  "unidad": "bbl/dia",
+  "alcance": "2025, Vaca Muerta"
+ },
+ "exp_neu_2025_bbl_dia": {
+  "valor": 166160.628,
+  "unidad": "bbl/dia",
+  "alcance": "2025, promedio de 12 meses, crudo exportado por los terminales neuquinos (Oiltanking + Refineria Bahia Blanca, planilla 21); no incluye el oleoducto a Chile"
+ },
+ "pct_exp_cuenca_2025": {
+  "valor": 28.062,
+  "unidad": "%",
+  "alcance": "2025: exportacion de terminales neuquinos / produccion total de petroleo de la cuenca Neuquina, solo 2022-2025 (archivos anuales + no convencional historico)"
+ },
+ "pct_exp_vm_2025": {
+  "valor": 33.103,
+  "unidad": "%",
+  "alcance": "2025: exportacion de terminales neuquinos / produccion de Vaca Muerta"
+ },
+ "vm_sobre_cuenca_2025": {
+  "valor": 84.774,
+  "unidad": "%",
+  "alcance": "2025: Vaca Muerta / cuenca Neuquina"
+ },
+ "idx_exp_2025_base2021": {
+  "valor": 586.044,
+  "unidad": "indice",
+  "alcance": "promedio anual 2025, base 2021 = 100 (exportacion neuquina por terminales)"
+ },
+ "idx_vm_2025_base2021": {
+  "valor": 308.684,
+  "unidad": "indice",
+  "alcance": "promedio anual 2025, base 2021 = 100 (produccion de Vaca Muerta)"
+ },
+ "idx_exp_2025_base2022": {
+  "valor": 226.991,
+  "unidad": "indice",
+  "alcance": "promedio anual 2025, base 2022 = 100 (exportacion neuquina por terminales)"
+ },
+ "idx_vm_2025_base2022": {
+  "valor": 206.365,
+  "unidad": "indice",
+  "alcance": "promedio anual 2025, base 2022 = 100 (produccion de Vaca Muerta)"
+ },
+ "idx_cuenca_2025_base2022": {
+  "valor": 168.102,
+  "unidad": "indice",
+  "alcance": "promedio anual 2025, base 2022 = 100 (produccion de la cuenca)"
+ },
+ "idx_exp_2025_base2023": {
+  "valor": 208.912,
+  "unidad": "indice",
+  "alcance": "promedio anual 2025, base 2023 = 100 (exportacion neuquina por terminales)"
+ },
+ "idx_vm_2025_base2023": {
+  "valor": 164.026,
+  "unidad": "indice",
+  "alcance": "promedio anual 2025, base 2023 = 100 (produccion de Vaca Muerta)"
+ },
+ "idx_cuenca_2025_base2023": {
+  "valor": 144.193,
+  "unidad": "indice",
+  "alcance": "promedio anual 2025, base 2023 = 100 (produccion de la cuenca)"
+ },
+ "anio_base_indice": {
+  "valor": 2022,
+  "unidad": "anio",
+  "alcance": "primer anio con 12 de 12 meses de exportacion neuquina y exportacion >= 10% de la produccion de Vaca Muerta"
+ },
+ "ma12_exp_dic2023": {
+  "valor": 108.819,
+  "unidad": "indice",
+  "alcance": "media movil 12m a dic-2023, base 2022, exportacion neuquina por terminales"
+ },
+ "ma12_vm_dic2023": {
+  "valor": 125.778,
+  "unidad": "indice",
+  "alcance": "media movil 12m a dic-2023, base 2022, produccion de Vaca Muerta"
+ },
+ "ma12_cuenca_dic2023": {
+  "valor": 116.564,
+  "unidad": "indice",
+  "alcance": "media movil 12m a dic-2023, base 2022, produccion de la cuenca"
+ },
+ "ma12_exp_dic2024": {
+  "valor": 121.421,
+  "unidad": "indice",
+  "alcance": "media movil 12m a dic-2024, base 2022, exportacion neuquina por terminales"
+ },
+ "ma12_vm_dic2024": {
+  "valor": 159.132,
+  "unidad": "indice",
+  "alcance": "media movil 12m a dic-2024, base 2022, produccion de Vaca Muerta"
+ },
+ "ma12_cuenca_dic2024": {
+  "valor": 138.089,
+  "unidad": "indice",
+  "alcance": "media movil 12m a dic-2024, base 2022, produccion de la cuenca"
+ },
+ "ma12_exp_dic2025": {
+  "valor": 226.531,
+  "unidad": "indice",
+  "alcance": "media movil 12m a dic-2025, base 2022, exportacion neuquina por terminales"
+ },
+ "ma12_vm_dic2025": {
+  "valor": 206.209,
+  "unidad": "indice",
+  "alcance": "media movil 12m a dic-2025, base 2022, produccion de Vaca Muerta"
+ },
+ "ma12_cuenca_dic2025": {
+  "valor": 167.999,
+  "unidad": "indice",
+  "alcance": "media movil 12m a dic-2025, base 2022, produccion de la cuenca"
+ },
+ "chile_2023_bbl_dia": {
+  "valor": 35038.586,
+  "unidad": "bbl/dia",
+  "alcance": "2023: oleoducto Puesto Hernandez - Buta Mallin (planilla 20), promedio de los 8 meses con dato; serie aparte"
+ },
+ "chile_2023_meses": {
+  "valor": 8,
+  "unidad": "meses",
+  "alcance": "2023: meses con dato del oleoducto a Chile"
+ },
+ "chile_2024_bbl_dia": {
+  "valor": 71020.19,
+  "unidad": "bbl/dia",
+  "alcance": "2024: oleoducto Puesto Hernandez - Buta Mallin (planilla 20), promedio de los 12 meses con dato; serie aparte"
+ },
+ "chile_2024_meses": {
+  "valor": 12,
+  "unidad": "meses",
+  "alcance": "2024: meses con dato del oleoducto a Chile"
+ },
+ "chile_2025_bbl_dia": {
+  "valor": 79998.262,
+  "unidad": "bbl/dia",
+  "alcance": "2025: oleoducto Puesto Hernandez - Buta Mallin (planilla 20), promedio de los 12 meses con dato; serie aparte"
+ },
+ "chile_2025_meses": {
+  "valor": 12,
+  "unidad": "meses",
+  "alcance": "2025: meses con dato del oleoducto a Chile"
+ },
+ "pct_exp_cuenca_con_chile_2024": {
+  "valor": 32.844035479534924,
+  "unidad": "%",
+  "alcance": "2024: (terminales neuquinos + oleoducto a Chile) / produccion de la cuenca; solo como referencia"
+ },
+ "pct_exp_cuenca_con_chile_2025": {
+  "valor": 41.57298333785618,
+  "unidad": "%",
+  "alcance": "2025: (terminales neuquinos + oleoducto a Chile) / produccion de la cuenca; solo como referencia"
+ },
+ "exp_neu_ultimo_mes_bbl_dia": {
+  "valor": 258874.5,
+  "unidad": "bbl/dia",
+  "alcance": "jun-2026, crudo exportado por los terminales neuquinos (Oiltanking + Refineria Bahia Blanca, planilla 21); no incluye el oleoducto a Chile"
+ },
+ "exp_neu_ultimo_mes_m3": {
+  "valor": 1234734.7,
+  "unidad": "m3",
+  "alcance": "jun-2026, crudo exportado por los terminales neuquinos (Oiltanking + Refineria Bahia Blanca, planilla 21); no incluye el oleoducto a Chile"
+ },
+ "exp_nacional_total_m3": {
+  "valor": 53755750.13999999,
+  "unidad": "m3",
+  "alcance": "2018-jun 2026, 6 operadores de terminal de todo el pais (planilla 21)"
+ },
+ "exp_neuquina_total_m3": {
+  "valor": 33414167.750000004,
+  "unidad": "m3",
+  "alcance": "2018-jun 2026, Oiltanking + Refineria Bahia Blanca"
+ },
+ "exp_neuquina_pct_del_nacional": {
+  "valor": 62.15924373295334,
+  "unidad": "%",
+  "alcance": "volumen neuquino / volumen de los 6 operadores, 2018-jun 2026"
+ },
+ "sin_pais_pct": {
+  "valor": 27.99,
+  "unidad": "%",
+  "alcance": "volumen con pais NO IDENTIFICADO / volumen de los 6 operadores, 2018-jun 2026 (100% TERMAP)"
+ },
+ "con_pais_pct": {
+  "valor": 72.01,
+  "unidad": "%",
+  "alcance": "volumen con pais identificado / volumen de los 6 operadores, 2018-jun 2026"
+ },
+ "sin_pais_m3": {
+  "valor": 15044986.0,
+  "unidad": "m3",
+  "alcance": "2018-jun 2026, 6 operadores"
+ },
+ "termap_pct_2019": {
+  "valor": 78.86991673221605,
+  "unidad": "%",
+  "alcance": "TERMAP / total de los 6 operadores, 2019"
+ },
+ "termap_pct_2026": {
+  "valor": 3.733563746593315,
+  "unidad": "%",
+  "alcance": "TERMAP / total de los 6 operadores, ene-jun 2026"
+ },
+ "conc_top3_operadores_pct": {
+  "valor": 94.25,
+  "unidad": "%",
+  "alcance": "2020-2025, 3 mayores operadores de terminal / 6 operadores (no es concentracion de exportadores)"
+ },
+ "conc_top3_cargadores_pct": {
+  "valor": 47.02,
+  "unidad": "%",
+  "alcance": "2020-2025, 3 mayores cargadores (quien exporta, agrupando variantes de nombre) / total de los 6 operadores"
+ },
+ "vol_mensual_exp_neu_pct": {
+  "valor": 34.02,
+  "unidad": "%",
+  "alcance": "desvio estandar de la variacion mensual, 2022-2025, exportacion neuquina por terminales"
+ },
+ "vol_mensual_prod_vm_pct": {
+  "valor": 2.55,
+  "unidad": "%",
+  "alcance": "desvio estandar de la variacion mensual, 2022-2025, produccion de Vaca Muerta"
+ },
+ "vol_ratio": {
+  "valor": 13.341176470588238,
+  "unidad": "veces",
+  "alcance": "cociente de los dos desvios anteriores"
+ },
+ "vol_mensual_exp_nac_pct": {
+  "valor": 76.85,
+  "unidad": "%",
+  "alcance": "2020-2025, exportacion de los 6 operadores de todo el pais (contexto)"
+ },
+ "ductos_petroleo_n": {
+  "valor": 83,
+  "unidad": "ductos",
+  "alcance": "ductos logicos con volumen de petroleo > 0 en la planilla 20 (los dos id del mismo ducto cuentan una vez)"
+ },
+ "ductos_ranking_n": {
+  "valor": 44,
+  "unidad": "ductos",
+  "alcance": "ductos de petroleo con capacidad informada valida tras las reglas R1, R3, R4, R5 y D2"
+ },
+ "ductos_sin_capacidad_n": {
+  "valor": 34,
+  "unidad": "ductos",
+  "alcance": "ductos de petroleo sin fila en el Anexo 2A"
+ },
+ "ductos_cap_dudosa_todos_n": {
+  "valor": 5,
+  "unidad": "ductos",
+  "alcance": "ductos de petroleo con capacidad dudosa en todos los anios"
+ },
+ "ductos_sobre_100_n": {
+  "valor": 3,
+  "unidad": "ductos",
+  "alcance": "ductos del ranking con utilizacion del segmento mas cargado > 100% en su anio mas reciente valido"
+ },
+ "ductos_ranking_parcial_n": {
+  "valor": 7,
+  "unidad": "ductos",
+  "alcance": "ductos del ranking cuyo anio mas reciente tiene menos de 12 meses"
+ },
+ "ductos_ranking_a_revisar_n": {
+  "valor": 4,
+  "unidad": "ductos",
+  "alcance": "ductos del ranking marcados a revisar (R2 o R6)"
+ },
+ "ducto_anios_excluidos_n": {
+  "valor": 36,
+  "unidad": "ducto-anios",
+  "alcance": "ducto-anios con capacidad dudosa presentes en el modelo"
+ },
+ "ductos_con_anio_excluido_n": {
+  "valor": 18,
+  "unidad": "ductos",
+  "alcance": "ductos con al menos un anio excluido"
+ },
+ "regla_r1_veces": {
+  "valor": 5.0,
+  "unidad": "veces",
+  "alcance": "R1: salto de la capacidad operativa entre anios consecutivos"
+ },
+ "regla_r3_veces": {
+  "valor": 2.0,
+  "unidad": "veces",
+  "alcance": "R3: caudal liquido observado / capacidad empleada informada"
+ },
+ "regla_r5_dias": {
+  "valor": 90,
+  "unidad": "dias",
+  "alcance": "R5: dias operativos informados en el Anexo 2A"
+ },
+ "ducto_sobre100_1_pct": {
+  "valor": 129.7,
+  "unidad": "%",
+  "alcance": "Allen - Puerto Rosales 2024 (12 meses), segmento mas cargado de liquidos / capacidad operativa informada"
+ },
+ "ducto_sobre100_2_pct": {
+  "valor": 111.1,
+  "unidad": "%",
+  "alcance": "LINDERO ATRAVESADO- CENTENARIO 2023 (2 meses), segmento mas cargado de liquidos / capacidad operativa informada"
+ },
+ "ducto_sobre100_3_pct": {
+  "valor": 106.9,
+  "unidad": "%",
+  "alcance": "Centenario - Allen L14 2024 (12 meses), segmento mas cargado de liquidos / capacidad operativa informada"
+ },
+ "cobertura_capacidad_ducto_mes_pct": {
+  "valor": 45.383549565436454,
+  "unidad": "%",
+  "alcance": "ducto-mes con fila en el Anexo 2A / ducto-mes con transporte (todos los productos)"
+ },
+ "cobertura_capacidad_ducto_anio_pct": {
+  "valor": 39.81481481481482,
+  "unidad": "%",
+  "alcance": "ducto-anio con capacidad operativa > 0 / ducto-anio con transporte (todos los productos)"
+ },
+ "bbl_por_m3": {
+  "valor": 6.2898,
+  "unidad": "bbl/m3",
+  "alcance": "factor de conversion usado en todo el proyecto"
+ },
+ "umbral_km": {
+  "valor": 30,
+  "unidad": "km",
+  "alcance": "script 13: distancia a la mediana de las coordenadas de su yacimiento a partir de la cual se omite un pozo del mapa"
+ },
+ "umbral_exp_pct": {
+  "valor": 10,
+  "unidad": "%",
+  "alcance": "script 11: exportacion / produccion de Vaca Muerta minima para elegir el anio base del indice"
+ },
+ "operadores_n": {
+  "valor": 6,
+  "unidad": "operadores",
+  "alcance": "operadores de terminal en la planilla 21"
+ }
+}

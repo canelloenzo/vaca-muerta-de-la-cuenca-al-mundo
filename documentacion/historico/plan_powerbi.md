@@ -1,3 +1,5 @@
+> **Documento histórico (anterior a la auditoría de octubre de 2026).** Se conserva por trazabilidad. Contiene afirmaciones y cifras que la auditoría dejó sin efecto (alcance de la exportación, índice base 2019, utilización de ductos, entre otras). Las cifras vigentes están en `data/web/registro_cifras.json` y en el README.
+
 > **Nota:** documento de trabajo del proceso. El modelo final de Power BI tiene 6 páginas (ver `README.md`).
 
 # Vaca Muerta: plan de acción para Power BI (revisado contra los datos reales)

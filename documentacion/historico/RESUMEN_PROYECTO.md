@@ -1,3 +1,5 @@
+> **Documento histórico (anterior a la auditoría de octubre de 2026).** Se conserva por trazabilidad. Contiene afirmaciones y cifras que la auditoría dejó sin efecto (alcance de la exportación, índice base 2019, utilización de ductos, entre otras). Las cifras vigentes están en `data/web/registro_cifras.json` y en el README.
+
 > **Nota:** documento de trabajo del proceso. El modelo final de Power BI tiene 6 páginas (ver `README.md`).
 
 # Vaca Muerta — resumen del proyecto (para retomar en una conversación nueva)
@@ -162,8 +164,8 @@ alguna consulta en Power BI Desktop antes de este fix, hay que volver a pegar el
 no un número con muchos más dígitos.
 
 ### 6.6. Otras limitaciones ya conocidas (sin cambios)
-- Coordenadas de pozo solo existen para pozos **no convencionales** (3.335 de ~3.300 pozos únicos; los ~238
-  convencionales no se pueden ubicar en el mapa).
+- Coordenadas de pozo solo existen para pozos **no convencionales** (3.335 de ~3.300 pozos únicos; los 238 restantes
+  son 234 convencionales, 3 SIN RESERVORIO y 1 NO DISCRIMINADO, y no se pueden ubicar en el mapa).
 - Anexo 2B (capacidad de almacenamiento/tanques) se evaluó y quedó **fuera del modelo**: dominio distinto
   (stock, no flujo), cobertura débil de nodos, sesgo geográfico a Golfo San Jorge. Documentado en
   `diccionario_datos.md` por si se agrega un "cuarto acto" de almacenamiento más adelante.

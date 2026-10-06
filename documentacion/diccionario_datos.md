@@ -68,8 +68,8 @@ Igual que la anterior pero agregada a nivel yacimiento-provincia-mes-tipo de rec
 Dimensión de coordenadas por pozo — **solo disponible para pozos no convencionales** (limitación de origen).
 **3.335 pozos con coordenadas.** La tabla de producción Vaca Muerta tiene 3.300 pozos únicos en total, de los
 cuales 3.062 son NO CONVENCIONAL — prácticamente todos cubiertos por esta dimensión (más algunos pozos que
-quedan fuera del rango final por year/formación). Los pozos CONVENCIONAL de Vaca Muerta (238 pozos únicos, el
-resto hasta 3.300) **no tienen coordenadas** en los datos crudos entregados.
+quedan fuera del rango final por year/formación). Los pozos de Vaca Muerta que no son no convencionales (238 pozos únicos: 234 convencionales, 3 SIN RESERVORIO y 1 NO DISCRIMINADO)
+**no tienen coordenadas** en los datos crudos entregados.
 
 | Columna | Tipo | Descripción |
 |---|---|---|

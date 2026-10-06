@@ -19,7 +19,8 @@ WEB_GRANOS = {
     "produccion_mapa.csv": ["idpozo"],
     "produccion_anual.csv": ["anio", "tipo_de_recurso"],
     "top_yacimientos.csv": ["areayacimiento"],
-    "exportacion_por_empresa.csv": ["empresa"],
+    "utilizacion_ductos_ranking.csv": ["idducto_logico"],
+    "exportacion_nacional_por_pais_anual.csv": ["anio", "pais"],
 }
 
 
@@ -42,16 +43,9 @@ def test_web_grano_unico(fname, key):
     assert not d.duplicated(key).any()
 
 
-def test_web_indices_una_fila_por_mes():
-    for f in ("indices_mensuales.csv",):
-        p = H.WEB / f
-        if p.exists():
-            assert not H.web(f).anio_mes.duplicated().any()
-
-
-def test_web_pais_anio_unico():
-    d = H.web("exportacion_por_pais_anual.csv")
-    assert not d.duplicated(["anio", "pais"]).any()
+def test_web_series_mensuales_una_fila_por_mes():
+    for f in ("exportacion_cuenca_neuquina_mensual.csv", "comparacion_produccion_exportacion.csv"):
+        assert not H.web(f).fecha.duplicated().any(), f
 
 
 def test_idducto_determina_la_denominacion(clean_ok):
