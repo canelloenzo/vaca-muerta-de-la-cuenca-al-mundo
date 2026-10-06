@@ -26,3 +26,7 @@ tests/.cache/
 Thumbs.db
 desktop.ini
 .DS_Store
+
+# Salidas crudas de pytest (contienen rutas locales): solo se versiona el resumen .md
+tests/baseline/*.xml
+tests/baseline/*.txt
