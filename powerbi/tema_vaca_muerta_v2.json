@@ -1,0 +1,27 @@
+{
+  "name": "Vaca Muerta — De la cuenca al mundo (v2, texto grande)",
+  "dataColors": [
+    "#C1690E",
+    "#1F6E68",
+    "#8F4B08",
+    "#A6402F",
+    "#4F8A84",
+    "#D9A441",
+    "#2E524E",
+    "#9C8768",
+    "#E0895A",
+    "#6E6250"
+  ],
+  "background": "#F4EEE2",
+  "foreground": "#201A12",
+  "tableAccent": "#C1690E",
+  "good": "#1F6E68",
+  "neutral": "#D9A441",
+  "bad": "#A6402F",
+  "textClasses": {
+    "title": { "fontSize": 14, "fontFace": "Segoe UI Semibold", "color": "#201A12" },
+    "header": { "fontSize": 12, "fontFace": "Segoe UI Semibold", "color": "#201A12" },
+    "label": { "fontSize": 12, "fontFace": "Segoe UI", "color": "#4A3F30" },
+    "callout": { "fontSize": 32, "fontFace": "Segoe UI Semibold", "color": "#C1690E" }
+  }
+}

@@ -1,0 +1,28 @@
+# Datos pesados o de origen (se obtienen siguiendo el README)
+raw/
+clean/
+clean_corregido/
+
+# La carpeta data/ se excluye, salvo data/web/ (tablas resumen publicadas, ~0,25 MB)
+/data/*
+!/data/web/
+
+# Power BI
+*.pbix
+*.pbit
+
+# Python / pruebas
+__pycache__/
+*.pyc
+.pytest_cache/
+tests/.cache/
+
+# Secretos y temporales
+.env
+*.tmp
+*.bak
+*.swp
+~$*
+Thumbs.db
+desktop.ini
+.DS_Store

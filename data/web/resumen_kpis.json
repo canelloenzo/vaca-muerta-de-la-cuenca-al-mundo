@@ -1,0 +1,11 @@
+{
+  "fecha_ultimo_mes_produccion": "2025-12-01",
+  "produccion_ultimo_mes_bbl_dia": 590754.6,
+  "variacion_interanual_produccion_pct": 31.92,
+  "pct_no_convencional_historico": 99.91,
+  "fecha_ultimo_mes_exportacion": "2026-06-01",
+  "volumen_exportado_ultimo_mes_m3": 1268381.1,
+  "volatilidad_std_var_mensual_exportacion_pct_2020_2025": 76.85,
+  "volatilidad_std_var_mensual_produccion_pct_2020_2025": 5.18,
+  "concentracion_top3_empresas_pct_2020_2025": 94.25
+}
