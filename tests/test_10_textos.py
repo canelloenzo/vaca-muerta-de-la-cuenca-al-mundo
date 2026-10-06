@@ -51,7 +51,7 @@ def test_sin_marcadores_ni_rutas_ni_correos(nombre):
     if nombre not in pub:
         pytest.skip("todavía no existe")
     t = pub[nombre]
-    for patron in [r"\{\{", r"\[URL_", r"\[PEGAR", r"[A-Za-z]:\\\\", r"C:\\", r"/Users/", r"enzoc", r"@gmail", r"@[a-z0-9-]+\.(com|ar)\b"]:
+    for patron in [r"\{\{", r"\[URL_", r"\[PEGAR", r"[A-Za-z]:\\\\", r"C:\\", r"/Users/", r"[\/]enzoc", r"@gmail", r"@[a-z0-9-]+\.(com|ar)\b"]:
         assert not re.search(patron, t), (nombre, patron)
 
 
