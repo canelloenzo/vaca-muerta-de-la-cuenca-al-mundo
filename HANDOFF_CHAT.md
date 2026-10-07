@@ -20,7 +20,7 @@ Pipeline en Python (pandas) que limpia datos públicos de la Secretaría de Ener
 - Los terminales neuquinos exportaron en 2025 un promedio de 166.161 bbl/día, el 28,1% de la producción de la cuenca; en 2022 era el 20,8%. El oleoducto a Chile se mide aparte.
 - En 2025 la exportación neuquina queda por encima de la producción de Vaca Muerta con las tres bases del índice; en 2024 la dirección depende de la base, por eso no se afirma una tendencia.
 - La concentración depende de cómo se mida: 94,25% por operador de terminal y 47,0% por cargador (2020–2025).
-- Solo 44 de 83 ductos que mueven petróleo tienen capacidad utilizable; 3 superan el 100% en su tramo más cargado, sin que los datos permitan decidir si es sobrecarga o capacidad mal informada.
+- Solo 44 de 83 ductos que mueven petróleo tienen capacidad utilizable; 3 superan el 100% en su tramo más cargado (2 de ellos con la capacidad marcada "a revisar"), sin que los datos permitan decidir si es sobrecarga o capacidad mal informada.
 
 ## 4. Lo que NO se puede decir
 
@@ -199,6 +199,12 @@ Pipeline en Python (pandas) que limpia datos públicos de la Secretaría de Ener
 | `ducto_sobre100_3_pct` | 106,90 | % | Centenario - Allen L14 2024 (12 meses), segmento mas cargado de liquidos / capacidad operativa informada |
 | `cobertura_capacidad_ducto_mes_pct` | 45,38 | % | ducto-mes con fila en el Anexo 2A / ducto-mes con transporte (todos los productos) |
 | `cobertura_capacidad_ducto_anio_pct` | 39,81 | % | ducto-anio con capacidad operativa > 0 / ducto-anio con transporte (todos los productos) |
+| `proxy_pct_producto_neuquino` | 99,52 | % | 2018-jun 2026: volumen exportado por Oiltanking y Refineria Bahia Blanca cuyo producto se rotula Neuquen / Rio Negro (Medanito) / Neuquino |
+| `rbb_pct_2024` | 7,53 | % | 2024: Refineria Bahia Blanca / exportacion de los terminales neuquinos (no informa desde febrero de 2026) |
+| `rbb_pct_2025` | 2,98 | % | 2025: Refineria Bahia Blanca / exportacion de los terminales neuquinos (no informa desde febrero de 2026) |
+| `ductos_ranking_cap_constante_n` | 11 | ductos | ductos del ranking con la misma capacidad operativa en todos sus anios validos (3 o mas anios) |
+| `ductos_ranking_un_anio_n` | 4 | ductos | ductos del ranking con un solo anio de capacidad valida |
+| `ductos_sobre_100_a_revisar_n` | 2 | ductos | ductos sobre 100% con capacidad marcada a revisar (R2 o R6) |
 | `hallazgos_n` | 19 | hallazgos | auditoria de 2026-10-05, F1 a F19 |
 | `bbl_por_m3` | 6,29 | bbl/m3 | factor de conversion usado en todo el proyecto |
 | `umbral_km` | 30 | km | script 13: distancia a la mediana de las coordenadas de su yacimiento a partir de la cual se omite un pozo del mapa |

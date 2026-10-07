@@ -20,7 +20,7 @@ Pipeline en Python (pandas) que limpia datos públicos de la Secretaría de Ener
 - Los terminales neuquinos exportaron en 2025 un promedio de {{exp_neu_2025_bbl_dia:0}} bbl/día, el {{pct_exp_cuenca_2025:1}}% de la producción de la cuenca; en 2022 era el {{pct_exp_cuenca_2022:1}}%. El oleoducto a Chile se mide aparte.
 - En 2025 la exportación neuquina queda por encima de la producción de Vaca Muerta con las tres bases del índice; en 2024 la dirección depende de la base, por eso no se afirma una tendencia.
 - La concentración depende de cómo se mida: {{conc_top3_operadores_pct:2}}% por operador de terminal y {{conc_top3_cargadores_pct:1}}% por cargador (2020–2025).
-- Solo {{ductos_ranking_n:0}} de {{ductos_petroleo_n:0}} ductos que mueven petróleo tienen capacidad utilizable; {{ductos_sobre_100_n:0}} superan el 100% en su tramo más cargado, sin que los datos permitan decidir si es sobrecarga o capacidad mal informada.
+- Solo {{ductos_ranking_n:0}} de {{ductos_petroleo_n:0}} ductos que mueven petróleo tienen capacidad utilizable; {{ductos_sobre_100_n:0}} superan el 100% en su tramo más cargado ({{ductos_sobre_100_a_revisar_n:0}} de ellos con la capacidad marcada "a revisar"), sin que los datos permitan decidir si es sobrecarga o capacidad mal informada.
 
 ## 4. Lo que NO se puede decir
 

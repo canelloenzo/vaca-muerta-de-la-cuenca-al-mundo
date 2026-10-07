@@ -148,6 +148,28 @@ da_tr = tr[["idducto", "anio"]].drop_duplicates()
 da_cap = cap[cap["capacidad_valida"]][["idducto", "anio"]].drop_duplicates()
 reg("cobertura_capacidad_ducto_anio_pct", 100 * len(da_cap) / len(da_tr), "%", "ducto-anio con capacidad operativa > 0 / ducto-anio con transporte (todos los productos)")
 
+# ------------------------------------------------------------------ evidencia del proxy y de la cobertura (verificaciones posteriores a la auditoria)
+mov = pd.read_csv(os.path.join(CLEAN, "fact_movimientos_exportacion_ductos.csv"), encoding="utf-8-sig", low_memory=False,
+                  usecols=["empresa", "anio", "tipo_operacion", "producto", "volumen"])
+ex_neu = mov[(mov["tipo_operacion"] == "Exportacion") & mov["empresa"].isin(["Oiltanking EBYTEM S.A.", "Refineria Bahia Blanca SAU"])]
+es_neu = ex_neu["producto"].str.contains("neuqu|medanito", case=False, regex=True, na=False)
+reg("proxy_pct_producto_neuquino", 100 * ex_neu.loc[es_neu, "volumen"].sum() / ex_neu["volumen"].sum(), "%",
+    "2018-jun 2026: volumen exportado por Oiltanking y Refineria Bahia Blanca cuyo producto se rotula Neuquen / Rio Negro (Medanito) / Neuquino")
+rbb = ex_neu[ex_neu["empresa"].str.startswith("Refineria")].groupby("anio")["volumen"].sum()
+tot_neu = ex_neu.groupby("anio")["volumen"].sum()
+for y in (2024, 2025):
+    reg(f"rbb_pct_{y}", 100 * rbb.get(y, 0) / tot_neu[y], "%", f"{y}: Refineria Bahia Blanca / exportacion de los terminales neuquinos (no informa desde febrero de 2026)")
+capf = pd.read_csv(os.path.join(CLEAN, "fact_capacidad_ductos.csv"), encoding="utf-8-sig", low_memory=False,
+                   usecols=["idducto", "idducto_logico", "anio", "capacidad_operativa_maxima_m3_dia", "capacidad_dudosa"])
+vig = capf[(~capf["capacidad_dudosa"].astype(bool)) & (capf["capacidad_operativa_maxima_m3_dia"] > 0) & capf["idducto_logico"].isin(rank["idducto_logico"])]
+vig = vig.drop_duplicates(["idducto", "anio"])
+n_op = vig.groupby("idducto_logico")["capacidad_operativa_maxima_m3_dia"].agg(["nunique", "count"])
+reg("ductos_ranking_cap_constante_n", int(((n_op["nunique"] == 1) & (n_op["count"] >= 3)).sum()), "ductos",
+    "ductos del ranking con la misma capacidad operativa en todos sus anios validos (3 o mas anios)")
+reg("ductos_ranking_un_anio_n", int((n_op["count"] == 1).sum()), "ductos", "ductos del ranking con un solo anio de capacidad valida")
+reg("ductos_sobre_100_a_revisar_n", int(rank.loc[rank["sobre_100_pct"], "a_revisar_capacidad"].sum()), "ductos",
+    "ductos sobre 100% con capacidad marcada a revisar (R2 o R6)")
+
 # ------------------------------------------------------------------ parametros metodologicos (definidos en los scripts 11 y 13)
 reg("hallazgos_n", 19, "hallazgos", "auditoria de 2026-10-05, F1 a F19")
 reg("bbl_por_m3", 6.2898, "bbl/m3", "factor de conversion usado en todo el proyecto")

@@ -19,7 +19,7 @@ El pipeline limpia los archivos crudos con Python (pandas). Las tablas alimentan
 | Índice base 2022, promedio 2025 | exportación 227,0 · producción de Vaca Muerta 206,4 · producción de la cuenca 168,1 | con sensibilidad a las bases 2021 y 2023; en 2024 la dirección entre exportación y producción cambia según la base, por eso no se afirma una tendencia |
 | Concentración 2020–2025 | 47,0% top 3 cargadores · 94,25% top 3 operadores de terminal | son dos medidas distintas; 6 operadores de terminal de todo el país |
 | Volumen exportado sin país identificado | 28,0% | planilla 21, 2018–junio 2026; todo de TERMAP |
-| Ductos con capacidad válida | 44 de 83 que mueven petróleo; 3 superan el 100% en su tramo más cargado | capacidad operativa informada en el Anexo 2A; ver Limitaciones |
+| Ductos con capacidad válida | 44 de 83 que mueven petróleo; 3 superan el 100% en su tramo más cargado (2 con la capacidad marcada "a revisar") | capacidad operativa informada en el Anexo 2A; ver Limitaciones |
 
 ## Estado y enlaces
 
@@ -104,8 +104,8 @@ Pruebas: `python -m pytest -q`. Las que leen `raw/` tardan unos minutos la prime
 
 ## Limitaciones
 
-- **Alcance de la exportación.** La planilla 21 recoge movimientos de 6 operadores de terminal de todo el país; solo el 62,2% del volumen es crudo neuquino. La serie principal usa Oiltanking y Refinería Bahía Blanca como indicador de la cuenca; esos terminales también despachan crudo convencional.
-- **Cobertura por serie.** La producción de la cuenca existe solo para 2022–2025; el % exportado de la cuenca, solo en esos años. 2018 y 2026 son años parciales. El último mes de exportación puede estar subreportado, por eso las comparaciones cierran en diciembre de 2025. La producción de la cuenca antes de 2022 queda como trabajo futuro.
+- **Alcance de la exportación.** La planilla 21 recoge movimientos de 6 operadores de terminal de todo el país; solo el 62,2% del volumen es crudo neuquino. La serie principal usa Oiltanking y Refinería Bahía Blanca como indicador de la cuenca: el 99,5% de su volumen exportado está rotulado como crudo Neuquén / Río Negro (Medanito). Es un indicador, no una medición directa; esos terminales también despachan crudo convencional.
+- **Cobertura por serie.** La producción de la cuenca existe solo para 2022–2025; el % exportado de la cuenca, solo en esos años. 2018 y 2026 son años parciales. El último mes de exportación se apoya casi por completo en Oiltanking; Refinería Bahía Blanca no informa desde febrero de 2026 (aportó el 3,0% de la exportación neuquina de 2025), así que el mes podría estar subestimado en ese orden. Por eso las comparaciones cierran en diciembre de 2025. La producción de la cuenca antes de 2022 queda como trabajo futuro.
 - **Huecos.** Los meses sin dato figuran como "sin dato", no como cero. Los meses de 2019–2021 en que Oiltanking informó operaciones sin exportación se tratan como cero informado.
 - **Capacidad de ductos.** El Anexo 2A es anual y su capacidad se repite en los 12 meses; no comparte identificador de tramo con la planilla 20. La utilización es un cociente aproximado (tramo más cargado de líquidos sobre capacidad operativa informada). La cobertura es parcial: capacidad en el 45,4% de los ducto-mes con transporte. Se excluyen 36 ducto-años de 18 ductos por las reglas R1, R3, R4, R5 y D2; R2 y R6 solo marcan "a revisar". VMOC 2025 queda excluido (D2) y no se publica su utilización.
 - **Volúmenes repetidos.** En la planilla 21 hay pares de cargadores con volumen idéntico; no hay evidencia suficiente para llamarlo doble conteo y no se corrigió.

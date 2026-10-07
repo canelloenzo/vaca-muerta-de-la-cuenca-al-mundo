@@ -629,6 +629,36 @@
   "unidad": "%",
   "alcance": "ducto-anio con capacidad operativa > 0 / ducto-anio con transporte (todos los productos)"
  },
+ "proxy_pct_producto_neuquino": {
+  "valor": 99.51591368310936,
+  "unidad": "%",
+  "alcance": "2018-jun 2026: volumen exportado por Oiltanking y Refineria Bahia Blanca cuyo producto se rotula Neuquen / Rio Negro (Medanito) / Neuquino"
+ },
+ "rbb_pct_2024": {
+  "valor": 7.528541193136251,
+  "unidad": "%",
+  "alcance": "2024: Refineria Bahia Blanca / exportacion de los terminales neuquinos (no informa desde febrero de 2026)"
+ },
+ "rbb_pct_2025": {
+  "valor": 2.9762080607678936,
+  "unidad": "%",
+  "alcance": "2025: Refineria Bahia Blanca / exportacion de los terminales neuquinos (no informa desde febrero de 2026)"
+ },
+ "ductos_ranking_cap_constante_n": {
+  "valor": 11,
+  "unidad": "ductos",
+  "alcance": "ductos del ranking con la misma capacidad operativa en todos sus anios validos (3 o mas anios)"
+ },
+ "ductos_ranking_un_anio_n": {
+  "valor": 4,
+  "unidad": "ductos",
+  "alcance": "ductos del ranking con un solo anio de capacidad valida"
+ },
+ "ductos_sobre_100_a_revisar_n": {
+  "valor": 2,
+  "unidad": "ductos",
+  "alcance": "ductos sobre 100% con capacidad marcada a revisar (R2 o R6)"
+ },
  "hallazgos_n": {
   "valor": 19,
   "unidad": "hallazgos",
