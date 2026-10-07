@@ -89,7 +89,7 @@ def tabla_registro():
 
 FRAGMENTOS = {"TABLA_REGISTRO": tabla_registro, "LISTA_SOBRE_100": lista_sobre_100, "TABLA_INDICES": tabla_indices, "TABLA_SENSIBILIDAD": tabla_sensibilidad,
               "TABLA_PCT_EXPORTADO": tabla_pct}
-PAT = re.compile(r"\{\{([A-Za-z_0-9]+)(?::(\d))?\}\}")
+PAT = re.compile(r"\{\{([A-Za-z_0-9]+)(?::(\d|y))?\}\}")
 
 
 def reemplazar(texto):
@@ -97,6 +97,8 @@ def reemplazar(texto):
         clave, dec = m.group(1), m.group(2)
         if clave in FRAGMENTOS:
             return FRAGMENTOS[clave]()
+        if dec == "y":                      # anios: sin separador de miles
+            return str(int(val(clave)))
         return fnum(val(clave), int(dec or 0))
     return PAT.sub(f, texto)
 

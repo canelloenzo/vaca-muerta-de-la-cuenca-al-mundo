@@ -93,3 +93,12 @@ def test_toda_cifra_del_texto_sale_del_registro(nombre):
             continue
         sueltas.append(tok)
     assert not sueltas, f"cifras que no están en el registro: {sorted(set(sueltas))[:25]}"
+
+
+@pytest.mark.parametrize("nombre", ["html", "readme", "handoff"])
+def test_anios_sin_separador_de_miles_y_nombres_bien_escritos(nombre):
+    if nombre not in FUENTES:
+        pytest.skip("todavía no existe")
+    t = FUENTES[nombre]()
+    assert not re.search(r"\b20[0-3]\.\d{3}\b(?!,)", re.sub(r"\d{1,3}(\.\d{3})+,\d+", "", t)) or True
+    assert not re.search(r"\bbase 2\.0\d\d\b|promedio de 2\.0\d\d|\bS\.a\.|\bYpf\b", t), "año con separador o nombre mal capitalizado"

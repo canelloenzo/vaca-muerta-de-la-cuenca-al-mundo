@@ -16,7 +16,7 @@ El pipeline limpia los archivos crudos con Python (pandas). Las tablas alimentan
 | Incidencia no convencional | 99,88% | volumen de Vaca Muerta 2022–2025, el único período con ambos tipos observables |
 | Exportación de crudo neuquino, 2025 | 166.161 bbl/día, 28,1% de la producción de la cuenca | terminales neuquinos (Oiltanking + Refinería Bahía Blanca), planilla 21; sin oleoducto a Chile |
 | Oleoducto a Chile | 71.020 bbl/día (2024) y 79.998 bbl/día (2025) | planilla 20, serie aparte; no se suma a la anterior |
-| Índice base 2.022, promedio 2025 | exportación 227,0 · producción de Vaca Muerta 206,4 · producción de la cuenca 168,1 | con sensibilidad a las bases 2021 y 2023; en 2024 la dirección entre exportación y producción cambia según la base, por eso no se afirma una tendencia |
+| Índice base 2022, promedio 2025 | exportación 227,0 · producción de Vaca Muerta 206,4 · producción de la cuenca 168,1 | con sensibilidad a las bases 2021 y 2023; en 2024 la dirección entre exportación y producción cambia según la base, por eso no se afirma una tendencia |
 | Concentración 2020–2025 | 47,0% top 3 cargadores · 94,25% top 3 operadores de terminal | son dos medidas distintas; 6 operadores de terminal de todo el país |
 | Volumen exportado sin país identificado | 28,0% | planilla 21, 2018–junio 2026; todo de TERMAP |
 | Ductos con capacidad válida | 44 de 83 que mueven petróleo; 3 superan el 100% en su tramo más cargado | capacidad operativa informada en el Anexo 2A; ver Limitaciones |
@@ -31,7 +31,7 @@ El pipeline limpia los archivos crudos con Python (pandas). Las tablas alimentan
 
 1. Vaca Muerta: de la cuenca al mundo (resumen)
 2. Acto I · Producción: de dónde sale el petróleo
-3. Producción y exportación: índices base 2.022
+3. Producción y exportación: índices base 2022
 4. Acto II · Transporte: capacidad informada de los ductos
 5. Acto III · Exportación: adónde va
 6. Acto III · Exportación: quién la despacha

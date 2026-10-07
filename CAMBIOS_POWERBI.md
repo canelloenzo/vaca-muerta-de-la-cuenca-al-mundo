@@ -47,18 +47,18 @@ Los identificadores de pozo a excluir son 153751 y 159086 (`data/web/pozos_coord
 
 | Elemento | Antes | Después |
 |---|---|---|
-| Título de la página y cuadro de texto superior | "Producción vs. exportación: la brecha se sostiene y crece desde 2023" | "Producción y exportación: índices base 2.022" |
-| Gráfico de líneas | "Índice de producción vs. exportación (base 100 = promedio 2019)", medidas `Indice Produccion (base 100)` e `Indice Exportacion (base 100)` | título "Índices de producción de Vaca Muerta y exportación neuquina por terminales (media móvil de 12 meses, base 2.022 = 100)"; medidas `Indice Produccion VM MA12 (base 2022)` e `Indice Exportacion Neuquina MA12 (base 2022)`; sin filtro de año en el gráfico |
+| Título de la página y cuadro de texto superior | "Producción vs. exportación: la brecha se sostiene y crece desde 2023" | "Producción y exportación: índices base 2022" |
+| Gráfico de líneas | "Índice de producción vs. exportación (base 100 = promedio 2019)", medidas `Indice Produccion (base 100)` e `Indice Exportacion (base 100)` | título "Índices de producción de Vaca Muerta y exportación neuquina por terminales (media móvil de 12 meses, base 2022 = 100)"; medidas `Indice Produccion VM MA12 (base 2022)` e `Indice Exportacion Neuquina MA12 (base 2022)`; sin filtro de año en el gráfico |
 | Cuadro de texto "Metodología / El hallazgo / Una limitación" | base 2019, "brecha ≥ 120 puntos desde 2023", +1.660% | ver texto de abajo |
 | Tabla nueva (matriz) | — | `Dim_Fecha[anio]` en filas (2022 a 2025), medidas `Indice Exportacion Neuquina (base 2022)` e `Indice Produccion VM (base 2022)` |
 
-Valores esperados de la matriz (promedios anuales, base 2.022 = 100): 2022 → 100,0 y 100,0; 2023 → 108,7 (exportación) y 125,8 (producción); 2024 → 121,3 y 159,2; 2025 → 227,0 y 206,4.
+Valores esperados de la matriz (promedios anuales, base 2022 = 100): 2022 → 100,0 y 100,0; 2023 → 108,7 (exportación) y 125,8 (producción); 2024 → 121,3 y 159,2; 2025 → 227,0 y 206,4.
 
 Valores esperados del gráfico a diciembre de cada año (media móvil de 12 meses): exportación 108,8 (2023), 121,4 (2024), 226,5 (2025); producción de Vaca Muerta 125,8, 159,1 y 206,2.
 
 **Texto nuevo del cuadro:**
 
-> **Metodología.** Los índices parten de 100 = promedio de 2.022, el primer año con exportación neuquina en 12 de 12 meses y con exportación igual o mayor al 10% de la producción de Vaca Muerta. La exportación es la de los terminales neuquinos (Oiltanking y Refinería Bahía Blanca), no la de todo el país. La curva usa media móvil de 12 meses y empieza cuando hay 12 meses de datos.
+> **Metodología.** Los índices parten de 100 = promedio de 2022, el primer año con exportación neuquina en 12 de 12 meses y con exportación igual o mayor al 10% de la producción de Vaca Muerta. La exportación es la de los terminales neuquinos (Oiltanking y Refinería Bahía Blanca), no la de todo el país. La curva usa media móvil de 12 meses y empieza cuando hay 12 meses de datos.
 > **Qué se puede afirmar.** En 2025 la exportación neuquina queda por encima de la producción de Vaca Muerta con las bases 2021, 2022 y 2023. En 2024 la dirección cambia según la base elegida, por eso no se afirma una tendencia sostenida.
 > **Una limitación.** Antes de 2022 el índice de exportación se apoya en meses con cobertura irregular; los meses sin dato no se grafican como cero.
 

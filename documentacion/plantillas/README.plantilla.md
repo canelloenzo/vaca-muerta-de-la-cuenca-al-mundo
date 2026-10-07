@@ -16,7 +16,7 @@ El pipeline limpia los archivos crudos con Python (pandas). Las tablas alimentan
 | Incidencia no convencional | {{pct_nc_2022_2025:2}}% | volumen de Vaca Muerta 2022–2025, el único período con ambos tipos observables |
 | Exportación de crudo neuquino, 2025 | {{exp_neu_2025_bbl_dia:0}} bbl/día, {{pct_exp_cuenca_2025:1}}% de la producción de la cuenca | terminales neuquinos (Oiltanking + Refinería Bahía Blanca), planilla 21; sin oleoducto a Chile |
 | Oleoducto a Chile | {{chile_2024_bbl_dia:0}} bbl/día (2024) y {{chile_2025_bbl_dia:0}} bbl/día (2025) | planilla 20, serie aparte; no se suma a la anterior |
-| Índice base {{anio_base_indice:0}}, promedio 2025 | exportación {{idx_exp_2025_base2022:1}} · producción de Vaca Muerta {{idx_vm_2025_base2022:1}} · producción de la cuenca {{idx_cuenca_2025_base2022:1}} | con sensibilidad a las bases 2021 y 2023; en 2024 la dirección entre exportación y producción cambia según la base, por eso no se afirma una tendencia |
+| Índice base {{anio_base_indice:y}}, promedio 2025 | exportación {{idx_exp_2025_base2022:1}} · producción de Vaca Muerta {{idx_vm_2025_base2022:1}} · producción de la cuenca {{idx_cuenca_2025_base2022:1}} | con sensibilidad a las bases 2021 y 2023; en 2024 la dirección entre exportación y producción cambia según la base, por eso no se afirma una tendencia |
 | Concentración 2020–2025 | {{conc_top3_cargadores_pct:1}}% top 3 cargadores · {{conc_top3_operadores_pct:2}}% top 3 operadores de terminal | son dos medidas distintas; 6 operadores de terminal de todo el país |
 | Volumen exportado sin país identificado | {{sin_pais_pct:1}}% | planilla 21, 2018–junio 2026; todo de TERMAP |
 | Ductos con capacidad válida | {{ductos_ranking_n:0}} de {{ductos_petroleo_n:0}} que mueven petróleo; {{ductos_sobre_100_n:0}} superan el 100% en su tramo más cargado | capacidad operativa informada en el Anexo 2A; ver Limitaciones |
@@ -31,7 +31,7 @@ El pipeline limpia los archivos crudos con Python (pandas). Las tablas alimentan
 
 1. Vaca Muerta: de la cuenca al mundo (resumen)
 2. Acto I · Producción: de dónde sale el petróleo
-3. Producción y exportación: índices base {{anio_base_indice:0}}
+3. Producción y exportación: índices base {{anio_base_indice:y}}
 4. Acto II · Transporte: capacidad informada de los ductos
 5. Acto III · Exportación: adónde va
 6. Acto III · Exportación: quién la despacha

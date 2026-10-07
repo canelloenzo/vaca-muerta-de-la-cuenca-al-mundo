@@ -129,7 +129,7 @@ function buildPaisesTiempoChart() {
 function listaBarras(id, filas) {
   document.getElementById(id).innerHTML = filas.map(e => `
     <div class="empresa-row">
-      <div class="top"><span class="name">${titleCase(e.e)}</span><span class="pct">${fmt(e.pct,1)}%</span></div>
+      <div class="top"><span class="name">${e.e}</span><span class="pct">${fmt(e.pct,2)}%</span></div>
       <div class="empresa-bar-track"><div class="empresa-bar-fill" style="width:${e.pct}%"></div></div>
     </div>
   `).join('');

@@ -184,14 +184,14 @@
     </div>
 
     <div class="panel">
-      <h3>Producción y exportación: índices base {{anio_base_indice:0}} = 100</h3>
-      <p class="panel-note">Media móvil de 12 meses (cada punto necesita 12 meses de datos). Base = promedio de {{anio_base_indice:0}}, el primer año con exportación neuquina en 12 de 12 meses y con exportación igual o mayor al {{umbral_exp_pct:0}}% de la producción de Vaca Muerta. La producción de la cuenca existe solo desde 2022.</p>
+      <h3>Producción y exportación: índices base {{anio_base_indice:y}} = 100</h3>
+      <p class="panel-note">Media móvil de 12 meses (cada punto necesita 12 meses de datos). Base = promedio de {{anio_base_indice:y}}, el primer año con exportación neuquina en 12 de 12 meses y con exportación igual o mayor al {{umbral_exp_pct:0}}% de la producción de Vaca Muerta. La producción de la cuenca existe solo desde 2022.</p>
       <div class="chart-box tall"><canvas id="chart-indices"></canvas></div>
     </div>
 
     <div class="grid-2 even" style="margin-top:24px;">
       <div class="panel">
-        <h3>Promedios anuales, base {{anio_base_indice:0}} = 100</h3>
+        <h3>Promedios anuales, base {{anio_base_indice:y}} = 100</h3>
         <p class="panel-note">Exportación neuquina por terminales frente a producción</p>
         {{TABLA_INDICES}}
       </div>
