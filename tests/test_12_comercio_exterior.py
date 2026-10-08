@@ -171,3 +171,26 @@ def test_html_igual_a_las_tablas_comex(DATA):
     m = H.web("comex_comparacion_mensual.csv").dropna(subset=["idx_produccion_vm_ma12_base2022"])
     assert len(DATA["ma12"]) == len(m) and DATA["ma12"][-1]["m"] == "2025-12"
     assert abs(DATA["ma12"][-1]["exp"] - m.iloc[-1].idx_exportacion_ma12_base2022) < 0.01
+
+
+def test_terminales_informan_mas_que_comercio_exterior_en_los_destinos_citados(comex_indep, export_raw):
+    """Texto publicado: para Estados Unidos, Brasil, Perú y Uruguay los terminales marítimos informan más volumen que el comercio exterior (2023-2025)."""
+    n = _neu(comex_indep)
+    n = n.assign(p=n.pais.str.upper().str.replace("Ú", "U"))
+    t = export_raw[export_raw.empresa.isin(H.OPERADORES_NEUQUINOS)].copy()
+    t["p"] = t.pais.fillna("").str.upper().str.replace("Ú", "U")
+    for pais in ("ESTADOS UNIDOS", "BRASIL", "PERU", "URUGUAY"):
+        c = n[(n.p == pais) & n.anio.between(2023, 2025)].cantidad.sum()
+        v = t[(t.p == pais) & t.anio.between(2023, 2025)].volumen.sum()
+        assert v > c, (pais, v, c)
+
+
+def test_acumulado_no_converge_y_septiembre_2024_es_shell(comex_indep):
+    a = H.web("comex_anual.csv").set_index("anio")
+    ac = a.loc[2020:2025, "exportacion_m3"].sum() / (a.loc[2020:2025, "terminales_m3"].sum() + a.loc[2020:2025, "oleoducto_chile_planilla20_m3"].sum())
+    assert 0.8 < ac < 0.9
+    d = pd.read_csv(H.raw_dir() / "produccin-de-pozos-de-gas-y-petrleo-2024.csv", encoding="latin-1", low_memory=False)
+    d.columns = [c.replace("\ufeff", "").replace("ï»¿", "").strip().lower() for c in d.columns]
+    d = d[d.cuenca.astype(str).str.lower().str.contains("neuquina") & d.empresa.str.contains("SHELL ARGENTINA", na=False)]
+    por_mes = d.groupby("mes").prod_pet.sum()
+    assert por_mes.get(9, 0) == 0 and por_mes[8] > 100_000 and por_mes[10] > 100_000

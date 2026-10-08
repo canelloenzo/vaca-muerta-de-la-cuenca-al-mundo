@@ -118,6 +118,7 @@ for y in range(2020, 2026):
 for y in range(2020, 2026):
     reg(f"contr_term_{y}_m3", ca.loc[y, "terminales_m3"], "m3", f"{y}: Oiltanking + Refineria Bahia Blanca (planilla 21)")
     reg(f"contr_oleo_{y}_m3", ca.loc[y, "oleoducto_chile_planilla20_m3"], "m3", f"{y}: oleoducto a Chile, planilla 20 (sin dato antes de mayo de 2023)")
+reg("contr_acum_comex_sobre_term_mas_oleo_2020_2025", ca.loc[2020:2025, "exportacion_m3"].sum() / (ca.loc[2020:2025, "terminales_m3"].sum() + ca.loc[2020:2025, "oleoducto_chile_planilla20_m3"].sum()), "razon", "2020-2025 acumulado: comercio exterior / (terminales + oleoducto a Chile)")
 for y in (2023, 2024, 2025):
     reg(f"contr_chile_comex_sobre_p20_{y}", ca.loc[y, "razon_chile_comex_sobre_planilla20"], "razon", f"{y}: exportacion a Chile de comercio exterior / oleoducto a Chile de la planilla 20")
 reg("val_precios_meses", cmx["validacion_precios"]["meses"], "meses", "meses 2020-2021 con precio implicito y precio FOB oficial")

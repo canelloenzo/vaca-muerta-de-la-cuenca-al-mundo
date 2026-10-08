@@ -228,6 +228,7 @@ Pipeline en Python (pandas) que limpia datos públicos de la Secretaría de Ener
 | `contr_oleo_2024_m3` | 4.132.626 | m3 | 2024: oleoducto a Chile, planilla 20 (sin dato antes de mayo de 2023) |
 | `contr_term_2025_m3` | 9.642.378 | m3 | 2025: Oiltanking + Refineria Bahia Blanca (planilla 21) |
 | `contr_oleo_2025_m3` | 4.642.336 | m3 | 2025: oleoducto a Chile, planilla 20 (sin dato antes de mayo de 2023) |
+| `contr_acum_comex_sobre_term_mas_oleo_2020_2025` | 0,83 | razon | 2020-2025 acumulado: comercio exterior / (terminales + oleoducto a Chile) |
 | `contr_chile_comex_sobre_p20_2023` | 0,86 | razon | 2023: exportacion a Chile de comercio exterior / oleoducto a Chile de la planilla 20 |
 | `contr_chile_comex_sobre_p20_2024` | 0,75 | razon | 2024: exportacion a Chile de comercio exterior / oleoducto a Chile de la planilla 20 |
 | `contr_chile_comex_sobre_p20_2025` | 0,81 | razon | 2025: exportacion a Chile de comercio exterior / oleoducto a Chile de la planilla 20 |
