@@ -99,8 +99,8 @@ Esta página pasa a usar `Fact_ExportacionComex` (crudo de la cuenca Neuquina) e
 | Elemento | Antes | Después | Valor esperado |
 |---|---|---|---|
 | Gráfico "Principales países de destino (m³)" | `Dim_Pais[pais]` y `Volumen Exportado` | eje `Fact_ExportacionComex[pais]`, medida `Volumen Exportado Cuenca`, Top N = 10 excluyendo "no aplica"; título "Principales países de destino (m³): crudo de la cuenca Neuquina, 2020 – agosto 2026" | primero Estados Unidos (45,9% del volumen) y segundo Chile (27,0%) |
-| Tarjeta "Exportación con país de destino registrado" | 72,01% (planilla 21) | cambiar por una tarjeta con la medida nueva `% Exportacion sin Pais (no aplica)` (Grupo E de `powerbi/dax_measures.md`); título "Exportación sin país de destino ('no aplica')" | 5,9% |
-| Cuadro de texto junto a la tarjeta | — | "El comercio exterior declara el destino de casi todo el volumen; el 5,9% figura como 'no aplica'." | — |
+| Tarjeta "Exportación con país de destino registrado" | 72,01% (planilla 21) | cambiar por una tarjeta con la medida nueva `% Exportacion sin Pais (no aplica)` (Grupo E de `powerbi/dax_measures.md`); título "Volumen sin destino informado"; formato de la medida: Porcentaje con 1 decimal | 5,9% |
+| Cuadro de texto junto a la tarjeta | — | "Porcentaje del volumen exportado de crudo de la cuenca Neuquina cuyo país de destino figura como 'no aplica' en el comercio exterior (2020 – agosto 2026). El resto tiene destino declarado." | — |
 | Gráfico de líneas "Evolución anual de exportación, top 5 países" | incluye 2018 y 2026 (planilla 21) | eje `Dim_Fecha[anio]`, leyenda `Fact_ExportacionComex[pais]`, medida `Volumen Exportado Cuenca`, filtro `Dim_Fecha[anio]` entre 2020 y 2025; título "Evolución anual de exportación, top 5 países, 2020–2025 (en 2020 hay exportación en 6 de 12 meses)" | — |
 | Tabla nueva | — | `Dim_Fecha[anio]` en filas (2020 a 2025), medidas `Volumen Exportado Cuenca`, `Monto Exportado Cuenca (USD)` y `Precio Implicito (USD-bbl)`; título "Valor de la exportación (USD, monto FOB declarado)" | 2025: USD 4.536 millones y 64,9 USD/bbl; 2022: USD 2.441 millones y 92,5 USD/bbl |
 
