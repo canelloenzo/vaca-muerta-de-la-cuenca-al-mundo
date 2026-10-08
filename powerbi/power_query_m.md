@@ -15,7 +15,7 @@ vez y reusala en todos los bloques — ver sección final).
 Creá esto primero como **Nuevo parámetro** (no consulta en blanco): Inicio > Administrar parámetros > Nuevo.
 - Nombre: `RutaClean`
 - Tipo: Texto
-- Valor actual: `<RUTA_AL_REPO>\clean\` (reemplazar `<RUTA_AL_REPO>` por la carpeta local del repositorio)
+- Valor actual: la carpeta de las tablas limpias corregidas **con la barra final**, por ejemplo `D:\datos\clean_corregido\` (es la carpeta que indica `VM_CLEAN_DIR`)
 
 Todos los bloques de abajo usan `RutaClean` — si no querés crear el parámetro, reemplazá `RutaClean` por el
 string literal de la ruta en cada bloque.
@@ -301,7 +301,7 @@ in
 
 ## 10. Dim_Fecha (tabla de fechas, cubre el rango de todas las fact tables)
 
-Requiere que `Fact_Produccion`, `Fact_TransporteDuctos` y `Fact_MovimientosExportacion` ya existan como consultas
+Requiere que `Fact_Produccion`, `Fact_TransporteDuctos`, `Fact_MovimientosExportacion`, `Fact_ExportacionComex` y `Fact_ProduccionCuenca` ya existan como consultas
 (Power Query resuelve el orden de dependencia solo).
 
 ```powerquery-m
@@ -310,12 +310,16 @@ let
     FechaMin = List.Min({
         List.Min(Fact_Produccion[fecha]),
         List.Min(Fact_TransporteDuctos[fecha]),
-        List.Min(Fact_MovimientosExportacion[fecha])
+        List.Min(Fact_MovimientosExportacion[fecha]),
+        List.Min(Fact_ExportacionComex[fecha]),
+        List.Min(Fact_ProduccionCuenca[fecha])
     }),
     FechaMax = List.Max({
         List.Max(Fact_Produccion[fecha]),
         List.Max(Fact_TransporteDuctos[fecha]),
-        List.Max(Fact_MovimientosExportacion[fecha])
+        List.Max(Fact_MovimientosExportacion[fecha]),
+        List.Max(Fact_ExportacionComex[fecha]),
+        List.Max(Fact_ProduccionCuenca[fecha])
     }),
     Calendario = List.Dates(
         Date.From(FechaMin),
