@@ -1044,6 +1044,46 @@
   "unidad": "ductos",
   "alcance": "ductos sobre 100% con capacidad marcada a revisar (R2 o R6)"
  },
+ "integridad_ductos_con_dato_n": {
+  "valor": 34,
+  "unidad": "ductos",
+  "alcance": "ductos del ranking con caudal de referencia (campo caudal_nominal) informado en Tramos de Integridad (mayor valor entre sus tramos, unidad inferida m3/h, > 100 m3/dia)"
+ },
+ "integridad_dentro_15pct_n": {
+  "valor": 12,
+  "unidad": "ductos",
+  "alcance": "de esos, ductos con capacidad operativa del Anexo 2A dentro de +-15% del caudal de referencia x 24"
+ },
+ "allen_cap_anexo_2024": {
+  "valor": 36000.0,
+  "unidad": "m3/dia",
+  "alcance": "Allen - Puerto Rosales, 2024, capacidad operativa del Anexo 2A"
+ },
+ "allen_cap_anexo_2023": {
+  "valor": 50052.0,
+  "unidad": "m3/dia",
+  "alcance": "Allen - Puerto Rosales, 2023, capacidad operativa del Anexo 2A"
+ },
+ "allen_cap_prensa_2022": {
+  "valor": 42000,
+  "unidad": "m3/dia",
+  "alcance": "capacidad del tramo Allen - Puerto Rosales tras el proyecto Vivaldi, segun nota de Econojournal de abril de 2022"
+ },
+ "allen_util_con_cap_prensa_pct": {
+  "valor": 111.17142857142858,
+  "unidad": "%",
+  "alcance": "Allen - Puerto Rosales 2024, mismo volumen del tramo mas cargado sobre 42.000 m3/dia"
+ },
+ "allen_util_con_cap_2023_pct": {
+  "valor": 93.28698153919923,
+  "unidad": "%",
+  "alcance": "Allen - Puerto Rosales 2024, mismo volumen sobre la capacidad operativa que el Anexo 2A informa para 2023"
+ },
+ "l14_util_con_nominal_pct": {
+  "valor": 53.024511285771865,
+  "unidad": "%",
+  "alcance": "Centenario - Allen L14 2024, mismo volumen sobre el caudal de referencia de Tramos de Integridad x 24 (unidad inferida m3/h)"
+ },
  "hallazgos_n": {
   "valor": 19,
   "unidad": "hallazgos",

@@ -12,7 +12,7 @@ import os
 import numpy as np
 import pandas as pd
 
-from _rutas import CLEAN, WEB
+from _rutas import CLEAN, RAW, WEB
 
 R = {}
 
@@ -215,6 +215,25 @@ reg("ductos_ranking_cap_constante_n", int(((n_op["nunique"] == 1) & (n_op["count
 reg("ductos_ranking_un_anio_n", int((n_op["count"] == 1).sum()), "ductos", "ductos del ranking con un solo anio de capacidad valida")
 reg("ductos_sobre_100_a_revisar_n", int(rank.loc[rank["sobre_100_pct"], "a_revisar_capacidad"].sum()), "ductos",
     "ductos sobre 100% con capacidad marcada a revisar (R2 o R6)")
+
+# ------------------------------------------------------------------ contraste de capacidades con la tabla de Tramos de Integridad
+ti = pd.read_csv(os.path.join(RAW, "tramos-de-integridad_2026-10-08.csv"), encoding="utf-8-sig", low_memory=False)
+nom = (ti.groupby("idducto")["caudal_nominal"].max() * 24).rename("nominal_m3_dia")      # unidad inferida: m3/h (coincide exacto con la capacidad del Anexo 2A en varios ductos)
+rk = rank.merge(nom, left_on="idducto_logico", right_index=True, how="left")
+rk = rk[rk["nominal_m3_dia"] > 100]                                                       # descarta valores de relleno (p. ej. 1,0)
+cociente = rk["capacidad_operativa_m3_dia"] / rk["nominal_m3_dia"]
+reg("integridad_ductos_con_dato_n", len(rk), "ductos", "ductos del ranking con caudal de referencia (campo caudal_nominal) informado en Tramos de Integridad (mayor valor entre sus tramos, unidad inferida m3/h, > 100 m3/dia)")
+reg("integridad_dentro_15pct_n", int(((cociente - 1).abs() <= 0.15).sum()), "ductos", "de esos, ductos con capacidad operativa del Anexo 2A dentro de +-15% del caudal de referencia x 24")
+_a = rank[rank["idducto_logico"] == 216].iloc[0]
+_cap2023 = float(capf[(capf["idducto_logico"] == 216) & (capf["anio"] == 2023)]["capacidad_operativa_maxima_m3_dia"].iloc[0])
+reg("allen_cap_anexo_2024", float(_a["capacidad_operativa_m3_dia"]), "m3/dia", "Allen - Puerto Rosales, 2024, capacidad operativa del Anexo 2A")
+reg("allen_cap_anexo_2023", _cap2023, "m3/dia", "Allen - Puerto Rosales, 2023, capacidad operativa del Anexo 2A")
+reg("allen_cap_prensa_2022", 42000, "m3/dia", "capacidad del tramo Allen - Puerto Rosales tras el proyecto Vivaldi, segun nota de Econojournal de abril de 2022")
+reg("allen_util_con_cap_prensa_pct", _a["utilizacion_segmento_mas_cargado_pct"] * _a["capacidad_operativa_m3_dia"] / 42000, "%", "Allen - Puerto Rosales 2024, mismo volumen del tramo mas cargado sobre 42.000 m3/dia")
+reg("allen_util_con_cap_2023_pct", _a["utilizacion_segmento_mas_cargado_pct"] * _a["capacidad_operativa_m3_dia"] / _cap2023, "%", "Allen - Puerto Rosales 2024, mismo volumen sobre la capacidad operativa que el Anexo 2A informa para 2023")
+_c = rank[rank["idducto_logico"] == 382].iloc[0]
+_n382 = float(nom.loc[382])
+reg("l14_util_con_nominal_pct", _c["utilizacion_segmento_mas_cargado_pct"] * _c["capacidad_operativa_m3_dia"] / _n382, "%", "Centenario - Allen L14 2024, mismo volumen sobre el caudal de referencia de Tramos de Integridad x 24 (unidad inferida m3/h)")
 
 # ------------------------------------------------------------------ parametros metodologicos (definidos en los scripts 11 y 13)
 reg("hallazgos_n", 19, "hallazgos", "auditoria de 2026-10-05, F1 a F19")

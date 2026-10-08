@@ -292,6 +292,14 @@ Pipeline en Python (pandas) que limpia datos públicos de la Secretaría de Ener
 | `ductos_ranking_cap_constante_n` | 11 | ductos | ductos del ranking con la misma capacidad operativa en todos sus anios validos (3 o mas anios) |
 | `ductos_ranking_un_anio_n` | 4 | ductos | ductos del ranking con un solo anio de capacidad valida |
 | `ductos_sobre_100_a_revisar_n` | 2 | ductos | ductos sobre 100% con capacidad marcada a revisar (R2 o R6) |
+| `integridad_ductos_con_dato_n` | 34 | ductos | ductos del ranking con caudal de referencia (campo caudal_nominal) informado en Tramos de Integridad (mayor valor entre sus tramos, unidad inferida m3/h, > 100 m3/dia) |
+| `integridad_dentro_15pct_n` | 12 | ductos | de esos, ductos con capacidad operativa del Anexo 2A dentro de +-15% del caudal de referencia x 24 |
+| `allen_cap_anexo_2024` | 36.000 | m3/dia | Allen - Puerto Rosales, 2024, capacidad operativa del Anexo 2A |
+| `allen_cap_anexo_2023` | 50.052 | m3/dia | Allen - Puerto Rosales, 2023, capacidad operativa del Anexo 2A |
+| `allen_cap_prensa_2022` | 42.000 | m3/dia | capacidad del tramo Allen - Puerto Rosales tras el proyecto Vivaldi, segun nota de Econojournal de abril de 2022 |
+| `allen_util_con_cap_prensa_pct` | 111,17 | % | Allen - Puerto Rosales 2024, mismo volumen del tramo mas cargado sobre 42.000 m3/dia |
+| `allen_util_con_cap_2023_pct` | 93,29 | % | Allen - Puerto Rosales 2024, mismo volumen sobre la capacidad operativa que el Anexo 2A informa para 2023 |
+| `l14_util_con_nominal_pct` | 53,02 | % | Centenario - Allen L14 2024, mismo volumen sobre el caudal de referencia de Tramos de Integridad x 24 (unidad inferida m3/h) |
 | `hallazgos_n` | 19 | hallazgos | auditoria de 2026-10-05, F1 a F19 |
 | `bbl_por_m3` | 6,29 | bbl/m3 | factor de conversion usado en todo el proyecto |
 | `umbral_km` | 30 | km | script 13: distancia a la mediana de las coordenadas de su yacimiento a partir de la cual se omite un pozo del mapa |
