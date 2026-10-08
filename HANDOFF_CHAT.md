@@ -21,13 +21,16 @@ Pipeline en Python (pandas) que limpia datos públicos de la Secretaría de Ener
 - Con las tres bases del índice (2021, 2022 y 2023), la exportación de la cuenca crece más que la producción de la cuenca en cada año posterior a la base. Esa lectura es de la serie de comercio exterior; con la de terminales marítimos la dirección en 2024 cambia según la base.
 - Destinos 2020–agosto 2026: Estados Unidos 45,9% y Chile 27,0%.
 - Las 3 mayores empresas exportadoras concentran 58,6% (2020–2025). Es otra medida que el 94,25% de los 3 mayores operadores de terminal de todo el país.
-- Solo 44 de 83 ductos que mueven petróleo tienen capacidad utilizable; 3 superan el 100% en su tramo más cargado (2 de ellos con la capacidad marcada "a revisar"), sin que los datos permitan decidir si es sobrecarga o capacidad mal informada.
+- El corredor Allen–Puerto Rosales movió 22.768.324 m³ de petróleo en 2025, 37,9% más que en 2024, con la línea nueva Duplicar desde marzo de 2025.
+- La capacidad de los ductos no es una base sólida para concluir: las fuentes no coinciden en Allen–Puerto Rosales y el petróleo transportado en 2024 superó la capacidad que informa el Anexo. Solo 44 de 83 ductos que mueven petróleo tienen capacidad utilizable; 3 superan el 100% en su tramo más cargado (2 de ellos con la capacidad marcada "a revisar"), sin que los datos permitan decidir si es sobrecarga o capacidad mal informada.
 
 ## 4. Lo que NO se puede decir
 
 - Que la exportación sea "de Vaca Muerta" únicamente: la serie incluye todo el crudo de la cuenca Neuquina, convencional y no convencional.
 - Que el volumen exportado es el que dicen los terminales marítimos o el que dice el comercio exterior: las dos fuentes oficiales no concilian desde 2023 y no hay información para decidir.
 - Cualquier cifra de utilización de VMOC: se retiró (decisión D2).
+- Que un ducto esté "sobrecargado" por superar el 100% de su capacidad informada: las capacidades de las fuentes no coinciden.
+- Fechas y capacidades de VMOS o Duplicar Norte como hechos: son anuncios de las empresas y del Estado, con fuente y fecha, en una caja aparte.
 - Una causa para la volatilidad de la exportación.
 - Un valor de mercado en USD: es el monto FOB declarado por las empresas.
 - Producción convencional de 2026.
@@ -65,7 +68,7 @@ Pipeline en Python (pandas) que limpia datos públicos de la Secretaría de Ener
 
 1. Dashboard web, encabezado y tarjetas: muestra la cifra principal con su alcance y las cuatro tarjetas (producción, incidencia no convencional, exportación con USD, concentración).
 2. Dashboard web, índices base 2022 con las tablas de promedios anuales y sensibilidad: muestra que la conclusión se sostiene con las tres bases.
-3. Dashboard web, ranking de utilización de ductos con la nota de cobertura: muestra el criterio de exclusión.
+3. Dashboard web, gráfico de petróleo transportado por los principales ductos y tabla de capacidades por fuente: muestra el dato sólido y por qué no se publica un porcentaje de utilización.
 4. Dashboard web, tabla de contraste entre fuentes oficiales y nota de que no concilian: muestra el criterio de transparencia.
 5. Power BI, página 3 (índices base 2022) y página 4 (capacidad informada): muestra el modelo corregido.
 6. Salida de la suite de pruebas pasando: muestra el control automático de cifras y textos.
@@ -300,6 +303,31 @@ Pipeline en Python (pandas) que limpia datos públicos de la Secretaría de Ener
 | `allen_util_con_cap_prensa_pct` | 111,17 | % | Allen - Puerto Rosales 2024, mismo volumen del tramo mas cargado sobre 42.000 m3/dia |
 | `allen_util_con_cap_2023_pct` | 93,29 | % | Allen - Puerto Rosales 2024, mismo volumen sobre la capacidad operativa que el Anexo 2A informa para 2023 |
 | `l14_util_con_nominal_pct` | 53,02 | % | Centenario - Allen L14 2024, mismo volumen sobre el caudal de referencia de Tramos de Integridad x 24 (unidad inferida m3/h) |
+| `vol_allen_2020_m3` | 9.100.851 | m3 | 2020: petroleo transportado por Allen - Puerto Rosales (linea original), volumen del tramo mas cargado de cada mes, planilla 20 |
+| `vol_allen_2021_m3` | 11.113.147 | m3 | 2021: petroleo transportado por Allen - Puerto Rosales (linea original), volumen del tramo mas cargado de cada mes, planilla 20 |
+| `vol_allen_2022_m3` | 14.062.391 | m3 | 2022: petroleo transportado por Allen - Puerto Rosales (linea original), volumen del tramo mas cargado de cada mes, planilla 20 |
+| `vol_allen_2023_m3` | 15.478.545 | m3 | 2023: petroleo transportado por Allen - Puerto Rosales (linea original), volumen del tramo mas cargado de cada mes, planilla 20 |
+| `vol_allen_2024_m3` | 16.510.040 | m3 | 2024: petroleo transportado por Allen - Puerto Rosales (linea original), volumen del tramo mas cargado de cada mes, planilla 20 |
+| `vol_allen_2025_m3` | 13.589.825 | m3 | 2025: petroleo transportado por Allen - Puerto Rosales (linea original), volumen del tramo mas cargado de cada mes, planilla 20 |
+| `vol_duplicar_2025_m3` | 9.178.499 | m3 | 2025: petroleo transportado por la linea nueva Allen - Puerto Rosales (Duplicar), desde marzo de 2025, planilla 20 |
+| `allen_total_2024_m3` | 16.510.040 | m3 | 2024: corredor Allen - Puerto Rosales (una sola linea) |
+| `allen_total_2025_m3` | 22.768.324 | m3 | 2025: corredor Allen - Puerto Rosales (linea original + Duplicar) |
+| `allen_crec_2025_pct` | 37,91 | % | 2025 vs 2024, corredor Allen - Puerto Rosales |
+| `allen_flujo_2024_m3_dia` | 45.109 | m3/dia | 2024: petroleo transportado por Allen - Puerto Rosales dividido por los dias del anio |
+| `allen_cap_anexo_2022` | 46.384 | m3/dia | Allen - Puerto Rosales, 2022, capacidad operativa del Anexo 2A |
+| `ext_oldelval_cap_2022_m3` | 36.000 | m3/dia | cifra de fuente externa, no verificada con los datos del proyecto: capacidad actual de Oldelval segun la Secretaria de Energia, septiembre de 2022 |
+| `ext_duplicar_f1_m3` | 55.000 | m3/dia | cifra de fuente externa, no verificada con los datos del proyecto: capacidad tras la primera fase de Duplicar, segun Oldelval (pagina oficial del proyecto) |
+| `ext_duplicar_f2_m3` | 86.000 | m3/dia | cifra de fuente externa, no verificada con los datos del proyecto: capacidad objetivo de Duplicar, segun Oldelval (pagina oficial del proyecto) |
+| `ext_vmos_km` | 437 | km | cifra de fuente externa, no verificada con los datos del proyecto: longitud del oleoducto VMOS, segun YPF |
+| `ext_vmos_cap_max_bbl` | 550.000 | bbl/dia | cifra de fuente externa, no verificada con los datos del proyecto: capacidad de VMOS segun YPF |
+| `ext_vmos_cap_amp_bbl` | 700.000 | bbl/dia | cifra de fuente externa, no verificada con los datos del proyecto: capacidad ampliable de VMOS segun YPF |
+| `ext_vmos_cap_rigi_bbl` | 377.400 | bbl/dia | cifra de fuente externa, no verificada con los datos del proyecto: capacidad base de VMOS citada en la resolucion del Ministerio de Economia de marzo de 2025 (adhesion al RIGI) |
+| `ext_vmos_cap_inicial_prensa_bbl` | 180.000 | bbl/dia | cifra de fuente externa, no verificada con los datos del proyecto: operacion inicial de VMOS segun Mas Energia, enero de 2026 |
+| `ext_vmos_avance_pct` | 50 | % | cifra de fuente externa, no verificada con los datos del proyecto: avance superior al 50% de VMOS segun Mas Energia, enero de 2026 |
+| `ext_dnorte_pulgadas` | 24 | pulgadas | cifra de fuente externa, no verificada con los datos del proyecto: diametro de Duplicar Norte segun Oldelval, septiembre de 2026 |
+| `ext_dnorte_km` | 207 | km | cifra de fuente externa, no verificada con los datos del proyecto: longitud de Duplicar Norte segun Oldelval, septiembre de 2026 |
+| `ext_dnorte_bbl` | 220.000 | bbl/dia | cifra de fuente externa, no verificada con los datos del proyecto: capacidad adicional de Duplicar Norte segun Oldelval, septiembre de 2026 |
+| `ext_dnorte_avance_pct` | 50 | % | cifra de fuente externa, no verificada con los datos del proyecto: avance global de Duplicar Norte segun Oldelval, septiembre de 2026 |
 | `hallazgos_n` | 19 | hallazgos | auditoria de 2026-10-05, F1 a F19 |
 | `bbl_por_m3` | 6,29 | bbl/m3 | factor de conversion usado en todo el proyecto |
 | `umbral_km` | 30 | km | script 13: distancia a la mediana de las coordenadas de su yacimiento a partir de la cual se omite un pozo del mapa |

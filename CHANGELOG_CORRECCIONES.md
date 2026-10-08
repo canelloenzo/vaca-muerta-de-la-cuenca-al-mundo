@@ -104,3 +104,13 @@ Los archivos históricos de `data/web/` (`indices_mensuales.csv`, `capacidad_duc
 | Destinos | crudo de la cuenca por país de destino, con el volumen "no aplica" aparte |
 | Pruebas | `tests/test_12_comercio_exterior.py`: recálculo con otro método de lectura de la caché, validación de precios y verificación de cada afirmación publicada |
 | Power BI | `CAMBIOS_POWERBI.md` suma dos tablas (`Fact_ExportacionComex`, `Fact_ProduccionCuenca`) y reescribe las páginas 1, 3, 5 y 6 |
+
+## Fase 3C — Acto II rediseñado (petróleo transportado, capacidades por fuente y proyectos anunciados)
+
+| cambio | detalle |
+|---|---|
+| Qué cambia | el ranking de utilización de ductos pasa de protagonista a detalle plegado con advertencias; el Acto II muestra el petróleo transportado por los principales ductos (dato directo de la planilla 20, volumen del tramo más cargado y neto de rectificaciones), la ampliación Allen–Puerto Rosales (línea Duplicar desde marzo de 2025) y una tabla de capacidades por fuente |
+| Por qué | las capacidades no son una base sólida: para Allen–Puerto Rosales el Anexo 2A informa cifras distintas según el año, la Secretaría de Energía y Oldelval informan otras, y el petróleo transportado en 2024 superó la capacidad que informa el Anexo; con otra capacidad creíble la utilización pasa de más de 100% a menos |
+| Proyectos anunciados | caja aparte, rotulada como información externa no verificada, con fuente y fecha (VMOS y Duplicar Norte); sus cifras están en el registro con su alcance y no integran ningún gráfico ni indicador |
+| Corrección encontrada por la prueba independiente | la primera versión de la serie de volumen por ducto excluía los volúmenes negativos (rectificaciones) y sobreestimaba el volumen; ahora es neto |
+| Pruebas | `tests/test_13_transporte_y_proyectos.py`: recálculo independiente del volumen, inicio de Duplicar, relación flujo-capacidad, fuentes de los enlaces y respuesta de cada enlace |

@@ -99,6 +99,19 @@ for i in pet_ids:
 clasif = pd.DataFrame(rows)
 clasif.to_csv(os.path.join(WEB, "clasificacion_ductos_petroleo.csv"), index=False)
 
+# ------------------------------------------------------------------ petroleo transportado por ducto logico y anio (dato directo, sin capacidad)
+# Un ducto con varios segmentos en serie cuenta dos veces el mismo barril si se suman todos los tramos (p. ej. VMOC). Por eso la medida publicada
+# es el volumen del TRAMO MAS CARGADO de cada mes (suma de los 12 meses); la suma de todos los tramos se conserva en otra columna.
+# se incluyen los volumenes negativos (rectificaciones): el volumen es neto
+pet_neto = tr[tr["tipo_producto"] == "Petroleo"]
+seg_m = (pet_neto.groupby(["idducto_logico", "anio", "mes", "nodo_origen", "nodo_destino"], dropna=False)["volumen"].sum().reset_index())
+tramo_max = seg_m.groupby(["idducto_logico", "anio", "mes"])["volumen"].max().reset_index()
+vol = (tramo_max.groupby(["idducto_logico", "anio"]).agg(volumen_tramo_mas_cargado_m3=("volumen", "sum"), meses_con_dato=("mes", "nunique")).reset_index())
+vol = vol.merge(pet_neto.groupby(["idducto_logico", "anio"])["volumen"].sum().rename("volumen_suma_de_tramos_m3").reset_index(), on=["idducto_logico", "anio"])
+vol["denominacion_ducto"] = vol["idducto_logico"].map(den_logica)
+vol = vol[["idducto_logico", "denominacion_ducto", "anio", "meses_con_dato", "volumen_tramo_mas_cargado_m3", "volumen_suma_de_tramos_m3"]].round(1)
+vol.to_csv(os.path.join(WEB, "volumen_petroleo_ductos_anual.csv"), index=False)
+
 resumen = {
     "ductos_logicos_que_mueven_petroleo": len(pet_ids),
     "categorias": clasif["categoria"].value_counts().to_dict(),

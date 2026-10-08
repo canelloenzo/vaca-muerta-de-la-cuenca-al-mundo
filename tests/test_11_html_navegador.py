@@ -14,5 +14,5 @@ from verificar_html_headless import verificar  # noqa: E402
 def test_html_sin_errores_de_consola(ancho):
     errores, _, s = verificar(None, ancho)
     assert not errores, errores
-    assert s["charts"] == 5 and s["yac"] == 10 and s["marcadores"] == 0
+    assert s["charts"] == 6 and s["yac"] == 10 and s["marcadores"] == 0
     assert s["scrollW"] <= s["innerW"] + 1, "scroll horizontal"

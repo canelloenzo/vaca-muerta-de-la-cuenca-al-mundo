@@ -17,7 +17,7 @@
   <div class="wrap">
     <p class="kicker">Cuenca Neuquina, Argentina — datos públicos de producción, transporte y exportación de petróleo</p>
     <h1 class="title">De la roca a la exportación</h1>
-    <p class="dek">Un recorrido en tres actos por los datos públicos de Vaca Muerta: cuánto se produce, cuántos ductos informan capacidad y cuánto, adónde y a qué valor se exporta el crudo de la cuenca. Cada cifra declara su alcance y los límites están al final, en la sección Limitaciones.</p>
+    <p class="dek">Un recorrido en tres actos por los datos públicos de Vaca Muerta: cuánto se produce, cuánto se transporta por ductos y cuánto, adónde y a qué valor se exporta el crudo de la cuenca. Cada cifra declara su alcance y los límites están al final, en la sección Limitaciones.</p>
 
     <div class="hero-figure">
       <div>
@@ -37,7 +37,7 @@
       <a href="#transporte">
         <div class="act-no">ACTO II</div>
         <div class="act-name">Transporte</div>
-        <div class="act-desc">Qué ductos informan capacidad y cuáles superan el 100% en su tramo más cargado</div>
+        <div class="act-desc">Cuánto petróleo se mueve por los principales ductos y qué proyectos se anuncian</div>
       </a>
       <a href="#exportacion">
         <div class="act-no">ACTO III</div>
@@ -131,42 +131,79 @@
 <section class="act" id="transporte">
   <div class="wrap">
     <div class="act-head"><span class="idx">ACTO II</span></div>
-    <h2 class="act-title">Transporte: capacidad informada de los ductos</h2>
-    <p class="act-sub">De los {{ductos_petroleo_n:0}} ductos que mueven petróleo, cuántos informan capacidad y cuánto se carga su tramo más exigido frente a esa capacidad.</p>
+    <h2 class="act-title">Transporte: cuánto petróleo se mueve y qué se anuncia</h2>
+    <p class="act-sub">Volumen de petróleo transportado por los principales ductos (dato directo de la planilla 20), la ampliación de Allen–Puerto Rosales, lo que informan distintas fuentes sobre su capacidad y los proyectos anunciados.</p>
 
-    <div class="grid-2 even">
-      <div class="panel">
-        <h3>Utilización del tramo más cargado</h3>
-        <p class="panel-note">Top 20 de {{ductos_ranking_n:0}} ductos con capacidad válida · año más reciente válido de cada uno · 100% = capacidad operativa máxima informada en el Anexo 2A · solo líquidos</p>
-        <div class="chart-box tall"><canvas id="chart-util"></canvas></div>
-      </div>
-      <div class="panel">
-        <h3>Ductos sin capacidad utilizable</h3>
-        <p class="panel-note">Volumen de petróleo transportado (m³, acumulado del período) de los {{ductos_sin_capacidad_n:0}} ductos sin fila en el Anexo 2A; los 18 mayores. No es comparable con el % de utilización</p>
-        <div class="table-scroll">
-          <table class="simple">
-            <thead><tr><th>Ducto</th><th style="text-align:right">m³</th></tr></thead>
-            <tbody id="resp-tbody"></tbody>
-          </table>
-        </div>
-      </div>
+    <div class="panel">
+      <h3>Petróleo transportado por los principales ductos</h3>
+      <p class="panel-note">m³ por año, 2020–2025, los 6 ductos con más volumen en 2025. Es el volumen del tramo más cargado de cada mes (para no contar dos veces un mismo barril en ductos con tramos en serie). Antes de su inicio los ductos nuevos figuran sin dato.</p>
+      <div class="chart-box tall"><canvas id="chart-troncales"></canvas></div>
     </div>
 
-    <div class="note alert" style="margin-top:16px;">
-      <strong>{{ductos_sobre_100_n:0}} ductos superan el 100%</strong> en su año más reciente válido; {{ductos_sobre_100_a_revisar_n:0}} de ellos tienen la capacidad marcada "a revisar": {{LISTA_SOBRE_100}}. Superar el 100% significa que el volumen del tramo más cargado excede la capacidad operativa informada, o que esa capacidad no corresponde al tramo (el Anexo 2A y la planilla 20 no comparten identificador de tramo). Los datos no permiten decidir cuál de las dos. Los ductos con pocos meses de datos o marcados "a revisar" se señalan en el gráfico.
+    <div class="grid-2 even" style="margin-top:24px;">
+      <div class="panel">
+        <h3>Allen–Puerto Rosales: de una línea a dos</h3>
+        <p class="panel-note">Petróleo transportado, m³ por año. La línea nueva (Duplicar) figura en los datos desde marzo de 2025</p>
+        {{TABLA_ALLEN}}
+        <p class="panel-note" style="margin-top:10px; margin-bottom:0;">En 2025 el corredor movió {{allen_total_2025_m3:0}} m³, {{allen_crec_2025_pct:1}}% más que en 2024 ({{allen_total_2024_m3:0}} m³).</p>
+      </div>
+      <div class="panel">
+        <h3>Qué informan las fuentes sobre su capacidad</h3>
+        <p class="panel-note">Capacidad del corredor Allen–Puerto Rosales en m³/día; las fuentes no coinciden</p>
+        {{TABLA_CAPACIDADES}}
+      </div>
     </div>
-
     <div class="note" style="margin-top:16px;">
-      <strong>Cobertura y exclusiones:</strong> de {{ductos_petroleo_n:0}} ductos que mueven petróleo, {{ductos_ranking_n:0}} tienen capacidad válida (ranking), {{ductos_cap_dudosa_todos_n:0}} tienen capacidad dudosa en todos los años y {{ductos_sin_capacidad_n:0}} no aparecen en el Anexo 2A. Se excluyen {{ducto_anios_excluidos_n:0}} ducto-años de {{ductos_con_anio_excluido_n:0}} ductos por estas reglas: R1, la capacidad operativa salta más de {{regla_r1_veces:0}} veces de un año al siguiente; R3, el caudal observado supera {{regla_r3_veces:0}} veces la capacidad empleada informada; R4, la operativa es menor que la empleada; R5, {{regla_r5_dias:0}} días operativos o menos; y D2, la capacidad informada de VMOC en 2025 no concilia con su caudal, por lo que no se publica una utilización para ese ducto. Otras dos reglas solo marcan "a revisar" y no excluyen: R2, la misma terna de capacidades en dos ductos distintos, y R6, capacidad operativa igual a las otras dos columnas del Anexo.
+      <strong>Por qué no se publica un porcentaje de utilización como resultado.</strong> La capacidad que informa el Anexo 2A para 2024 ({{allen_cap_anexo_2024:0}} m³/día) coincide con la cifra que la Secretaría de Energía dio en septiembre de 2022 para la capacidad actual de Oldelval ({{ext_oldelval_cap_2022_m3:0}} m³/día), pero el petróleo del tramo más cargado de 2024 fue de {{allen_flujo_2024_m3_dia:0}} m³/día: más que esa capacidad. Es decir, la cifra no funciona como límite físico, y con otra capacidad creíble (por ejemplo {{allen_cap_prensa_2022:0}} m³/día, según una nota del sector de abril de 2022, o los {{allen_cap_anexo_2023:0}} que el Anexo informa para 2023) la utilización de 2024 pasa de {{ducto_sobre100_1_pct:1}}% a {{allen_util_con_cap_prensa_pct:1}}% o {{allen_util_con_cap_2023_pct:1}}%. El ranking completo, con sus advertencias, está plegado más abajo.
     </div>
 
-    <details class="panel" style="margin-top:16px;">
-      <summary style="cursor:pointer; font-family:var(--font-display); font-weight:600;">Ducto-años excluidos y motivo</summary>
-      <div class="table-scroll" style="margin-top:12px;">
-        <table class="simple">
-          <thead><tr><th>Ducto</th><th>Años</th><th>Motivo</th></tr></thead>
-          <tbody id="excl-tbody"></tbody>
-        </table>
+    <div class="panel" style="margin-top:24px;">
+      <h3>Proyectos anunciados</h3>
+      <p class="panel-note"><strong>Información externa, no verificada con los datos de este proyecto.</strong> Son anuncios y previsiones de las empresas y del Estado, con fecha de la fuente; no integran ningún gráfico ni indicador del informe y las fechas pueden cambiar.</p>
+      <div style="overflow-x:auto"><table class="simple">
+        <thead><tr><th>Proyecto</th><th>Qué informa la fuente</th><th>Fuente y fecha</th></tr></thead>
+        <tbody>
+          <tr><td>VMOS (Vaca Muerta Oil Sur)</td><td>Oleoducto de {{ext_vmos_km:0}} km entre Allen y Punta Colorada (Río Negro), con terminal de monoboyas. YPF informa una capacidad de hasta {{ext_vmos_cap_max_bbl:0}} bbl/día, ampliable a {{ext_vmos_cap_amp_bbl:0}}; la aprobación en el RIGI cita una capacidad base de {{ext_vmos_cap_rigi_bbl:0}} bbl/día; la prensa especializada cita una operación inicial de {{ext_vmos_cap_inicial_prensa_bbl:0}} bbl/día. En enero de 2026 se informaba un avance superior al {{ext_vmos_avance_pct:0}}% y una puesta en marcha prevista para enero de 2027.</td><td><a href="https://energia-argentina.ypf.com/vmos.html">YPF, página del proyecto</a> (consultada en octubre de 2026) · <a href="https://www.argentina.gob.ar/normativa/nacional/resoluci%C3%B3n-302-2025-410830">Resolución del Ministerio de Economía</a> (marzo de 2025) · <a href="https://mase.lmneuquen.com/petroleo/vmos-cumple-un-ano-y-acelera-el-salto-exportador-del-petroleo-vaca-muerta-n1226139">Más Energía, enero de 2026</a></td></tr>
+          <tr><td>Duplicar Norte (Oldelval)</td><td>Nuevo oleoducto de {{ext_dnorte_km:0}} km y {{ext_dnorte_pulgadas:0}} pulgadas de diámetro, con capacidad adicional de {{ext_dnorte_bbl:0}} bbl/día. Avance global de {{ext_dnorte_avance_pct:0}}% en septiembre de 2026 y puesta en marcha prevista para el primer trimestre de 2027.</td><td><a href="https://www.oldelval.com/2026/09/08/">Oldelval, noticias del 8 de septiembre de 2026</a></td></tr>
+        </tbody>
+      </table></div>
+    </div>
+
+    <details class="panel" id="detalle-util" style="margin-top:24px;">
+      <summary style="cursor:pointer; font-family:var(--font-display); font-weight:600;">Detalle: utilización informada de los ductos con capacidad en el Anexo 2A (ranking con advertencias)</summary>
+      <div style="margin-top:16px;">
+        <div class="grid-2 even">
+          <div class="panel">
+            <h3>Utilización del tramo más cargado</h3>
+            <p class="panel-note">Top 20 de {{ductos_ranking_n:0}} ductos con capacidad válida · año más reciente válido de cada uno · 100% = capacidad operativa máxima informada en el Anexo 2A · solo líquidos</p>
+            <div class="chart-box tall"><canvas id="chart-util"></canvas></div>
+          </div>
+          <div class="panel">
+            <h3>Ductos sin capacidad utilizable</h3>
+            <p class="panel-note">Volumen de petróleo transportado (m³, acumulado del período) de los {{ductos_sin_capacidad_n:0}} ductos sin fila en el Anexo 2A; los 18 mayores. No es comparable con el % de utilización</p>
+            <div class="table-scroll">
+              <table class="simple">
+                <thead><tr><th>Ducto</th><th style="text-align:right">m³</th></tr></thead>
+                <tbody id="resp-tbody"></tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+        <div class="note alert" style="margin-top:16px;">
+          <strong>{{ductos_sobre_100_n:0}} ductos superan el 100%</strong> en su año más reciente válido; {{ductos_sobre_100_a_revisar_n:0}} de ellos tienen la capacidad marcada "a revisar": {{LISTA_SOBRE_100}}. Superar el 100% significa que el volumen del tramo más cargado excede la capacidad operativa informada, o que esa capacidad no corresponde al tramo (el Anexo 2A y la planilla 20 no comparten identificador de tramo). Los datos no permiten decidir cuál de las dos.
+        </div>
+        <div class="note" style="margin-top:16px;">
+          <strong>Cobertura y exclusiones:</strong> de {{ductos_petroleo_n:0}} ductos que mueven petróleo, {{ductos_ranking_n:0}} tienen capacidad válida (ranking), {{ductos_cap_dudosa_todos_n:0}} tienen capacidad dudosa en todos los años y {{ductos_sin_capacidad_n:0}} no aparecen en el Anexo 2A. Se excluyen {{ducto_anios_excluidos_n:0}} ducto-años de {{ductos_con_anio_excluido_n:0}} ductos por estas reglas: R1, la capacidad operativa salta más de {{regla_r1_veces:0}} veces de un año al siguiente; R3, el caudal observado supera {{regla_r3_veces:0}} veces la capacidad empleada informada; R4, la operativa es menor que la empleada; R5, {{regla_r5_dias:0}} días operativos o menos; y D2, la capacidad informada de VMOC en 2025 no concilia con su caudal, por lo que no se publica una utilización para ese ducto. Otras dos reglas solo marcan "a revisar" y no excluyen: R2, la misma terna de capacidades en dos ductos distintos, y R6, capacidad operativa igual a las otras dos columnas del Anexo.
+        </div>
+        <div class="panel" style="margin-top:16px;">
+          <h3>Ducto-años excluidos y motivo</h3>
+          <div class="table-scroll" style="margin-top:12px;">
+            <table class="simple">
+              <thead><tr><th>Ducto</th><th>Años</th><th>Motivo</th></tr></thead>
+              <tbody id="excl-tbody"></tbody>
+            </table>
+          </div>
+        </div>
       </div>
     </details>
   </div>
@@ -277,7 +314,7 @@
         <li><strong>Producción de septiembre de 2024.</strong> Los archivos por pozo de ese mes quedan {{sep24_dif_cuenca_m3:0}} m³ por debajo del agregado oficial de la cuenca: Shell Argentina no figura en septiembre en el archivo por pozo y sí en agosto y octubre. Por eso la producción de la cuenca usa la serie oficial, y la de Vaca Muerta por pozo queda subestimada en ese mes ({{sep24_shale_sobre_vm_pct:1}}% respecto de la serie oficial de shale) y en unos {{sep24_dif_vm_anual_pct:1}}% en el promedio de 2024.</li>
         <li><strong>Producción de 2026.</strong> La cifra de junio de 2026 incluye solo el archivo no convencional; el convencional de 2026 no está en las fuentes cargadas.</li>
         <li><strong>Capacidad de ductos.</strong> El Anexo 2A es anual y su capacidad se repite en los 12 meses. No comparte identificador de tramo con la planilla 20, por lo que la utilización es un cociente aproximado (tramo más cargado de líquidos sobre capacidad operativa informada). Las capacidades pueden contener valores copiados o inconsistentes; las reglas de exclusión detectan algunos casos, no todos. {{ductos_ranking_cap_constante_n:0}} de los {{ductos_ranking_n:0}} ductos del ranking informan la misma capacidad operativa en todos sus años (algo esperable en una capacidad de infraestructura, pero que impide ver cambios) y {{ductos_ranking_un_anio_n:0}} tienen un solo año de capacidad. La cobertura es parcial: capacidad en el {{cobertura_capacidad_ducto_mes_pct:1}}% de los ducto-mes con transporte.</li>
-        <li><strong>Capacidades contrastadas.</strong> Contraste de capacidades con otras fuentes: la tabla de Tramos de Integridad informa un caudal de referencia (campo `caudal_nominal`) por tramo, sin unidad documentada (se infiere m³/h porque coincide exactamente con la capacidad del Anexo 2A en varios ductos). En {{integridad_dentro_15pct_n:0}} de los {{integridad_ductos_con_dato_n:0}} ductos del ranking con ese dato, la capacidad operativa del Anexo queda dentro de ±15% de ese caudal. En Allen–Puerto Rosales, el ducto tiene líneas paralelas (L1, L2 y L3) y el caudal de referencia informado es de un solo tramo; además, una nota del sector (<a href="https://econojournal.com.ar/oilgas/oldelval-amplio-su-capacidad-de-transporte-a-42-000-m3-de-petroleo-por-dia/">Econojournal, abril de 2022</a>) cita {{allen_cap_prensa_2022:0}} m³/día para ese tramo tras el proyecto Vivaldi. El Anexo informa {{allen_cap_anexo_2024:0}} m³/día para 2024 y {{allen_cap_anexo_2023:0}} para 2023: con {{allen_cap_prensa_2022:0}} la utilización de 2024 sería {{allen_util_con_cap_prensa_pct:1}}% y con la capacidad de 2023, {{allen_util_con_cap_2023_pct:1}}%, en lugar de {{ducto_sobre100_1_pct:1}}%. En Centenario–Allen L14, de ser m³/h el caudal de referencia, la utilización sería {{l14_util_con_nominal_pct:1}}%. Por eso los "sobre 100%" se leen como una señal a revisar y no como un hecho.</li>
+        <li><strong>Capacidades contrastadas.</strong> Contraste de capacidades con otras fuentes. En Allen–Puerto Rosales, el Anexo 2A informa {{allen_cap_anexo_2022:0}}, {{allen_cap_anexo_2023:0}} y {{allen_cap_anexo_2024:0}} m³/día para 2022, 2023 y 2024; la Secretaría de Energía dio {{ext_oldelval_cap_2022_m3:0}} m³/día como capacidad actual de Oldelval en septiembre de 2022; una nota del sector de abril de 2022 cita {{allen_cap_prensa_2022:0}}; y Oldelval informa objetivos de {{ext_duplicar_f1_m3:0}} y {{ext_duplicar_f2_m3:0}} m³/día para Duplicar. El petróleo transportado en 2024 fue de {{allen_flujo_2024_m3_dia:0}} m³/día en promedio, más que {{allen_cap_anexo_2024:0}}: esa cifra no funciona como límite físico. Con {{allen_cap_prensa_2022:0}} la utilización de 2024 sería {{allen_util_con_cap_prensa_pct:1}}% y con la capacidad de 2023, {{allen_util_con_cap_2023_pct:1}}%, en lugar de {{ducto_sobre100_1_pct:1}}%. La tabla de Tramos de Integridad informa un caudal de referencia por tramo (campo caudal_nominal, sin unidad documentada; se infiere m³/h porque coincide exactamente con la capacidad del Anexo en varios ductos): en {{integridad_dentro_15pct_n:0}} de los {{integridad_ductos_con_dato_n:0}} ductos del ranking con ese dato, la capacidad operativa del Anexo queda dentro de ±15% de ese caudal, y en Centenario–Allen L14, de ser m³/h, la utilización sería {{l14_util_con_nominal_pct:1}}%. Por eso los "sobre 100%" se leen como una señal a revisar y no como un hecho.</li>
         <li><strong>Volúmenes repetidos.</strong> Se eliminan las filas de la planilla 20 repetidas solo por la longitud del tramo. En la planilla 21 hay pares de cargadores con volumen idéntico; no hay evidencia suficiente para llamarlo doble conteo y no se corrigió. En el comercio exterior no hay filas repetidas exactas.</li>
         <li><strong>Mapa.</strong> Se omiten {{pozos_mapa_omitidos:0}} pozos con coordenadas dudosas. Los convencionales no tienen coordenadas.</li>
         <li><strong>Valores en USD.</strong> Son el monto FOB declarado por las empresas, no una serie de precios de mercado; se validaron contra la tabla oficial solo en {{val_precios_meses:0}} meses de 2020 y 2021, porque esa tabla termina en 2021.</li>

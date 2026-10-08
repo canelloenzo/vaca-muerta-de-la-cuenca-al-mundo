@@ -1084,6 +1084,131 @@
   "unidad": "%",
   "alcance": "Centenario - Allen L14 2024, mismo volumen sobre el caudal de referencia de Tramos de Integridad x 24 (unidad inferida m3/h)"
  },
+ "vol_allen_2020_m3": {
+  "valor": 9100851.0,
+  "unidad": "m3",
+  "alcance": "2020: petroleo transportado por Allen - Puerto Rosales (linea original), volumen del tramo mas cargado de cada mes, planilla 20"
+ },
+ "vol_allen_2021_m3": {
+  "valor": 11113147.0,
+  "unidad": "m3",
+  "alcance": "2021: petroleo transportado por Allen - Puerto Rosales (linea original), volumen del tramo mas cargado de cada mes, planilla 20"
+ },
+ "vol_allen_2022_m3": {
+  "valor": 14062391.0,
+  "unidad": "m3",
+  "alcance": "2022: petroleo transportado por Allen - Puerto Rosales (linea original), volumen del tramo mas cargado de cada mes, planilla 20"
+ },
+ "vol_allen_2023_m3": {
+  "valor": 15478545.0,
+  "unidad": "m3",
+  "alcance": "2023: petroleo transportado por Allen - Puerto Rosales (linea original), volumen del tramo mas cargado de cada mes, planilla 20"
+ },
+ "vol_allen_2024_m3": {
+  "valor": 16510040.0,
+  "unidad": "m3",
+  "alcance": "2024: petroleo transportado por Allen - Puerto Rosales (linea original), volumen del tramo mas cargado de cada mes, planilla 20"
+ },
+ "vol_allen_2025_m3": {
+  "valor": 13589825.0,
+  "unidad": "m3",
+  "alcance": "2025: petroleo transportado por Allen - Puerto Rosales (linea original), volumen del tramo mas cargado de cada mes, planilla 20"
+ },
+ "vol_duplicar_2025_m3": {
+  "valor": 9178499.0,
+  "unidad": "m3",
+  "alcance": "2025: petroleo transportado por la linea nueva Allen - Puerto Rosales (Duplicar), desde marzo de 2025, planilla 20"
+ },
+ "allen_total_2024_m3": {
+  "valor": 16510040.0,
+  "unidad": "m3",
+  "alcance": "2024: corredor Allen - Puerto Rosales (una sola linea)"
+ },
+ "allen_total_2025_m3": {
+  "valor": 22768324.0,
+  "unidad": "m3",
+  "alcance": "2025: corredor Allen - Puerto Rosales (linea original + Duplicar)"
+ },
+ "allen_crec_2025_pct": {
+  "valor": 37.90592875607811,
+  "unidad": "%",
+  "alcance": "2025 vs 2024, corredor Allen - Puerto Rosales"
+ },
+ "allen_flujo_2024_m3_dia": {
+  "valor": 45109.39890710382,
+  "unidad": "m3/dia",
+  "alcance": "2024: petroleo transportado por Allen - Puerto Rosales dividido por los dias del anio"
+ },
+ "allen_cap_anexo_2022": {
+  "valor": 46384.0,
+  "unidad": "m3/dia",
+  "alcance": "Allen - Puerto Rosales, 2022, capacidad operativa del Anexo 2A"
+ },
+ "ext_oldelval_cap_2022_m3": {
+  "valor": 36000,
+  "unidad": "m3/dia",
+  "alcance": "cifra de fuente externa, no verificada con los datos del proyecto: capacidad actual de Oldelval segun la Secretaria de Energia, septiembre de 2022"
+ },
+ "ext_duplicar_f1_m3": {
+  "valor": 55000,
+  "unidad": "m3/dia",
+  "alcance": "cifra de fuente externa, no verificada con los datos del proyecto: capacidad tras la primera fase de Duplicar, segun Oldelval (pagina oficial del proyecto)"
+ },
+ "ext_duplicar_f2_m3": {
+  "valor": 86000,
+  "unidad": "m3/dia",
+  "alcance": "cifra de fuente externa, no verificada con los datos del proyecto: capacidad objetivo de Duplicar, segun Oldelval (pagina oficial del proyecto)"
+ },
+ "ext_vmos_km": {
+  "valor": 437,
+  "unidad": "km",
+  "alcance": "cifra de fuente externa, no verificada con los datos del proyecto: longitud del oleoducto VMOS, segun YPF"
+ },
+ "ext_vmos_cap_max_bbl": {
+  "valor": 550000,
+  "unidad": "bbl/dia",
+  "alcance": "cifra de fuente externa, no verificada con los datos del proyecto: capacidad de VMOS segun YPF"
+ },
+ "ext_vmos_cap_amp_bbl": {
+  "valor": 700000,
+  "unidad": "bbl/dia",
+  "alcance": "cifra de fuente externa, no verificada con los datos del proyecto: capacidad ampliable de VMOS segun YPF"
+ },
+ "ext_vmos_cap_rigi_bbl": {
+  "valor": 377400,
+  "unidad": "bbl/dia",
+  "alcance": "cifra de fuente externa, no verificada con los datos del proyecto: capacidad base de VMOS citada en la resolucion del Ministerio de Economia de marzo de 2025 (adhesion al RIGI)"
+ },
+ "ext_vmos_cap_inicial_prensa_bbl": {
+  "valor": 180000,
+  "unidad": "bbl/dia",
+  "alcance": "cifra de fuente externa, no verificada con los datos del proyecto: operacion inicial de VMOS segun Mas Energia, enero de 2026"
+ },
+ "ext_vmos_avance_pct": {
+  "valor": 50,
+  "unidad": "%",
+  "alcance": "cifra de fuente externa, no verificada con los datos del proyecto: avance superior al 50% de VMOS segun Mas Energia, enero de 2026"
+ },
+ "ext_dnorte_pulgadas": {
+  "valor": 24,
+  "unidad": "pulgadas",
+  "alcance": "cifra de fuente externa, no verificada con los datos del proyecto: diametro de Duplicar Norte segun Oldelval, septiembre de 2026"
+ },
+ "ext_dnorte_km": {
+  "valor": 207,
+  "unidad": "km",
+  "alcance": "cifra de fuente externa, no verificada con los datos del proyecto: longitud de Duplicar Norte segun Oldelval, septiembre de 2026"
+ },
+ "ext_dnorte_bbl": {
+  "valor": 220000,
+  "unidad": "bbl/dia",
+  "alcance": "cifra de fuente externa, no verificada con los datos del proyecto: capacidad adicional de Duplicar Norte segun Oldelval, septiembre de 2026"
+ },
+ "ext_dnorte_avance_pct": {
+  "valor": 50,
+  "unidad": "%",
+  "alcance": "cifra de fuente externa, no verificada con los datos del proyecto: avance global de Duplicar Norte segun Oldelval, septiembre de 2026"
+ },
  "hallazgos_n": {
   "valor": 19,
   "unidad": "hallazgos",

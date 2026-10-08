@@ -235,6 +235,33 @@ _c = rank[rank["idducto_logico"] == 382].iloc[0]
 _n382 = float(nom.loc[382])
 reg("l14_util_con_nominal_pct", _c["utilizacion_segmento_mas_cargado_pct"] * _c["capacidad_operativa_m3_dia"] / _n382, "%", "Centenario - Allen L14 2024, mismo volumen sobre el caudal de referencia de Tramos de Integridad x 24 (unidad inferida m3/h)")
 
+# ------------------------------------------------------------------ petroleo transportado por los troncales y capacidad de Allen - Puerto Rosales
+vt = leer("volumen_petroleo_ductos_anual.csv")
+_v = vt.set_index(["idducto_logico", "anio"])["volumen_tramo_mas_cargado_m3"]
+for y in range(2020, 2026):
+    reg(f"vol_allen_{y}_m3", float(_v.get((216, y), 0.0)), "m3", f"{y}: petroleo transportado por Allen - Puerto Rosales (linea original), volumen del tramo mas cargado de cada mes, planilla 20")
+reg("vol_duplicar_2025_m3", float(_v.get((511, 2025), 0.0)), "m3", "2025: petroleo transportado por la linea nueva Allen - Puerto Rosales (Duplicar), desde marzo de 2025, planilla 20")
+reg("allen_total_2024_m3", float(_v.get((216, 2024), 0.0)), "m3", "2024: corredor Allen - Puerto Rosales (una sola linea)")
+reg("allen_total_2025_m3", float(_v.get((216, 2025), 0.0) + _v.get((511, 2025), 0.0)), "m3", "2025: corredor Allen - Puerto Rosales (linea original + Duplicar)")
+reg("allen_crec_2025_pct", 100 * (_v.get((216, 2025), 0.0) + _v.get((511, 2025), 0.0)) / _v.get((216, 2024), 1.0) - 100, "%", "2025 vs 2024, corredor Allen - Puerto Rosales")
+reg("allen_flujo_2024_m3_dia", float(_v.get((216, 2024), 0.0)) / 366, "m3/dia", "2024: petroleo transportado por Allen - Puerto Rosales dividido por los dias del anio")
+reg("allen_cap_anexo_2022", float(capf[(capf["idducto_logico"] == 216) & (capf["anio"] == 2022)]["capacidad_operativa_maxima_m3_dia"].iloc[0]), "m3/dia", "Allen - Puerto Rosales, 2022, capacidad operativa del Anexo 2A")
+# cifras de fuentes externas (no verificadas con los datos del proyecto)
+EXT = "cifra de fuente externa, no verificada con los datos del proyecto: "
+reg("ext_oldelval_cap_2022_m3", 36000, "m3/dia", EXT + "capacidad actual de Oldelval segun la Secretaria de Energia, septiembre de 2022")
+reg("ext_duplicar_f1_m3", 55000, "m3/dia", EXT + "capacidad tras la primera fase de Duplicar, segun Oldelval (pagina oficial del proyecto)")
+reg("ext_duplicar_f2_m3", 86000, "m3/dia", EXT + "capacidad objetivo de Duplicar, segun Oldelval (pagina oficial del proyecto)")
+reg("ext_vmos_km", 437, "km", EXT + "longitud del oleoducto VMOS, segun YPF")
+reg("ext_vmos_cap_max_bbl", 550000, "bbl/dia", EXT + "capacidad de VMOS segun YPF")
+reg("ext_vmos_cap_amp_bbl", 700000, "bbl/dia", EXT + "capacidad ampliable de VMOS segun YPF")
+reg("ext_vmos_cap_rigi_bbl", 377400, "bbl/dia", EXT + "capacidad base de VMOS citada en la resolucion del Ministerio de Economia de marzo de 2025 (adhesion al RIGI)")
+reg("ext_vmos_cap_inicial_prensa_bbl", 180000, "bbl/dia", EXT + "operacion inicial de VMOS segun Mas Energia, enero de 2026")
+reg("ext_vmos_avance_pct", 50, "%", EXT + "avance superior al 50% de VMOS segun Mas Energia, enero de 2026")
+reg("ext_dnorte_pulgadas", 24, "pulgadas", EXT + "diametro de Duplicar Norte segun Oldelval, septiembre de 2026")
+reg("ext_dnorte_km", 207, "km", EXT + "longitud de Duplicar Norte segun Oldelval, septiembre de 2026")
+reg("ext_dnorte_bbl", 220000, "bbl/dia", EXT + "capacidad adicional de Duplicar Norte segun Oldelval, septiembre de 2026")
+reg("ext_dnorte_avance_pct", 50, "%", EXT + "avance global de Duplicar Norte segun Oldelval, septiembre de 2026")
+
 # ------------------------------------------------------------------ parametros metodologicos (definidos en los scripts 11 y 13)
 reg("hallazgos_n", 19, "hallazgos", "auditoria de 2026-10-05, F1 a F19")
 reg("bbl_por_m3", 6.2898, "bbl/m3", "factor de conversion usado en todo el proyecto")

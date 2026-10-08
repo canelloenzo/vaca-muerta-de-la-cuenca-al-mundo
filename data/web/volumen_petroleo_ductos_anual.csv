@@ -1,0 +1,456 @@
+idducto_logico,denominacion_ducto,anio,meses_con_dato,volumen_tramo_mas_cargado_m3,volumen_suma_de_tramos_m3
+4,El Trébol - Caleta Córdova,2019,12,1205319.8,1986416.9
+4,El Trébol - Caleta Córdova,2020,12,1295477.2,2019724.6
+4,El Trébol - Caleta Córdova,2021,12,1427961.8,2109727.8
+4,El Trébol - Caleta Córdova,2022,12,1522794.0,2217584.8
+4,El Trébol - Caleta Córdova,2023,12,1551182.9,2273166.9
+4,El Trébol - Caleta Córdova,2024,12,1408248.0,2074577.3
+4,El Trébol - Caleta Córdova,2025,12,1479769.0,2101079.3
+4,El Trébol - Caleta Córdova,2026,5,564420.2,878898.8
+5,Km 9 - Empalme Caleta Córdova,2019,12,296349.9,296349.9
+5,Km 9 - Empalme Caleta Córdova,2020,12,263257.3,263257.3
+5,Km 9 - Empalme Caleta Córdova,2021,12,219376.6,219376.6
+5,Km 9 - Empalme Caleta Córdova,2022,12,175359.1,175359.1
+5,Km 9 - Empalme Caleta Córdova,2023,12,182604.1,182604.1
+5,Km 9 - Empalme Caleta Córdova,2024,12,162145.7,162145.7
+5,Km 9 - Empalme Caleta Córdova,2025,12,150563.5,150563.5
+5,Km 9 - Empalme Caleta Córdova,2026,5,54053.6,54053.6
+10,Barrancas - Lujan de Cuyo Refinería YPF,2019,12,696956.0,967519.6
+10,Barrancas - Lujan de Cuyo Refinería YPF,2020,12,644789.8,890648.3
+10,Barrancas - Lujan de Cuyo Refinería YPF,2021,12,655418.1,876769.3
+10,Barrancas - Lujan de Cuyo Refinería YPF,2022,12,665361.9,871176.8
+10,Barrancas - Lujan de Cuyo Refinería YPF,2023,12,603226.4,783527.4
+10,Barrancas - Lujan de Cuyo Refinería YPF,2024,12,561849.3,741616.1
+10,Barrancas - Lujan de Cuyo Refinería YPF,2025,12,625389.1,666010.6
+14,La Ventana - Barrancas,2019,12,585665.6,585665.6
+14,La Ventana - Barrancas,2020,12,517443.0,517443.0
+14,La Ventana - Barrancas,2021,12,470473.4,470473.4
+14,La Ventana - Barrancas,2022,12,442743.1,442743.1
+14,La Ventana - Barrancas,2023,12,396894.5,396894.5
+14,La Ventana - Barrancas,2024,12,369177.9,369177.9
+14,La Ventana - Barrancas,2025,12,334925.5,334925.5
+17,Vizcacheras - La Ventana,2019,12,318329.1,318329.1
+17,Vizcacheras - La Ventana,2020,12,280224.1,280224.1
+17,Vizcacheras - La Ventana,2021,12,252338.1,252338.1
+17,Vizcacheras - La Ventana,2022,12,236928.2,236928.2
+17,Vizcacheras - La Ventana,2023,12,216593.6,216593.6
+17,Vizcacheras - La Ventana,2024,12,189411.1,189411.1
+17,Vizcacheras - La Ventana,2025,12,173341.9,173341.9
+19,Cerro Bandera/Plaza Huincul Refinería YPF,2019,12,177533.2,315829.7
+19,Cerro Bandera/Plaza Huincul Refinería YPF,2020,11,76736.8,146789.7
+19,Cerro Bandera/Plaza Huincul Refinería YPF,2021,9,41420.5,80587.1
+20,Loma La Lata/Centenario,2019,12,2587508.8,2587508.8
+20,Loma La Lata/Centenario,2020,12,1625349.9,1625349.9
+20,Loma La Lata/Centenario,2021,12,2296510.8,2296510.8
+20,Loma La Lata/Centenario,2022,12,2974870.5,2974870.5
+20,Loma La Lata/Centenario,2023,12,3500173.7,3500173.7
+20,Loma La Lata/Centenario,2024,12,3618384.3,3618384.3
+20,Loma La Lata/Centenario,2025,12,1831839.7,1831839.7
+20,Loma La Lata/Centenario,2026,6,888364.2,888364.2
+26,Catriel Oeste/Medanito Planta YPF,2019,12,421465.0,421465.0
+26,Catriel Oeste/Medanito Planta YPF,2020,12,373330.4,373330.4
+26,Catriel Oeste/Medanito Planta YPF,2021,12,358177.0,358177.0
+26,Catriel Oeste/Medanito Planta YPF,2022,12,361204.7,361204.7
+26,Catriel Oeste/Medanito Planta YPF,2023,12,330775.6,330775.6
+26,Catriel Oeste/Medanito Planta YPF,2024,12,344351.9,344351.9
+26,Catriel Oeste/Medanito Planta YPF,2025,12,214651.4,214651.4
+26,Catriel Oeste/Medanito Planta YPF,2026,6,111078.7,111078.7
+37,La Plata - Dock Sud,2019,12,2919177.0,2919177.0
+37,La Plata - Dock Sud,2020,12,2296970.0,2296970.0
+37,La Plata - Dock Sud,2021,12,3154343.4,3154343.4
+37,La Plata - Dock Sud,2022,12,3287832.0,3287832.0
+37,La Plata - Dock Sud,2023,12,2508466.8,2508466.8
+37,La Plata - Dock Sud,2024,12,1761838.4,1761838.4
+37,La Plata - Dock Sud,2025,12,1741743.4,1741743.4
+37,La Plata - Dock Sud,2026,6,885652.0,885652.0
+45,Puerto Rosales - La Plata,2019,12,12173205.0,16677147.0
+45,Puerto Rosales - La Plata,2020,12,10259981.0,14594073.0
+45,Puerto Rosales - La Plata,2021,12,11986592.0,16538400.0
+45,Puerto Rosales - La Plata,2022,12,12850567.0,17167981.0
+45,Puerto Rosales - La Plata,2023,12,12704476.0,17645972.0
+45,Puerto Rosales - La Plata,2024,12,12467202.6,16915813.1
+45,Puerto Rosales - La Plata,2025,12,12789095.5,17610928.6
+45,Puerto Rosales - La Plata,2026,6,7304426.6,9948995.2
+46,Puesto Hernandez - Lujan de Cuyo,2019,12,3308205.0,4490563.0
+46,Puesto Hernandez - Lujan de Cuyo,2020,12,3141809.0,4064764.0
+46,Puesto Hernandez - Lujan de Cuyo,2021,12,4070614.0,4920893.0
+46,Puesto Hernandez - Lujan de Cuyo,2022,12,4349260.0,5095491.0
+46,Puesto Hernandez - Lujan de Cuyo,2023,12,4371582.0,5147095.0
+46,Puesto Hernandez - Lujan de Cuyo,2024,12,4726868.4,5474587.8
+46,Puesto Hernandez - Lujan de Cuyo,2025,12,4923478.0,5644818.6
+46,Puesto Hernandez - Lujan de Cuyo,2026,6,2785320.7,3151772.4
+64,Estancia La Escondida - Cerro Tortuga III,2021,12,20535.5,20535.5
+64,Estancia La Escondida - Cerro Tortuga III,2022,12,18200.6,18200.6
+64,Estancia La Escondida - Cerro Tortuga III,2023,12,18189.5,18189.5
+64,Estancia La Escondida - Cerro Tortuga III,2024,12,19990.6,19990.6
+64,Estancia La Escondida - Cerro Tortuga III,2025,12,22670.3,22670.3
+64,Estancia La Escondida - Cerro Tortuga III,2026,7,11420.3,11420.3
+67,CERRO DRAGON - CALETA CORDOVA 16,2021,12,5049195.0,5049195.0
+67,CERRO DRAGON - CALETA CORDOVA 16,2022,12,4864965.0,4864965.0
+67,CERRO DRAGON - CALETA CORDOVA 16,2023,12,4735953.0,4735953.0
+67,CERRO DRAGON - CALETA CORDOVA 16,2024,12,4607916.0,4607916.0
+67,CERRO DRAGON - CALETA CORDOVA 16,2025,12,4467574.0,4467574.0
+67,CERRO DRAGON - CALETA CORDOVA 16,2026,5,1714431.0,1714431.0
+69,LINDERO ATRAVESADO- CENTENARIO,2021,12,295280.0,295280.0
+69,LINDERO ATRAVESADO- CENTENARIO,2022,11,536228.0,536228.0
+69,LINDERO ATRAVESADO- CENTENARIO,2023,2,117981.0,117981.0
+74,Campo Durán  - PM11 Refinor,2020,11,81699.3,81699.3
+74,Campo Durán  - PM11 Refinor,2021,12,72922.7,72922.7
+74,Campo Durán  - PM11 Refinor,2022,12,64434.9,64434.9
+74,Campo Durán  - PM11 Refinor,2023,12,44157.5,44157.5
+74,Campo Durán  - PM11 Refinor,2024,12,46791.1,46791.1
+74,Campo Durán  - PM11 Refinor,2025,4,13525.9,13525.9
+75,Chango Norte - Balbuena ,2020,8,3748.4,3748.4
+75,Chango Norte - Balbuena ,2021,12,5337.6,5337.6
+75,Chango Norte - Balbuena ,2022,9,6536.2,6536.2
+75,Chango Norte - Balbuena ,2023,3,1208.5,1208.5
+76,El Tordillo - Caleta Córdova,2020,11,372170.4,420137.4
+76,El Tordillo - Caleta Córdova,2021,12,446821.6,516733.3
+76,El Tordillo - Caleta Córdova,2022,12,490272.4,583623.9
+76,El Tordillo - Caleta Córdova,2023,12,377565.2,471306.9
+76,El Tordillo - Caleta Córdova,2024,12,293224.0,368318.1
+76,El Tordillo - Caleta Córdova,2025,11,239889.1,308537.9
+78,Lomitas - PM12 Refinor,2020,8,3199.3,3199.3
+78,Lomitas - PM12 Refinor,2021,12,3217.8,3217.8
+78,Lomitas - PM12 Refinor,2022,10,3504.6,3504.6
+78,Lomitas - PM12 Refinor,2023,8,3042.4,3042.4
+78,Lomitas - PM12 Refinor,2024,6,5136.1,5136.1
+78,Lomitas - PM12 Refinor,2025,4,1937.9,1937.9
+84,El Trapial PTC  - Puesto Hernández ,2020,12,293062.3,293062.3
+84,El Trapial PTC  - Puesto Hernández ,2021,12,426216.4,426216.4
+84,El Trapial PTC  - Puesto Hernández ,2022,12,304551.4,304551.4
+84,El Trapial PTC  - Puesto Hernández ,2023,12,310717.5,310717.5
+84,El Trapial PTC  - Puesto Hernández ,2024,12,335237.6,335237.6
+84,El Trapial PTC  - Puesto Hernández ,2025,12,348125.3,348125.3
+84,El Trapial PTC  - Puesto Hernández ,2026,6,396622.1,396622.1
+93,El Corcobo-Puesto Hernandez,2020,11,1088930.4,1088930.4
+93,El Corcobo-Puesto Hernandez,2021,12,1208041.5,1208041.5
+93,El Corcobo-Puesto Hernandez,2022,9,920120.4,920120.4
+97,Entre Lomas - Intersección oleoducto Medanito - Allen (PTCCB_OLDELVAL),2020,5,269211.5,269211.5
+97,Entre Lomas - Intersección oleoducto Medanito - Allen (PTCCB_OLDELVAL),2021,12,1483404.0,1483404.0
+97,Entre Lomas - Intersección oleoducto Medanito - Allen (PTCCB_OLDELVAL),2022,10,1811406.9,1811406.9
+97,Entre Lomas - Intersección oleoducto Medanito - Allen (PTCCB_OLDELVAL),2023,11,2168857.6,2168857.6
+100,Aguada Pichana - Loma La Lata,2020,11,53948.6,53948.6
+100,Aguada Pichana - Loma La Lata,2021,12,60384.0,60384.0
+100,Aguada Pichana - Loma La Lata,2022,12,42944.1,42944.1
+100,Aguada Pichana - Loma La Lata,2023,12,66024.5,66024.5
+100,Aguada Pichana - Loma La Lata,2024,12,140619.5,140619.5
+100,Aguada Pichana - Loma La Lata,2025,12,170668.8,170668.8
+100,Aguada Pichana - Loma La Lata,2026,6,104979.1,104979.1
+108,Confluencia Sur - Aguas del Carrizo ,2020,9,27953.2,27953.2
+108,Confluencia Sur - Aguas del Carrizo ,2021,12,41636.7,41636.7
+108,Confluencia Sur - Aguas del Carrizo ,2022,1,2904.4,2904.4
+114,María Inés - Punta Loyola,2020,10,175999.0,175999.0
+114,María Inés - Punta Loyola,2021,12,207433.5,207433.5
+114,María Inés - Punta Loyola,2022,12,181795.1,181795.1
+114,María Inés - Punta Loyola,2023,12,164868.1,164868.1
+114,María Inés - Punta Loyola,2024,12,155404.2,155404.2
+114,María Inés - Punta Loyola,2025,11,113449.9,113449.9
+114,María Inés - Punta Loyola,2026,6,53314.4,53314.4
+135,Oleoducto Entrega BRM - ULACT,2020,11,264601.0,264601.0
+135,Oleoducto Entrega BRM - ULACT,2021,12,246110.0,246110.0
+135,Oleoducto Entrega BRM - ULACT,2022,12,195610.0,195610.0
+135,Oleoducto Entrega BRM - ULACT,2023,12,165192.0,165192.0
+135,Oleoducto Entrega BRM - ULACT,2024,12,154410.0,154410.0
+135,Oleoducto Entrega BRM - ULACT,2025,12,139785.6,139785.6
+135,Oleoducto Entrega BRM - ULACT,2026,6,69567.4,69567.4
+137,Oleoducto Entrga BRTF-Unidad LACT,2020,11,0.0,0.0
+137,Oleoducto Entrga BRTF-Unidad LACT,2021,12,0.0,0.0
+137,Oleoducto Entrga BRTF-Unidad LACT,2022,12,0.0,0.0
+137,Oleoducto Entrga BRTF-Unidad LACT,2023,12,0.0,0.0
+137,Oleoducto Entrga BRTF-Unidad LACT,2024,12,0.0,0.0
+137,Oleoducto Entrga BRTF-Unidad LACT,2025,12,0.0,0.0
+137,Oleoducto Entrga BRTF-Unidad LACT,2026,6,0.0,0.0
+146,El Sosneado  - Intersección oleoducto [Puesto Hernandez-Lujan de Cuyo],2021,11,58580.4,58580.4
+146,El Sosneado  - Intersección oleoducto [Puesto Hernandez-Lujan de Cuyo],2022,12,51406.8,51406.8
+146,El Sosneado  - Intersección oleoducto [Puesto Hernandez-Lujan de Cuyo],2023,3,16113.6,16113.6
+148,Medanito (La Pampa) -  Oleoducto OLDELVAL [Medanito - Allen],2021,12,172991.6,177748.1
+148,Medanito (La Pampa) -  Oleoducto OLDELVAL [Medanito - Allen],2022,12,221652.7,221652.7
+148,Medanito (La Pampa) -  Oleoducto OLDELVAL [Medanito - Allen],2023,4,68847.5,75054.4
+149,Brandsen - Campana,2020,12,4328093.4,4328093.4
+149,Brandsen - Campana,2021,12,4581908.2,4581908.2
+149,Brandsen - Campana,2022,12,4259115.3,4259115.3
+149,Brandsen - Campana,2023,12,4969560.0,4969560.0
+149,Brandsen - Campana,2024,12,4849727.0,4849727.0
+149,Brandsen - Campana,2025,12,4886268.0,4886268.0
+149,Brandsen - Campana,2026,5,2172958.0,2172958.0
+150,Puerto Rosales - Puerto Galvan,2020,12,1621350.0,1621350.0
+150,Puerto Rosales - Puerto Galvan,2021,12,1684876.1,1684876.1
+150,Puerto Rosales - Puerto Galvan,2022,12,1710310.0,1710310.0
+150,Puerto Rosales - Puerto Galvan,2023,12,1764271.1,1764271.1
+150,Puerto Rosales - Puerto Galvan,2024,12,1789071.8,1789071.8
+150,Puerto Rosales - Puerto Galvan,2025,12,1885814.7,1885814.7
+150,Puerto Rosales - Puerto Galvan,2026,6,661511.3,661511.3
+160,PTC-PCO a ULACT-PCO ( YPF  - Tupungato) ,2021,12,69202.6,69202.6
+160,PTC-PCO a ULACT-PCO ( YPF  - Tupungato) ,2022,11,74015.9,74015.9
+160,PTC-PCO a ULACT-PCO ( YPF  - Tupungato) ,2023,12,82439.3,82439.3
+160,PTC-PCO a ULACT-PCO ( YPF  - Tupungato) ,2024,12,79552.5,79552.5
+160,PTC-PCO a ULACT-PCO ( YPF  - Tupungato) ,2025,3,18764.9,18764.9
+161, PTC.CM a UL-CM  (a YPF en Cañadón León),2021,12,79433.3,79433.3
+161, PTC.CM a UL-CM  (a YPF en Cañadón León),2022,12,90826.9,90826.9
+161, PTC.CM a UL-CM  (a YPF en Cañadón León),2023,12,91876.9,91876.9
+161, PTC.CM a UL-CM  (a YPF en Cañadón León),2024,12,86864.6,86864.6
+161, PTC.CM a UL-CM  (a YPF en Cañadón León),2025,11,66493.1,66493.1
+161, PTC.CM a UL-CM  (a YPF en Cañadón León),2026,3,17898.4,17898.4
+171,PTC-EH-1 a ULACT PT,2021,12,174471.9,174471.9
+171,PTC-EH-1 a ULACT PT,2022,12,210923.6,210923.6
+171,PTC-EH-1 a ULACT PT,2023,12,284461.2,284461.2
+171,PTC-EH-1 a ULACT PT,2024,12,297046.2,297046.2
+171,PTC-EH-1 a ULACT PT,2025,11,244971.3,244971.3
+171,PTC-EH-1 a ULACT PT,2026,6,117790.3,117790.3
+181,Cerro Bandera - Octógono Fiscal,2021,12,0.0,0.0
+181,Cerro Bandera - Octógono Fiscal,2022,12,0.0,0.0
+181,Cerro Bandera - Octógono Fiscal,2023,12,0.0,0.0
+181,Cerro Bandera - Octógono Fiscal,2024,1,0.0,0.0
+181,Cerro Bandera - Octógono Fiscal,2025,11,0.0,0.0
+181,Cerro Bandera - Octógono Fiscal,2026,2,0.0,0.0
+189,Balbuena - Campo Durán,2026,4,0.0,0.0
+195, Al Norte de la Dorsal  - Plaza Huincul,2021,3,12699.5,12699.5
+195, Al Norte de la Dorsal  - Plaza Huincul,2022,12,91160.0,91160.0
+195, Al Norte de la Dorsal  - Plaza Huincul,2023,12,31514.7,31514.7
+195, Al Norte de la Dorsal  - Plaza Huincul,2024,12,28479.9,28479.9
+195, Al Norte de la Dorsal  - Plaza Huincul,2025,5,9860.8,9860.8
+211,Medanito - Allen,2020,12,6833879.0,6833879.0
+211,Medanito - Allen,2021,12,8473015.0,8473015.0
+211,Medanito - Allen,2022,12,10437733.0,10437733.0
+211,Medanito - Allen,2023,12,9621433.0,9621433.0
+211,Medanito - Allen,2024,12,10013835.0,10013835.0
+211,Medanito - Allen,2025,12,7951034.0,7951034.0
+211,Medanito - Allen,2026,6,3734554.0,3734554.0
+213,Challaco-Centenario ,2020,12,116182.0,116182.0
+213,Challaco-Centenario ,2021,12,111571.0,111571.0
+213,Challaco-Centenario ,2022,12,164172.0,164172.0
+213,Challaco-Centenario ,2023,12,251711.0,251711.0
+213,Challaco-Centenario ,2024,12,189193.0,189193.0
+213,Challaco-Centenario ,2025,12,843715.0,843715.0
+213,Challaco-Centenario ,2026,6,889090.0,889090.0
+214,Centenario-Challaco (D. Pza Huincul),2020,11,621089.0,621089.0
+214,Centenario-Challaco (D. Pza Huincul),2021,12,679375.0,679375.0
+214,Centenario-Challaco (D. Pza Huincul),2022,12,820722.0,820722.0
+214,Centenario-Challaco (D. Pza Huincul),2023,12,1068186.0,1068186.0
+214,Centenario-Challaco (D. Pza Huincul),2024,12,923501.0,923501.0
+214,Centenario-Challaco (D. Pza Huincul),2025,5,50581.0,50581.0
+216,Allen - Puerto Rosales,2020,12,9100851.0,9100851.0
+216,Allen - Puerto Rosales,2021,12,11113147.0,11113147.0
+216,Allen - Puerto Rosales,2022,12,14062391.0,14062391.0
+216,Allen - Puerto Rosales,2023,12,15478545.0,15478545.0
+216,Allen - Puerto Rosales,2024,12,16510040.0,16510040.0
+216,Allen - Puerto Rosales,2025,12,13589825.0,13589825.0
+216,Allen - Puerto Rosales,2026,6,6280192.0,6280192.0
+218,Puesto Hernandez-Medanito ,2020,12,785769.0,785769.0
+218,Puesto Hernandez-Medanito ,2021,12,325412.0,325412.0
+218,Puesto Hernandez-Medanito ,2022,12,1723190.0,1723190.0
+218,Puesto Hernandez-Medanito ,2023,12,2707706.0,2707706.0
+218,Puesto Hernandez-Medanito ,2024,12,2117244.0,2117244.0
+218,Puesto Hernandez-Medanito ,2025,12,1977978.0,2655169.0
+218,Puesto Hernandez-Medanito ,2026,6,1568783.0,1967781.0
+221,Centenario - Allen L10,2020,12,1916115.0,1916115.0
+221,Centenario - Allen L10,2021,12,2361267.0,2361267.0
+221,Centenario - Allen L10,2022,12,3219318.0,3219318.0
+221,Centenario - Allen L10,2023,12,3767900.0,3767900.0
+221,Centenario - Allen L10,2024,12,189193.0,189193.0
+221,Centenario - Allen L10,2025,12,843715.0,843715.0
+221,Centenario - Allen L10,2026,6,533952.0,533952.0
+222,Loma Negra PTC  - Allen Planta Oldelval,2018,12,172810.6,172810.6
+222,Loma Negra PTC  - Allen Planta Oldelval,2019,12,201179.2,201179.2
+222,Loma Negra PTC  - Allen Planta Oldelval,2020,12,180065.6,180065.6
+222,Loma Negra PTC  - Allen Planta Oldelval,2021,12,133587.3,133587.3
+222,Loma Negra PTC  - Allen Planta Oldelval,2022,10,95134.7,95134.7
+222,Loma Negra PTC  - Allen Planta Oldelval,2023,10,124333.5,124333.5
+222,Loma Negra PTC  - Allen Planta Oldelval,2024,12,156175.5,156175.5
+222,Loma Negra PTC  - Allen Planta Oldelval,2025,12,140147.9,140147.9
+222,Loma Negra PTC  - Allen Planta Oldelval,2026,6,58438.1,58438.1
+223,Challaco- D. Plaza Huincul ,2020,11,621089.0,621089.0
+223,Challaco- D. Plaza Huincul ,2021,12,679375.0,679375.0
+223,Challaco- D. Plaza Huincul ,2022,12,684796.0,684796.0
+223,Challaco- D. Plaza Huincul ,2023,12,756544.0,756544.0
+223,Challaco- D. Plaza Huincul ,2024,12,748909.0,748909.0
+223,Challaco- D. Plaza Huincul ,2025,11,393280.0,395019.0
+223,Challaco- D. Plaza Huincul ,2026,6,726501.0,726501.0
+228,Agua del Cajon - Centenario,2021,9,40703.0,40703.0
+228,Agua del Cajon - Centenario,2022,10,33816.5,33816.5
+228,Agua del Cajon - Centenario,2023,12,24823.0,24823.0
+228,Agua del Cajon - Centenario,2024,12,56555.7,56555.7
+228,Agua del Cajon - Centenario,2025,12,61313.6,61313.6
+228,Agua del Cajon - Centenario,2026,6,64828.3,64828.3
+234,Puesto Flores - Loma Negra,2020,12,89448.1,89448.1
+234,Puesto Flores - Loma Negra,2021,12,40653.8,40653.8
+234,Puesto Flores - Loma Negra,2022,12,0.0,0.0
+234,Puesto Flores - Loma Negra,2023,12,35437.3,35437.3
+234,Puesto Flores - Loma Negra,2024,12,51395.8,51395.8
+234,Puesto Flores - Loma Negra,2025,6,24701.1,24701.1
+240,Pampa del Castillo-La Guitarra- intersección El trebol,2018,5,87326.6,87326.6
+240,Pampa del Castillo-La Guitarra- intersección El trebol,2019,12,254262.1,254262.1
+240,Pampa del Castillo-La Guitarra- intersección El trebol,2020,12,258240.5,258240.5
+240,Pampa del Castillo-La Guitarra- intersección El trebol,2021,12,263782.2,263782.2
+240,Pampa del Castillo-La Guitarra- intersección El trebol,2022,12,282723.5,282723.5
+240,Pampa del Castillo-La Guitarra- intersección El trebol,2023,12,294107.3,294107.3
+240,Pampa del Castillo-La Guitarra- intersección El trebol,2024,12,288446.8,288446.8
+240,Pampa del Castillo-La Guitarra- intersección El trebol,2025,12,269823.9,269823.9
+240,Pampa del Castillo-La Guitarra- intersección El trebol,2026,6,129597.8,129597.8
+252,Cerro Bayo- Puesto Hernandez ,2020,12,201916.0,201916.0
+252,Cerro Bayo- Puesto Hernandez ,2021,12,222956.0,222956.0
+252,Cerro Bayo- Puesto Hernandez ,2022,12,177867.0,177867.0
+252,Cerro Bayo- Puesto Hernandez ,2023,12,134937.0,134937.0
+252,Cerro Bayo- Puesto Hernandez ,2024,12,144534.0,144534.0
+252,Cerro Bayo- Puesto Hernandez ,2025,11,89957.0,89957.0
+252,Cerro Bayo- Puesto Hernandez ,2026,5,4688.0,4688.0
+253,Aguada Baguales - Challaco,2021,12,50610.9,50610.9
+253,Aguada Baguales - Challaco,2022,1,3636.5,3636.5
+255,El condor - Punta Loyola,2020,10,277328.5,277328.5
+255,El condor - Punta Loyola,2021,12,278107.2,278107.2
+255,El condor - Punta Loyola,2022,12,213428.2,213428.2
+255,El condor - Punta Loyola,2023,12,191957.2,191957.2
+255,El condor - Punta Loyola,2024,12,182946.2,182946.2
+255,El condor - Punta Loyola,2025,12,157676.5,157676.5
+255,El condor - Punta Loyola,2026,6,69983.0,69983.0
+274,25 de Mayo - Intersección Medanito - Allen (PTCMED_ULACTMED),2020,5,182363.7,182363.7
+274,25 de Mayo - Intersección Medanito - Allen (PTCMED_ULACTMED),2021,12,374874.1,383842.8
+274,25 de Mayo - Intersección Medanito - Allen (PTCMED_ULACTMED),2022,12,361506.0,372101.8
+274,25 de Mayo - Intersección Medanito - Allen (PTCMED_ULACTMED),2023,12,357236.3,357236.3
+274,25 de Mayo - Intersección Medanito - Allen (PTCMED_ULACTMED),2024,12,250532.8,250532.8
+274,25 de Mayo - Intersección Medanito - Allen (PTCMED_ULACTMED),2025,12,221489.3,221489.3
+274,25 de Mayo - Intersección Medanito - Allen (PTCMED_ULACTMED),2026,5,81238.4,81238.4
+291,Loma Campana - Lago Pellegrini,2019,9,2035965.0,2035965.0
+291,Loma Campana - Lago Pellegrini,2020,12,4111295.0,4111295.0
+291,Loma Campana - Lago Pellegrini,2021,12,5436720.0,5436720.0
+291,Loma Campana - Lago Pellegrini,2022,12,8024763.2,8024763.2
+291,Loma Campana - Lago Pellegrini,2023,12,7748013.0,7748013.0
+291,Loma Campana - Lago Pellegrini,2024,12,7275487.8,7275487.8
+291,Loma Campana - Lago Pellegrini,2025,12,7194209.4,7194209.4
+291,Loma Campana - Lago Pellegrini,2026,6,4366350.2,4366350.2
+296,Aguada Toledo/Ref Pza Huincul,2019,12,198546.3,198546.3
+296,Aguada Toledo/Ref Pza Huincul,2020,12,190371.6,190371.6
+296,Aguada Toledo/Ref Pza Huincul,2021,12,164377.1,164377.1
+296,Aguada Toledo/Ref Pza Huincul,2022,12,142276.7,142276.7
+296,Aguada Toledo/Ref Pza Huincul,2023,12,185598.9,185598.9
+296,Aguada Toledo/Ref Pza Huincul,2024,12,212751.0,212751.0
+296,Aguada Toledo/Ref Pza Huincul,2025,12,1577101.6,1577101.6
+296,Aguada Toledo/Ref Pza Huincul,2026,6,1457211.8,1457211.8
+297,Pico Truncado/Caleta Olivia,2019,12,673403.4,1522571.6
+297,Pico Truncado/Caleta Olivia,2020,12,561523.5,1270382.0
+297,Pico Truncado/Caleta Olivia,2021,12,508236.3,1133145.7
+297,Pico Truncado/Caleta Olivia,2022,12,499586.1,1152108.8
+297,Pico Truncado/Caleta Olivia,2023,12,520512.5,1269512.4
+297,Pico Truncado/Caleta Olivia,2024,12,544916.9,1266744.9
+297,Pico Truncado/Caleta Olivia,2025,11,490675.3,1066218.0
+298,Las Heras/Pico Truncado,2019,12,2569865.3,2830438.5
+298,Las Heras/Pico Truncado,2020,12,2218409.5,2467199.2
+298,Las Heras/Pico Truncado,2021,12,2044759.4,2283568.8
+298,Las Heras/Pico Truncado,2022,12,1961401.5,2191733.1
+298,Las Heras/Pico Truncado,2023,12,1928582.1,2136882.6
+298,Las Heras/Pico Truncado,2024,12,1809972.7,2011217.6
+298,Las Heras/Pico Truncado,2025,11,1515982.2,1694786.6
+308,SAN ROQUE - LOMA LA LATA,2020,11,93469.2,93469.2
+308,SAN ROQUE - LOMA LA LATA,2021,12,85190.0,85190.0
+308,SAN ROQUE - LOMA LA LATA,2022,12,79260.9,79260.9
+308,SAN ROQUE - LOMA LA LATA,2023,12,105839.2,105839.2
+308,SAN ROQUE - LOMA LA LATA,2024,12,73732.1,73732.1
+308,SAN ROQUE - LOMA LA LATA,2025,12,78844.0,78844.0
+308,SAN ROQUE - LOMA LA LATA,2026,6,29099.7,29099.7
+329,Oleoducto AM6-AM3,2020,11,49294.4,49294.4
+329,Oleoducto AM6-AM3,2021,12,40106.0,40106.0
+329,Oleoducto AM6-AM3,2022,12,29272.0,29272.0
+329,Oleoducto AM6-AM3,2023,12,48102.0,48102.0
+329,Oleoducto AM6-AM3,2024,12,57640.0,57640.0
+329,Oleoducto AM6-AM3,2025,12,47781.6,47781.6
+329,Oleoducto AM6-AM3,2026,6,27927.2,27927.2
+332,Derivación Balbuena,2020,1,10762.0,10762.0
+333,Derivación Aguaray,2020,2,10692.0,10692.0
+333,Derivación Aguaray,2024,1,0.0,0.0
+333,Derivación Aguaray,2026,4,0.0,0.0
+346,Puesto Prado-Las Basas,2024,1,0.0,0.0
+348,BMo Oeste - PTC Entre Lomas 6 (1BMo_PTCCB),2020,5,78802.3,174655.7
+348,BMo Oeste - PTC Entre Lomas 6 (1BMo_PTCCB),2021,12,254936.4,339879.4
+348,BMo Oeste - PTC Entre Lomas 6 (1BMo_PTCCB),2022,12,348137.8,448817.3
+348,BMo Oeste - PTC Entre Lomas 6 (1BMo_PTCCB),2023,12,148844.5,376576.4
+348,BMo Oeste - PTC Entre Lomas 6 (1BMo_PTCCB),2024,12,142587.5,253335.3
+348,BMo Oeste - PTC Entre Lomas 6 (1BMo_PTCCB),2025,12,88743.4,110784.3
+348,BMo Oeste - PTC Entre Lomas 6 (1BMo_PTCCB),2026,6,61124.0,61124.0
+349,Oleoducto Bat 1 BAPE - Nodo 1 (1BP_N1),2024,12,25549.9,25549.9
+349,Oleoducto Bat 1 BAPE - Nodo 1 (1BP_N1),2025,12,103168.1,103168.1
+349,Oleoducto Bat 1 BAPE - Nodo 1 (1BP_N1),2026,6,78868.0,78868.0
+350,Oleoducto Bat ChdP - Nodo 2 (1chdP_N2),2024,6,59949.4,59949.4
+350,Oleoducto Bat ChdP - Nodo 2 (1chdP_N2),2025,7,79458.1,79458.1
+350,Oleoducto Bat ChdP - Nodo 2 (1chdP_N2),2026,5,54108.5,54108.5
+354,Andina,2020,1,0.0,0.0
+356,BMo_La Escondida 12,2020,12,548963.2,548963.2
+356,BMo_La Escondida 12,2021,12,1312942.3,1312942.3
+356,BMo_La Escondida 12,2022,12,1997808.7,1997808.7
+356,BMo_La Escondida 12,2023,12,2584323.6,2746674.9
+356,BMo_La Escondida 12,2024,12,3229491.3,5073459.0
+356,BMo_La Escondida 12,2025,10,2763942.6,4493796.0
+356,BMo_La Escondida 12,2026,6,1839827.2,3555292.5
+360,Fortín de Piedra - Loma Campana,2021,12,333878.1,615187.4
+360,Fortín de Piedra - Loma Campana,2022,12,370458.2,702405.8
+360,Fortín de Piedra - Loma Campana,2023,12,509128.8,798321.1
+360,Fortín de Piedra - Loma Campana,2024,12,634539.8,773017.0
+360,Fortín de Piedra - Loma Campana,2025,12,322051.8,322051.8
+360,Fortín de Piedra - Loma Campana,2026,1,9528.9,9528.9
+368,Fortín de Piedra - PMG1,2026,6,46955.8,46955.8
+374,BANDURRIA CENTRO - LOMA CAMPANA,2021,12,249132.0,249132.0
+374,BANDURRIA CENTRO - LOMA CAMPANA,2022,12,194624.0,194624.0
+374,BANDURRIA CENTRO - LOMA CAMPANA,2023,12,196207.0,196207.0
+374,BANDURRIA CENTRO - LOMA CAMPANA,2024,12,247333.0,247333.0
+374,BANDURRIA CENTRO - LOMA CAMPANA,2025,12,84823.0,84823.0
+374,BANDURRIA CENTRO - LOMA CAMPANA,2026,5,21812.0,21812.0
+379,Puesto Hernandez - Buta Mallin,2023,8,1364821.4,1364821.4
+379,Puesto Hernandez - Buta Mallin,2024,12,4132625.8,4132625.8
+379,Puesto Hernandez - Buta Mallin,2025,12,4642336.1,4642336.1
+379,Puesto Hernandez - Buta Mallin,2026,6,2124303.2,2124303.2
+382,Centenario - Allen L14,2024,12,3850378.0,3850378.0
+382,Centenario - Allen L14,2025,12,3115117.0,3115117.0
+382,Centenario - Allen L14,2026,6,1886523.0,1886523.0
+391,ADC-Oleoducto PTC a PDC,2021,3,6038.0,6038.0
+399,LINDERO ATRAVESADO - CENTENARIO 10,2022,1,34061.0,34061.0
+399,LINDERO ATRAVESADO - CENTENARIO 10,2023,10,615593.0,615593.0
+399,LINDERO ATRAVESADO - CENTENARIO 10,2024,12,831644.0,831644.0
+399,LINDERO ATRAVESADO - CENTENARIO 10,2025,12,843886.0,843886.0
+399,LINDERO ATRAVESADO - CENTENARIO 10,2026,5,395099.0,395099.0
+476,Octógono Fiscal - Plaza Huincul Refineria,2021,3,12458.7,12458.7
+476,Octógono Fiscal - Plaza Huincul Refineria,2022,12,43497.3,43497.3
+476,Octógono Fiscal - Plaza Huincul Refineria,2023,12,35894.5,35894.5
+476,Octógono Fiscal - Plaza Huincul Refineria,2024,12,32335.3,32335.3
+476,Octógono Fiscal - Plaza Huincul Refineria,2025,5,9940.9,9940.9
+480,Oleoducto BdP,2022,12,73453.1,73453.1
+480,Oleoducto BdP,2023,12,31954.3,31954.3
+480,Oleoducto BdP,2024,4,7353.1,7353.1
+481,Oleoducto Barranca Los Loros,2022,12,39267.1,39267.1
+481,Oleoducto Barranca Los Loros,2023,12,30507.1,30507.1
+481,Oleoducto Barranca Los Loros,2024,4,11562.5,11562.5
+483,Oleoducto El Santiagueño,2022,12,47820.0,47820.0
+483,Oleoducto El Santiagueño,2023,12,46975.4,46975.4
+483,Oleoducto El Santiagueño,2024,4,10879.2,10879.2
+489,PTC CS a ULACT CS,2023,9,136022.4,136022.4
+489,PTC CS a ULACT CS,2024,12,196835.3,196835.3
+489,PTC CS a ULACT CS,2025,11,195522.9,195522.9
+489,PTC CS a ULACT CS,2026,6,105769.0,105769.0
+500,Sierras blancas - Allen,2022,2,215481.8,215481.8
+500,Sierras blancas - Allen,2023,12,1820802.7,1820802.7
+500,Sierras blancas - Allen,2024,12,2355932.0,2355932.0
+500,Sierras blancas - Allen,2025,12,3241450.7,3241450.7
+500,Sierras blancas - Allen,2026,6,1642390.2,1642390.2
+505,La Escondida - Medanito,2023,7,806828.0,806828.0
+506,OLEODUCTO TPF.AF_BMo (TPF.AF_S11BAPO),2024,11,0.0,0.0
+506,OLEODUCTO TPF.AF_BMo (TPF.AF_S11BAPO),2025,11,0.0,0.0
+507,OLEODUCTO CANBateria_N1 (CANBateria_N1),2024,12,109378.6,109378.6
+507,OLEODUCTO CANBateria_N1 (CANBateria_N1),2025,12,42024.2,42024.2
+507,OLEODUCTO CANBateria_N1 (CANBateria_N1),2026,6,0.0,0.0
+511,Allen - Puerto Rosales (Duplicar),2025,10,9178499.0,9178499.0
+511,Allen - Puerto Rosales (Duplicar),2026,6,7690819.0,7690819.0
+516,Oleoducto de 16 pulgadas REFINERIA - POSTA 3,2024,5,388938.4,388938.4
+516,Oleoducto de 16 pulgadas REFINERIA - POSTA 3,2025,4,286977.2,286977.2
+517,Vaca Muerta Oleoducto Norte (VMON),2023,2,380762.1,380762.1
+517,Vaca Muerta Oleoducto Norte (VMON),2024,12,3874434.4,3874434.4
+517,Vaca Muerta Oleoducto Norte (VMON),2025,12,6160787.5,6329637.0
+517,Vaca Muerta Oleoducto Norte (VMON),2026,6,1915189.7,3549885.3
+522,Ramos - Balbuena,2024,5,12124.4,12124.4
+522,Ramos - Balbuena,2025,12,25148.7,25148.7
+522,Ramos - Balbuena,2026,7,15868.1,15868.1
+539,Vaca Muerta Oleoducto Centro (VMOC),2025,8,7656189.8,10626346.1
+539,Vaca Muerta Oleoducto Centro (VMOC),2026,6,6144675.2,8253376.0
+544,Salitral - Puerto Galvan,2025,3,250426.0,250426.0
+544,Salitral - Puerto Galvan,2026,6,448861.0,448861.0
+565,NU_ULACT.CaBo.VMON,2026,6,645223.3,645223.3
+566,Oleoducto El Tordillo - Caleta Cordova,2025,1,22521.5,22521.5
+566,Oleoducto El Tordillo - Caleta Cordova,2026,6,126291.3,162439.1

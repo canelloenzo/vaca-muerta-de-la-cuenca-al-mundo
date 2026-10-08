@@ -45,6 +45,33 @@ function buildIndicesChart() {
   charts.push(ch);
 }
 
+/* ---------------- Acto II: troncales ---------------- */
+function buildTroncalesChart() {
+  const c = themeColors();
+  const palette = [c.oil, c.sea, c.alert, c.oilDeep, c.muted, c.ink];
+  const ch = new Chart(document.getElementById('chart-troncales'), {
+    type: 'line',
+    data: {
+      labels: DATA.troncales.anios,
+      datasets: DATA.troncales.series.map((s, i) => ({
+        label: s.d, data: s.v.map(x => (x === 0 ? null : x)),
+        borderColor: palette[i % palette.length], backgroundColor: palette[i % palette.length],
+        borderWidth: 2, pointRadius: 3, tension: 0.2, spanGaps: false
+      }))
+    },
+    options: baseOptions({
+      plugins: { legend: { position: 'bottom', labels: { boxWidth: 10, font: { size: 10.5 } } },
+                 tooltip: { callbacks: { label: (ctx) => ctx.raw === null ? ` ${ctx.dataset.label}: sin dato` : ` ${ctx.dataset.label}: ${fmt(ctx.raw, 0)} m³` } } },
+      scales: { y: { ticks: { callback: v => fmtCompact(v) } } }
+    })
+  });
+  charts.push(ch);
+}
+document.addEventListener('DOMContentLoaded', () => {
+  const d = document.getElementById('detalle-util');
+  if (d) d.addEventListener('toggle', () => charts.forEach(ch => ch.resize()));
+});
+
 /* ---------------- Acto II: ductos ---------------- */
 function buildUtilChart() {
   const c = themeColors();
@@ -147,6 +174,7 @@ document.addEventListener('DOMContentLoaded', () => {
   safe(setupMapInteraction, 'map-interaction');
   safe(() => renderYacimientos(10), 'yacimientos');
   safe(buildProdAnualChart, 'prod-anual');
+  safe(buildTroncalesChart, 'troncales');
   safe(buildUtilChart, 'util');
   safe(renderRespaldo, 'respaldo');
   safe(renderExcluidos, 'excluidos');

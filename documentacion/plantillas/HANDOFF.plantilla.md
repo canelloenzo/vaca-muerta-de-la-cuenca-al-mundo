@@ -21,13 +21,16 @@ Pipeline en Python (pandas) que limpia datos públicos de la Secretaría de Ener
 - Con las tres bases del índice (2021, 2022 y 2023), la exportación de la cuenca crece más que la producción de la cuenca en cada año posterior a la base. Esa lectura es de la serie de comercio exterior; con la de terminales marítimos la dirección en 2024 cambia según la base.
 - Destinos 2020–agosto 2026: Estados Unidos {{comex_eeuu_pct:1}}% y Chile {{comex_chile_pct:1}}%.
 - Las 3 mayores empresas exportadoras concentran {{conc_exp_top3_pct:1}}% (2020–2025). Es otra medida que el {{conc_top3_operadores_pct:2}}% de los 3 mayores operadores de terminal de todo el país.
-- Solo {{ductos_ranking_n:0}} de {{ductos_petroleo_n:0}} ductos que mueven petróleo tienen capacidad utilizable; {{ductos_sobre_100_n:0}} superan el 100% en su tramo más cargado ({{ductos_sobre_100_a_revisar_n:0}} de ellos con la capacidad marcada "a revisar"), sin que los datos permitan decidir si es sobrecarga o capacidad mal informada.
+- El corredor Allen–Puerto Rosales movió {{allen_total_2025_m3:0}} m³ de petróleo en 2025, {{allen_crec_2025_pct:1}}% más que en 2024, con la línea nueva Duplicar desde marzo de 2025.
+- La capacidad de los ductos no es una base sólida para concluir: las fuentes no coinciden en Allen–Puerto Rosales y el petróleo transportado en 2024 superó la capacidad que informa el Anexo. Solo {{ductos_ranking_n:0}} de {{ductos_petroleo_n:0}} ductos que mueven petróleo tienen capacidad utilizable; {{ductos_sobre_100_n:0}} superan el 100% en su tramo más cargado ({{ductos_sobre_100_a_revisar_n:0}} de ellos con la capacidad marcada "a revisar"), sin que los datos permitan decidir si es sobrecarga o capacidad mal informada.
 
 ## 4. Lo que NO se puede decir
 
 - Que la exportación sea "de Vaca Muerta" únicamente: la serie incluye todo el crudo de la cuenca Neuquina, convencional y no convencional.
 - Que el volumen exportado es el que dicen los terminales marítimos o el que dice el comercio exterior: las dos fuentes oficiales no concilian desde 2023 y no hay información para decidir.
 - Cualquier cifra de utilización de VMOC: se retiró (decisión D2).
+- Que un ducto esté "sobrecargado" por superar el 100% de su capacidad informada: las capacidades de las fuentes no coinciden.
+- Fechas y capacidades de VMOS o Duplicar Norte como hechos: son anuncios de las empresas y del Estado, con fuente y fecha, en una caja aparte.
 - Una causa para la volatilidad de la exportación.
 - Un valor de mercado en USD: es el monto FOB declarado por las empresas.
 - Producción convencional de 2026.
@@ -65,7 +68,7 @@ Pipeline en Python (pandas) que limpia datos públicos de la Secretaría de Ener
 
 1. Dashboard web, encabezado y tarjetas: muestra la cifra principal con su alcance y las cuatro tarjetas (producción, incidencia no convencional, exportación con USD, concentración).
 2. Dashboard web, índices base 2022 con las tablas de promedios anuales y sensibilidad: muestra que la conclusión se sostiene con las tres bases.
-3. Dashboard web, ranking de utilización de ductos con la nota de cobertura: muestra el criterio de exclusión.
+3. Dashboard web, gráfico de petróleo transportado por los principales ductos y tabla de capacidades por fuente: muestra el dato sólido y por qué no se publica un porcentaje de utilización.
 4. Dashboard web, tabla de contraste entre fuentes oficiales y nota de que no concilian: muestra el criterio de transparencia.
 5. Power BI, página 3 (índices base 2022) y página 4 (capacidad informada): muestra el modelo corregido.
 6. Salida de la suite de pruebas pasando: muestra el control automático de cifras y textos.

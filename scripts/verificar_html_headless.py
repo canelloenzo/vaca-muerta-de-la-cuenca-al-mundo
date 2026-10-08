@@ -41,6 +41,6 @@ if __name__ == "__main__":
         e, a, s = verificar(cap, w)
         print(w, "errores:", e, "| avisos:", a, "|", s)
         res[w] = (e, s)
-    ok = all(not e and s["charts"] == 5 and s["yac"] == 10 and s["marcadores"] == 0 and s["scrollW"] <= s["innerW"] + 1 for e, s in res.values())
+    ok = all(not e and s["charts"] == 6 and s["yac"] == 10 and s["marcadores"] == 0 and s["scrollW"] <= s["innerW"] + 1 for e, s in res.values())
     print("RESULTADO:", "PASS" if ok else "FAIL")
     sys.exit(0 if ok else 1)

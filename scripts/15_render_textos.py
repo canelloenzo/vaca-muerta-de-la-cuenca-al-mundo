@@ -101,7 +101,30 @@ def tabla_registro():
     return "| Clave | Valor | Unidad | Alcance |\n|---|---|---|---|\n" + filas
 
 
-FRAGMENTOS = {"TABLA_REGISTRO": tabla_registro, "LISTA_SOBRE_100": lista_sobre_100, "TABLA_INDICES": tabla_indices, "TABLA_SENSIBILIDAD": tabla_sensibilidad,
+def tabla_allen():
+    filas = []
+    for y in range(2020, 2026):
+        o = val(f"vol_allen_{y}_m3")
+        d = val("vol_duplicar_2025_m3") if y == 2025 else 0
+        filas.append([str(y), fnum(o, 0), fnum(d, 0) if d else "—", fnum(o + d, 0)])
+    return tabla(["Año", "Línea original", "Duplicar", "Total del corredor"], filas)
+
+
+def tabla_capacidades():
+    a = lambda t, u: f'<a href="{u}">{t}</a>'
+    filas = [
+        ["Anexo 2A (dato del proyecto)", "2022", fnum(val("allen_cap_anexo_2022"), 0)],
+        ["Anexo 2A (dato del proyecto)", "2023", fnum(val("allen_cap_anexo_2023"), 0)],
+        ["Anexo 2A (dato del proyecto)", "2024", fnum(val("allen_cap_anexo_2024"), 0)],
+        [a("Nota del sector (Econojournal)", "https://econojournal.com.ar/oilgas/oldelval-amplio-su-capacidad-de-transporte-a-42-000-m3-de-petroleo-por-dia/"), "abril de 2022", fnum(val("allen_cap_prensa_2022"), 0)],
+        [a("Secretaría de Energía: capacidad actual de Oldelval", "https://www.argentina.gob.ar/noticias/energia-firmo-la-prorroga-que-hara-duplicar-la-capacidad-de-transporte-para-vaca-muerta"), "septiembre de 2022", fnum(val("ext_oldelval_cap_2022_m3"), 0)],
+        [a("Oldelval, proyecto Duplicar: primera fase", "https://www.oldelval.com/proyecto-duplicar/"), "consulta de octubre de 2026", fnum(val("ext_duplicar_f1_m3"), 0)],
+        [a("Oldelval, proyecto Duplicar: objetivo", "https://www.oldelval.com/proyecto-duplicar/"), "consulta de octubre de 2026", fnum(val("ext_duplicar_f2_m3"), 0)],
+    ]
+    return tabla(["Fuente", "Fecha", "m³/día"], filas)
+
+
+FRAGMENTOS = {"TABLA_ALLEN": tabla_allen, "TABLA_CAPACIDADES": tabla_capacidades, "TABLA_REGISTRO": tabla_registro, "LISTA_SOBRE_100": lista_sobre_100, "TABLA_INDICES": tabla_indices, "TABLA_SENSIBILIDAD": tabla_sensibilidad,
               "TABLA_PCT_EXPORTADO": tabla_pct, "TABLA_USD": tabla_usd, "TABLA_CONTRASTE": tabla_contraste}
 PAT = re.compile(r"\{\{([A-Za-z_0-9]+)(?::(\d|y))?\}\}")
 
@@ -134,6 +157,14 @@ def construir_data():
     c = c.dropna(subset=["idx_produccion_vm_ma12_base2022"])
     ma12 = [{"m": r.fecha[:7], "vm": round(r.idx_produccion_vm_ma12_base2022, 2), "cuenca": round(r.idx_produccion_cuenca_ma12_base2022, 2),
              "exp": None if pd.isna(r.idx_exportacion_ma12_base2022) else round(r.idx_exportacion_ma12_base2022, 2)} for r in c.itertuples()]
+    vt = web("volumen_petroleo_ductos_anual.csv")
+    top6 = vt[vt.anio == 2025].sort_values("volumen_tramo_mas_cargado_m3", ascending=False).head(6)
+    anios_t = list(range(2020, 2026))
+    troncales = {"anios": anios_t, "series": [
+        {"d": r.denominacion_ducto.strip(),
+         "v": [(round(float(x.iloc[0]), 1) if len(x) else None) for x in
+               [vt[(vt.idducto_logico == r.idducto_logico) & (vt.anio == y)].volumen_tramo_mas_cargado_m3 for y in anios_t]]}
+        for r in top6.itertuples()]}
     util = [{"d": r.denominacion_ducto.strip(), "u": r.utilizacion_segmento_mas_cargado_pct, "a": int(r.anio), "m": int(r.meses_con_dato),
              "p": bool(r.parcial), "r": bool(r.a_revisar_capacidad)} for r in rank.head(20).itertuples()]
     cl = web("clasificacion_ductos_petroleo.csv")
@@ -154,7 +185,7 @@ def construir_data():
     pais_series = {p: [round(float(pp[(pp.pais == p) & (pp.anio == y)]["volumen_m3"].sum()), 1) for y in anios] for p in top5}
     conc = web("comex_neuquina_concentracion_2020_2025.csv")
     exportadores = [{"e": r.nombre.upper(), "pct": r.pct} for r in conc[conc.nivel == "empresa_agrupada"].head(6).itertuples()]
-    return {"mapa": mapa, "top_yac": top, "prod_anual": prod_anual, "ma12": ma12, "ductos_util": util, "ductos_resp": ductos_resp,
+    return {"mapa": mapa, "top_yac": top, "prod_anual": prod_anual, "ma12": ma12, "troncales": troncales, "ductos_util": util, "ductos_resp": ductos_resp,
             "ductos_excl": excl, "paises_rank": paises_rank, "pais_years": anios, "pais_series": pais_series, "exportadores": exportadores}
 
 

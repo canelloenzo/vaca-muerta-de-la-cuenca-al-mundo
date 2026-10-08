@@ -65,19 +65,32 @@ Valores esperados del gráfico a diciembre de cada año (media móvil de 12 mese
 > **Qué se puede afirmar.** Con las bases 2021, 2022 y 2023, la exportación de la cuenca crece más que la producción de la cuenca en cada año posterior a la base. Esa lectura es de la serie de comercio exterior: con la de terminales marítimos, la dirección en 2024 cambia según la base.
 > **Una limitación.** Antes de 2022 hay meses sin exportación declarada (cuentan como cero), y en septiembre de 2024 la producción de Vaca Muerta por pozo queda por debajo del agregado oficial; la producción de la cuenca usa la serie oficial.
 
-## Página 4 — Acto II · Transporte
+## Página 4 — Acto II · Transporte (versión nueva)
 
-| Elemento | Antes | Después | Valor esperado |
-|---|---|---|---|
-| Título de la página | "Acto II · Transporte: ductos que superan el 100% de su capacidad informada" | "Acto II · Transporte: capacidad informada de los ductos" | — |
-| Gráfico de barras de utilización | medida `Utilizacion %`, ejes sin Top N | medida `Utilizacion % (anio mas reciente valido)`; eje `Dim_Ducto[denominacion_logica]`; filtro del objeto visual `Tiene Capacidad No Dudosa` = 1; Top N = 20 por esa medida; título "Utilización del tramo más cargado (año más reciente válido; 100% = capacidad operativa informada)" | 3 barras sobre 100%: Allen - Puerto Rosales (2024, 12 meses; a revisar) con 129,7%; LINDERO ATRAVESADO- CENTENARIO (2023, 2 meses; a revisar) con 111,1%; Centenario - Allen L14 (2024, 12 meses) con 106,9% |
-| Gráfico de respaldo | título "Ductos sin capacidad confiable — volumen transportado (m³)" | título "Ductos sin capacidad utilizable — volumen de petróleo transportado (m³)"; filtro `Tiene Capacidad No Dudosa` = 0 | 39 ductos en total (los que no figuran en el Anexo 2A y los de capacidad dudosa todos los años) |
-| Cuadro de texto inferior | "…57 tienen un dato de capacidad operativa confiable… Los otros 85…" | texto de abajo | — |
-| Cuadro "Hitos de infraestructura — VMOS" | fechas y capacidades sin fuente en el proyecto | **eliminar el cuadro** (los datos no incluyen esa información y no hay fuente citada) | — |
+**Cambio de diseño posterior a la primera versión de esta guía.** El ranking de utilización pasa de ser el protagonista a ser un detalle, porque las capacidades de las distintas fuentes no coinciden. La página 4 nueva muestra el petróleo transportado (dato directo), la capacidad por fuente y los proyectos anunciados. **Si ya armaste la página 4 con la versión anterior, no la rehagas:** hacé clic derecho sobre la pestaña de la página 4 > **Duplicar página**, dejá la original como página **7** con el nombre "Detalle: utilización informada (con advertencias)" y aplicale solo lo que figura abajo en "Página 7"; después convertí la copia en la página 4 nueva siguiendo esta tabla.
 
-**Texto nuevo del cuadro inferior:**
+| Elemento | Después | Valor esperado |
+|---|---|---|
+| Título de la página (cuadro de texto) | "Acto II · Transporte: cuánto petróleo se mueve y qué se anuncia" | — |
+| Gráfico de columnas apiladas (nuevo) | eje `Dim_Fecha[anio]` con filtro 2020 a 2025; leyenda `Dim_Ducto[denominacion]`; valores `Volumen Transportado (respaldo)`; filtro del objeto visual `Dim_Ducto[idducto]` en 216 y 511; título "Petróleo transportado por el corredor Allen–Puerto Rosales (m³ por año)" | 2020: 9.100.851; 2021: 11.113.147; 2022: 14.062.391; 2023: 15.478.545; 2024: 16.510.040; 2025: 13.589.825 (línea original) más 9.178.499 (línea Duplicar), total 22.768.324; crecimiento 2025 vs 2024: 37,9% |
+| Cuadro de texto "capacidad por fuente" (nuevo) | texto de abajo | — |
+| Cuadro de texto "Por qué no se publica un porcentaje" (nuevo) | texto de abajo | — |
+| Cuadro de texto "Proyectos anunciados" (reemplaza al cuadro de hitos de VMOS) | texto de abajo, con el aviso de que es información externa | — |
+| Tarjetas, gráficos de utilización y de respaldo, y cuadro inferior de la versión anterior | se quitan de esta página (pasan a la página 7) | — |
 
-> De 83 ductos que mueven petróleo, 44 tienen capacidad válida y entran al ranking; 5 tienen capacidad dudosa en todos los años y 34 no figuran en el Anexo 2A. Se excluyen 36 ducto-años de 18 ductos por reglas explícitas (en `data/web/ductos_capacidad_dudosa.csv`). La utilización es el volumen del tramo más cargado (solo líquidos) sobre la capacidad operativa informada; superar el 100% no permite decidir si el volumen excede la capacidad o si la capacidad informada no corresponde al tramo. 2 de los 3 ductos sobre 100% tienen la capacidad marcada "a revisar" (se identifican en la versión web).
+Nota sobre el valor del gráfico: para los ductos 216 y 511 la suma de tramos de `Volumen Transportado (respaldo)` coincide con el volumen del tramo más cargado de la web (un solo tramo); por eso este gráfico no necesita una medida nueva. No usar esa misma medida para ductos con varios tramos en serie (por ejemplo VMOC): contaría dos veces el mismo barril.
+
+**Texto "capacidad por fuente":**
+
+> Capacidad del corredor Allen–Puerto Rosales (m³/día). Anexo 2A: 46.384 (2022), 50.052 (2023) y 36.000 (2024). Secretaría de Energía, septiembre de 2022: 36.000 (capacidad actual de Oldelval). Nota del sector (Econojournal), abril de 2022: 42.000. Oldelval, proyecto Duplicar: 55.000 en la primera fase y 86.000 como objetivo. Las fuentes no coinciden.
+
+**Texto "Por qué no se publica un porcentaje":**
+
+> La capacidad del Anexo 2A para 2024 (36.000 m³/día) coincide con la que la Secretaría de Energía dio en septiembre de 2022, pero el petróleo transportado en 2024 fue de 45.109 m³/día: más que esa capacidad. La cifra no funciona como límite físico, y con otra capacidad creíble la utilización de 2024 pasa de 129,7% a 111,2% o 93,3%. El ranking de utilización, con sus advertencias, está en la página 7.
+
+**Texto "Proyectos anunciados":**
+
+> Información externa, no verificada con los datos de este proyecto; son anuncios de empresas y del Estado y las fechas pueden cambiar. VMOS: oleoducto de 437 km entre Allen y Punta Colorada con terminal de monoboyas; YPF informa hasta 550.000 bbl/día, ampliable a 700.000; la aprobación en el RIGI cita una capacidad base de 377.400 bbl/día; Más Energía (enero de 2026) citaba una operación inicial de 180.000 bbl/día y puesta en marcha prevista para enero de 2027. Duplicar Norte (Oldelval, 8 de septiembre de 2026): oleoducto de 207 km y 24 pulgadas, 220.000 bbl/día adicionales, avance global de 50% y puesta en marcha prevista para el primer trimestre de 2027. Fuentes: energia-argentina.ypf.com/vmos.html, argentina.gob.ar (resolución del Ministerio de Economía de marzo de 2025), mase.lmneuquen.com (27 de enero de 2026) y oldelval.com (8 de septiembre de 2026).
 
 ## Página 5 — Acto III · Exportación: adónde va
 
@@ -103,8 +116,23 @@ Esta página pasa a usar `Fact_ExportacionComex` (crudo de la cuenca Neuquina) e
 | Gráfico de líneas "Volumen exportado por mes (m³)" | todas las terminales, planilla 21 | medida `Volumen Exportado Cuenca` por mes; título "Volumen exportado por mes (m³), crudo de la cuenca (comercio exterior)" | — |
 | Cuadro de texto nuevo (contraste) | — | "Las fuentes oficiales de exportación no concilian desde 2023: el comercio exterior queda entre 0,75 y 0,88 veces los terminales marítimos más el oleoducto a Chile. Ver el panel de contraste de la versión web." | — |
 
+## Página 7 — Detalle: utilización informada (con advertencias)
+
+Es la página 4 de la versión anterior de esta guía, con estos cambios:
+
+| Elemento | Antes | Después | Valor esperado |
+|---|---|---|---|
+| Título de la página | "Acto II · Transporte: ductos que superan el 100% de su capacidad informada" | "Detalle: utilización informada de los ductos (con advertencias)" | — |
+| Gráfico de barras de utilización | medida `Utilizacion %`, ejes sin Top N | medida `Utilizacion % (anio mas reciente valido)`; eje `Dim_Ducto[denominacion_logica]`; filtro del objeto visual `Tiene Capacidad No Dudosa` = 1; Top N = 20 por esa medida; título "Utilización del tramo más cargado (año más reciente válido; 100% = capacidad operativa informada)" | 3 barras sobre 100%: Allen - Puerto Rosales (2024, 12 meses; a revisar) con 129,7%; LINDERO ATRAVESADO- CENTENARIO (2023, 2 meses; a revisar) con 111,1%; Centenario - Allen L14 (2024, 12 meses) con 106,9% |
+| Gráfico de respaldo | título "Ductos sin capacidad confiable — volumen transportado (m³)" | título "Ductos sin capacidad utilizable — volumen de petróleo transportado (m³)"; filtro `Tiene Capacidad No Dudosa` = 0 | 39 ductos en total (los que no figuran en el Anexo 2A y los de capacidad dudosa todos los años) |
+| Cuadro de texto inferior | "…57 tienen un dato de capacidad operativa confiable… Los otros 85…" | texto de abajo | — |
+
+**Texto nuevo del cuadro inferior de la página 7:**
+
+> De 83 ductos que mueven petróleo, 44 tienen capacidad válida y entran al ranking; 5 tienen capacidad dudosa en todos los años y 34 no figuran en el Anexo 2A. Se excluyen 36 ducto-años de 18 ductos por reglas explícitas (en `data/web/ductos_capacidad_dudosa.csv`). La utilización es el volumen del tramo más cargado (solo líquidos) sobre la capacidad operativa informada; superar el 100% no permite decidir si el volumen excede la capacidad o si la capacidad informada no corresponde al tramo, y las capacidades de distintas fuentes no coinciden. 2 de los 3 ductos sobre 100% tienen la capacidad marcada "a revisar" (se identifican en la versión web).
+
 ## Paso final
 
 1. **Archivo > Guardar como** `ProyectoShale.pbix` (el mismo nombre).
 2. **Archivo > Exportar > Plantilla de Power BI** y guardar `ProyectoShale.pbit`. Con ese archivo se pueden verificar las medidas DAX reales y relaciones.
-3. Devolver: (a) los valores que mostró cada tarjeta y la matriz de la página 3, (b) los valores de la tabla de USD de la página 5, (c) cuántas barras hay sobre 100% en la página 4 y sus valores, (d) el `.pbit`.
+3. Devolver: (a) los valores que mostró cada tarjeta y la matriz de la página 3, (b) los valores del gráfico de la página 4, (c) los valores de la tabla de USD de la página 5, (d) cuántas barras hay sobre 100% en la página 7 y sus valores, (e) el `.pbit`.
