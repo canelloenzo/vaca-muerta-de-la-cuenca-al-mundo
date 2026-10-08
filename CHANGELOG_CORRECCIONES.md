@@ -1,7 +1,7 @@
 # Changelog de correcciones (rama `correcciones-auditoria`)
 
 Base: commit `Estado auditado`. Todo lo que sigue responde a `AUDITORIA_2026-10-05.md` y a las decisiones D1–D3.
-Este documento se completa fase por fase. **Estado actual: Fases 1 a 3 terminadas (datos, cálculos, textos, README, HTML y registro de cifras); Fase 4 (Power BI) pendiente de la parte manual: ver `CAMBIOS_POWERBI.md`.**
+Este documento se completa fase por fase. **Estado actual: Fases 1 a 3 y la Fase 3B (comercio exterior como serie principal) terminadas; Fase 4 (Power BI) pendiente de la parte manual: ver `CAMBIOS_POWERBI.md`.**
 
 ## Pendientes de tu parte
 
@@ -89,3 +89,18 @@ Los archivos históricos de `data/web/` (`indices_mensuales.csv`, `capacidad_duc
 
 - **Planilla 20 (ductos 374 y 489, y el gasoducto 156): doble conteo confirmado.** Hay 344 filas idénticas en todo salvo `longitud_tramo` (un registro por tramo del mismo volumen). Sin la repetición, el caudal observado dividido por la capacidad "empleada" que informa la propia empresa da 1,00 en el ducto 489 (2023 y 2024) y 0,84–1,07 en el 374; con la repetición daba 2,0 y 1,7–2,1.
 - **Planilla 21 (59 pares de cargadores con el mismo volumen exacto): no hay evidencia de doble conteo.** Los volúmenes de los pares (~10.000 m³ cada uno) son la mitad de un embarque típico (mediana 14.431 m³ en CGC, 23.693 m³ en Oiltanking), lo que es más compatible con un reparto en mitades entre dos cargadores. No se puede confirmar sin datos del buque.
+
+## Fase 3B — Comercio exterior como serie principal (decisión B) y producción oficial de la cuenca
+
+| cambio | detalle |
+|---|---|
+| Hallazgo | `TD_comercioexterior.xlsx` se había descartado por leer solo la tabla dinámica visible (un mes). La caché de la tabla trae todos los datos: registros de comercio exterior 2020–agosto 2026 por empresa, producto (con cuenca de origen), país, cantidad y monto |
+| Serie principal | exportación de crudo de la cuenca Neuquina según comercio exterior (`scripts/16_comercio_exterior.py`); los terminales marítimos (planilla 21) y el oleoducto a Chile (planilla 20) pasan a ser contraste |
+| No concilian | hasta 2022 comercio exterior y terminales difieren menos del 3%; desde 2023 el comercio exterior queda por debajo de terminales más oleoducto y por encima de los terminales solos. Se publica el contraste y no se elige en silencio |
+| Producción de la cuenca | serie oficial por cuenca (2006–agosto 2026) en lugar de la suma por pozo; coincide salvo septiembre de 2024 (los archivos por pozo quedan por debajo del agregado oficial) |
+| % exportado | pasa de 2022–2025 a 2020–2025; la dirección 2023–2024 cambia respecto de la versión con terminales (que mostraba un descenso) |
+| USD | monto FOB declarado por año; el precio implícito se validó contra la tabla oficial de precios FOB de 2020 y 2021 |
+| Concentración | por empresa exportadora (quién declara), con las variantes de razón social agrupadas; el 94% por operador de terminal queda como contexto |
+| Destinos | crudo de la cuenca por país de destino, con el volumen "no aplica" aparte |
+| Pruebas | `tests/test_12_comercio_exterior.py`: recálculo con otro método de lectura de la caché, validación de precios y verificación de cada afirmación publicada |
+| Power BI | `CAMBIOS_POWERBI.md` suma dos tablas (`Fact_ExportacionComex`, `Fact_ProduccionCuenca`) y reescribe las páginas 1, 3, 5 y 6 |

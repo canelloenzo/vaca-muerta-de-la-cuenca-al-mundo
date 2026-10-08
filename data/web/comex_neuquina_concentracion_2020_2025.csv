@@ -1,0 +1,155 @@
+nivel,posicion,nombre,volumen_m3,pct
+empresa_sin_agrupar,1,VISTA OIL & GAS ARGENTINA SAU,7511674.8,24.86
+empresa_sin_agrupar,2,COMPAÑIA DE HIDROCARBURO NO CONVENCIONAL S.R.L.,4548896.0,15.06
+empresa_sin_agrupar,3,YPF S.A.,4529431.0,14.99
+empresa_sin_agrupar,4,petronas e&p argentina s.a.,2851586.3,9.44
+empresa_sin_agrupar,5,PLUSPETROL S.A.,2169924.5,7.18
+empresa_sin_agrupar,6,TECPETROL S.A.,1764276.2,5.84
+empresa_sin_agrupar,7,SHELL ARGENTINA S.A.,1419994.0,4.7
+empresa_sin_agrupar,8,Vista Energy LACH S.A.,1126291.6,3.73
+empresa_sin_agrupar,9,CHEVRON ARGENTINA S.R.L.,1018024.7,3.37
+empresa_sin_agrupar,10,PAN AMERICAN ENERGY SL,828318.0,2.74
+empresa_sin_agrupar,11,PAMPA ENERGIA S.A.,668752.1,2.21
+empresa_sin_agrupar,12,EXXONMOBIL EXPLORATION ARGENTINA S.R.L.,634702.2,2.1
+empresa_sin_agrupar,13,PLUSPETROL CUENCA NEUQUINA S.R.L.,499307.0,1.65
+empresa_sin_agrupar,14,PETROQUIMICA COMODORO RIVADAVIA S.A.,291550.0,0.97
+empresa_sin_agrupar,15,OILSTONE ENERGIA S.A.,137296.6,0.45
+empresa_sin_agrupar,16,CAPEX S.A.,113627.2,0.38
+empresa_sin_agrupar,17,TOTAL AUSTRAL S.A.,73651.1,0.24
+empresa_sin_agrupar,18,Trafigura Argentina S.A.,24133.8,0.08
+empresa_sin_agrupar,19,COMPAÑÍA GENERAL DE COMBUSTIBLES S.A.,0.0,0.0
+empresa_sin_agrupar,20,Destilería Argentina de Petróleo S.A.,0.0,0.0
+empresa_sin_agrupar,21,DeltaPatagonia S.A.,0.0,0.0
+empresa_sin_agrupar,22,Compañía Mega S.A.,0.0,0.0
+empresa_sin_agrupar,23,CGC ENERGIA SAU,0.0,0.0
+empresa_sin_agrupar,24,Administracion del Interior,0.0,0.0
+empresa_sin_agrupar,25,BRAVO ENERGY ARGENTINA S.C.A.,0.0,0.0
+empresa_sin_agrupar,26,CAMMESA,0.0,0.0
+empresa_sin_agrupar,27,BRUERRE-EME,0.0,0.0
+empresa_sin_agrupar,28,COMBUSTIBLES ITALO ARGENTINO SA,0.0,0.0
+empresa_sin_agrupar,29,COMBUSTIBLES ARGENTINOS,0.0,0.0
+empresa_sin_agrupar,30,CARBOCLOR S.A.,0.0,0.0
+empresa_sin_agrupar,31,ENERGEN S.A.,0.0,0.0
+empresa_sin_agrupar,32,GULF OIL ARGENTINA S.A.,0.0,0.0
+empresa_sin_agrupar,33,GRASTA PETROL,0.0,0.0
+empresa_sin_agrupar,34,FUCHS ARGENTINA S.A.,0.0,0.0
+empresa_sin_agrupar,35,INGENIERIA AMBIENTAL S.A.,0.0,0.0
+empresa_sin_agrupar,36,MARITIMA CHALLACO S.R.L.,0.0,0.0
+empresa_sin_agrupar,37,Distribuidora El Faro S.A.,0.0,0.0
+empresa_sin_agrupar,38,ENAP SIPETROL ARGENTINA S.A.,0.0,0.0
+empresa_sin_agrupar,39,Don Julio S.A.,0.0,0.0
+empresa_sin_agrupar,40,ENERGY CONSULTING SERVICES S.A. ,0.0,0.0
+empresa_sin_agrupar,41,ESTANDAR ENERGY S.A.,0.0,0.0
+empresa_sin_agrupar,42,Empresa de Combustibles Zona Común S.A.,0.0,0.0
+empresa_sin_agrupar,43,FERCOL Lubricantes,0.0,0.0
+empresa_sin_agrupar,44,FOX PETROL S.A.,0.0,0.0
+empresa_sin_agrupar,45,ENERGIA DERIVADOS DEL PETROLEO S.A.,0.0,0.0
+empresa_sin_agrupar,46,ENERGIA Y SOLUCIONES S.A.,0.0,0.0
+empresa_sin_agrupar,47,ENARSA ENERGIA ARGENTINA S.A.,0.0,0.0
+empresa_sin_agrupar,48,PETROLEOS SUDAMERICANOS S.A.,0.0,0.0
+empresa_sin_agrupar,49,PETROIL PETROLEO Y DERIVADOS S.A.,0.0,0.0
+empresa_sin_agrupar,50,PBBPolisur S.A.,0.0,0.0
+empresa_sin_agrupar,51,PAN AMERICAN SUR S.A.,0.0,0.0
+empresa_sin_agrupar,52,NUEVA ENERGÍA ARGENTINA S.A.,0.0,0.0
+empresa_sin_agrupar,53,MEDANITO S.A.,0.0,0.0
+empresa_sin_agrupar,54,MOBIL ARGENTINA S.A.,0.0,0.0
+empresa_sin_agrupar,55,NEW AMERICAN OIL,0.0,0.0
+empresa_sin_agrupar,56,MARCOS MARTINI S.A.,0.0,0.0
+empresa_sin_agrupar,57,JRI COMERCIAL S.R.L.,0.0,0.0
+empresa_sin_agrupar,58,INTERLUB S.A.,0.0,0.0
+empresa_sin_agrupar,59,PLUSPETROL ENERGY S.A.,0.0,0.0
+empresa_sin_agrupar,60,PETROLERA SANTA MARIA SAU,0.0,0.0
+empresa_sin_agrupar,61,PETROLERA DEL CONO SUR,0.0,0.0
+empresa_sin_agrupar,62,PETROLERA ARGENTINA S.A.,0.0,0.0
+empresa_sin_agrupar,63,PETROLERA DEGAB S.A.,0.0,0.0
+empresa_sin_agrupar,64,ROCH S.A.,0.0,0.0
+empresa_sin_agrupar,65,REFIPAMPA S.A.,0.0,0.0
+empresa_sin_agrupar,66,REFINERIA DEL NORTE  S.A.( REFINOR),0.0,0.0
+empresa_sin_agrupar,67,REFINADORA NEUQUINA S.A.,0.0,0.0
+empresa_sin_agrupar,68,Polipetrol S.A.,0.0,0.0
+empresa_sin_agrupar,69,Quimiguay S.A,0.0,0.0
+empresa_sin_agrupar,70,PETRONAS LUBRICANTS ARGENTINA S.A. ,0.0,0.0
+empresa_sin_agrupar,71,SHELL C.A.P.S.A.,0.0,0.0
+empresa_sin_agrupar,72,TRANSPORTADORA DE GAS DEL SUR,0.0,0.0
+empresa_sin_agrupar,73,TOTAL ESPECIALIDADES Arg.,0.0,0.0
+empresa_sin_agrupar,74,SUALIER S.A.,0.0,0.0
+empresa_sin_agrupar,75,Soluciones Ambientales SA,0.0,0.0
+empresa_sin_agrupar,76,"SINOPEC ARGENTINA EXPLORATION AND PRODUCTION, INC.",0.0,0.0
+empresa_sin_agrupar,77,VERASUR S.A.,0.0,0.0
+empresa_sin_agrupar,78,VITOL ARGENTINA,0.0,0.0
+empresa_sin_agrupar,79,WINTERSHALL ENERGIA S.A.,0.0,0.0
+empresa_agrupada,1,"VISTA (Vista Oil & Gas / Vista Energy, variantes de razon social)",8637966.4,28.59
+empresa_agrupada,2,COMPAÑIA DE HIDROCARBURO NO CONVENCIONAL S.R.L.,4548896.0,15.06
+empresa_agrupada,3,YPF S.A.,4529431.0,14.99
+empresa_agrupada,4,petronas e&p argentina s.a.,2851586.3,9.44
+empresa_agrupada,5,"PLUSPETROL (Pluspetrol / Pluspetrol Cuenca Neuquina, variantes)",2669231.5,8.84
+empresa_agrupada,6,TECPETROL S.A.,1764276.2,5.84
+empresa_agrupada,7,SHELL ARGENTINA S.A.,1419994.0,4.7
+empresa_agrupada,8,CHEVRON ARGENTINA S.R.L.,1018024.7,3.37
+empresa_agrupada,9,PAN AMERICAN ENERGY (variantes),828318.0,2.74
+empresa_agrupada,10,PAMPA ENERGIA S.A.,668752.1,2.21
+empresa_agrupada,11,EXXONMOBIL EXPLORATION ARGENTINA S.R.L.,634702.2,2.1
+empresa_agrupada,12,PETROQUIMICA COMODORO RIVADAVIA S.A.,291550.0,0.97
+empresa_agrupada,13,OILSTONE ENERGIA S.A.,137296.6,0.45
+empresa_agrupada,14,CAPEX S.A.,113627.2,0.38
+empresa_agrupada,15,TOTAL AUSTRAL S.A.,73651.1,0.24
+empresa_agrupada,16,Trafigura Argentina S.A.,24133.8,0.08
+empresa_agrupada,17,Administracion del Interior,0.0,0.0
+empresa_agrupada,18,BRAVO ENERGY ARGENTINA S.C.A.,0.0,0.0
+empresa_agrupada,19,BRUERRE-EME,0.0,0.0
+empresa_agrupada,20,COMBUSTIBLES ITALO ARGENTINO SA,0.0,0.0
+empresa_agrupada,21,COMBUSTIBLES ARGENTINOS,0.0,0.0
+empresa_agrupada,22,CARBOCLOR S.A.,0.0,0.0
+empresa_agrupada,23,CGC ENERGIA SAU,0.0,0.0
+empresa_agrupada,24,CAMMESA,0.0,0.0
+empresa_agrupada,25,Distribuidora El Faro S.A.,0.0,0.0
+empresa_agrupada,26,DeltaPatagonia S.A.,0.0,0.0
+empresa_agrupada,27,COMPAÑÍA GENERAL DE COMBUSTIBLES S.A.,0.0,0.0
+empresa_agrupada,28,FERCOL Lubricantes,0.0,0.0
+empresa_agrupada,29,Empresa de Combustibles Zona Común S.A.,0.0,0.0
+empresa_agrupada,30,ESTANDAR ENERGY S.A.,0.0,0.0
+empresa_agrupada,31,FOX PETROL S.A.,0.0,0.0
+empresa_agrupada,32,INGENIERIA AMBIENTAL S.A.,0.0,0.0
+empresa_agrupada,33,FUCHS ARGENTINA S.A.,0.0,0.0
+empresa_agrupada,34,GRASTA PETROL,0.0,0.0
+empresa_agrupada,35,Compañía Mega S.A.,0.0,0.0
+empresa_agrupada,36,ENARSA ENERGIA ARGENTINA S.A.,0.0,0.0
+empresa_agrupada,37,ENERGEN S.A.,0.0,0.0
+empresa_agrupada,38,ENERGIA Y SOLUCIONES S.A.,0.0,0.0
+empresa_agrupada,39,ENERGIA DERIVADOS DEL PETROLEO S.A.,0.0,0.0
+empresa_agrupada,40,ENERGY CONSULTING SERVICES S.A. ,0.0,0.0
+empresa_agrupada,41,Don Julio S.A.,0.0,0.0
+empresa_agrupada,42,ENAP SIPETROL ARGENTINA S.A.,0.0,0.0
+empresa_agrupada,43,Destilería Argentina de Petróleo S.A.,0.0,0.0
+empresa_agrupada,44,NUEVA ENERGÍA ARGENTINA S.A.,0.0,0.0
+empresa_agrupada,45,MEDANITO S.A.,0.0,0.0
+empresa_agrupada,46,MOBIL ARGENTINA S.A.,0.0,0.0
+empresa_agrupada,47,NEW AMERICAN OIL,0.0,0.0
+empresa_agrupada,48,MARITIMA CHALLACO S.R.L.,0.0,0.0
+empresa_agrupada,49,INTERLUB S.A.,0.0,0.0
+empresa_agrupada,50,JRI COMERCIAL S.R.L.,0.0,0.0
+empresa_agrupada,51,MARCOS MARTINI S.A.,0.0,0.0
+empresa_agrupada,52,GULF OIL ARGENTINA S.A.,0.0,0.0
+empresa_agrupada,53,PETRONAS LUBRICANTS ARGENTINA S.A. ,0.0,0.0
+empresa_agrupada,54,PBBPolisur S.A.,0.0,0.0
+empresa_agrupada,55,PETROIL PETROLEO Y DERIVADOS S.A.,0.0,0.0
+empresa_agrupada,56,PETROLERA DEGAB S.A.,0.0,0.0
+empresa_agrupada,57,PETROLERA DEL CONO SUR,0.0,0.0
+empresa_agrupada,58,PETROLEOS SUDAMERICANOS S.A.,0.0,0.0
+empresa_agrupada,59,PETROLERA ARGENTINA S.A.,0.0,0.0
+empresa_agrupada,60,ROCH S.A.,0.0,0.0
+empresa_agrupada,61,REFIPAMPA S.A.,0.0,0.0
+empresa_agrupada,62,REFINERIA DEL NORTE  S.A.( REFINOR),0.0,0.0
+empresa_agrupada,63,REFINADORA NEUQUINA S.A.,0.0,0.0
+empresa_agrupada,64,Quimiguay S.A,0.0,0.0
+empresa_agrupada,65,Polipetrol S.A.,0.0,0.0
+empresa_agrupada,66,PETROLERA SANTA MARIA SAU,0.0,0.0
+empresa_agrupada,67,SHELL C.A.P.S.A.,0.0,0.0
+empresa_agrupada,68,TOTAL ESPECIALIDADES Arg.,0.0,0.0
+empresa_agrupada,69,Soluciones Ambientales SA,0.0,0.0
+empresa_agrupada,70,"SINOPEC ARGENTINA EXPLORATION AND PRODUCTION, INC.",0.0,0.0
+empresa_agrupada,71,SUALIER S.A.,0.0,0.0
+empresa_agrupada,72,VERASUR S.A.,0.0,0.0
+empresa_agrupada,73,TRANSPORTADORA DE GAS DEL SUR,0.0,0.0
+empresa_agrupada,74,WINTERSHALL ENERGIA S.A.,0.0,0.0
+empresa_agrupada,75,VITOL ARGENTINA,0.0,0.0

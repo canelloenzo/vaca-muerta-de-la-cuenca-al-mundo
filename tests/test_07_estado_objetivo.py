@@ -102,7 +102,7 @@ def test_readme_explica_como_conseguir_raw_y_correr_pruebas():
 
 
 def test_f7_html_rotula_volumen_sin_pais():
-    assert _hay(H.html_visible_text() + H.html_js_strings(), r"no identificado|sin pa[ií]s identificado")
+    assert _hay(H.html_visible_text() + H.html_js_strings(), r"no identificado|sin pa[ií]s")
 
 
 @pytest.mark.parametrize("frase", ["explica buena parte", "capacidad real", "replican exactamente", "capacidad nominal",

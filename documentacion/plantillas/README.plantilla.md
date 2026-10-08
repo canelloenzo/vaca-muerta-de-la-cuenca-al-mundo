@@ -14,11 +14,12 @@ El pipeline limpia los archivos crudos con Python (pandas). Las tablas alimentan
 |---|---|---|
 | Producción de petróleo, junio de 2026 | {{prod_ultimo_mes_bbl_dia:0}} bbl/día (+{{prod_var_interanual_pct:1}}% interanual) | solo no convencional; el convencional de 2026 no está en las fuentes cargadas |
 | Incidencia no convencional | {{pct_nc_2022_2025:2}}% | volumen de Vaca Muerta 2022–2025, el único período con ambos tipos observables |
-| Exportación de crudo neuquino, 2025 | {{exp_neu_2025_bbl_dia:0}} bbl/día, {{pct_exp_cuenca_2025:1}}% de la producción de la cuenca | terminales neuquinos (Oiltanking + Refinería Bahía Blanca), planilla 21; sin oleoducto a Chile |
-| Oleoducto a Chile | {{chile_2024_bbl_dia:0}} bbl/día (2024) y {{chile_2025_bbl_dia:0}} bbl/día (2025) | planilla 20, serie aparte; no se suma a la anterior |
-| Índice base {{anio_base_indice:y}}, promedio 2025 | exportación {{idx_exp_2025_base2022:1}} · producción de Vaca Muerta {{idx_vm_2025_base2022:1}} · producción de la cuenca {{idx_cuenca_2025_base2022:1}} | con sensibilidad a las bases 2021 y 2023; en 2024 la dirección entre exportación y producción cambia según la base, por eso no se afirma una tendencia |
-| Concentración 2020–2025 | {{conc_top3_cargadores_pct:1}}% top 3 cargadores · {{conc_top3_operadores_pct:2}}% top 3 operadores de terminal | son dos medidas distintas; 6 operadores de terminal de todo el país |
-| Volumen exportado sin país identificado | {{sin_pais_pct:1}}% | planilla 21, 2018–junio 2026; todo de TERMAP |
+| Exportación de crudo de la cuenca, 2025 | {{exp_2025_bbl_dia:0}} bbl/día, {{pct_exp_cuenca_2025:1}}% de la producción de la cuenca, USD {{exp_2025_usd_millones:0}} millones | comercio exterior declarado por las empresas (producto "Cuenca Neuquina"), todas las vías; convencional y no convencional |
+| Contraste con otras fuentes | los terminales marítimos (planilla 21) dan {{exp_neu_2025_bbl_dia:0}} bbl/día y el oleoducto a Chile (planilla 20), {{chile_2025_bbl_dia:0}} bbl/día en 2025 | las fuentes no concilian desde 2023: el comercio exterior queda entre {{contr_comex_sobre_term_mas_oleo_2024:2}} y {{contr_comex_sobre_term_mas_oleo_2023:2}} veces la suma de terminales y oleoducto en 2023–2024; la serie principal es la que mide el origen directamente |
+| Índice base {{anio_base_indice:y}}, promedio 2025 | exportación {{idx_exp_2025_base2022:1}} · producción de la cuenca {{idx_cuenca_2025_base2022:1}} · producción de Vaca Muerta {{idx_vm_2025_base2022:1}} | con sensibilidad a las bases 2021 y 2023; con las tres bases la exportación crece más que la producción de la cuenca en cada año posterior a la base |
+| Concentración exportadora 2020–2025 | {{conc_exp_top3_pct:1}}% las 3 mayores empresas exportadoras · {{conc_top3_operadores_pct:2}}% los 3 mayores operadores de terminal de todo el país | son dos medidas distintas: quién exporta y quién opera el puerto |
+| Destinos, 2020–agosto 2026 | Estados Unidos {{comex_eeuu_pct:1}}% · Chile {{comex_chile_pct:1}}% · sin país ("no aplica") {{comex_sin_pais_pct:1}}% | crudo de la cuenca, comercio exterior |
+| Valor de la exportación, 2020–2025 | USD {{exp_usd_total_2020_2025_millones:0}} millones; precio implícito 2025: {{exp_2025_usd_bbl:1}} USD/bbl | monto FOB declarado; validado contra el precio FOB oficial de 2020 y 2021 (correlación {{val_precios_corr:2}}) |
 | Ductos con capacidad válida | {{ductos_ranking_n:0}} de {{ductos_petroleo_n:0}} que mueven petróleo; {{ductos_sobre_100_n:0}} superan el 100% en su tramo más cargado ({{ductos_sobre_100_a_revisar_n:0}} con la capacidad marcada "a revisar") | capacidad operativa informada en el Anexo 2A; ver Limitaciones |
 
 ## Estado y enlaces
@@ -43,7 +44,7 @@ El pipeline limpia los archivos crudos con Python (pandas). Las tablas alimentan
 ├── CHANGELOG_CORRECCIONES.md      # qué se corrigió tras la auditoría, antes y después
 ├── CAMBIOS_POWERBI.md             # cambios a aplicar en el reporte de Power BI, con valores esperados
 ├── docs/index.html                # dashboard web (datos embebidos, Chart.js por CDN); generado
-├── scripts/                       # pipeline 01–15 (Python) y verificación en navegador
+├── scripts/                       # pipeline 01–16 (Python) y verificación en navegador
 ├── tests/                         # pruebas (pytest) con recálculo independiente desde raw/
 ├── powerbi/                       # consultas M, medidas DAX y tema
 ├── documentacion/                 # diccionario de datos, plantillas de textos, documentos históricos
@@ -66,8 +67,9 @@ Datos públicos de datos.energia.gob.ar y ENARGAS. La fuente puntual de cada arc
 | `anexo-2a-capacidad-de-transporte-de-hidrocarburos-a-travs-de-ductos.csv` | Capacidad de transporte por ducto (anual) | Ídem |
 | `anexo-2b-…csv` | Capacidad de almacenamiento (evaluado, fuera del modelo) | Ídem |
 | `Balance_2023_V0_H.xlsx`, `Balance_2024_V0_H.xlsx`, `balance_2025_v0_h.xlsx` | Balance Energético Nacional | Sin fuente documentada en el proyecto |
-| `precio-exportacion-crudo.xlsx` | Precios USD/bbl por tipo de crudo (enero de 2019 a junio de 2021) | Sin fuente documentada en el proyecto |
-| `TD_comercioexterior.xlsx` | Tabla dinámica de comercio exterior (explorada y descartada) | Sin fuente documentada en el proyecto |
+| `precio-exportacion-crudo.xlsx` | Precios USD/bbl por tipo de crudo (enero de 2019 a junio de 2021; la tabla oficial no se actualizó después) | Dataset "Precio de exportación de petróleo crudo" de datos.energia.gob.ar |
+| `TD_comercioexterior_actualizado_2026-09-24.xlsx` | Comercio exterior de Refinación y Comercialización: {{comex_registros_n:0}} registros de exportación de crudo por cuenca, 2020 a agosto de 2026, con empresa, país, cantidad y monto. La tabla dinámica visible muestra un solo mes; los datos completos están en la caché de la tabla dinámica, de donde se leen | Dataset "Precios de Comercio Exterior" de datos.energia.gob.ar (archivo `TD_comercio_exterior.zip`) |
+| `serie-historica-produccion-petroleo-por-cuenca-subtipo-capitulo-iv.csv` | Producción oficial de petróleo por cuenca, mensual, 2006 a agosto de 2026 | Dataset "Producción de petróleo y gas por pozo (Capítulo IV)", recurso "Serie histórica de producción de petróleo por cuenca y sub tipo de recurso" de datos.energia.gob.ar |
 
 ## Cómo correr el pipeline y las pruebas
 
@@ -86,10 +88,11 @@ Orden, desde la raíz del repositorio:
 | 06 | `06_fix_agregado_yacimiento.py` | Corrige el agregado por yacimiento |
 | 08 | `08_clean_capacidad_ductos.py` | Capacidad de ductos, numerador de líquidos y reglas de capacidad dudosa |
 | 10 | `10_export_web_data.py` | Mapa, producción anual y yacimientos |
-| 11 | `11_series_cuenca_neuquina.py` | Producción de la cuenca, exportación por terminales, índices y KPIs |
+| 11 | `11_series_cuenca_neuquina.py` | Producción de Vaca Muerta y de la cuenca por pozo, exportación por terminales (planilla 21) y oleoducto a Chile (planilla 20), concentración por operador, KPIs |
 | 12 | `12_utilizacion_ductos_web.py` | Ranking y clasificación de ductos |
 | 13 | `13_pozos_coordenadas_dudosas.py` | Pozos con coordenadas dudosas |
 | 14 | `14_registro_cifras.py` | Registro de cifras (`data/web/registro_cifras.json`) |
+| 16 | `16_comercio_exterior.py` | Serie principal de exportación: comercio exterior de la cuenca Neuquina (volumen, USD, país, empresa), producción oficial de la cuenca, índices y contraste con terminales (se corre antes del 14) |
 | 15 | `15_render_textos.py` | Genera `docs/index.html` y `README.md` desde las plantillas y el registro |
 
 Pruebas: `python -m pytest -q`. Las que leen `raw/` tardan unos minutos la primera vez. La verificación del HTML en navegador headless: `python scripts/verificar_html_headless.py`.
@@ -104,24 +107,27 @@ Pruebas: `python -m pytest -q`. Las que leen `raw/` tardan unos minutos la prime
 
 ## Limitaciones
 
-- **Alcance de la exportación.** La planilla 21 recoge movimientos de {{operadores_n:0}} operadores de terminal de todo el país; solo el {{exp_neuquina_pct_del_nacional:1}}% del volumen es crudo neuquino. La serie principal usa Oiltanking y Refinería Bahía Blanca como indicador de la cuenca: el {{proxy_pct_producto_neuquino:1}}% de su volumen exportado está rotulado como crudo Neuquén / Río Negro (Medanito). Es un indicador, no una medición directa; esos terminales también despachan crudo convencional.
-- **Cobertura por serie.** La producción de la cuenca existe solo para 2022–2025; el % exportado de la cuenca, solo en esos años. 2018 y 2026 son años parciales. El último mes de exportación se apoya casi por completo en Oiltanking; Refinería Bahía Blanca no informa desde febrero de 2026 (aportó el {{rbb_pct_2025:1}}% de la exportación neuquina de 2025), así que el mes podría estar subestimado en ese orden. Por eso las comparaciones cierran en diciembre de 2025. La producción de la cuenca antes de 2022 queda como trabajo futuro.
-- **Huecos.** Los meses sin dato figuran como "sin dato", no como cero. Los meses de 2019–2021 en que Oiltanking informó operaciones sin exportación se tratan como cero informado.
+- **Dos fuentes oficiales de exportación que no concilian.** La serie principal es el comercio exterior declarado por las empresas. Los terminales marítimos (planilla 21) y el oleoducto a Chile (planilla 20) dan otros volúmenes desde 2023: el comercio exterior queda entre {{contr_comex_sobre_terminales_2023:2}} y {{contr_comex_sobre_terminales_2024:2}} veces los terminales solos y entre {{contr_comex_sobre_term_mas_oleo_2024:2}} y {{contr_comex_sobre_term_mas_oleo_2023:2}} veces los terminales más el oleoducto. Hasta 2022 difieren menos del 3%. Los datos no permiten decidir cuál es la correcta; con la serie de terminales, la dirección entre exportación y producción en 2024 cambia según la base del índice.
+- **Alcance de la serie principal.** Es crudo con origen en la cuenca Neuquina (Neuquén, Río Negro, La Pampa y Mendoza), convencional y no convencional, por todas las vías; no es exportación de Vaca Muerta únicamente y no se puede separar con estos datos.
+- **Cobertura temporal.** El comercio exterior empieza en enero de 2020: 2020 tiene exportación en {{exp_2020_meses:0}} meses y 2021 en {{exp_2021_meses:0}}; 2026 es parcial (enero a agosto) y solo se usa para el valor en USD. Las comparaciones cierran en diciembre de 2025. Los meses sin exportación declarada cuentan como cero.
+- **Producción de septiembre de 2024.** Los archivos por pozo de ese mes quedan {{sep24_dif_cuenca_m3:0}} m³ por debajo del agregado oficial; por eso la producción de la cuenca usa la serie oficial, y la de Vaca Muerta por pozo queda unos {{sep24_dif_vm_anual_pct:1}}% por debajo en el promedio de 2024.
+- **Producción de 2026.** La cifra de junio de 2026 incluye solo el archivo no convencional.
 - **Capacidad de ductos.** El Anexo 2A es anual y su capacidad se repite en los 12 meses; no comparte identificador de tramo con la planilla 20. La utilización es un cociente aproximado (tramo más cargado de líquidos sobre capacidad operativa informada). La cobertura es parcial: capacidad en el {{cobertura_capacidad_ducto_mes_pct:1}}% de los ducto-mes con transporte. Se excluyen {{ducto_anios_excluidos_n:0}} ducto-años de {{ductos_con_anio_excluido_n:0}} ductos por las reglas R1, R3, R4, R5 y D2; R2 y R6 solo marcan "a revisar". VMOC 2025 queda excluido (D2) y no se publica su utilización.
-- **Volúmenes repetidos.** En la planilla 21 hay pares de cargadores con volumen idéntico; no hay evidencia suficiente para llamarlo doble conteo y no se corrigió.
+- **Volúmenes repetidos.** En la planilla 21 hay pares de cargadores con volumen idéntico; no hay evidencia suficiente para llamarlo doble conteo y no se corrigió. En el comercio exterior no hay filas repetidas exactas.
 - **Mapa.** Se omiten {{pozos_mapa_omitidos:0}} pozos con coordenadas a más de {{umbral_km:0}} km de la mediana de su yacimiento. Los pozos convencionales no tienen coordenadas.
-- **Volumen, no USD.** La tabla de precios cubre solo hasta junio de 2021, así que no se estima ningún valor en dólares.
+- **Valores en USD.** Son el monto FOB declarado por las empresas, no una serie de precios de mercado; se validaron contra la tabla oficial en {{val_precios_meses:0}} meses de 2020 y 2021, porque esa tabla termina en 2021.
 - **Sin validación externa.** El análisis es descriptivo y no fue contrastado con la Secretaría de Energía ni con los operadores.
 
 ## Cómo se verifica
 
+- Los precios implícitos del comercio exterior se contrastaron con la tabla oficial de precios FOB y la producción de la cuenca con la serie oficial; las diferencias están en las Limitaciones.
 - Las cifras de producción, exportación y ductos se recalculan de forma independiente desde `raw/` en `tests/` y se comparan con las tablas de `data/web/`.
 - `data/web/registro_cifras.json` es la única fuente de las cifras de este README y del dashboard; `tests/test_10_textos.py` falla si un texto contiene una cifra que no está en el registro, un marcador sin completar o una palabra que el dato no respalda.
 - `scripts/verificar_html_headless.py` abre el dashboard en un navegador headless y falla si hay errores de consola.
 
 ## Qué se corrigió tras la auditoría
 
-El detalle, con antes y después de cada cifra, está en `CHANGELOG_CORRECCIONES.md`. En resumen: se corrigió el alcance de la serie de exportación (terminales neuquinos en lugar de todo el país), el año base del índice, la utilización de ductos (numerador de líquidos, tramo más cargado y reglas de capacidad dudosa), el doble conteo por tramo de la planilla 20, el rótulo de concentración, el volumen sin país y los años parciales.
+El detalle, con antes y después de cada cifra, está en `CHANGELOG_CORRECCIONES.md`. En resumen: se corrigió el alcance de la serie de exportación (de terminales de todo el país a crudo de la cuenca Neuquina según comercio exterior, contrastada con terminales y oleoducto), el año base del índice, la utilización de ductos (numerador de líquidos, tramo más cargado y reglas de capacidad dudosa), el doble conteo por tramo de la planilla 20, el rótulo de concentración, el volumen sin país y los años parciales.
 
 Los documentos de trabajo anteriores a la auditoría están en `documentacion/historico/`, con un aviso al inicio; contienen afirmaciones que ya no se sostienen.
 

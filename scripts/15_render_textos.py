@@ -60,22 +60,36 @@ def lista_sobre_100():
 def tabla(cabecera, filas):
     h = "".join(f"<th{' style=\"text-align:right\"' if i else ''}>{c}</th>" for i, c in enumerate(cabecera))
     b = "".join("<tr>" + "".join(f"<td{' class=\"num\"' if i else ''}>{c}</td>" for i, c in enumerate(f)) + "</tr>" for f in filas)
-    return f'<table class="simple"><thead><tr>{h}</tr></thead><tbody>{b}</tbody></table>'
+    return f'<div style="overflow-x:auto"><table class="simple"><thead><tr>{h}</tr></thead><tbody>{b}</tbody></table></div>'
 
 
 def tabla_indices():
-    filas = [[str(y), celda(f"idx_exp_{y}_base2022", 1), celda(f"idx_vm_{y}_base2022", 1), celda(f"idx_cuenca_{y}_base2022", 1)] for y in range(2022, 2026)]
-    return tabla(["Año", "Exportación neuquina", "Producción Vaca Muerta", "Producción cuenca"], filas)
+    filas = [[str(y), celda(f"idx_exp_{y}_base2022", 1), celda(f"idx_cuenca_{y}_base2022", 1), celda(f"idx_vm_{y}_base2022", 1)] for y in range(2022, 2026)]
+    return tabla(["Año", "Exportación de la cuenca", "Producción de la cuenca", "Producción Vaca Muerta"], filas)
 
 
 def tabla_sensibilidad():
-    filas = [[f"Base {b}", celda(f"idx_exp_2025_base{b}", 1), celda(f"idx_vm_2025_base{b}", 1), celda(f"idx_cuenca_2025_base{b}", 1)] for b in (2021, 2022, 2023)]
-    return tabla(["2025", "Exportación neuquina", "Producción Vaca Muerta", "Producción cuenca"], filas)
+    filas = [[f"Base {b}", celda(f"idx_exp_2025_base{b}", 1), celda(f"idx_cuenca_2025_base{b}", 1), celda(f"idx_vm_2025_base{b}", 1)] for b in (2021, 2022, 2023)]
+    return tabla(["2025", "Exportación de la cuenca", "Producción de la cuenca", "Producción Vaca Muerta"], filas)
 
 
 def tabla_pct():
-    filas = [[str(y), celda(f"pct_exp_cuenca_{y}", 1) + "%", celda(f"pct_exp_vm_{y}", 1) + "%"] for y in range(2022, 2026)]
-    return tabla(["Año", "De la cuenca", "De Vaca Muerta"], filas)
+    filas = [[str(y), celda(f"exp_{y}_meses", 0), celda(f"pct_exp_cuenca_{y}", 1) + "%"] for y in range(2020, 2026)]
+    return tabla(["Año", "Meses con exportación", "% de la producción de la cuenca"], filas)
+
+
+def tabla_usd():
+    filas = [[str(y), celda(f"exp_{y}_m3", 0), celda(f"exp_{y}_usd_millones", 0), celda(f"exp_{y}_usd_bbl", 1)] for y in range(2020, 2026)]
+    filas.append([f"2026 (parcial, {celda('exp_2026_meses', 0)} meses)", "—", celda("exp_2026_usd_millones", 0), celda("exp_2026_usd_bbl", 1)])
+    return tabla(["Año", "Volumen (m³)", "USD millones", "USD por barril"], filas)
+
+
+def tabla_contraste():
+    filas = [[str(y), celda(f"exp_{y}_m3", 0), celda(f"contr_term_{y}_m3", 0),
+              celda(f"contr_oleo_{y}_m3", 0) if val(f"contr_oleo_{y}_m3") else "sin dato",
+              celda(f"contr_comex_sobre_terminales_{y}", 2), celda(f"contr_comex_sobre_term_mas_oleo_{y}", 2)] for y in range(2020, 2026)]
+    return tabla(["Año", "Comercio exterior (m³)", "Terminales, planilla 21 (m³)", "Oleoducto a Chile, planilla 20 (m³)",
+                  "Comercio exterior / terminales", "Comercio exterior / (terminales + oleoducto)"], filas)
 
 
 def tabla_registro():
@@ -88,7 +102,7 @@ def tabla_registro():
 
 
 FRAGMENTOS = {"TABLA_REGISTRO": tabla_registro, "LISTA_SOBRE_100": lista_sobre_100, "TABLA_INDICES": tabla_indices, "TABLA_SENSIBILIDAD": tabla_sensibilidad,
-              "TABLA_PCT_EXPORTADO": tabla_pct}
+              "TABLA_PCT_EXPORTADO": tabla_pct, "TABLA_USD": tabla_usd, "TABLA_CONTRASTE": tabla_contraste}
 PAT = re.compile(r"\{\{([A-Za-z_0-9]+)(?::(\d|y))?\}\}")
 
 
@@ -116,12 +130,10 @@ def construir_data():
     prod_anual = [{"anio": int(y), "noconv": round(float(pv.loc[y, "NO CONVENCIONAL"]), 1),
                    "conv": (round(float(pv.loc[y, "CONVENCIONAL"]), 1) if y >= 2022 and pd.notna(pv.loc[y].get("CONVENCIONAL")) else None)}
                   for y in pv.index]
-    c = web("comparacion_produccion_exportacion.csv")
+    c = web("comex_comparacion_mensual.csv")
     c = c.dropna(subset=["idx_produccion_vm_ma12_base2022"])
-    ma12 = [{"m": r.fecha[:7], "vm": limpio(round(r.idx_produccion_vm_ma12_base2022, 2)),
-             "cuenca": limpio(None if pd.isna(r.idx_produccion_cuenca_ma12_base2022) else round(r.idx_produccion_cuenca_ma12_base2022, 2)),
-             "exp": limpio(None if pd.isna(r.idx_exportacion_terminales_ma12_base2022) else round(r.idx_exportacion_terminales_ma12_base2022, 2))}
-            for r in c.itertuples()]
+    ma12 = [{"m": r.fecha[:7], "vm": round(r.idx_produccion_vm_ma12_base2022, 2), "cuenca": round(r.idx_produccion_cuenca_ma12_base2022, 2),
+             "exp": None if pd.isna(r.idx_exportacion_ma12_base2022) else round(r.idx_exportacion_ma12_base2022, 2)} for r in c.itertuples()]
     util = [{"d": r.denominacion_ducto.strip(), "u": r.utilizacion_segmento_mas_cargado_pct, "a": int(r.anio), "m": int(r.meses_con_dato),
              "p": bool(r.parcial), "r": bool(r.a_revisar_capacidad)} for r in rank.head(20).itertuples()]
     cl = web("clasificacion_ductos_petroleo.csv")
@@ -132,19 +144,18 @@ def construir_data():
     for (i, d), g in ex.groupby(["idducto_logico", "denominacion_ducto"]):
         excl.append({"d": d.strip(), "a": ", ".join(str(int(a)) for a in sorted(g["anio"].unique())),
                      "m": ", ".join(sorted({x for s in g["motivo_capacidad_dudosa"].fillna("") for x in str(s).split(",") if x}))})
-    pp = web("exportacion_nacional_por_pais_anual.csv")
-    pp = pp[~pp["pais"].str.upper().isin(["NO IDENTIFICADO", "NO APLICA"])]   # el volumen sin pais se informa aparte
+    pp = web("comex_neuquina_por_pais_anual.csv")
+    pp = pp[~pp["pais"].str.upper().str.startswith("SIN PAIS")]   # el volumen sin pais se informa aparte
     tot = pp.groupby("pais")["volumen_m3"].sum().sort_values(ascending=False)
     paises_rank = [{"pais": p, "vol": round(float(v), 1)} for p, v in tot.head(10).items()]
     paises_rank.append({"pais": "Otros (" + str(len(tot) - 10) + " países)", "vol": round(float(tot.iloc[10:].sum()), 1)})
-    anios = list(range(2019, 2026))
+    anios = list(range(2020, 2026))
     top5 = list(tot.head(5).index)
     pais_series = {p: [round(float(pp[(pp.pais == p) & (pp.anio == y)]["volumen_m3"].sum()), 1) for y in anios] for p in top5}
-    conc = web("concentracion_exportacion_2020_2025.csv")
-    op = [{"e": r.nombre, "pct": r.pct} for r in conc[conc.nivel == "operador_terminal"].itertuples()]
-    ca = [{"e": r.nombre, "pct": r.pct} for r in conc[conc.nivel == "cargador"].head(5).itertuples()]
+    conc = web("comex_neuquina_concentracion_2020_2025.csv")
+    exportadores = [{"e": r.nombre.upper(), "pct": r.pct} for r in conc[conc.nivel == "empresa_agrupada"].head(6).itertuples()]
     return {"mapa": mapa, "top_yac": top, "prod_anual": prod_anual, "ma12": ma12, "ductos_util": util, "ductos_resp": ductos_resp,
-            "ductos_excl": excl, "paises_rank": paises_rank, "pais_years": anios, "pais_series": pais_series, "operadores": op, "cargadores": ca}
+            "ductos_excl": excl, "paises_rank": paises_rank, "pais_years": anios, "pais_series": pais_series, "exportadores": exportadores}
 
 
 def escribir(ruta, texto):

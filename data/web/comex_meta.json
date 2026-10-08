@@ -1,0 +1,22 @@
+{
+  "anio_base": 2022,
+  "bases": [
+    2021,
+    2022,
+    2023
+  ],
+  "ultimo_mes_comex": "2026-08-01",
+  "registros_exportacion_crudo": 125532,
+  "filas_repetidas_exactas": 0,
+  "validacion_precios": {
+    "meses": 9,
+    "correlacion": 0.9903,
+    "diferencia_media_pct": -1.63
+  },
+  "control_produccion": {
+    "mes_con_diferencia": "2024-09",
+    "shale_oficial_sobre_vm_por_pozo_pct": 8.6,
+    "dif_cuenca_sep2024_m3": 157933.3770537842,
+    "dif_cuenca_resto_2022_2025_m3_max_abs": 28.94783150870353
+  }
+}

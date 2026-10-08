@@ -74,295 +74,475 @@
   "unidad": "%",
   "alcance": "produccion acumulada de los pozos omitidos / total"
  },
+ "prod_cuenca_2020_bbl_dia": {
+  "valor": 236002.0139,
+  "unidad": "bbl/dia",
+  "alcance": "2020, produccion de petroleo de la cuenca Neuquina, serie oficial (convencional + no convencional, todas las provincias)"
+ },
+ "exp_2020_bbl_dia": {
+  "valor": 18016.3122,
+  "unidad": "bbl/dia",
+  "alcance": "2020, promedio diario del anio, crudo de la cuenca Neuquina exportado segun comercio exterior declarado por las empresas (producto 'Cuenca Neuquina - ...', todas las vias); incluye convencional y no convencional"
+ },
+ "exp_2020_m3": {
+  "valor": 1048359.29,
+  "unidad": "m3",
+  "alcance": "2020, crudo de la cuenca Neuquina exportado segun comercio exterior declarado por las empresas (producto 'Cuenca Neuquina - ...', todas las vias); incluye convencional y no convencional"
+ },
+ "exp_2020_usd_millones": {
+  "valor": 226.07341456999998,
+  "unidad": "millones de USD",
+  "alcance": "2020, monto FOB declarado, crudo de la cuenca Neuquina exportado segun comercio exterior declarado por las empresas (producto 'Cuenca Neuquina - ...', todas las vias); incluye convencional y no convencional"
+ },
+ "exp_2020_usd_bbl": {
+  "valor": 34.2849,
+  "unidad": "USD/bbl",
+  "alcance": "2020, monto declarado / volumen, crudo de la cuenca Neuquina exportado segun comercio exterior declarado por las empresas (producto 'Cuenca Neuquina - ...', todas las vias); incluye convencional y no convencional"
+ },
+ "exp_2020_meses": {
+  "valor": 6,
+  "unidad": "meses",
+  "alcance": "2020: meses con exportacion declarada de crudo de la cuenca Neuquina"
+ },
+ "pct_exp_cuenca_2020": {
+  "valor": 7.634,
+  "unidad": "%",
+  "alcance": "2020: exportacion de crudo de la cuenca (comercio exterior) / produccion de petroleo de la cuenca Neuquina, serie oficial (convencional + no convencional, todas las provincias)"
+ },
+ "chile_pct_exp_2020": {
+  "valor": 11.887,
+  "unidad": "%",
+  "alcance": "2020: parte de la exportacion declarada con destino Chile"
+ },
+ "prod_cuenca_2021_bbl_dia": {
+  "valor": 278462.4366,
+  "unidad": "bbl/dia",
+  "alcance": "2021, produccion de petroleo de la cuenca Neuquina, serie oficial (convencional + no convencional, todas las provincias)"
+ },
+ "exp_2021_bbl_dia": {
+  "valor": 28144.1787,
+  "unidad": "bbl/dia",
+  "alcance": "2021, promedio diario del anio, crudo de la cuenca Neuquina exportado segun comercio exterior declarado por las empresas (producto 'Cuenca Neuquina - ...', todas las vias); incluye convencional y no convencional"
+ },
+ "exp_2021_m3": {
+  "valor": 1633219.694,
+  "unidad": "m3",
+  "alcance": "2021, crudo de la cuenca Neuquina exportado segun comercio exterior declarado por las empresas (producto 'Cuenca Neuquina - ...', todas las vias); incluye convencional y no convencional"
+ },
+ "exp_2021_usd_millones": {
+  "valor": 706.646885077,
+  "unidad": "millones de USD",
+  "alcance": "2021, monto FOB declarado, crudo de la cuenca Neuquina exportado segun comercio exterior declarado por las empresas (producto 'Cuenca Neuquina - ...', todas las vias); incluye convencional y no convencional"
+ },
+ "exp_2021_usd_bbl": {
+  "valor": 68.7893,
+  "unidad": "USD/bbl",
+  "alcance": "2021, monto declarado / volumen, crudo de la cuenca Neuquina exportado segun comercio exterior declarado por las empresas (producto 'Cuenca Neuquina - ...', todas las vias); incluye convencional y no convencional"
+ },
+ "exp_2021_meses": {
+  "valor": 11,
+  "unidad": "meses",
+  "alcance": "2021: meses con exportacion declarada de crudo de la cuenca Neuquina"
+ },
+ "pct_exp_cuenca_2021": {
+  "valor": 10.107,
+  "unidad": "%",
+  "alcance": "2021: exportacion de crudo de la cuenca (comercio exterior) / produccion de petroleo de la cuenca Neuquina, serie oficial (convencional + no convencional, todas las provincias)"
+ },
+ "chile_pct_exp_2021": {
+  "valor": 8.2018,
+  "unidad": "%",
+  "alcance": "2021: parte de la exportacion declarada con destino Chile"
+ },
  "prod_cuenca_2022_bbl_dia": {
-  "valor": 352234.543,
+  "valor": 352234.5444,
   "unidad": "bbl/dia",
-  "alcance": "2022, produccion total de petroleo de la cuenca Neuquina, solo 2022-2025 (archivos anuales + no convencional historico)"
+  "alcance": "2022, produccion de petroleo de la cuenca Neuquina, serie oficial (convencional + no convencional, todas las provincias)"
  },
- "prod_vm_2022_bbl_dia": {
-  "valor": 243237.377,
+ "exp_2022_bbl_dia": {
+  "valor": 72300.6214,
   "unidad": "bbl/dia",
-  "alcance": "2022, Vaca Muerta"
+  "alcance": "2022, promedio diario del anio, crudo de la cuenca Neuquina exportado segun comercio exterior declarado por las empresas (producto 'Cuenca Neuquina - ...', todas las vias); incluye convencional y no convencional"
  },
- "exp_neu_2022_bbl_dia": {
-  "valor": 73201.297,
-  "unidad": "bbl/dia",
-  "alcance": "2022, promedio de 12 meses, crudo exportado por los terminales neuquinos (Oiltanking + Refineria Bahia Blanca, planilla 21); no incluye el oleoducto a Chile"
+ "exp_2022_m3": {
+  "valor": 4195638.462,
+  "unidad": "m3",
+  "alcance": "2022, crudo de la cuenca Neuquina exportado segun comercio exterior declarado por las empresas (producto 'Cuenca Neuquina - ...', todas las vias); incluye convencional y no convencional"
+ },
+ "exp_2022_usd_millones": {
+  "valor": 2441.420751,
+  "unidad": "millones de USD",
+  "alcance": "2022, monto FOB declarado, crudo de la cuenca Neuquina exportado segun comercio exterior declarado por las empresas (producto 'Cuenca Neuquina - ...', todas las vias); incluye convencional y no convencional"
+ },
+ "exp_2022_usd_bbl": {
+  "valor": 92.5141,
+  "unidad": "USD/bbl",
+  "alcance": "2022, monto declarado / volumen, crudo de la cuenca Neuquina exportado segun comercio exterior declarado por las empresas (producto 'Cuenca Neuquina - ...', todas las vias); incluye convencional y no convencional"
+ },
+ "exp_2022_meses": {
+  "valor": 12,
+  "unidad": "meses",
+  "alcance": "2022: meses con exportacion declarada de crudo de la cuenca Neuquina"
  },
  "pct_exp_cuenca_2022": {
-  "valor": 20.782,
+  "valor": 20.5263,
   "unidad": "%",
-  "alcance": "2022: exportacion de terminales neuquinos / produccion total de petroleo de la cuenca Neuquina, solo 2022-2025 (archivos anuales + no convencional historico)"
+  "alcance": "2022: exportacion de crudo de la cuenca (comercio exterior) / produccion de petroleo de la cuenca Neuquina, serie oficial (convencional + no convencional, todas las provincias)"
  },
- "pct_exp_vm_2022": {
-  "valor": 30.095,
+ "chile_pct_exp_2022": {
+  "valor": 3.143,
   "unidad": "%",
-  "alcance": "2022: exportacion de terminales neuquinos / produccion de Vaca Muerta"
+  "alcance": "2022: parte de la exportacion declarada con destino Chile"
+ },
+ "prod_cuenca_2023_bbl_dia": {
+  "valor": 410639.5019,
+  "unidad": "bbl/dia",
+  "alcance": "2023, produccion de petroleo de la cuenca Neuquina, serie oficial (convencional + no convencional, todas las provincias)"
+ },
+ "exp_2023_bbl_dia": {
+  "valor": 90581.2567,
+  "unidad": "bbl/dia",
+  "alcance": "2023, promedio diario del anio, crudo de la cuenca Neuquina exportado segun comercio exterior declarado por las empresas (producto 'Cuenca Neuquina - ...', todas las vias); incluye convencional y no convencional"
+ },
+ "exp_2023_m3": {
+  "valor": 5256472.175,
+  "unidad": "m3",
+  "alcance": "2023, crudo de la cuenca Neuquina exportado segun comercio exterior declarado por las empresas (producto 'Cuenca Neuquina - ...', todas las vias); incluye convencional y no convencional"
+ },
+ "exp_2023_usd_millones": {
+  "valor": 2514.618643229,
+  "unidad": "millones de USD",
+  "alcance": "2023, monto FOB declarado, crudo de la cuenca Neuquina exportado segun comercio exterior declarado por las empresas (producto 'Cuenca Neuquina - ...', todas las vias); incluye convencional y no convencional"
+ },
+ "exp_2023_usd_bbl": {
+  "valor": 76.0573,
+  "unidad": "USD/bbl",
+  "alcance": "2023, monto declarado / volumen, crudo de la cuenca Neuquina exportado segun comercio exterior declarado por las empresas (producto 'Cuenca Neuquina - ...', todas las vias); incluye convencional y no convencional"
+ },
+ "exp_2023_meses": {
+  "valor": 12,
+  "unidad": "meses",
+  "alcance": "2023: meses con exportacion declarada de crudo de la cuenca Neuquina"
+ },
+ "pct_exp_cuenca_2023": {
+  "valor": 22.0586,
+  "unidad": "%",
+  "alcance": "2023: exportacion de crudo de la cuenca (comercio exterior) / produccion de petroleo de la cuenca Neuquina, serie oficial (convencional + no convencional, todas las provincias)"
+ },
+ "chile_pct_exp_2023": {
+  "valor": 22.4383,
+  "unidad": "%",
+  "alcance": "2023: parte de la exportacion declarada con destino Chile"
+ },
+ "prod_cuenca_2024_bbl_dia": {
+  "valor": 489263.2306,
+  "unidad": "bbl/dia",
+  "alcance": "2024, produccion de petroleo de la cuenca Neuquina, serie oficial (convencional + no convencional, todas las provincias)"
+ },
+ "exp_2024_bbl_dia": {
+  "valor": 119687.9929,
+  "unidad": "bbl/dia",
+  "alcance": "2024, promedio diario del anio, crudo de la cuenca Neuquina exportado segun comercio exterior declarado por las empresas (producto 'Cuenca Neuquina - ...', todas las vias); incluye convencional y no convencional"
+ },
+ "exp_2024_m3": {
+  "valor": 6964578.428,
+  "unidad": "m3",
+  "alcance": "2024, crudo de la cuenca Neuquina exportado segun comercio exterior declarado por las empresas (producto 'Cuenca Neuquina - ...', todas las vias); incluye convencional y no convencional"
+ },
+ "exp_2024_usd_millones": {
+  "valor": 3327.2394129840004,
+  "unidad": "millones de USD",
+  "alcance": "2024, monto FOB declarado, crudo de la cuenca Neuquina exportado segun comercio exterior declarado por las empresas (producto 'Cuenca Neuquina - ...', todas las vias); incluye convencional y no convencional"
+ },
+ "exp_2024_usd_bbl": {
+  "valor": 75.9543,
+  "unidad": "USD/bbl",
+  "alcance": "2024, monto declarado / volumen, crudo de la cuenca Neuquina exportado segun comercio exterior declarado por las empresas (producto 'Cuenca Neuquina - ...', todas las vias); incluye convencional y no convencional"
+ },
+ "exp_2024_meses": {
+  "valor": 12,
+  "unidad": "meses",
+  "alcance": "2024: meses con exportacion declarada de crudo de la cuenca Neuquina"
+ },
+ "pct_exp_cuenca_2024": {
+  "valor": 24.4629,
+  "unidad": "%",
+  "alcance": "2024: exportacion de crudo de la cuenca (comercio exterior) / produccion de petroleo de la cuenca Neuquina, serie oficial (convencional + no convencional, todas las provincias)"
+ },
+ "chile_pct_exp_2024": {
+  "valor": 44.7168,
+  "unidad": "%",
+  "alcance": "2024: parte de la exportacion declarada con destino Chile"
+ },
+ "prod_cuenca_2025_bbl_dia": {
+  "valor": 592113.1421,
+  "unidad": "bbl/dia",
+  "alcance": "2025, produccion de petroleo de la cuenca Neuquina, serie oficial (convencional + no convencional, todas las provincias)"
+ },
+ "exp_2025_bbl_dia": {
+  "valor": 191505.7826,
+  "unidad": "bbl/dia",
+  "alcance": "2025, promedio diario del anio, crudo de la cuenca Neuquina exportado segun comercio exterior declarado por las empresas (producto 'Cuenca Neuquina - ...', todas las vias); incluye convencional y no convencional"
+ },
+ "exp_2025_m3": {
+  "valor": 11113169.046,
+  "unidad": "m3",
+  "alcance": "2025, crudo de la cuenca Neuquina exportado segun comercio exterior declarado por las empresas (producto 'Cuenca Neuquina - ...', todas las vias); incluye convencional y no convencional"
+ },
+ "exp_2025_usd_millones": {
+  "valor": 4536.01681634,
+  "unidad": "millones de USD",
+  "alcance": "2025, monto FOB declarado, crudo de la cuenca Neuquina exportado segun comercio exterior declarado por las empresas (producto 'Cuenca Neuquina - ...', todas las vias); incluye convencional y no convencional"
+ },
+ "exp_2025_usd_bbl": {
+  "valor": 64.8933,
+  "unidad": "USD/bbl",
+  "alcance": "2025, monto declarado / volumen, crudo de la cuenca Neuquina exportado segun comercio exterior declarado por las empresas (producto 'Cuenca Neuquina - ...', todas las vias); incluye convencional y no convencional"
+ },
+ "exp_2025_meses": {
+  "valor": 12,
+  "unidad": "meses",
+  "alcance": "2025: meses con exportacion declarada de crudo de la cuenca Neuquina"
+ },
+ "pct_exp_cuenca_2025": {
+  "valor": 32.3428,
+  "unidad": "%",
+  "alcance": "2025: exportacion de crudo de la cuenca (comercio exterior) / produccion de petroleo de la cuenca Neuquina, serie oficial (convencional + no convencional, todas las provincias)"
+ },
+ "chile_pct_exp_2025": {
+  "valor": 33.7663,
+  "unidad": "%",
+  "alcance": "2025: parte de la exportacion declarada con destino Chile"
+ },
+ "prod_vm_2022_bbl_dia": {
+  "valor": 243237.3772,
+  "unidad": "bbl/dia",
+  "alcance": "2022, Vaca Muerta (por pozo)"
  },
  "vm_sobre_cuenca_2022": {
-  "valor": 69.056,
+  "valor": 69.05551459023789,
   "unidad": "%",
-  "alcance": "2022: Vaca Muerta / cuenca Neuquina"
+  "alcance": "2022: Vaca Muerta (por pozo) / cuenca Neuquina (serie oficial)"
+ },
+ "prod_vm_2023_bbl_dia": {
+  "valor": 306022.6268,
+  "unidad": "bbl/dia",
+  "alcance": "2023, Vaca Muerta (por pozo)"
+ },
+ "vm_sobre_cuenca_2023": {
+  "valor": 74.52342635914347,
+  "unidad": "%",
+  "alcance": "2023: Vaca Muerta (por pozo) / cuenca Neuquina (serie oficial)"
+ },
+ "prod_vm_2024_bbl_dia": {
+  "valor": 387221.3941,
+  "unidad": "bbl/dia",
+  "alcance": "2024, Vaca Muerta (por pozo)"
+ },
+ "vm_sobre_cuenca_2024": {
+  "valor": 79.14377575955122,
+  "unidad": "%",
+  "alcance": "2024: Vaca Muerta (por pozo) / cuenca Neuquina (serie oficial)"
+ },
+ "prod_vm_2025_bbl_dia": {
+  "valor": 501956.1812,
+  "unidad": "bbl/dia",
+  "alcance": "2025, Vaca Muerta (por pozo)"
+ },
+ "vm_sobre_cuenca_2025": {
+  "valor": 84.77369365924768,
+  "unidad": "%",
+  "alcance": "2025: Vaca Muerta (por pozo) / cuenca Neuquina (serie oficial)"
  },
  "idx_exp_2022_base2021": {
-  "valor": 258.179,
+  "valor": 256.8937,
   "unidad": "indice",
-  "alcance": "promedio anual 2022, base 2021 = 100 (exportacion neuquina por terminales)"
+  "alcance": "promedio anual 2022, base 2021 = 100, exportacion de crudo de la cuenca (comercio exterior)"
  },
  "idx_vm_2022_base2021": {
   "valor": 149.582,
   "unidad": "indice",
-  "alcance": "promedio anual 2022, base 2021 = 100 (produccion de Vaca Muerta)"
+  "alcance": "promedio anual 2022, base 2021 = 100, produccion de Vaca Muerta"
+ },
+ "idx_cuenca_2022_base2021": {
+  "valor": 126.4927,
+  "unidad": "indice",
+  "alcance": "promedio anual 2022, base 2021 = 100, produccion de la cuenca"
  },
  "idx_exp_2022_base2022": {
   "valor": 100.0,
   "unidad": "indice",
-  "alcance": "promedio anual 2022, base 2022 = 100 (exportacion neuquina por terminales)"
+  "alcance": "promedio anual 2022, base 2022 = 100, exportacion de crudo de la cuenca (comercio exterior)"
  },
  "idx_vm_2022_base2022": {
   "valor": 100.0,
   "unidad": "indice",
-  "alcance": "promedio anual 2022, base 2022 = 100 (produccion de Vaca Muerta)"
+  "alcance": "promedio anual 2022, base 2022 = 100, produccion de Vaca Muerta"
  },
  "idx_cuenca_2022_base2022": {
   "valor": 100.0,
   "unidad": "indice",
-  "alcance": "promedio anual 2022, base 2022 = 100 (produccion de la cuenca)"
+  "alcance": "promedio anual 2022, base 2022 = 100, produccion de la cuenca"
  },
  "idx_exp_2022_base2023": {
-  "valor": 92.035,
+  "valor": 79.8185,
   "unidad": "indice",
-  "alcance": "promedio anual 2022, base 2023 = 100 (exportacion neuquina por terminales)"
+  "alcance": "promedio anual 2022, base 2023 = 100, exportacion de crudo de la cuenca (comercio exterior)"
  },
  "idx_vm_2022_base2023": {
-  "valor": 79.483,
+  "valor": 79.4835,
   "unidad": "indice",
-  "alcance": "promedio anual 2022, base 2023 = 100 (produccion de Vaca Muerta)"
+  "alcance": "promedio anual 2022, base 2023 = 100, produccion de Vaca Muerta"
  },
  "idx_cuenca_2022_base2023": {
-  "valor": 85.777,
+  "valor": 85.7771,
   "unidad": "indice",
-  "alcance": "promedio anual 2022, base 2023 = 100 (produccion de la cuenca)"
- },
- "prod_cuenca_2023_bbl_dia": {
-  "valor": 410639.501,
-  "unidad": "bbl/dia",
-  "alcance": "2023, produccion total de petroleo de la cuenca Neuquina, solo 2022-2025 (archivos anuales + no convencional historico)"
- },
- "prod_vm_2023_bbl_dia": {
-  "valor": 306022.627,
-  "unidad": "bbl/dia",
-  "alcance": "2023, Vaca Muerta"
- },
- "exp_neu_2023_bbl_dia": {
-  "valor": 79536.308,
-  "unidad": "bbl/dia",
-  "alcance": "2023, promedio de 12 meses, crudo exportado por los terminales neuquinos (Oiltanking + Refineria Bahia Blanca, planilla 21); no incluye el oleoducto a Chile"
- },
- "pct_exp_cuenca_2023": {
-  "valor": 19.369,
-  "unidad": "%",
-  "alcance": "2023: exportacion de terminales neuquinos / produccion total de petroleo de la cuenca Neuquina, solo 2022-2025 (archivos anuales + no convencional historico)"
- },
- "pct_exp_vm_2023": {
-  "valor": 25.99,
-  "unidad": "%",
-  "alcance": "2023: exportacion de terminales neuquinos / produccion de Vaca Muerta"
- },
- "vm_sobre_cuenca_2023": {
-  "valor": 74.523,
-  "unidad": "%",
-  "alcance": "2023: Vaca Muerta / cuenca Neuquina"
+  "alcance": "promedio anual 2022, base 2023 = 100, produccion de la cuenca"
  },
  "idx_exp_2023_base2021": {
-  "valor": 280.523,
+  "valor": 321.8472,
   "unidad": "indice",
-  "alcance": "promedio anual 2023, base 2021 = 100 (exportacion neuquina por terminales)"
+  "alcance": "promedio anual 2023, base 2021 = 100, exportacion de crudo de la cuenca (comercio exterior)"
  },
  "idx_vm_2023_base2021": {
-  "valor": 188.193,
+  "valor": 188.1926,
   "unidad": "indice",
-  "alcance": "promedio anual 2023, base 2021 = 100 (produccion de Vaca Muerta)"
+  "alcance": "promedio anual 2023, base 2021 = 100, produccion de Vaca Muerta"
+ },
+ "idx_cuenca_2023_base2021": {
+  "valor": 147.4667,
+  "unidad": "indice",
+  "alcance": "promedio anual 2023, base 2021 = 100, produccion de la cuenca"
  },
  "idx_exp_2023_base2022": {
-  "valor": 108.654,
+  "valor": 125.2842,
   "unidad": "indice",
-  "alcance": "promedio anual 2023, base 2022 = 100 (exportacion neuquina por terminales)"
+  "alcance": "promedio anual 2023, base 2022 = 100, exportacion de crudo de la cuenca (comercio exterior)"
  },
  "idx_vm_2023_base2022": {
-  "valor": 125.812,
+  "valor": 125.8123,
   "unidad": "indice",
-  "alcance": "promedio anual 2023, base 2022 = 100 (produccion de Vaca Muerta)"
+  "alcance": "promedio anual 2023, base 2022 = 100, produccion de Vaca Muerta"
  },
  "idx_cuenca_2023_base2022": {
-  "valor": 116.581,
+  "valor": 116.5813,
   "unidad": "indice",
-  "alcance": "promedio anual 2023, base 2022 = 100 (produccion de la cuenca)"
+  "alcance": "promedio anual 2023, base 2022 = 100, produccion de la cuenca"
  },
  "idx_exp_2023_base2023": {
   "valor": 100.0,
   "unidad": "indice",
-  "alcance": "promedio anual 2023, base 2023 = 100 (exportacion neuquina por terminales)"
+  "alcance": "promedio anual 2023, base 2023 = 100, exportacion de crudo de la cuenca (comercio exterior)"
  },
  "idx_vm_2023_base2023": {
   "valor": 100.0,
   "unidad": "indice",
-  "alcance": "promedio anual 2023, base 2023 = 100 (produccion de Vaca Muerta)"
+  "alcance": "promedio anual 2023, base 2023 = 100, produccion de Vaca Muerta"
  },
  "idx_cuenca_2023_base2023": {
   "valor": 100.0,
   "unidad": "indice",
-  "alcance": "promedio anual 2023, base 2023 = 100 (produccion de la cuenca)"
- },
- "prod_cuenca_2024_bbl_dia": {
-  "valor": 486549.106,
-  "unidad": "bbl/dia",
-  "alcance": "2024, produccion total de petroleo de la cuenca Neuquina, solo 2022-2025 (archivos anuales + no convencional historico)"
- },
- "prod_vm_2024_bbl_dia": {
-  "valor": 387221.394,
-  "unidad": "bbl/dia",
-  "alcance": "2024, Vaca Muerta"
- },
- "exp_neu_2024_bbl_dia": {
-  "valor": 88782.171,
-  "unidad": "bbl/dia",
-  "alcance": "2024, promedio de 12 meses, crudo exportado por los terminales neuquinos (Oiltanking + Refineria Bahia Blanca, planilla 21); no incluye el oleoducto a Chile"
- },
- "pct_exp_cuenca_2024": {
-  "valor": 18.247,
-  "unidad": "%",
-  "alcance": "2024: exportacion de terminales neuquinos / produccion total de petroleo de la cuenca Neuquina, solo 2022-2025 (archivos anuales + no convencional historico)"
- },
- "pct_exp_vm_2024": {
-  "valor": 22.928,
-  "unidad": "%",
-  "alcance": "2024: exportacion de terminales neuquinos / produccion de Vaca Muerta"
- },
- "vm_sobre_cuenca_2024": {
-  "valor": 79.585,
-  "unidad": "%",
-  "alcance": "2024: Vaca Muerta / cuenca Neuquina"
+  "alcance": "promedio anual 2023, base 2023 = 100, produccion de la cuenca"
  },
  "idx_exp_2024_base2021": {
-  "valor": 313.133,
+  "valor": 425.2673,
   "unidad": "indice",
-  "alcance": "promedio anual 2024, base 2021 = 100 (exportacion neuquina por terminales)"
+  "alcance": "promedio anual 2024, base 2021 = 100, exportacion de crudo de la cuenca (comercio exterior)"
  },
  "idx_vm_2024_base2021": {
-  "valor": 238.127,
+  "valor": 238.1268,
   "unidad": "indice",
-  "alcance": "promedio anual 2024, base 2021 = 100 (produccion de Vaca Muerta)"
+  "alcance": "promedio anual 2024, base 2021 = 100, produccion de Vaca Muerta"
+ },
+ "idx_cuenca_2024_base2021": {
+  "valor": 175.7017,
+  "unidad": "indice",
+  "alcance": "promedio anual 2024, base 2021 = 100, produccion de la cuenca"
  },
  "idx_exp_2024_base2022": {
-  "valor": 121.285,
+  "valor": 165.5421,
   "unidad": "indice",
-  "alcance": "promedio anual 2024, base 2022 = 100 (exportacion neuquina por terminales)"
+  "alcance": "promedio anual 2024, base 2022 = 100, exportacion de crudo de la cuenca (comercio exterior)"
  },
  "idx_vm_2024_base2022": {
-  "valor": 159.195,
+  "valor": 159.1949,
   "unidad": "indice",
-  "alcance": "promedio anual 2024, base 2022 = 100 (produccion de Vaca Muerta)"
+  "alcance": "promedio anual 2024, base 2022 = 100, produccion de Vaca Muerta"
  },
  "idx_cuenca_2024_base2022": {
-  "valor": 138.132,
+  "valor": 138.9027,
   "unidad": "indice",
-  "alcance": "promedio anual 2024, base 2022 = 100 (produccion de la cuenca)"
+  "alcance": "promedio anual 2024, base 2022 = 100, produccion de la cuenca"
  },
  "idx_exp_2024_base2023": {
-  "valor": 111.625,
+  "valor": 132.1333,
   "unidad": "indice",
-  "alcance": "promedio anual 2024, base 2023 = 100 (exportacion neuquina por terminales)"
+  "alcance": "promedio anual 2024, base 2023 = 100, exportacion de crudo de la cuenca (comercio exterior)"
  },
  "idx_vm_2024_base2023": {
-  "valor": 126.534,
+  "valor": 126.5336,
   "unidad": "indice",
-  "alcance": "promedio anual 2024, base 2023 = 100 (produccion de Vaca Muerta)"
+  "alcance": "promedio anual 2024, base 2023 = 100, produccion de Vaca Muerta"
  },
  "idx_cuenca_2024_base2023": {
-  "valor": 118.486,
+  "valor": 119.1467,
   "unidad": "indice",
-  "alcance": "promedio anual 2024, base 2023 = 100 (produccion de la cuenca)"
- },
- "prod_cuenca_2025_bbl_dia": {
-  "valor": 592112.642,
-  "unidad": "bbl/dia",
-  "alcance": "2025, produccion total de petroleo de la cuenca Neuquina, solo 2022-2025 (archivos anuales + no convencional historico)"
- },
- "prod_vm_2025_bbl_dia": {
-  "valor": 501956.181,
-  "unidad": "bbl/dia",
-  "alcance": "2025, Vaca Muerta"
- },
- "exp_neu_2025_bbl_dia": {
-  "valor": 166160.628,
-  "unidad": "bbl/dia",
-  "alcance": "2025, promedio de 12 meses, crudo exportado por los terminales neuquinos (Oiltanking + Refineria Bahia Blanca, planilla 21); no incluye el oleoducto a Chile"
- },
- "pct_exp_cuenca_2025": {
-  "valor": 28.062,
-  "unidad": "%",
-  "alcance": "2025: exportacion de terminales neuquinos / produccion total de petroleo de la cuenca Neuquina, solo 2022-2025 (archivos anuales + no convencional historico)"
- },
- "pct_exp_vm_2025": {
-  "valor": 33.103,
-  "unidad": "%",
-  "alcance": "2025: exportacion de terminales neuquinos / produccion de Vaca Muerta"
- },
- "vm_sobre_cuenca_2025": {
-  "valor": 84.774,
-  "unidad": "%",
-  "alcance": "2025: Vaca Muerta / cuenca Neuquina"
+  "alcance": "promedio anual 2024, base 2023 = 100, produccion de la cuenca"
  },
  "idx_exp_2025_base2021": {
-  "valor": 586.044,
+  "valor": 680.4454,
   "unidad": "indice",
-  "alcance": "promedio anual 2025, base 2021 = 100 (exportacion neuquina por terminales)"
+  "alcance": "promedio anual 2025, base 2021 = 100, exportacion de crudo de la cuenca (comercio exterior)"
  },
  "idx_vm_2025_base2021": {
-  "valor": 308.684,
+  "valor": 308.6845,
   "unidad": "indice",
-  "alcance": "promedio anual 2025, base 2021 = 100 (produccion de Vaca Muerta)"
+  "alcance": "promedio anual 2025, base 2021 = 100, produccion de Vaca Muerta"
+ },
+ "idx_cuenca_2025_base2021": {
+  "valor": 212.6366,
+  "unidad": "indice",
+  "alcance": "promedio anual 2025, base 2021 = 100, produccion de la cuenca"
  },
  "idx_exp_2025_base2022": {
-  "valor": 226.991,
+  "valor": 264.8743,
   "unidad": "indice",
-  "alcance": "promedio anual 2025, base 2022 = 100 (exportacion neuquina por terminales)"
+  "alcance": "promedio anual 2025, base 2022 = 100, exportacion de crudo de la cuenca (comercio exterior)"
  },
  "idx_vm_2025_base2022": {
-  "valor": 206.365,
+  "valor": 206.3647,
   "unidad": "indice",
-  "alcance": "promedio anual 2025, base 2022 = 100 (produccion de Vaca Muerta)"
+  "alcance": "promedio anual 2025, base 2022 = 100, produccion de Vaca Muerta"
  },
  "idx_cuenca_2025_base2022": {
   "valor": 168.102,
   "unidad": "indice",
-  "alcance": "promedio anual 2025, base 2022 = 100 (produccion de la cuenca)"
+  "alcance": "promedio anual 2025, base 2022 = 100, produccion de la cuenca"
  },
  "idx_exp_2025_base2023": {
-  "valor": 208.912,
+  "valor": 211.4188,
   "unidad": "indice",
-  "alcance": "promedio anual 2025, base 2023 = 100 (exportacion neuquina por terminales)"
+  "alcance": "promedio anual 2025, base 2023 = 100, exportacion de crudo de la cuenca (comercio exterior)"
  },
  "idx_vm_2025_base2023": {
-  "valor": 164.026,
+  "valor": 164.0258,
   "unidad": "indice",
-  "alcance": "promedio anual 2025, base 2023 = 100 (produccion de Vaca Muerta)"
+  "alcance": "promedio anual 2025, base 2023 = 100, produccion de Vaca Muerta"
  },
  "idx_cuenca_2025_base2023": {
-  "valor": 144.193,
+  "valor": 144.1929,
   "unidad": "indice",
-  "alcance": "promedio anual 2025, base 2023 = 100 (produccion de la cuenca)"
+  "alcance": "promedio anual 2025, base 2023 = 100, produccion de la cuenca"
  },
  "anio_base_indice": {
   "valor": 2022,
   "unidad": "anio",
-  "alcance": "primer anio con 12 de 12 meses de exportacion neuquina y exportacion >= 10% de la produccion de Vaca Muerta"
+  "alcance": "primer anio con exportacion en 12 de 12 meses y exportacion >= 10% de la produccion de la cuenca"
  },
  "ma12_exp_dic2023": {
-  "valor": 108.819,
+  "valor": 125.21,
   "unidad": "indice",
-  "alcance": "media movil 12m a dic-2023, base 2022, exportacion neuquina por terminales"
+  "alcance": "media movil 12m a dic-2023, base 2022, exportacion de crudo de la cuenca"
  },
  "ma12_vm_dic2023": {
   "valor": 125.778,
@@ -375,9 +555,9 @@
   "alcance": "media movil 12m a dic-2023, base 2022, produccion de la cuenca"
  },
  "ma12_exp_dic2024": {
-  "valor": 121.421,
+  "valor": 165.699,
   "unidad": "indice",
-  "alcance": "media movil 12m a dic-2024, base 2022, exportacion neuquina por terminales"
+  "alcance": "media movil 12m a dic-2024, base 2022, exportacion de crudo de la cuenca"
  },
  "ma12_vm_dic2024": {
   "valor": 159.132,
@@ -385,14 +565,14 @@
   "alcance": "media movil 12m a dic-2024, base 2022, produccion de Vaca Muerta"
  },
  "ma12_cuenca_dic2024": {
-  "valor": 138.089,
+  "valor": 138.872,
   "unidad": "indice",
   "alcance": "media movil 12m a dic-2024, base 2022, produccion de la cuenca"
  },
  "ma12_exp_dic2025": {
-  "valor": 226.531,
+  "valor": 264.629,
   "unidad": "indice",
-  "alcance": "media movil 12m a dic-2025, base 2022, exportacion neuquina por terminales"
+  "alcance": "media movil 12m a dic-2025, base 2022, exportacion de crudo de la cuenca"
  },
  "ma12_vm_dic2025": {
   "valor": 206.209,
@@ -404,45 +584,295 @@
   "unidad": "indice",
   "alcance": "media movil 12m a dic-2025, base 2022, produccion de la cuenca"
  },
+ "exp_2026_usd_millones": {
+  "valor": 4793.036090381,
+  "unidad": "millones de USD",
+  "alcance": "enero-agosto de 2026 (anio parcial), monto FOB declarado"
+ },
+ "exp_2026_meses": {
+  "valor": 8,
+  "unidad": "meses",
+  "alcance": "meses de 2026 con datos de comercio exterior"
+ },
+ "exp_2026_usd_bbl": {
+  "valor": 83.0748,
+  "unidad": "USD/bbl",
+  "alcance": "enero-agosto de 2026, monto declarado / volumen"
+ },
+ "exp_usd_total_2020_2025_millones": {
+  "valor": 13752.0159232,
+  "unidad": "millones de USD",
+  "alcance": "2020-2025, monto FOB declarado de crudo de la cuenca Neuquina"
+ },
+ "contr_comex_sobre_terminales_2020": {
+  "valor": 0.9704,
+  "unidad": "razon",
+  "alcance": "2020: exportacion de comercio exterior / exportacion de Oiltanking + Refineria Bahia Blanca (planilla 21)"
+ },
+ "contr_comex_sobre_term_mas_oleo_2020": {
+  "valor": 0.9704,
+  "unidad": "razon",
+  "alcance": "2020: comercio exterior / (terminales + oleoducto a Chile de la planilla 20)"
+ },
+ "contr_comex_sobre_terminales_2021": {
+  "valor": 0.9926,
+  "unidad": "razon",
+  "alcance": "2021: exportacion de comercio exterior / exportacion de Oiltanking + Refineria Bahia Blanca (planilla 21)"
+ },
+ "contr_comex_sobre_term_mas_oleo_2021": {
+  "valor": 0.9926,
+  "unidad": "razon",
+  "alcance": "2021: comercio exterior / (terminales + oleoducto a Chile de la planilla 20)"
+ },
+ "contr_comex_sobre_terminales_2022": {
+  "valor": 0.9877,
+  "unidad": "razon",
+  "alcance": "2022: exportacion de comercio exterior / exportacion de Oiltanking + Refineria Bahia Blanca (planilla 21)"
+ },
+ "contr_comex_sobre_term_mas_oleo_2022": {
+  "valor": 0.9877,
+  "unidad": "razon",
+  "alcance": "2022: comercio exterior / (terminales + oleoducto a Chile de la planilla 20)"
+ },
+ "contr_comex_sobre_terminales_2023": {
+  "valor": 1.1389,
+  "unidad": "razon",
+  "alcance": "2023: exportacion de comercio exterior / exportacion de Oiltanking + Refineria Bahia Blanca (planilla 21)"
+ },
+ "contr_comex_sobre_term_mas_oleo_2023": {
+  "valor": 0.879,
+  "unidad": "razon",
+  "alcance": "2023: comercio exterior / (terminales + oleoducto a Chile de la planilla 20)"
+ },
+ "contr_comex_sobre_terminales_2024": {
+  "valor": 1.3481,
+  "unidad": "razon",
+  "alcance": "2024: exportacion de comercio exterior / exportacion de Oiltanking + Refineria Bahia Blanca (planilla 21)"
+ },
+ "contr_comex_sobre_term_mas_oleo_2024": {
+  "valor": 0.749,
+  "unidad": "razon",
+  "alcance": "2024: comercio exterior / (terminales + oleoducto a Chile de la planilla 20)"
+ },
+ "contr_comex_sobre_terminales_2025": {
+  "valor": 1.1525,
+  "unidad": "razon",
+  "alcance": "2025: exportacion de comercio exterior / exportacion de Oiltanking + Refineria Bahia Blanca (planilla 21)"
+ },
+ "contr_comex_sobre_term_mas_oleo_2025": {
+  "valor": 0.778,
+  "unidad": "razon",
+  "alcance": "2025: comercio exterior / (terminales + oleoducto a Chile de la planilla 20)"
+ },
+ "contr_term_2020_m3": {
+  "valor": 1080303.0,
+  "unidad": "m3",
+  "alcance": "2020: Oiltanking + Refineria Bahia Blanca (planilla 21)"
+ },
+ "contr_oleo_2020_m3": {
+  "valor": 0.0,
+  "unidad": "m3",
+  "alcance": "2020: oleoducto a Chile, planilla 20 (sin dato antes de mayo de 2023)"
+ },
+ "contr_term_2021_m3": {
+  "valor": 1645332.261,
+  "unidad": "m3",
+  "alcance": "2021: Oiltanking + Refineria Bahia Blanca (planilla 21)"
+ },
+ "contr_oleo_2021_m3": {
+  "valor": 0.0,
+  "unidad": "m3",
+  "alcance": "2021: oleoducto a Chile, planilla 20 (sin dato antes de mayo de 2023)"
+ },
+ "contr_term_2022_m3": {
+  "valor": 4247905.088,
+  "unidad": "m3",
+  "alcance": "2022: Oiltanking + Refineria Bahia Blanca (planilla 21)"
+ },
+ "contr_oleo_2022_m3": {
+  "valor": 0.0,
+  "unidad": "m3",
+  "alcance": "2022: oleoducto a Chile, planilla 20 (sin dato antes de mayo de 2023)"
+ },
+ "contr_term_2023_m3": {
+  "valor": 4615528.725,
+  "unidad": "m3",
+  "alcance": "2023: Oiltanking + Refineria Bahia Blanca (planilla 21)"
+ },
+ "contr_oleo_2023_m3": {
+  "valor": 1364821.389,
+  "unidad": "m3",
+  "alcance": "2023: oleoducto a Chile, planilla 20 (sin dato antes de mayo de 2023)"
+ },
+ "contr_term_2024_m3": {
+  "valor": 5166185.653,
+  "unidad": "m3",
+  "alcance": "2024: Oiltanking + Refineria Bahia Blanca (planilla 21)"
+ },
+ "contr_oleo_2024_m3": {
+  "valor": 4132625.766,
+  "unidad": "m3",
+  "alcance": "2024: oleoducto a Chile, planilla 20 (sin dato antes de mayo de 2023)"
+ },
+ "contr_term_2025_m3": {
+  "valor": 9642378.024,
+  "unidad": "m3",
+  "alcance": "2025: Oiltanking + Refineria Bahia Blanca (planilla 21)"
+ },
+ "contr_oleo_2025_m3": {
+  "valor": 4642336.097,
+  "unidad": "m3",
+  "alcance": "2025: oleoducto a Chile, planilla 20 (sin dato antes de mayo de 2023)"
+ },
+ "contr_chile_comex_sobre_p20_2023": {
+  "valor": 0.8642,
+  "unidad": "razon",
+  "alcance": "2023: exportacion a Chile de comercio exterior / oleoducto a Chile de la planilla 20"
+ },
+ "contr_chile_comex_sobre_p20_2024": {
+  "valor": 0.7536,
+  "unidad": "razon",
+  "alcance": "2024: exportacion a Chile de comercio exterior / oleoducto a Chile de la planilla 20"
+ },
+ "contr_chile_comex_sobre_p20_2025": {
+  "valor": 0.8083,
+  "unidad": "razon",
+  "alcance": "2025: exportacion a Chile de comercio exterior / oleoducto a Chile de la planilla 20"
+ },
+ "val_precios_meses": {
+  "valor": 9,
+  "unidad": "meses",
+  "alcance": "meses 2020-2021 con precio implicito y precio FOB oficial"
+ },
+ "val_precios_corr": {
+  "valor": 0.9903,
+  "unidad": "correlacion",
+  "alcance": "precio implicito (monto / volumen) vs precio FOB oficial Medanito, 2020-2021"
+ },
+ "val_precios_dif_pct": {
+  "valor": -1.63,
+  "unidad": "%",
+  "alcance": "diferencia media del precio implicito frente al FOB oficial, 2020-2021"
+ },
+ "comex_registros_n": {
+  "valor": 125532,
+  "unidad": "registros",
+  "alcance": "registros de exportacion de crudo por cuenca (comercio exterior, 2020-agosto 2026)"
+ },
+ "comex_pais_total_m3": {
+  "valor": 39384296.300000004,
+  "unidad": "m3",
+  "alcance": "2020-agosto 2026, exportacion de crudo de la cuenca (comercio exterior)"
+ },
+ "comex_eeuu_pct": {
+  "valor": 45.937110726033204,
+  "unidad": "%",
+  "alcance": "2020-agosto 2026, destino Estados Unidos / exportacion de crudo de la cuenca"
+ },
+ "comex_chile_pct": {
+  "valor": 26.98347843782599,
+  "unidad": "%",
+  "alcance": "2020-agosto 2026, destino Chile / exportacion de crudo de la cuenca"
+ },
+ "comex_sin_pais_pct": {
+  "valor": 5.940895280132247,
+  "unidad": "%",
+  "alcance": "2020-agosto 2026, volumen sin pais de destino ('no aplica') / exportacion de crudo de la cuenca"
+ },
+ "conc_exp_top3_pct": {
+  "valor": 58.64,
+  "unidad": "%",
+  "alcance": "2020-2025, 3 mayores empresas exportadoras de crudo de la cuenca (agrupando variantes de razon social) / total"
+ },
+ "conc_exp_top1_pct": {
+  "valor": 28.59,
+  "unidad": "%",
+  "alcance": "2020-2025, mayor empresa exportadora (VISTA (Vista Oil & Gas / Vista Energy, variantes de razon social))"
+ },
+ "conc_exp_top3_sin_agrupar_pct": {
+  "valor": 54.910000000000004,
+  "unidad": "%",
+  "alcance": "2020-2025, 3 mayores razones sociales exportadoras sin agrupar variantes"
+ },
+ "vol_exp_pct": {
+  "valor": 29.198512777263574,
+  "unidad": "%",
+  "alcance": "desvio estandar de la variacion mensual, 2022-2025, exportacion de crudo de la cuenca"
+ },
+ "vol_cuenca_pct": {
+  "valor": 1.7133042775132834,
+  "unidad": "%",
+  "alcance": "desvio estandar de la variacion mensual, 2022-2025, produccion de la cuenca"
+ },
+ "vol_ratio": {
+  "valor": 17.042222540670213,
+  "unidad": "veces",
+  "alcance": "cociente de los dos desvios anteriores"
+ },
+ "sep24_shale_sobre_vm_pct": {
+  "valor": 8.6,
+  "unidad": "%",
+  "alcance": "septiembre de 2024: serie oficial 'shale' sobre Vaca Muerta por pozo (unico mes 2022-2025 con diferencia relevante)"
+ },
+ "sep24_dif_cuenca_m3": {
+  "valor": 157933.3770537842,
+  "unidad": "m3",
+  "alcance": "septiembre de 2024: produccion oficial de la cuenca menos la suma por pozo"
+ },
+ "sep24_dif_vm_anual_pct": {
+  "valor": 0.7009230280403058,
+  "unidad": "%",
+  "alcance": "efecto de esa diferencia sobre la produccion anual 2024 de Vaca Muerta"
+ },
+ "exp_neu_2022_bbl_dia": {
+  "valor": 73201.297,
+  "unidad": "bbl/dia",
+  "alcance": "2022, promedio de 12 meses, crudo exportado por los terminales neuquinos (Oiltanking + Refineria Bahia Blanca, planilla 21); no incluye el oleoducto a Chile"
+ },
+ "exp_neu_2023_bbl_dia": {
+  "valor": 79536.308,
+  "unidad": "bbl/dia",
+  "alcance": "2023, promedio de 12 meses, crudo exportado por los terminales neuquinos (Oiltanking + Refineria Bahia Blanca, planilla 21); no incluye el oleoducto a Chile"
+ },
+ "exp_neu_2024_bbl_dia": {
+  "valor": 88782.171,
+  "unidad": "bbl/dia",
+  "alcance": "2024, promedio de 12 meses, crudo exportado por los terminales neuquinos (Oiltanking + Refineria Bahia Blanca, planilla 21); no incluye el oleoducto a Chile"
+ },
+ "exp_neu_2025_bbl_dia": {
+  "valor": 166160.628,
+  "unidad": "bbl/dia",
+  "alcance": "2025, promedio de 12 meses, crudo exportado por los terminales neuquinos (Oiltanking + Refineria Bahia Blanca, planilla 21); no incluye el oleoducto a Chile"
+ },
  "chile_2023_bbl_dia": {
   "valor": 35038.586,
   "unidad": "bbl/dia",
-  "alcance": "2023: oleoducto Puesto Hernandez - Buta Mallin (planilla 20), promedio de los 8 meses con dato; serie aparte"
+  "alcance": "2023: oleoducto Puesto Hernandez - Buta Mallin (planilla 20), promedio de los 8 meses con dato"
  },
  "chile_2023_meses": {
   "valor": 8,
   "unidad": "meses",
-  "alcance": "2023: meses con dato del oleoducto a Chile"
+  "alcance": "2023: meses con dato del oleoducto a Chile (planilla 20)"
  },
  "chile_2024_bbl_dia": {
   "valor": 71020.19,
   "unidad": "bbl/dia",
-  "alcance": "2024: oleoducto Puesto Hernandez - Buta Mallin (planilla 20), promedio de los 12 meses con dato; serie aparte"
+  "alcance": "2024: oleoducto Puesto Hernandez - Buta Mallin (planilla 20), promedio de los 12 meses con dato"
  },
  "chile_2024_meses": {
   "valor": 12,
   "unidad": "meses",
-  "alcance": "2024: meses con dato del oleoducto a Chile"
+  "alcance": "2024: meses con dato del oleoducto a Chile (planilla 20)"
  },
  "chile_2025_bbl_dia": {
   "valor": 79998.262,
   "unidad": "bbl/dia",
-  "alcance": "2025: oleoducto Puesto Hernandez - Buta Mallin (planilla 20), promedio de los 12 meses con dato; serie aparte"
+  "alcance": "2025: oleoducto Puesto Hernandez - Buta Mallin (planilla 20), promedio de los 12 meses con dato"
  },
  "chile_2025_meses": {
   "valor": 12,
   "unidad": "meses",
-  "alcance": "2025: meses con dato del oleoducto a Chile"
- },
- "pct_exp_cuenca_con_chile_2024": {
-  "valor": 32.844035479534924,
-  "unidad": "%",
-  "alcance": "2024: (terminales neuquinos + oleoducto a Chile) / produccion de la cuenca; solo como referencia"
- },
- "pct_exp_cuenca_con_chile_2025": {
-  "valor": 41.57298333785618,
-  "unidad": "%",
-  "alcance": "2025: (terminales neuquinos + oleoducto a Chile) / produccion de la cuenca; solo como referencia"
+  "alcance": "2025: meses con dato del oleoducto a Chile (planilla 20)"
  },
  "exp_neu_ultimo_mes_bbl_dia": {
   "valor": 258874.5,
@@ -469,35 +899,10 @@
   "unidad": "%",
   "alcance": "volumen neuquino / volumen de los 6 operadores, 2018-jun 2026"
  },
- "sin_pais_pct": {
-  "valor": 27.99,
-  "unidad": "%",
-  "alcance": "volumen con pais NO IDENTIFICADO / volumen de los 6 operadores, 2018-jun 2026 (100% TERMAP)"
- },
- "con_pais_pct": {
-  "valor": 72.01,
-  "unidad": "%",
-  "alcance": "volumen con pais identificado / volumen de los 6 operadores, 2018-jun 2026"
- },
- "sin_pais_m3": {
-  "valor": 15044986.0,
-  "unidad": "m3",
-  "alcance": "2018-jun 2026, 6 operadores"
- },
- "termap_pct_2019": {
-  "valor": 78.86991673221605,
-  "unidad": "%",
-  "alcance": "TERMAP / total de los 6 operadores, 2019"
- },
- "termap_pct_2026": {
-  "valor": 3.733563746593315,
-  "unidad": "%",
-  "alcance": "TERMAP / total de los 6 operadores, ene-jun 2026"
- },
  "conc_top3_operadores_pct": {
   "valor": 94.25,
   "unidad": "%",
-  "alcance": "2020-2025, 3 mayores operadores de terminal / 6 operadores (no es concentracion de exportadores)"
+  "alcance": "2020-2025, 3 mayores operadores de terminal / 6 operadores (planilla 21; mide quien opera el puerto, no quien exporta)"
  },
  "conc_op1_pct": {
   "valor": 61.08,
@@ -513,31 +918,6 @@
   "valor": 5.23,
   "unidad": "%",
   "alcance": "2020-2025, operador de terminal n.3 (COMPAÑÍA GENERAL DE COMBUSTIBLES S.A.) / total de los operadores"
- },
- "conc_top3_cargadores_pct": {
-  "valor": 47.02,
-  "unidad": "%",
-  "alcance": "2020-2025, 3 mayores cargadores (quien exporta, agrupando variantes de nombre) / total de los 6 operadores"
- },
- "vol_mensual_exp_neu_pct": {
-  "valor": 34.02,
-  "unidad": "%",
-  "alcance": "desvio estandar de la variacion mensual, 2022-2025, exportacion neuquina por terminales"
- },
- "vol_mensual_prod_vm_pct": {
-  "valor": 2.55,
-  "unidad": "%",
-  "alcance": "desvio estandar de la variacion mensual, 2022-2025, produccion de Vaca Muerta"
- },
- "vol_ratio": {
-  "valor": 13.341176470588238,
-  "unidad": "veces",
-  "alcance": "cociente de los dos desvios anteriores"
- },
- "vol_mensual_exp_nac_pct": {
-  "valor": 76.85,
-  "unidad": "%",
-  "alcance": "2020-2025, exportacion de los 6 operadores de todo el pais (contexto)"
  },
  "ductos_petroleo_n": {
   "valor": 83,

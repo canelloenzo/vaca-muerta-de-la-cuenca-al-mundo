@@ -25,7 +25,6 @@ def verificar(captura_dir=None, ancho=1280):
             resp: document.querySelectorAll('#resp-tbody tr').length,
             excl: document.querySelectorAll('#excl-tbody tr').length,
             emp: document.querySelectorAll('#empresa-list .empresa-row').length,
-            carg: document.querySelectorAll('#cargador-list .empresa-row').length,
             scrollW: document.documentElement.scrollWidth, innerW: window.innerWidth,
             marcadores: (document.body.innerText.match(/\{\{|\[URL_/g) || []).length })""")
         if captura_dir:

@@ -32,8 +32,8 @@ function buildIndicesChart() {
       labels: DATA.ma12.map(d => monthLabel(d.m)),
       datasets: [
         { label: 'Producción de Vaca Muerta', data: DATA.ma12.map(d => d.vm), borderColor: c.oil, backgroundColor: c.oil, borderWidth: 2.5, pointRadius: 0, spanGaps: false, tension: 0.15 },
-        { label: 'Producción de la cuenca (desde 2022)', data: DATA.ma12.map(d => d.cuenca), borderColor: c.oilDeep, backgroundColor: c.oilDeep, borderWidth: 1.75, borderDash: [5,3], pointRadius: 0, spanGaps: false, tension: 0.15 },
-        { label: 'Exportación neuquina por terminales', data: DATA.ma12.map(d => d.exp), borderColor: c.sea, backgroundColor: c.sea, borderWidth: 2, pointRadius: 0, spanGaps: false, tension: 0.15 },
+        { label: 'Producción de la cuenca (serie oficial)', data: DATA.ma12.map(d => d.cuenca), borderColor: c.oilDeep, backgroundColor: c.oilDeep, borderWidth: 2.25, pointRadius: 0, spanGaps: false, tension: 0.15 },
+        { label: 'Exportación de crudo de la cuenca (comercio exterior)', data: DATA.ma12.map(d => d.exp), borderColor: c.sea, backgroundColor: c.sea, borderWidth: 2, pointRadius: 0, spanGaps: false, tension: 0.15 },
         { label: 'Base 100', data: DATA.ma12.map(() => 100), borderColor: c.border, borderWidth: 1, borderDash: [3,3], pointRadius: 0 }
       ]
     },
@@ -134,7 +134,7 @@ function listaBarras(id, filas) {
     </div>
   `).join('');
 }
-function renderEmpresas() { listaBarras('empresa-list', DATA.operadores); listaBarras('cargador-list', DATA.cargadores); }
+function renderEmpresas() { listaBarras('empresa-list', DATA.exportadores); }
 
 /* ---------------- Init ---------------- */
 // Cada panel se inicializa por separado: si uno falla, no arrastra a los demás.

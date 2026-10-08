@@ -374,6 +374,51 @@ in
 
 ---
 
+## 13. Fact_ExportacionComex (serie principal de exportación, comercio exterior)
+
+```powerquery-m
+// nombre: Fact_ExportacionComex
+let
+    Origen = Csv.Document(File.Contents(RutaClean & "fact_exportacion_crudo_comex.csv"),
+        [Delimiter=",", Encoding=65001, QuoteStyle=QuoteStyle.Csv]),
+    Encabezados = Table.PromoteHeaders(Origen, [PromoteAllScalars=true]),
+    Tipos = Table.TransformColumnTypes(Encabezados, {
+        {"anio", Int64.Type}, {"mes", Int64.Type}, {"empresa", type text},
+        {"subtipodecomercializacion", type text}, {"producto", type text}, {"provincia", type text},
+        {"cantidad", type number}, {"monto", type number}, {"pais", type text},
+        {"fecha_data", type text}, {"fecha", type date}, {"cuenca", type text}
+    }, "en-US")
+in
+    Tipos
+```
+
+> Fuente: `scripts/16_comercio_exterior.py` (comercio exterior de Refinación y Comercialización, cache de la tabla dinámica). `cantidad` está en m³ y `monto` en USD FOB declarado. `cuenca` sale del texto del producto ("Cuenca Neuquina", "Cuenca Golfo San Jorge", ...). Las medidas filtran `cuenca = "Cuenca Neuquina"`. Relación: `Fact_ExportacionComex[fecha]` con `Dim_Fecha[fecha]` (muchos a uno).
+
+---
+
+## 14. Fact_ProduccionCuenca (producción oficial por cuenca)
+
+```powerquery-m
+// nombre: Fact_ProduccionCuenca
+let
+    Origen = Csv.Document(File.Contents(RutaClean & "produccion_cuenca_oficial_mensual.csv"),
+        [Delimiter=",", Encoding=65001, QuoteStyle=QuoteStyle.Csv]),
+    Encabezados = Table.PromoteHeaders(Origen, [PromoteAllScalars=true]),
+    Tipos = Table.TransformColumnTypes(Encabezados, {
+        {"fecha", type date}, {"indice_tiempo", type text},
+        {"cuenca_austral", type number}, {"cuenca_gsj", type number}, {"cuenca_neuquina", type number},
+        {"cuenca_noroeste", type number}, {"cuenca_cuyana", type number}, {"total", type number},
+        {"total_diario", type number}, {"shale", type number}, {"tight", type number},
+        {"part_no_conv", type number}, {"kbbl_diario", type number}
+    }, "en-US")
+in
+    Tipos
+```
+
+> Fuente: serie histórica oficial de producción de petróleo por cuenca (m³ por mes). Relación: `Fact_ProduccionCuenca[fecha]` con `Dim_Fecha[fecha]` (muchos a uno).
+
+---
+
 ## Relaciones a crear (vista de modelo)
 
 | Desde | Campo | Hacia | Campo | Cardinalidad |

@@ -71,58 +71,103 @@ reg("pozos_mapa_omitidos", len(dud), "pozos", "coordenada a mas de 30 km de la m
 reg("pozos_mapa", int((~mapa["idpozo"].isin(ids_dud)).sum()), "pozos", "pozos dibujados en el mapa")
 reg("pozos_omitidos_pct_prod", 100 * dud["produccion_acumulada_bbl"].sum() / pa["prod_pet_bbl"].sum(), "%", "produccion acumulada de los pozos omitidos / total")
 
-# ------------------------------------------------------------------ produccion de la cuenca y exportacion
+# ------------------------------------------------------------------ serie principal: comercio exterior (script 16) y produccion oficial de la cuenca
+ca = leer("comex_anual.csv").set_index("anio")
+cm = leer("comex_comparacion_mensual.csv")
+cm["fecha"] = pd.to_datetime(cm["fecha"])
+cm = cm.set_index("fecha")
+cmx = json.load(open(os.path.join(WEB, "comex_meta.json"), encoding="utf-8"))
+cpais = leer("comex_neuquina_por_pais_anual.csv")
+cconc = leer("comex_neuquina_concentracion_2020_2025.csv")
+cval = leer("comex_validacion_precios.csv")
+ALC_COMEX = "crudo de la cuenca Neuquina exportado segun comercio exterior declarado por las empresas (producto 'Cuenca Neuquina - ...', todas las vias); incluye convencional y no convencional"
+ALC_CUENCA = "produccion de petroleo de la cuenca Neuquina, serie oficial (convencional + no convencional, todas las provincias)"
+
+for y in range(2020, 2026):
+    reg(f"prod_cuenca_{y}_bbl_dia", ca.loc[y, "prod_cuenca_bbl_dia"], "bbl/dia", f"{y}, {ALC_CUENCA}")
+    reg(f"exp_{y}_bbl_dia", ca.loc[y, "exportacion_bbl_dia"], "bbl/dia", f"{y}, promedio diario del anio, {ALC_COMEX}")
+    reg(f"exp_{y}_m3", ca.loc[y, "exportacion_m3"], "m3", f"{y}, {ALC_COMEX}")
+    reg(f"exp_{y}_usd_millones", ca.loc[y, "exportacion_usd"] / 1e6, "millones de USD", f"{y}, monto FOB declarado, {ALC_COMEX}")
+    reg(f"exp_{y}_usd_bbl", ca.loc[y, "usd_por_bbl"], "USD/bbl", f"{y}, monto declarado / volumen, {ALC_COMEX}")
+    reg(f"exp_{y}_meses", int(ca.loc[y, "meses_con_exportacion"]), "meses", f"{y}: meses con exportacion declarada de crudo de la cuenca Neuquina")
+    reg(f"pct_exp_cuenca_{y}", ca.loc[y, "pct_exportado_cuenca"], "%", f"{y}: exportacion de crudo de la cuenca (comercio exterior) / {ALC_CUENCA}")
+    reg(f"chile_pct_exp_{y}", ca.loc[y, "chile_pct_de_exportacion"], "%", f"{y}: parte de la exportacion declarada con destino Chile")
 for y in range(2022, 2026):
-    reg(f"prod_cuenca_{y}_bbl_dia", an.loc[y, "prod_cuenca_bbl_dia"], "bbl/dia", f"{y}, {ALC_CUENCA}")
-    reg(f"prod_vm_{y}_bbl_dia", an.loc[y, "prod_vm_bbl_dia"], "bbl/dia", f"{y}, Vaca Muerta")
-    reg(f"exp_neu_{y}_bbl_dia", an.loc[y, "exportacion_terminales_bbl_dia"], "bbl/dia", f"{y}, promedio de 12 meses, {ALC_TERM}")
-    reg(f"pct_exp_cuenca_{y}", an.loc[y, "pct_exportado_cuenca"], "%", f"{y}: exportacion de terminales neuquinos / {ALC_CUENCA}")
-    reg(f"pct_exp_vm_{y}", an.loc[y, "pct_exportado_vm"], "%", f"{y}: exportacion de terminales neuquinos / produccion de Vaca Muerta")
-    reg(f"vm_sobre_cuenca_{y}", an.loc[y, "vm_sobre_cuenca_pct"], "%", f"{y}: Vaca Muerta / cuenca Neuquina")
+    reg(f"prod_vm_{y}_bbl_dia", ca.loc[y, "prod_vm_bbl_dia"], "bbl/dia", f"{y}, Vaca Muerta (por pozo)")
+    reg(f"vm_sobre_cuenca_{y}", 100 * ca.loc[y, "prod_vm_bbl_dia"] / ca.loc[y, "prod_cuenca_bbl_dia"], "%", f"{y}: Vaca Muerta (por pozo) / cuenca Neuquina (serie oficial)")
+for y in range(2022, 2026):
     for b in (2021, 2022, 2023):
-        for serie, col in (("exp", "idx_exportacion_terminales"), ("vm", "idx_produccion_vm"), ("cuenca", "idx_produccion_cuenca")):
-            v = an.loc[y, f"{col}_base{b}"]
-            if pd.notna(v):
-                reg(f"idx_{serie}_{y}_base{b}", v, "indice", f"promedio anual {y}, base {b} = 100 ({'exportacion neuquina por terminales' if serie == 'exp' else 'produccion ' + ('de Vaca Muerta' if serie == 'vm' else 'de la cuenca')})")
-reg("anio_base_indice", k["indice_anio_base"], "anio", "primer anio con 12 de 12 meses de exportacion neuquina y exportacion >= 10% de la produccion de Vaca Muerta")
+        for serie, col, desc in (("exp", "idx_exportacion", "exportacion de crudo de la cuenca (comercio exterior)"), ("vm", "idx_produccion_vm", "produccion de Vaca Muerta"),
+                                 ("cuenca", "idx_produccion_cuenca", "produccion de la cuenca")):
+            reg(f"idx_{serie}_{y}_base{b}", ca.loc[y, f"{col}_base{b}"], "indice", f"promedio anual {y}, base {b} = 100, {desc}")
+reg("anio_base_indice", cmx["anio_base"], "anio", "primer anio con exportacion en 12 de 12 meses y exportacion >= 10% de la produccion de la cuenca")
 for y in (2023, 2024, 2025):
     f = pd.Timestamp(f"{y}-12-01")
-    reg(f"ma12_exp_dic{y}", mens.loc[f, "idx_exportacion_terminales_ma12_base2022"], "indice", f"media movil 12m a dic-{y}, base 2022, exportacion neuquina por terminales")
-    reg(f"ma12_vm_dic{y}", mens.loc[f, "idx_produccion_vm_ma12_base2022"], "indice", f"media movil 12m a dic-{y}, base 2022, produccion de Vaca Muerta")
-    reg(f"ma12_cuenca_dic{y}", mens.loc[f, "idx_produccion_cuenca_ma12_base2022"], "indice", f"media movil 12m a dic-{y}, base 2022, produccion de la cuenca")
-# oleoducto a Chile: serie aparte
+    reg(f"ma12_exp_dic{y}", cm.loc[f, "idx_exportacion_ma12_base2022"], "indice", f"media movil 12m a dic-{y}, base 2022, exportacion de crudo de la cuenca")
+    reg(f"ma12_vm_dic{y}", cm.loc[f, "idx_produccion_vm_ma12_base2022"], "indice", f"media movil 12m a dic-{y}, base 2022, produccion de Vaca Muerta")
+    reg(f"ma12_cuenca_dic{y}", cm.loc[f, "idx_produccion_cuenca_ma12_base2022"], "indice", f"media movil 12m a dic-{y}, base 2022, produccion de la cuenca")
+# 2026 parcial (enero-agosto), solo para USD
+reg("exp_2026_usd_millones", ca.loc[2026, "exportacion_usd"] / 1e6, "millones de USD", "enero-agosto de 2026 (anio parcial), monto FOB declarado")
+reg("exp_2026_meses", int(ca.loc[2026, "meses_del_anio_con_dato"]), "meses", "meses de 2026 con datos de comercio exterior")
+reg("exp_2026_usd_bbl", ca.loc[2026, "usd_por_bbl"], "USD/bbl", "enero-agosto de 2026, monto declarado / volumen")
+reg("exp_usd_total_2020_2025_millones", ca.loc[2020:2025, "exportacion_usd"].sum() / 1e6, "millones de USD", "2020-2025, monto FOB declarado de crudo de la cuenca Neuquina")
+# contraste con otras fuentes (terminales maritimos y oleoducto a Chile)
+for y in range(2020, 2026):
+    reg(f"contr_comex_sobre_terminales_{y}", ca.loc[y, "razon_comex_sobre_terminales"], "razon", f"{y}: exportacion de comercio exterior / exportacion de Oiltanking + Refineria Bahia Blanca (planilla 21)")
+    reg(f"contr_comex_sobre_term_mas_oleo_{y}", ca.loc[y, "razon_comex_sobre_terminales_mas_oleoducto"], "razon", f"{y}: comercio exterior / (terminales + oleoducto a Chile de la planilla 20)")
+for y in range(2020, 2026):
+    reg(f"contr_term_{y}_m3", ca.loc[y, "terminales_m3"], "m3", f"{y}: Oiltanking + Refineria Bahia Blanca (planilla 21)")
+    reg(f"contr_oleo_{y}_m3", ca.loc[y, "oleoducto_chile_planilla20_m3"], "m3", f"{y}: oleoducto a Chile, planilla 20 (sin dato antes de mayo de 2023)")
+for y in (2023, 2024, 2025):
+    reg(f"contr_chile_comex_sobre_p20_{y}", ca.loc[y, "razon_chile_comex_sobre_planilla20"], "razon", f"{y}: exportacion a Chile de comercio exterior / oleoducto a Chile de la planilla 20")
+reg("val_precios_meses", cmx["validacion_precios"]["meses"], "meses", "meses 2020-2021 con precio implicito y precio FOB oficial")
+reg("val_precios_corr", cmx["validacion_precios"]["correlacion"], "correlacion", "precio implicito (monto / volumen) vs precio FOB oficial Medanito, 2020-2021")
+reg("val_precios_dif_pct", cmx["validacion_precios"]["diferencia_media_pct"], "%", "diferencia media del precio implicito frente al FOB oficial, 2020-2021")
+reg("comex_registros_n", cmx["registros_exportacion_crudo"], "registros", "registros de exportacion de crudo por cuenca (comercio exterior, 2020-agosto 2026)")
+# destinos y concentracion (crudo de la cuenca Neuquina, 2020-agosto 2026)
+tp = cpais.groupby("pais")["volumen_m3"].sum().sort_values(ascending=False)
+reg("comex_pais_total_m3", tp.sum(), "m3", "2020-agosto 2026, exportacion de crudo de la cuenca (comercio exterior)")
+reg("comex_eeuu_pct", 100 * tp.get("ESTADOS UNIDOS", 0) / tp.sum(), "%", "2020-agosto 2026, destino Estados Unidos / exportacion de crudo de la cuenca")
+reg("comex_chile_pct", 100 * tp.get("CHILE", 0) / tp.sum(), "%", "2020-agosto 2026, destino Chile / exportacion de crudo de la cuenca")
+reg("comex_sin_pais_pct", 100 * tp.get("SIN PAIS (no aplica)", 0) / tp.sum(), "%", "2020-agosto 2026, volumen sin pais de destino ('no aplica') / exportacion de crudo de la cuenca")
+ag = cconc[cconc["nivel"] == "empresa_agrupada"].reset_index(drop=True)
+reg("conc_exp_top3_pct", ag["pct"].head(3).sum(), "%", "2020-2025, 3 mayores empresas exportadoras de crudo de la cuenca (agrupando variantes de razon social) / total")
+reg("conc_exp_top1_pct", ag.loc[0, "pct"], "%", f"2020-2025, mayor empresa exportadora ({ag.loc[0, 'nombre']})")
+sa = cconc[cconc["nivel"] == "empresa_sin_agrupar"].reset_index(drop=True)
+reg("conc_exp_top3_sin_agrupar_pct", sa["pct"].head(3).sum(), "%", "2020-2025, 3 mayores razones sociales exportadoras sin agrupar variantes")
+# volatilidad (2022-2025, mismo alcance: exportacion de la cuenca vs produccion de la cuenca)
+x = cm.loc["2022-01-01":"2025-12-01"]
+ve, vc = (100 * x[c].pct_change().dropna().std() for c in ("exportacion_bbl_dia", "prod_cuenca_bbl_dia"))
+reg("vol_exp_pct", ve, "%", "desvio estandar de la variacion mensual, 2022-2025, exportacion de crudo de la cuenca")
+reg("vol_cuenca_pct", vc, "%", "desvio estandar de la variacion mensual, 2022-2025, produccion de la cuenca")
+reg("vol_ratio", ve / vc, "veces", "cociente de los dos desvios anteriores")
+# control de la produccion por pozo frente a la serie oficial
+reg("sep24_shale_sobre_vm_pct", cmx["control_produccion"]["shale_oficial_sobre_vm_por_pozo_pct"], "%", "septiembre de 2024: serie oficial 'shale' sobre Vaca Muerta por pozo (unico mes 2022-2025 con diferencia relevante)")
+reg("sep24_dif_cuenca_m3", cmx["control_produccion"]["dif_cuenca_sep2024_m3"], "m3", "septiembre de 2024: produccion oficial de la cuenca menos la suma por pozo")
+reg("sep24_dif_vm_anual_pct", 100 * cmx["control_produccion"]["dif_cuenca_sep2024_m3"] / (ca.loc[2024, "prod_vm_bbl_dia"] * 366 / 6.2898), "%", "efecto de esa diferencia sobre la produccion anual 2024 de Vaca Muerta")
+
+# ------------------------------------------------------------------ contraste: terminales maritimos (planilla 21) y oleoducto a Chile (planilla 20)
+for y in (2022, 2023, 2024, 2025):
+    reg(f"exp_neu_{y}_bbl_dia", an.loc[y, "exportacion_terminales_bbl_dia"], "bbl/dia", f"{y}, promedio de 12 meses, {ALC_TERM}")
 for y in (2023, 2024, 2025):
     reg(f"chile_{y}_bbl_dia", an.loc[y, "exportacion_oleoducto_chile_bbl_dia"], "bbl/dia",
-        f"{y}: oleoducto Puesto Hernandez - Buta Mallin (planilla 20), promedio de los {int(an.loc[y, 'meses_oleoducto_chile_con_dato'])} meses con dato; serie aparte")
-    reg(f"chile_{y}_meses", int(an.loc[y, "meses_oleoducto_chile_con_dato"]), "meses", f"{y}: meses con dato del oleoducto a Chile")
-for y in (2024, 2025):
-    reg(f"pct_exp_cuenca_con_chile_{y}", 100 * (an.loc[y, "exportacion_terminales_bbl_dia"] + an.loc[y, "exportacion_oleoducto_chile_bbl_dia"]) / an.loc[y, "prod_cuenca_bbl_dia"],
-        "%", f"{y}: (terminales neuquinos + oleoducto a Chile) / produccion de la cuenca; solo como referencia")
+        f"{y}: oleoducto Puesto Hernandez - Buta Mallin (planilla 20), promedio de los {int(an.loc[y, 'meses_oleoducto_chile_con_dato'])} meses con dato")
+    reg(f"chile_{y}_meses", int(an.loc[y, "meses_oleoducto_chile_con_dato"]), "meses", f"{y}: meses con dato del oleoducto a Chile (planilla 20)")
 reg("exp_neu_ultimo_mes_bbl_dia", k["exportacion_terminales_neuquinos_ultimo_mes_bbl_dia"], "bbl/dia", f"jun-2026, {ALC_TERM}")
 reg("exp_neu_ultimo_mes_m3", k["exportacion_terminales_neuquinos_ultimo_mes_m3"], "m3", f"jun-2026, {ALC_TERM}")
 
-# ------------------------------------------------------------------ exportacion nacional por terminales (planilla 21)
+# ------------------------------------------------------------------ planilla 21 completa (terminales de todo el pais): contexto
 tt = term[term["operador_terminal"] != "TOTAL"]
 tot_nac = tt["volumen_total_m3"].sum()
 neu = tt[tt["origen_crudo_proxy"].str.startswith("Cuenca Neuquina")]["volumen_total_m3"].sum()
 reg("exp_nacional_total_m3", tot_nac, "m3", "2018-jun 2026, 6 operadores de terminal de todo el pais (planilla 21)")
 reg("exp_neuquina_total_m3", neu, "m3", "2018-jun 2026, Oiltanking + Refineria Bahia Blanca")
 reg("exp_neuquina_pct_del_nacional", 100 * neu / tot_nac, "%", "volumen neuquino / volumen de los 6 operadores, 2018-jun 2026")
-reg("sin_pais_pct", k["pct_no_identificado"], "%", "volumen con pais NO IDENTIFICADO / volumen de los 6 operadores, 2018-jun 2026 (100% TERMAP)")
-reg("con_pais_pct", k["pct_con_pais_identificado"], "%", "volumen con pais identificado / volumen de los 6 operadores, 2018-jun 2026")
-reg("sin_pais_m3", k["volumen_no_identificado_m3"], "m3", "2018-jun 2026, 6 operadores")
-termap = tt[tt["operador_terminal"].str.startswith("TERMAP")]
-reg("termap_pct_2019", 100 * termap.loc[termap["anio"] == 2019, "volumen_total_m3"].sum() / tt.loc[tt["anio"] == 2019, "volumen_total_m3"].sum(), "%", "TERMAP / total de los 6 operadores, 2019")
-reg("termap_pct_2026", 100 * termap.loc[termap["anio"] == 2026, "volumen_total_m3"].sum() / tt.loc[tt["anio"] == 2026, "volumen_total_m3"].sum(), "%", "TERMAP / total de los 6 operadores, ene-jun 2026")
-reg("conc_top3_operadores_pct", k["concentracion_top3_operadores_terminal_pct_2020_2025"], "%", "2020-2025, 3 mayores operadores de terminal / 6 operadores (no es concentracion de exportadores)")
+reg("conc_top3_operadores_pct", k["concentracion_top3_operadores_terminal_pct_2020_2025"], "%", "2020-2025, 3 mayores operadores de terminal / 6 operadores (planilla 21; mide quien opera el puerto, no quien exporta)")
 _op = conc[conc["nivel"] == "operador_terminal"].head(3)
 for _i, _r in enumerate(_op.itertuples(), 1):
     reg(f"conc_op{_i}_pct", _r.pct, "%", f"2020-2025, operador de terminal n.{_i} ({_r.nombre}) / total de los operadores")
-reg("conc_top3_cargadores_pct", k["concentracion_top3_cargadores_pct_2020_2025"], "%", "2020-2025, 3 mayores cargadores (quien exporta, agrupando variantes de nombre) / total de los 6 operadores")
-reg("vol_mensual_exp_neu_pct", k["volatilidad_mensual_2022_2025_exportacion_terminales_pct"], "%", "desvio estandar de la variacion mensual, 2022-2025, exportacion neuquina por terminales")
-reg("vol_mensual_prod_vm_pct", k["volatilidad_mensual_2022_2025_produccion_vm_pct"], "%", "desvio estandar de la variacion mensual, 2022-2025, produccion de Vaca Muerta")
-reg("vol_ratio", k["volatilidad_mensual_2022_2025_exportacion_terminales_pct"] / k["volatilidad_mensual_2022_2025_produccion_vm_pct"], "veces", "cociente de los dos desvios anteriores")
-reg("vol_mensual_exp_nac_pct", k["volatilidad_mensual_2020_2025_exportacion_nacional_terminales_pct"], "%", "2020-2025, exportacion de los 6 operadores de todo el pais (contexto)")
+
 
 # ------------------------------------------------------------------ ductos
 reg("ductos_petroleo_n", rd["ductos_logicos_que_mueven_petroleo"], "ductos", "ductos logicos con volumen de petroleo > 0 en la planilla 20 (los dos id del mismo ducto cuentan una vez)")

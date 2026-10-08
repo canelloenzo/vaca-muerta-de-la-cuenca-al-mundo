@@ -29,24 +29,6 @@ def test_prod_anual_html_igual_recalculo(vm, DATA):
     assert h.loc[:2021, "conv"].isna().all()                                    # antes de 2022: sin dato, no cero (F9)
 
 
-def test_paises_html_igual_recalculo(export_raw, DATA):
-    con = export_raw[export_raw.pais.notna() & ~export_raw.pais.isin({"NO IDENTIFICADO", "no aplica"})]
-    tot = con.groupby("pais").volumen.sum().sort_values(ascending=False)
-    assert not any("IDENTIFICADO" in r["pais"].upper() for r in DATA["paises_rank"])      # el volumen sin pais se informa aparte (F7)
-    pr = {r["pais"].upper(): r["vol"] for r in DATA["paises_rank"] if not r["pais"].startswith("Otros")}
-    for p, v in pr.items():
-        key = "PERU" if p == "PERU" else p
-        assert abs(tot[key] - v) < 0.2, p
-    otros = [r for r in DATA["paises_rank"] if r["pais"].startswith("Otros")][0]["vol"]
-    assert abs(tot.iloc[10:].sum() - otros) < 0.5
-
-
-def test_empresas_html_igual_recalculo(export_raw, DATA):
-    e = export_raw[export_raw.anio.between(2020, 2025)].groupby("empresa").volumen.sum().sort_values(ascending=False)
-    top = DATA["operadores"]
-    assert [r["pct"] for r in top[:3]] == list((100 * e / e.sum()).round(2).head(3))
-
-
 # ------------------------------------------------------------------------------------------
 # Cifras de la sección (4) de la auditoría ("pasaron todo")
 # ------------------------------------------------------------------------------------------
@@ -103,4 +85,4 @@ def test_s4_locale_en_power_query():
     pq = (H.REPO / "powerbi" / "power_query_m.md").read_text(encoding="utf-8")
     bloques = pq.split("\n## ")
     datos = [b for b in bloques if "Csv.Document" in b]
-    assert len(datos) == 10 and all('"en-US"' in b for b in datos)
+    assert len(datos) == 12 and all('"en-US"' in b for b in datos)

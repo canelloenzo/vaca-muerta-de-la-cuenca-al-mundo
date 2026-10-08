@@ -308,14 +308,13 @@ RETURN
 
 ---
 
-## Grupo E — Índices base 2022 (Página 3)
+## Grupo E — Índices base 2022 y exportación por comercio exterior (Páginas 1, 3, 5 y 6)
 
-> **Reemplaza al Grupo E original (base 2019, exportación de todas las terminales del país).** Motivos (auditoría F1):
-> la base 2019 estaba compuesta casi en su totalidad por TERMAP (Golfo San Jorge) y la serie de exportación incluía
-> terminales de todo el país. Ahora la serie de exportación es el crudo exportado por los terminales neuquinos
-> (Oiltanking + Refinería Bahía Blanca) y la base es el promedio de 2022: primer año con exportación neuquina en 12 de 12
-> meses y exportación mayor o igual al 10% de la producción de Vaca Muerta. Las conclusiones usan promedios anuales y
-> medias móviles de 12 meses, no un mes aislado.
+> **Reemplaza al Grupo E original (base 2019, exportación de todas las terminales del país).** La serie de exportación es ahora el
+> crudo de la cuenca Neuquina según el comercio exterior declarado por las empresas (`Fact_ExportacionComex`, serie principal), y la
+> producción de la cuenca es la serie oficial (`Fact_ProduccionCuenca`). Los terminales marítimos (planilla 21) quedan como contraste.
+> La base es el promedio de 2022: primer año con exportación en 12 de 12 meses y exportación mayor o igual al 10% de la producción de la
+> cuenca. Las conclusiones usan promedios anuales y medias móviles de 12 meses, no un mes aislado.
 >
 > Nota (F16): el salto de enero de 2018 contra el promedio de 2019, que se citaba con un valor no reproducible, recalculado da +1.761%; con la base 2022 ese contraste ya no se usa.
 >
@@ -323,66 +322,116 @@ RETURN
 > `CAMBIOS_POWERBI.md` y salen de `data/web/registro_cifras.json`.
 
 ```dax
-Volumen Exportado Neuquino =
-CALCULATE(
-    [Volumen Exportado],
-    Fact_MovimientosExportacion[empresa] IN { "Oiltanking EBYTEM S.A.", "Refineria Bahia Blanca SAU" }
-)
+Dias del Periodo =
+SUMX(VALUES(Dim_Fecha[anio_mes]), DAY(EOMONTH(MIN(Dim_Fecha[fecha]), 0)))
 ```
-> Alcance: crudo exportado por los terminales neuquinos (planilla 21). No incluye el oleoducto a Chile. Devuelve vacío
-> (no cero) en los meses sin filas de esos operadores.
+> Cuenta los días de cada mes una sola vez.
 
 ```dax
-Exportacion Neuquina (bbl-dia) =
-VAR Dias = SUMX(VALUES(Dim_Fecha[anio_mes]), DAY(EOMONTH(MIN(Dim_Fecha[fecha]), 0)))
-RETURN
-    DIVIDE([Volumen Exportado Neuquino] * 6.2898, Dias)
+Volumen Exportado Cuenca =
+CALCULATE(
+    SUM(Fact_ExportacionComex[cantidad]),
+    Fact_ExportacionComex[cuenca] = "Cuenca Neuquina"
+)
 ```
-> 1 m³ = 6,2898 bbl, el mismo factor del resto del proyecto. Los días se cuentan una vez por mes.
+> m³. Alcance: crudo de la cuenca Neuquina (Neuquén, Río Negro, La Pampa y Mendoza), convencional y no convencional, todas las vías.
+
+```dax
+Monto Exportado Cuenca (USD) =
+CALCULATE(
+    SUM(Fact_ExportacionComex[monto]),
+    Fact_ExportacionComex[cuenca] = "Cuenca Neuquina"
+)
+```
+
+```dax
+Precio Implicito (USD-bbl) =
+DIVIDE([Monto Exportado Cuenca (USD)], [Volumen Exportado Cuenca] * 6.2898)
+```
+
+```dax
+Exportacion Cuenca (bbl-dia) =
+DIVIDE([Volumen Exportado Cuenca] * 6.2898, [Dias del Periodo])
+```
+> 1 m³ = 6,2898 bbl, el mismo factor del resto del proyecto. Los meses sin exportación declarada cuentan como cero (hay datos desde enero de 2020).
+
+```dax
+Produccion Cuenca (bbl-dia) =
+DIVIDE(SUM(Fact_ProduccionCuenca[cuenca_neuquina]) * 6.2898, [Dias del Periodo])
+```
+
+```dax
+% Exportado de la Cuenca =
+DIVIDE([Exportacion Cuenca (bbl-dia)], [Produccion Cuenca (bbl-dia)])
+```
+
+```dax
+Indice Exportacion Cuenca (base 2022) =
+VAR ValorBase = CALCULATE([Exportacion Cuenca (bbl-dia)], ALL(Dim_Fecha), Dim_Fecha[anio] = 2022)
+RETURN DIVIDE([Exportacion Cuenca (bbl-dia)], ValorBase) * 100
+```
+
+```dax
+Indice Produccion Cuenca (base 2022) =
+VAR ValorBase = CALCULATE([Produccion Cuenca (bbl-dia)], ALL(Dim_Fecha), Dim_Fecha[anio] = 2022)
+RETURN DIVIDE([Produccion Cuenca (bbl-dia)], ValorBase) * 100
+```
 
 ```dax
 Indice Produccion VM (base 2022) =
-VAR ValorBase =
-    CALCULATE([Prod Petroleo (bbl-dia)], ALL(Dim_Fecha), Dim_Fecha[anio] = 2022)
-RETURN
-    DIVIDE([Prod Petroleo (bbl-dia)], ValorBase) * 100
+VAR ValorBase = CALCULATE([Prod Petroleo (bbl-dia)], ALL(Dim_Fecha), Dim_Fecha[anio] = 2022)
+RETURN DIVIDE([Prod Petroleo (bbl-dia)], ValorBase) * 100
+```
+> Con `Dim_Fecha[anio]` en el eje o en una tarjeta con un año filtrado, dan el promedio anual. `ALL(Dim_Fecha)` limpia el filtro de fecha antes de fijar el año base.
+
+```dax
+Indice Exportacion Cuenca MA12 (base 2022) =
+VAR Fin = MAX(Dim_Fecha[fecha])
+VAR Ventana = DATESINPERIOD(Dim_Fecha[fecha], Fin, -12, MONTH)
+VAR Base = CALCULATE(AVERAGEX(VALUES(Dim_Fecha[anio_mes]), [Exportacion Cuenca (bbl-dia)]), ALL(Dim_Fecha), Dim_Fecha[anio] = 2022)
+VAR Meses = CALCULATE(COUNTROWS(VALUES(Dim_Fecha[anio_mes])), Ventana)
+VAR Media = CALCULATE(AVERAGEX(VALUES(Dim_Fecha[anio_mes]), [Exportacion Cuenca (bbl-dia)]), Ventana)
+RETURN IF(Meses = 12, DIVIDE(Media, Base) * 100)
 ```
 
 ```dax
-Indice Exportacion Neuquina (base 2022) =
-VAR ValorBase =
-    CALCULATE([Exportacion Neuquina (bbl-dia)], ALL(Dim_Fecha), Dim_Fecha[anio] = 2022)
-RETURN
-    DIVIDE([Exportacion Neuquina (bbl-dia)], ValorBase) * 100
+Indice Produccion Cuenca MA12 (base 2022) =
+VAR Fin = MAX(Dim_Fecha[fecha])
+VAR Ventana = DATESINPERIOD(Dim_Fecha[fecha], Fin, -12, MONTH)
+VAR Base = CALCULATE(AVERAGEX(VALUES(Dim_Fecha[anio_mes]), [Produccion Cuenca (bbl-dia)]), ALL(Dim_Fecha), Dim_Fecha[anio] = 2022)
+VAR Meses = CALCULATE(COUNTROWS(VALUES(Dim_Fecha[anio_mes])), Ventana)
+VAR Media = CALCULATE(AVERAGEX(VALUES(Dim_Fecha[anio_mes]), [Produccion Cuenca (bbl-dia)]), Ventana)
+RETURN IF(Meses = 12, DIVIDE(Media, Base) * 100)
 ```
-> Con `Dim_Fecha[anio]` en el eje o en una tarjeta con un año filtrado, da el promedio anual. `ALL(Dim_Fecha)` limpia el
-> filtro de fecha antes de fijar el año base (mismo cuidado que en las demás medidas de índice).
 
 ```dax
 Indice Produccion VM MA12 (base 2022) =
 VAR Fin = MAX(Dim_Fecha[fecha])
 VAR Ventana = DATESINPERIOD(Dim_Fecha[fecha], Fin, -12, MONTH)
-VAR Base =
-    CALCULATE(AVERAGEX(VALUES(Dim_Fecha[anio_mes]), [Prod Petroleo (bbl-dia)]), ALL(Dim_Fecha), Dim_Fecha[anio] = 2022)
+VAR Base = CALCULATE(AVERAGEX(VALUES(Dim_Fecha[anio_mes]), [Prod Petroleo (bbl-dia)]), ALL(Dim_Fecha), Dim_Fecha[anio] = 2022)
 VAR Meses = CALCULATE(COUNTROWS(VALUES(Dim_Fecha[anio_mes])), Ventana)
 VAR Media = CALCULATE(AVERAGEX(VALUES(Dim_Fecha[anio_mes]), [Prod Petroleo (bbl-dia)]), Ventana)
-RETURN
-    IF(Meses = 12, DIVIDE(Media, Base) * 100)
+RETURN IF(Meses = 12, DIVIDE(Media, Base) * 100)
 ```
+> Media móvil de 12 meses (promedio simple de los 12 valores mensuales), vacía mientras no haya 12 meses. No poner un filtro de año en el gráfico: dejaría la ventana sin los meses anteriores.
 
 ```dax
-Indice Exportacion Neuquina MA12 (base 2022) =
-VAR Fin = MAX(Dim_Fecha[fecha])
-VAR Ventana = DATESINPERIOD(Dim_Fecha[fecha], Fin, -12, MONTH)
-VAR Base =
-    CALCULATE(AVERAGEX(VALUES(Dim_Fecha[anio_mes]), [Exportacion Neuquina (bbl-dia)]), ALL(Dim_Fecha), Dim_Fecha[anio] = 2022)
-VAR Meses = CALCULATE(COUNTROWS(VALUES(Dim_Fecha[anio_mes])), Ventana)
-VAR Media = CALCULATE(AVERAGEX(VALUES(Dim_Fecha[anio_mes]), [Exportacion Neuquina (bbl-dia)]), Ventana)
-RETURN
-    IF(Meses = 12, DIVIDE(Media, Base) * 100)
+% Exportado por Empresa Exportadora =
+DIVIDE(
+    [Volumen Exportado Cuenca],
+    CALCULATE([Volumen Exportado Cuenca], ALL(Fact_ExportacionComex[empresa]))
+)
 ```
-> Media móvil de 12 meses (promedio simple de los 12 valores mensuales), vacía mientras no haya 12 meses. No poner un
-> filtro de año en el gráfico: dejaría la ventana sin los meses anteriores. Los meses sin dato quedan como vacío, no cero.
+> Participación de cada razón social exportadora. `ALL(empresa)` en el denominador evita que el filtro Top N recalcule el % solo sobre las visibles. Varias empresas aparecen con más de una razón social (por ejemplo Vista, Pluspetrol y Pan American): en la versión web se agrupan; en Power BI, para igualar, agrupar en Power Query o con una tabla de equivalencias.
+
+```dax
+Volumen Terminales Neuquinos (contraste) =
+CALCULATE(
+    [Volumen Exportado],
+    Fact_MovimientosExportacion[empresa] IN { "Oiltanking EBYTEM S.A.", "Refineria Bahia Blanca SAU" }
+)
+```
+> Contraste con la planilla 21 (terminales marítimos): no es la serie principal.
 
 ```dax
 Utilizacion % (anio mas reciente valido) =
@@ -396,8 +445,7 @@ VAR UltimoAnio =
 RETURN
     CALCULATE([Utilizacion %], Fact_CapacidadDuctos[anio] = UltimoAnio, ALL(Dim_Fecha))
 ```
-> Equivale al ranking de la versión web: para cada ducto, el año más reciente con capacidad válida y no dudosa. Usar
-> `Dim_Ducto[denominacion_logica]` en el eje, para que los dos `idducto` de un mismo ducto cuenten una sola vez.
+> Equivale al ranking de la versión web: para cada ducto, el año más reciente con capacidad válida y no dudosa. Usar `Dim_Ducto[denominacion_logica]` en el eje, para que los dos `idducto` de un mismo ducto cuenten una sola vez.
 
 ---
 
