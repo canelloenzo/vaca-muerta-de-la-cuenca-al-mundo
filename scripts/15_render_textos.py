@@ -181,7 +181,7 @@ def construir_data():
     paises_rank = [{"pais": p, "vol": round(float(v), 1)} for p, v in tot.head(10).items()]
     paises_rank.append({"pais": "Otros (" + str(len(tot) - 10) + " países)", "vol": round(float(tot.iloc[10:].sum()), 1)})
     anios = list(range(2020, 2026))
-    top5 = list(tot.head(5).index)
+    top5 = list(pp[pp.anio.between(2020, 2025)].groupby("pais")["volumen_m3"].sum().sort_values(ascending=False).head(5).index)   # los 5 mayores de los anios que se grafican
     pais_series = {p: [round(float(pp[(pp.pais == p) & (pp.anio == y)]["volumen_m3"].sum()), 1) for y in anios] for p in top5}
     conc = web("comex_neuquina_concentracion_2020_2025.csv")
     exportadores = [{"e": r.nombre.upper(), "pct": r.pct} for r in conc[conc.nivel == "empresa_agrupada"].head(6).itertuples()]
