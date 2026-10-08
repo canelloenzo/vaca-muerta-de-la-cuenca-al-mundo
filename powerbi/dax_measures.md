@@ -323,9 +323,9 @@ RETURN
 
 ```dax
 Dias del Periodo =
-SUMX(VALUES(Dim_Fecha[anio_mes]), DAY(EOMONTH(MIN(Dim_Fecha[fecha]), 0)))
+SUMX(VALUES(Dim_Fecha[anio_mes]), DAY(EOMONTH(CALCULATE(MIN(Dim_Fecha[fecha])), 0)))
 ```
-> Cuenta los días de cada mes una sola vez.
+> Cuenta los días de cada mes una sola vez. El `CALCULATE` interno es necesario: sin él, el recorrido por `VALUES(anio_mes)` no filtra cada mes (un recorrido sobre una columna no cambia el contexto de filtro) y `MIN(fecha)` devuelve siempre el primer día del período, con lo que un año daba 12 × 31 = 372 días en lugar de 365 (error detectado al comparar 187.904 contra el valor esperado 191.506).
 
 ```dax
 Volumen Exportado Cuenca =

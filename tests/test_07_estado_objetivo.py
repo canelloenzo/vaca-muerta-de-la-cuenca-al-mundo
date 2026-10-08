@@ -136,3 +136,11 @@ def test_f16_dax_no_cita_1660():
 def test_f19_sin_cifras_de_vmos_sin_fuente():
     corpus = README() + DAX() + DICC()
     assert not _hay(corpus, r"180\.000-190\.000|550\.000-690\.000")
+
+
+def test_dias_del_periodo_usa_calculate_dentro_del_recorrido():
+    """Un recorrido SUMX(VALUES(columna), ...) no filtra cada valor: sin CALCULATE un año suma 12 x 31 = 372 días (error real detectado en Power BI)."""
+    codigo = "\n".join(re.findall(r"```dax\n(.*?)```", DAX(), re.S))
+    i = codigo.index("Dias del Periodo =")
+    definicion = codigo[i:i + 200]
+    assert "CALCULATE(MIN(Dim_Fecha[fecha]))" in definicion and "EOMONTH(MIN(Dim_Fecha[fecha])" not in definicion
