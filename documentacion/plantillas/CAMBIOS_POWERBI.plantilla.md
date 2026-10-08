@@ -62,7 +62,7 @@ Valores esperados del gráfico a diciembre de cada año (media móvil de 12 mese
 **Texto nuevo del cuadro:**
 
 > **Metodología.** Los índices parten de 100 = promedio de {{anio_base_indice:y}}, el primer año con exportación en 12 de 12 meses y con exportación igual o mayor al {{umbral_exp_pct:0}}% de la producción de la cuenca. La exportación es la de crudo de la cuenca Neuquina según comercio exterior declarado, y la producción de la cuenca es la serie oficial. La curva usa media móvil de 12 meses y empieza cuando hay 12 meses de datos.
-> **Qué se puede afirmar.** Con las bases 2021, 2022 y 2023, la exportación de la cuenca crece más que la producción de la cuenca en cada año posterior a la base. Esa lectura es de la serie de comercio exterior: con la de terminales marítimos, la dirección en 2024 cambia según la base.
+> **Qué se puede afirmar.** Con las bases 2021, 2022 y 2023, y con las dos fuentes (comercio exterior; terminales marítimos más oleoducto a Chile), la exportación de la cuenca crece más que la producción de la cuenca en cada año posterior a la base. Lo que difiere entre las fuentes es el nivel, no la dirección.
 > **Una limitación.** Antes de 2022 hay meses sin exportación declarada (cuentan como cero), y en septiembre de 2024 la producción de Vaca Muerta por pozo queda por debajo del agregado oficial; la producción de la cuenca usa la serie oficial.
 
 ## Página 4 — Acto II · Transporte (versión nueva)

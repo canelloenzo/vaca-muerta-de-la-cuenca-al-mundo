@@ -141,12 +141,18 @@ an["razon_comex_sobre_terminales"] = an["exportacion_m3"] / an["terminales_m3"]
 an["razon_comex_sobre_terminales_mas_oleoducto"] = an["exportacion_m3"] / (an["terminales_m3"] + an["oleoducto_chile_planilla20_m3"])
 an["razon_chile_comex_sobre_planilla20"] = np.where(an["oleoducto_chile_planilla20_m3"] > 0, an["exportacion_chile_m3"] / an["oleoducto_chile_planilla20_m3"], np.nan)
 
+an["alt_exportacion_m3"] = an["terminales_m3"] + an["oleoducto_chile_planilla20_m3"].fillna(0)
+an["alt_exportacion_bbl_dia"] = an["alt_exportacion_m3"] * BBL_POR_M3 / [(366 if y % 4 == 0 else 365) for y in an.index]
+an["alt_pct_exportado_cuenca"] = 100 * an["alt_exportacion_bbl_dia"] / an["prod_cuenca_bbl_dia"]
+
 completos = an[(an["meses_con_exportacion"] == 12) & (an["pct_exportado_cuenca"] >= 100 * UMBRAL_EXPORTACION_MATERIAL) & (~an["anio_parcial"])]
 ANIO_BASE = int(completos.index.min())
 BASES = [ANIO_BASE - 1, ANIO_BASE, ANIO_BASE + 1]
 for b in BASES:
     for serie, col in (("exportacion", "exportacion_bbl_dia"), ("produccion_vm", "prod_vm_bbl_dia"), ("produccion_cuenca", "prod_cuenca_bbl_dia")):
         an[f"idx_{serie}_base{b}"] = 100 * an[col] / an.loc[b, col]
+for b in BASES:
+    an[f"idx_exportacion_alt_base{b}"] = 100 * an["alt_exportacion_bbl_dia"] / an.loc[b, "alt_exportacion_bbl_dia"]
 for serie, col in (("exportacion", "exportacion_ma12_bbl_dia"), ("produccion_vm", "prod_vm_ma12_bbl_dia"), ("produccion_cuenca", "prod_cuenca_ma12_bbl_dia")):
     base_col = {"exportacion": "exportacion_bbl_dia", "produccion_vm": "prod_vm_bbl_dia", "produccion_cuenca": "prod_cuenca_bbl_dia"}[serie]
     mc[f"idx_{serie}_ma12_base{ANIO_BASE}"] = 100 * mc[col] / an.loc[ANIO_BASE, base_col]
@@ -190,11 +196,24 @@ p = p.dropna(subset=["fecha"]).set_index("fecha")
 val = m[["usd_por_bbl"]].join(p, how="inner").dropna(subset=["usd_por_bbl", "medanito_fob_oficial"])
 val.reset_index().round(2).to_csv(os.path.join(WEB, "comex_validacion_precios.csv"), index=False)
 
+brent_path = os.path.join(RAW, "eia_brent_mensual_2026-10-08.xls")
+brent = pd.read_excel(brent_path, sheet_name="Data 1", header=None, skiprows=3)
+brent.columns = ["fecha", "brent"]
+brent["fecha"] = pd.to_datetime(brent["fecha"]).dt.to_period("M").dt.to_timestamp()
+vb = m[["exportacion_m3", "exportacion_usd", "usd_por_bbl"]].join(brent.dropna().set_index("fecha")["brent"], how="inner")
+vb = vb[(vb["exportacion_m3"] > 5000) & (vb.index <= CORTE)].dropna(subset=["usd_por_bbl", "brent"]).copy()
+vb["dif_usd_bbl"] = vb["usd_por_bbl"] - vb["brent"]
+vb.reset_index().assign(fecha=lambda d: d["fecha"].dt.strftime("%Y-%m-%d")).round(2).to_csv(os.path.join(WEB, "comex_validacion_brent.csv"), index=False)
+dif_anual = vb.groupby(vb.index.year).apply(lambda d: float((d["exportacion_usd"].sum() / (d["exportacion_m3"].sum() * BBL_POR_M3)) - d["brent"].mean()), include_groups=False)
+
 meta = {
     "anio_base": ANIO_BASE, "bases": BASES, "ultimo_mes_comex": str(ULTIMO_MES.date()),
     "registros_exportacion_crudo": int(len(ex)), "filas_repetidas_exactas": n_dup,
     "validacion_precios": {"meses": int(len(val)), "correlacion": round(float(val["usd_por_bbl"].corr(val["medanito_fob_oficial"])), 4),
                            "diferencia_media_pct": round(float((100 * (val["usd_por_bbl"] / val["medanito_fob_oficial"] - 1)).mean()), 2)},
+    "validacion_brent": {"meses": int(len(vb)), "correlacion": round(float(vb["usd_por_bbl"].corr(vb["brent"])), 4),
+                         "dif_anual_min": round(float(dif_anual.min()), 2), "dif_anual_max": round(float(dif_anual.max()), 2),
+                         "meses_sobre_brent": int((vb["dif_usd_bbl"] > 0).sum())},
     "control_produccion": {"mes_con_diferencia": "2024-09", "shale_oficial_sobre_vm_por_pozo_pct": round(100 * sep24, 2),
                            "dif_cuenca_sep2024_m3": float(dif_cuenca.loc["2024-09-01"]),
                            "dif_cuenca_resto_2022_2025_m3_max_abs": float(dif_cuenca.drop(pd.Timestamp("2024-09-01")).abs().max())},

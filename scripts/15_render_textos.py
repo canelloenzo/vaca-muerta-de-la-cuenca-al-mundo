@@ -74,8 +74,8 @@ def tabla_sensibilidad():
 
 
 def tabla_pct():
-    filas = [[str(y), celda(f"exp_{y}_meses", 0), celda(f"pct_exp_cuenca_{y}", 1) + "%"] for y in range(2020, 2026)]
-    return tabla(["Año", "Meses con exportación", "% de la producción de la cuenca"], filas)
+    filas = [[str(y), celda(f"exp_{y}_meses", 0), celda(f"pct_exp_cuenca_{y}", 1) + "%", celda(f"pct_alt_cuenca_{y}", 1) + "%"] for y in range(2020, 2026)]
+    return tabla(["Año", "Meses con exportación (comercio exterior)", "Comercio exterior", "Terminales + oleoducto a Chile"], filas)
 
 
 def tabla_usd():

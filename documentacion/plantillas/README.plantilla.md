@@ -16,7 +16,7 @@ El pipeline limpia los archivos crudos con Python (pandas). Las tablas alimentan
 | Incidencia no convencional | {{pct_nc_2022_2025:2}}% | volumen de Vaca Muerta 2022–2025, el único período con ambos tipos observables |
 | Exportación de crudo de la cuenca, 2025 | {{exp_2025_bbl_dia:0}} bbl/día, {{pct_exp_cuenca_2025:1}}% de la producción de la cuenca, USD {{exp_2025_usd_millones:0}} millones | comercio exterior declarado por las empresas (producto "Cuenca Neuquina"), todas las vías; convencional y no convencional |
 | Contraste con otras fuentes | los terminales marítimos (planilla 21) dan {{exp_neu_2025_bbl_dia:0}} bbl/día y el oleoducto a Chile (planilla 20), {{chile_2025_bbl_dia:0}} bbl/día en 2025 | las fuentes no concilian desde 2023: el comercio exterior queda entre {{contr_comex_sobre_term_mas_oleo_2024:2}} y {{contr_comex_sobre_term_mas_oleo_2023:2}} veces la suma de terminales y oleoducto en 2023–2024; la serie principal es la que mide el origen directamente |
-| Índice base {{anio_base_indice:y}}, promedio 2025 | exportación {{idx_exp_2025_base2022:1}} · producción de la cuenca {{idx_cuenca_2025_base2022:1}} · producción de Vaca Muerta {{idx_vm_2025_base2022:1}} | con sensibilidad a las bases 2021 y 2023; con las tres bases la exportación crece más que la producción de la cuenca en cada año posterior a la base |
+| Índice base {{anio_base_indice:y}}, promedio 2025 | exportación {{idx_exp_2025_base2022:1}} · producción de la cuenca {{idx_cuenca_2025_base2022:1}} · producción de Vaca Muerta {{idx_vm_2025_base2022:1}} | con sensibilidad a las bases 2021 y 2023; con las tres bases y con las dos fuentes la exportación crece más que la producción de la cuenca en cada año posterior a la base |
 | Concentración exportadora 2020–2025 | {{conc_exp_top3_pct:1}}% las 3 mayores empresas exportadoras · {{conc_top3_operadores_pct:2}}% los 3 mayores operadores de terminal de todo el país | son dos medidas distintas: quién exporta y quién opera el puerto |
 | Destinos, 2020–agosto 2026 | Estados Unidos {{comex_eeuu_pct:1}}% · Chile {{comex_chile_pct:1}}% · sin país ("no aplica") {{comex_sin_pais_pct:1}}% | crudo de la cuenca, comercio exterior |
 | Valor de la exportación, 2020–2025 | USD {{exp_usd_total_2020_2025_millones:0}} millones; precio implícito 2025: {{exp_2025_usd_bbl:1}} USD/bbl | monto FOB declarado; validado contra el precio FOB oficial de 2020 y 2021 (correlación {{val_precios_corr:2}}) |
@@ -45,6 +45,7 @@ Proyectos anunciados (VMOS, Duplicar Norte) figuran en una caja aparte del dashb
 ├── README.md                      # generado por scripts/15_render_textos.py
 ├── CHANGELOG_CORRECCIONES.md      # qué se corrigió tras la auditoría, antes y después
 ├── CAMBIOS_POWERBI.md             # cambios a aplicar en el reporte de Power BI, con valores esperados
+├── MATRIZ_VERIFICACION.md         # cada afirmación publicada, las pruebas que la sostienen y los límites declarados
 ├── docs/index.html                # dashboard web (datos embebidos, Chart.js por CDN); generado
 ├── scripts/                       # pipeline 01–16 (Python) y verificación en navegador
 ├── tests/                         # pruebas (pytest) con recálculo independiente desde raw/
@@ -95,6 +96,7 @@ Orden, desde la raíz del repositorio:
 | 13 | `13_pozos_coordenadas_dudosas.py` | Pozos con coordenadas dudosas |
 | 14 | `14_registro_cifras.py` | Registro de cifras (`data/web/registro_cifras.json`) |
 | 16 | `16_comercio_exterior.py` | Serie principal de exportación: comercio exterior de la cuenca Neuquina (volumen, USD, país, empresa), producción oficial de la cuenca, índices y contraste con terminales (se corre antes del 14) |
+| 17 | `17_matriz_verificacion.py` | Corre la suite y genera `MATRIZ_VERIFICACION.md` |
 | 15 | `15_render_textos.py` | Genera `docs/index.html` y `README.md` desde las plantillas y el registro |
 
 Pruebas: `python -m pytest -q`. Las que leen `raw/` tardan unos minutos la primera vez. La verificación del HTML en navegador headless: `python scripts/verificar_html_headless.py`.
@@ -109,7 +111,7 @@ Pruebas: `python -m pytest -q`. Las que leen `raw/` tardan unos minutos la prime
 
 ## Limitaciones
 
-- **Dos fuentes oficiales de exportación que no concilian.** La serie principal es el comercio exterior declarado por las empresas. Los terminales marítimos (planilla 21) y el oleoducto a Chile (planilla 20) dan otros volúmenes desde 2023: el comercio exterior queda entre {{contr_comex_sobre_terminales_2023:2}} y {{contr_comex_sobre_terminales_2024:2}} veces los terminales solos y entre {{contr_comex_sobre_term_mas_oleo_2024:2}} y {{contr_comex_sobre_term_mas_oleo_2023:2}} veces los terminales más el oleoducto. Hasta 2022 difieren menos del 3%. Los datos no permiten decidir cuál es la correcta; con la serie de terminales, la dirección entre exportación y producción en 2024 cambia según la base del índice.
+- **Dos fuentes oficiales de exportación con distinto nivel.** La serie principal es el comercio exterior declarado por las empresas. Los terminales marítimos (planilla 21) más el oleoducto a Chile (planilla 20) dan otros volúmenes desde 2023: {{pct_alt_cuenca_2025:1}}% de la producción de la cuenca en 2025 contra {{pct_exp_cuenca_2025:1}}%. Hasta 2022 difieren menos del 3%. Los datos no permiten decidir cuál es la correcta, por eso las conclusiones se limitan a lo que vale con ambas fuentes: el % exportado sube cada año de 2022 a 2025 y la exportación crece más que la producción de la cuenca con las bases 2021, 2022 y 2023.
 - **Alcance de la serie principal.** Es crudo con origen en la cuenca Neuquina (Neuquén, Río Negro, La Pampa y Mendoza), convencional y no convencional, por todas las vías; no es exportación de Vaca Muerta únicamente y no se puede separar con estos datos.
 - **Cobertura temporal.** El comercio exterior empieza en enero de 2020: 2020 tiene exportación en {{exp_2020_meses:0}} meses y 2021 en {{exp_2021_meses:0}}; 2026 es parcial (enero a agosto) y solo se usa para el valor en USD. Las comparaciones cierran en diciembre de 2025. Los meses sin exportación declarada cuentan como cero.
 - **Producción de septiembre de 2024.** Los archivos por pozo de ese mes quedan {{sep24_dif_cuenca_m3:0}} m³ por debajo del agregado oficial (Shell Argentina no figura en septiembre en el archivo por pozo y sí en agosto y octubre); por eso la producción de la cuenca usa la serie oficial, y la de Vaca Muerta por pozo queda unos {{sep24_dif_vm_anual_pct:1}}% por debajo en el promedio de 2024.
@@ -123,6 +125,8 @@ Pruebas: `python -m pytest -q`. Las que leen `raw/` tardan unos minutos la prime
 
 ## Cómo se verifica
 
+- `MATRIZ_VERIFICACION.md` lista cada grupo de afirmaciones publicadas con las pruebas que lo sostienen y su resultado, y separa lo que los datos no permiten comprobar como límite declarado. Se regenera con `python scripts/17_matriz_verificacion.py`.
+- Las cifras de fuentes externas (proyectos anunciados y capacidades) se buscan en el texto crudo de cada página citada.
 - Los precios implícitos del comercio exterior se contrastaron con la tabla oficial de precios FOB y la producción de la cuenca con la serie oficial; las diferencias están en las Limitaciones.
 - Las cifras de producción, exportación y ductos se recalculan de forma independiente desde `raw/` en `tests/` y se comparan con las tablas de `data/web/`.
 - `data/web/registro_cifras.json` es la única fuente de las cifras de este README y del dashboard; `tests/test_10_textos.py` falla si un texto contiene una cifra que no está en el registro, un marcador sin completar o una palabra que el dato no respalda.

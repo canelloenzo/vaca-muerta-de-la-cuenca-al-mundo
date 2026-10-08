@@ -16,7 +16,7 @@ El pipeline limpia los archivos crudos con Python (pandas). Las tablas alimentan
 | Incidencia no convencional | 99,88% | volumen de Vaca Muerta 2022–2025, el único período con ambos tipos observables |
 | Exportación de crudo de la cuenca, 2025 | 191.506 bbl/día, 32,3% de la producción de la cuenca, USD 4.536 millones | comercio exterior declarado por las empresas (producto "Cuenca Neuquina"), todas las vías; convencional y no convencional |
 | Contraste con otras fuentes | los terminales marítimos (planilla 21) dan 166.161 bbl/día y el oleoducto a Chile (planilla 20), 79.998 bbl/día en 2025 | las fuentes no concilian desde 2023: el comercio exterior queda entre 0,75 y 0,88 veces la suma de terminales y oleoducto en 2023–2024; la serie principal es la que mide el origen directamente |
-| Índice base 2022, promedio 2025 | exportación 264,9 · producción de la cuenca 168,1 · producción de Vaca Muerta 206,4 | con sensibilidad a las bases 2021 y 2023; con las tres bases la exportación crece más que la producción de la cuenca en cada año posterior a la base |
+| Índice base 2022, promedio 2025 | exportación 264,9 · producción de la cuenca 168,1 · producción de Vaca Muerta 206,4 | con sensibilidad a las bases 2021 y 2023; con las tres bases y con las dos fuentes la exportación crece más que la producción de la cuenca en cada año posterior a la base |
 | Concentración exportadora 2020–2025 | 58,6% las 3 mayores empresas exportadoras · 94,25% los 3 mayores operadores de terminal de todo el país | son dos medidas distintas: quién exporta y quién opera el puerto |
 | Destinos, 2020–agosto 2026 | Estados Unidos 45,9% · Chile 27,0% · sin país ("no aplica") 5,9% | crudo de la cuenca, comercio exterior |
 | Valor de la exportación, 2020–2025 | USD 13.752 millones; precio implícito 2025: 64,9 USD/bbl | monto FOB declarado; validado contra el precio FOB oficial de 2020 y 2021 (correlación 0,99) |
@@ -45,6 +45,7 @@ Proyectos anunciados (VMOS, Duplicar Norte) figuran en una caja aparte del dashb
 ├── README.md                      # generado por scripts/15_render_textos.py
 ├── CHANGELOG_CORRECCIONES.md      # qué se corrigió tras la auditoría, antes y después
 ├── CAMBIOS_POWERBI.md             # cambios a aplicar en el reporte de Power BI, con valores esperados
+├── MATRIZ_VERIFICACION.md         # cada afirmación publicada, las pruebas que la sostienen y los límites declarados
 ├── docs/index.html                # dashboard web (datos embebidos, Chart.js por CDN); generado
 ├── scripts/                       # pipeline 01–16 (Python) y verificación en navegador
 ├── tests/                         # pruebas (pytest) con recálculo independiente desde raw/
@@ -95,6 +96,7 @@ Orden, desde la raíz del repositorio:
 | 13 | `13_pozos_coordenadas_dudosas.py` | Pozos con coordenadas dudosas |
 | 14 | `14_registro_cifras.py` | Registro de cifras (`data/web/registro_cifras.json`) |
 | 16 | `16_comercio_exterior.py` | Serie principal de exportación: comercio exterior de la cuenca Neuquina (volumen, USD, país, empresa), producción oficial de la cuenca, índices y contraste con terminales (se corre antes del 14) |
+| 17 | `17_matriz_verificacion.py` | Corre la suite y genera `MATRIZ_VERIFICACION.md` |
 | 15 | `15_render_textos.py` | Genera `docs/index.html` y `README.md` desde las plantillas y el registro |
 
 Pruebas: `python -m pytest -q`. Las que leen `raw/` tardan unos minutos la primera vez. La verificación del HTML en navegador headless: `python scripts/verificar_html_headless.py`.
@@ -109,7 +111,7 @@ Pruebas: `python -m pytest -q`. Las que leen `raw/` tardan unos minutos la prime
 
 ## Limitaciones
 
-- **Dos fuentes oficiales de exportación que no concilian.** La serie principal es el comercio exterior declarado por las empresas. Los terminales marítimos (planilla 21) y el oleoducto a Chile (planilla 20) dan otros volúmenes desde 2023: el comercio exterior queda entre 1,14 y 1,35 veces los terminales solos y entre 0,75 y 0,88 veces los terminales más el oleoducto. Hasta 2022 difieren menos del 3%. Los datos no permiten decidir cuál es la correcta; con la serie de terminales, la dirección entre exportación y producción en 2024 cambia según la base del índice.
+- **Dos fuentes oficiales de exportación con distinto nivel.** La serie principal es el comercio exterior declarado por las empresas. Los terminales marítimos (planilla 21) más el oleoducto a Chile (planilla 20) dan otros volúmenes desde 2023: 41,6% de la producción de la cuenca en 2025 contra 32,3%. Hasta 2022 difieren menos del 3%. Los datos no permiten decidir cuál es la correcta, por eso las conclusiones se limitan a lo que vale con ambas fuentes: el % exportado sube cada año de 2022 a 2025 y la exportación crece más que la producción de la cuenca con las bases 2021, 2022 y 2023.
 - **Alcance de la serie principal.** Es crudo con origen en la cuenca Neuquina (Neuquén, Río Negro, La Pampa y Mendoza), convencional y no convencional, por todas las vías; no es exportación de Vaca Muerta únicamente y no se puede separar con estos datos.
 - **Cobertura temporal.** El comercio exterior empieza en enero de 2020: 2020 tiene exportación en 6 meses y 2021 en 11; 2026 es parcial (enero a agosto) y solo se usa para el valor en USD. Las comparaciones cierran en diciembre de 2025. Los meses sin exportación declarada cuentan como cero.
 - **Producción de septiembre de 2024.** Los archivos por pozo de ese mes quedan 157.933 m³ por debajo del agregado oficial (Shell Argentina no figura en septiembre en el archivo por pozo y sí en agosto y octubre); por eso la producción de la cuenca usa la serie oficial, y la de Vaca Muerta por pozo queda unos 0,7% por debajo en el promedio de 2024.
@@ -123,6 +125,8 @@ Pruebas: `python -m pytest -q`. Las que leen `raw/` tardan unos minutos la prime
 
 ## Cómo se verifica
 
+- `MATRIZ_VERIFICACION.md` lista cada grupo de afirmaciones publicadas con las pruebas que lo sostienen y su resultado, y separa lo que los datos no permiten comprobar como límite declarado. Se regenera con `python scripts/17_matriz_verificacion.py`.
+- Las cifras de fuentes externas (proyectos anunciados y capacidades) se buscan en el texto crudo de cada página citada.
 - Los precios implícitos del comercio exterior se contrastaron con la tabla oficial de precios FOB y la producción de la cuenca con la serie oficial; las diferencias están en las Limitaciones.
 - Las cifras de producción, exportación y ductos se recalculan de forma independiente desde `raw/` en `tests/` y se comparan con las tablas de `data/web/`.
 - `data/web/registro_cifras.json` es la única fuente de las cifras de este README y del dashboard; `tests/test_10_textos.py` falla si un texto contiene una cifra que no está en el registro, un marcador sin completar o una palabra que el dato no respalda.

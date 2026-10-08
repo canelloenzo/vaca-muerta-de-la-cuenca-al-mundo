@@ -764,6 +764,151 @@
   "unidad": "registros",
   "alcance": "registros de exportacion de crudo por cuenca (comercio exterior, 2020-agosto 2026)"
  },
+ "val_brent_meses": {
+  "valor": 65,
+  "unidad": "meses",
+  "alcance": "meses 2020-2025 con exportacion por encima de un volumen minimo mensual, comparados con el Brent mensual de la EIA"
+ },
+ "val_brent_corr": {
+  "valor": 0.9757,
+  "unidad": "correlacion",
+  "alcance": "precio implicito mensual (monto / volumen) vs Brent mensual (EIA)"
+ },
+ "val_brent_dif_min": {
+  "valor": 2.65,
+  "unidad": "USD/bbl",
+  "alcance": "menor diferencia anual entre el Brent y el precio implicito (el precio implicito queda por debajo)"
+ },
+ "val_brent_dif_max": {
+  "valor": 8.26,
+  "unidad": "USD/bbl",
+  "alcance": "mayor diferencia anual entre el Brent y el precio implicito (el precio implicito queda por debajo)"
+ },
+ "val_brent_meses_sobre": {
+  "valor": 4,
+  "unidad": "meses",
+  "alcance": "meses en que el precio implicito supera al Brent (de los meses comparados)"
+ },
+ "pct_alt_cuenca_2020": {
+  "valor": 7.8666,
+  "unidad": "%",
+  "alcance": "2020: (terminales planilla 21 + oleoducto a Chile planilla 20) / produccion de petroleo de la cuenca Neuquina, serie oficial (convencional + no convencional, todas las provincias)"
+ },
+ "alt_2020_bbl_dia": {
+  "valor": 18565.2727,
+  "unidad": "bbl/dia",
+  "alcance": "2020: terminales (planilla 21) + oleoducto a Chile (planilla 20), promedio diario"
+ },
+ "pct_alt_cuenca_2021": {
+  "valor": 10.182,
+  "unidad": "%",
+  "alcance": "2021: (terminales planilla 21 + oleoducto a Chile planilla 20) / produccion de petroleo de la cuenca Neuquina, serie oficial (convencional + no convencional, todas las provincias)"
+ },
+ "alt_2021_bbl_dia": {
+  "valor": 28352.9065,
+  "unidad": "bbl/dia",
+  "alcance": "2021: terminales (planilla 21) + oleoducto a Chile (planilla 20), promedio diario"
+ },
+ "pct_alt_cuenca_2022": {
+  "valor": 20.782,
+  "unidad": "%",
+  "alcance": "2022: (terminales planilla 21 + oleoducto a Chile planilla 20) / produccion de petroleo de la cuenca Neuquina, serie oficial (convencional + no convencional, todas las provincias)"
+ },
+ "alt_2022_bbl_dia": {
+  "valor": 73201.297,
+  "unidad": "bbl/dia",
+  "alcance": "2022: terminales (planilla 21) + oleoducto a Chile (planilla 20), promedio diario"
+ },
+ "pct_alt_cuenca_2023": {
+  "valor": 25.0963,
+  "unidad": "%",
+  "alcance": "2023: (terminales planilla 21 + oleoducto a Chile planilla 20) / produccion de petroleo de la cuenca Neuquina, serie oficial (convencional + no convencional, todas las provincias)"
+ },
+ "alt_2023_bbl_dia": {
+  "valor": 103055.3593,
+  "unidad": "bbl/dia",
+  "alcance": "2023: terminales (planilla 21) + oleoducto a Chile (planilla 20), promedio diario"
+ },
+ "pct_alt_cuenca_2024": {
+  "valor": 32.6618,
+  "unidad": "%",
+  "alcance": "2024: (terminales planilla 21 + oleoducto a Chile planilla 20) / produccion de petroleo de la cuenca Neuquina, serie oficial (convencional + no convencional, todas las provincias)"
+ },
+ "alt_2024_bbl_dia": {
+  "valor": 159802.3608,
+  "unidad": "bbl/dia",
+  "alcance": "2024: terminales (planilla 21) + oleoducto a Chile (planilla 20), promedio diario"
+ },
+ "pct_alt_cuenca_2025": {
+  "valor": 41.5729,
+  "unidad": "%",
+  "alcance": "2025: (terminales planilla 21 + oleoducto a Chile planilla 20) / produccion de petroleo de la cuenca Neuquina, serie oficial (convencional + no convencional, todas las provincias)"
+ },
+ "alt_2025_bbl_dia": {
+  "valor": 246158.8901,
+  "unidad": "bbl/dia",
+  "alcance": "2025: terminales (planilla 21) + oleoducto a Chile (planilla 20), promedio diario"
+ },
+ "idx_alt_2022_base2021": {
+  "valor": 258.1792,
+  "unidad": "indice",
+  "alcance": "promedio anual 2022, base 2021 = 100, terminales + oleoducto a Chile"
+ },
+ "idx_alt_2023_base2021": {
+  "valor": 363.4737,
+  "unidad": "indice",
+  "alcance": "promedio anual 2023, base 2021 = 100, terminales + oleoducto a Chile"
+ },
+ "idx_alt_2024_base2021": {
+  "valor": 563.619,
+  "unidad": "indice",
+  "alcance": "promedio anual 2024, base 2021 = 100, terminales + oleoducto a Chile"
+ },
+ "idx_alt_2025_base2021": {
+  "valor": 868.1963,
+  "unidad": "indice",
+  "alcance": "promedio anual 2025, base 2021 = 100, terminales + oleoducto a Chile"
+ },
+ "idx_alt_2022_base2022": {
+  "valor": 100.0,
+  "unidad": "indice",
+  "alcance": "promedio anual 2022, base 2022 = 100, terminales + oleoducto a Chile"
+ },
+ "idx_alt_2023_base2022": {
+  "valor": 140.7835,
+  "unidad": "indice",
+  "alcance": "promedio anual 2023, base 2022 = 100, terminales + oleoducto a Chile"
+ },
+ "idx_alt_2024_base2022": {
+  "valor": 218.3054,
+  "unidad": "indice",
+  "alcance": "promedio anual 2024, base 2022 = 100, terminales + oleoducto a Chile"
+ },
+ "idx_alt_2025_base2022": {
+  "valor": 336.2767,
+  "unidad": "indice",
+  "alcance": "promedio anual 2025, base 2022 = 100, terminales + oleoducto a Chile"
+ },
+ "idx_alt_2022_base2023": {
+  "valor": 71.031,
+  "unidad": "indice",
+  "alcance": "promedio anual 2022, base 2023 = 100, terminales + oleoducto a Chile"
+ },
+ "idx_alt_2023_base2023": {
+  "valor": 100.0,
+  "unidad": "indice",
+  "alcance": "promedio anual 2023, base 2023 = 100, terminales + oleoducto a Chile"
+ },
+ "idx_alt_2024_base2023": {
+  "valor": 155.0646,
+  "unidad": "indice",
+  "alcance": "promedio anual 2024, base 2023 = 100, terminales + oleoducto a Chile"
+ },
+ "idx_alt_2025_base2023": {
+  "valor": 238.8608,
+  "unidad": "indice",
+  "alcance": "promedio anual 2025, base 2023 = 100, terminales + oleoducto a Chile"
+ },
  "comex_pais_total_m3": {
   "valor": 39384296.300000004,
   "unidad": "m3",

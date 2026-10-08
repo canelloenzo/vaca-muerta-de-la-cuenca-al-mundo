@@ -18,7 +18,7 @@ Pipeline en Python (pandas) que limpia datos públicos de la Secretaría de Ener
 - La producción de petróleo de Vaca Muerta fue de 633.371 bbl/día en junio de 2026 (solo no convencional), 33,0% más que un año antes.
 - Casi todo el petróleo de Vaca Muerta es no convencional: 99,88% del volumen de 2022–2025.
 - La exportación de crudo de la cuenca Neuquina (comercio exterior declarado) pasó de 20,5% de la producción de la cuenca en 2022 a 32,3% en 2025, y de 72.301 a 191.506 bbl/día. En 2025 valió USD 4.536 millones.
-- Con las tres bases del índice (2021, 2022 y 2023), la exportación de la cuenca crece más que la producción de la cuenca en cada año posterior a la base. Esa lectura es de la serie de comercio exterior; con la de terminales marítimos la dirección en 2024 cambia según la base.
+- Con las tres bases del índice (2021, 2022 y 2023) y con las dos fuentes (comercio exterior; terminales más oleoducto a Chile), la exportación de la cuenca crece más que la producción de la cuenca en cada año posterior a la base, y el % exportado sube cada año de 2022 a 2025 (de 20,5% a 32,3% según comercio exterior; de 20,8% a 41,6% según terminales más oleoducto). Lo que difiere es el nivel.
 - Destinos 2020–agosto 2026: Estados Unidos 45,9% y Chile 27,0%.
 - Las 3 mayores empresas exportadoras concentran 58,6% (2020–2025). Es otra medida que el 94,25% de los 3 mayores operadores de terminal de todo el país.
 - El corredor Allen–Puerto Rosales movió 22.768.324 m³ de petróleo en 2025, 37,9% más que en 2024, con la línea nueva Duplicar desde marzo de 2025.
@@ -239,6 +239,35 @@ Pipeline en Python (pandas) que limpia datos públicos de la Secretaría de Ener
 | `val_precios_corr` | 0,99 | correlacion | precio implicito (monto / volumen) vs precio FOB oficial Medanito, 2020-2021 |
 | `val_precios_dif_pct` | -1,63 | % | diferencia media del precio implicito frente al FOB oficial, 2020-2021 |
 | `comex_registros_n` | 125.532 | registros | registros de exportacion de crudo por cuenca (comercio exterior, 2020-agosto 2026) |
+| `val_brent_meses` | 65 | meses | meses 2020-2025 con exportacion por encima de un volumen minimo mensual, comparados con el Brent mensual de la EIA |
+| `val_brent_corr` | 0,98 | correlacion | precio implicito mensual (monto / volumen) vs Brent mensual (EIA) |
+| `val_brent_dif_min` | 2,65 | USD/bbl | menor diferencia anual entre el Brent y el precio implicito (el precio implicito queda por debajo) |
+| `val_brent_dif_max` | 8,26 | USD/bbl | mayor diferencia anual entre el Brent y el precio implicito (el precio implicito queda por debajo) |
+| `val_brent_meses_sobre` | 4 | meses | meses en que el precio implicito supera al Brent (de los meses comparados) |
+| `pct_alt_cuenca_2020` | 7,87 | % | 2020: (terminales planilla 21 + oleoducto a Chile planilla 20) / produccion de petroleo de la cuenca Neuquina, serie oficial (convencional + no convencional, todas las provincias) |
+| `alt_2020_bbl_dia` | 18.565 | bbl/dia | 2020: terminales (planilla 21) + oleoducto a Chile (planilla 20), promedio diario |
+| `pct_alt_cuenca_2021` | 10,18 | % | 2021: (terminales planilla 21 + oleoducto a Chile planilla 20) / produccion de petroleo de la cuenca Neuquina, serie oficial (convencional + no convencional, todas las provincias) |
+| `alt_2021_bbl_dia` | 28.353 | bbl/dia | 2021: terminales (planilla 21) + oleoducto a Chile (planilla 20), promedio diario |
+| `pct_alt_cuenca_2022` | 20,78 | % | 2022: (terminales planilla 21 + oleoducto a Chile planilla 20) / produccion de petroleo de la cuenca Neuquina, serie oficial (convencional + no convencional, todas las provincias) |
+| `alt_2022_bbl_dia` | 73.201 | bbl/dia | 2022: terminales (planilla 21) + oleoducto a Chile (planilla 20), promedio diario |
+| `pct_alt_cuenca_2023` | 25,10 | % | 2023: (terminales planilla 21 + oleoducto a Chile planilla 20) / produccion de petroleo de la cuenca Neuquina, serie oficial (convencional + no convencional, todas las provincias) |
+| `alt_2023_bbl_dia` | 103.055 | bbl/dia | 2023: terminales (planilla 21) + oleoducto a Chile (planilla 20), promedio diario |
+| `pct_alt_cuenca_2024` | 32,66 | % | 2024: (terminales planilla 21 + oleoducto a Chile planilla 20) / produccion de petroleo de la cuenca Neuquina, serie oficial (convencional + no convencional, todas las provincias) |
+| `alt_2024_bbl_dia` | 159.802 | bbl/dia | 2024: terminales (planilla 21) + oleoducto a Chile (planilla 20), promedio diario |
+| `pct_alt_cuenca_2025` | 41,57 | % | 2025: (terminales planilla 21 + oleoducto a Chile planilla 20) / produccion de petroleo de la cuenca Neuquina, serie oficial (convencional + no convencional, todas las provincias) |
+| `alt_2025_bbl_dia` | 246.159 | bbl/dia | 2025: terminales (planilla 21) + oleoducto a Chile (planilla 20), promedio diario |
+| `idx_alt_2022_base2021` | 258,18 | indice | promedio anual 2022, base 2021 = 100, terminales + oleoducto a Chile |
+| `idx_alt_2023_base2021` | 363,47 | indice | promedio anual 2023, base 2021 = 100, terminales + oleoducto a Chile |
+| `idx_alt_2024_base2021` | 563,62 | indice | promedio anual 2024, base 2021 = 100, terminales + oleoducto a Chile |
+| `idx_alt_2025_base2021` | 868,20 | indice | promedio anual 2025, base 2021 = 100, terminales + oleoducto a Chile |
+| `idx_alt_2022_base2022` | 100,00 | indice | promedio anual 2022, base 2022 = 100, terminales + oleoducto a Chile |
+| `idx_alt_2023_base2022` | 140,78 | indice | promedio anual 2023, base 2022 = 100, terminales + oleoducto a Chile |
+| `idx_alt_2024_base2022` | 218,31 | indice | promedio anual 2024, base 2022 = 100, terminales + oleoducto a Chile |
+| `idx_alt_2025_base2022` | 336,28 | indice | promedio anual 2025, base 2022 = 100, terminales + oleoducto a Chile |
+| `idx_alt_2022_base2023` | 71,03 | indice | promedio anual 2022, base 2023 = 100, terminales + oleoducto a Chile |
+| `idx_alt_2023_base2023` | 100,00 | indice | promedio anual 2023, base 2023 = 100, terminales + oleoducto a Chile |
+| `idx_alt_2024_base2023` | 155,06 | indice | promedio anual 2024, base 2023 = 100, terminales + oleoducto a Chile |
+| `idx_alt_2025_base2023` | 238,86 | indice | promedio anual 2025, base 2023 = 100, terminales + oleoducto a Chile |
 | `comex_pais_total_m3` | 39.384.296 | m3 | 2020-agosto 2026, exportacion de crudo de la cuenca (comercio exterior) |
 | `comex_eeuu_pct` | 45,94 | % | 2020-agosto 2026, destino Estados Unidos / exportacion de crudo de la cuenca |
 | `comex_chile_pct` | 26,98 | % | 2020-agosto 2026, destino Chile / exportacion de crudo de la cuenca |

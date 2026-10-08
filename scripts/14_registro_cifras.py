@@ -125,6 +125,18 @@ reg("val_precios_meses", cmx["validacion_precios"]["meses"], "meses", "meses 202
 reg("val_precios_corr", cmx["validacion_precios"]["correlacion"], "correlacion", "precio implicito (monto / volumen) vs precio FOB oficial Medanito, 2020-2021")
 reg("val_precios_dif_pct", cmx["validacion_precios"]["diferencia_media_pct"], "%", "diferencia media del precio implicito frente al FOB oficial, 2020-2021")
 reg("comex_registros_n", cmx["registros_exportacion_crudo"], "registros", "registros de exportacion de crudo por cuenca (comercio exterior, 2020-agosto 2026)")
+# validacion del valor en USD contra el Brent mensual (EIA) y comparable completo de la serie principal
+reg("val_brent_meses", cmx["validacion_brent"]["meses"], "meses", "meses 2020-2025 con exportacion por encima de un volumen minimo mensual, comparados con el Brent mensual de la EIA")
+reg("val_brent_corr", cmx["validacion_brent"]["correlacion"], "correlacion", "precio implicito mensual (monto / volumen) vs Brent mensual (EIA)")
+reg("val_brent_dif_min", -cmx["validacion_brent"]["dif_anual_max"], "USD/bbl", "menor diferencia anual entre el Brent y el precio implicito (el precio implicito queda por debajo)")
+reg("val_brent_dif_max", -cmx["validacion_brent"]["dif_anual_min"], "USD/bbl", "mayor diferencia anual entre el Brent y el precio implicito (el precio implicito queda por debajo)")
+reg("val_brent_meses_sobre", cmx["validacion_brent"]["meses_sobre_brent"], "meses", "meses en que el precio implicito supera al Brent (de los meses comparados)")
+for y in range(2020, 2026):
+    reg(f"pct_alt_cuenca_{y}", ca.loc[y, "alt_pct_exportado_cuenca"], "%", f"{y}: (terminales planilla 21 + oleoducto a Chile planilla 20) / {ALC_CUENCA}")
+    reg(f"alt_{y}_bbl_dia", ca.loc[y, "alt_exportacion_bbl_dia"], "bbl/dia", f"{y}: terminales (planilla 21) + oleoducto a Chile (planilla 20), promedio diario")
+for b in (2021, 2022, 2023):
+    for y in range(2022, 2026):
+        reg(f"idx_alt_{y}_base{b}", ca.loc[y, f"idx_exportacion_alt_base{b}"], "indice", f"promedio anual {y}, base {b} = 100, terminales + oleoducto a Chile")
 # destinos y concentracion (crudo de la cuenca Neuquina, 2020-agosto 2026)
 tp = cpais.groupby("pais")["volumen_m3"].sum().sort_values(ascending=False)
 reg("comex_pais_total_m3", tp.sum(), "m3", "2020-agosto 2026, exportacion de crudo de la cuenca (comercio exterior)")

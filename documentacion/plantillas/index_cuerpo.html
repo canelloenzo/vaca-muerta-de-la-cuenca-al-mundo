@@ -65,7 +65,7 @@
       <div class="kpi">
         <div class="label">Exportación de crudo de la cuenca, 2025</div>
         <div class="value">{{exp_2025_bbl_dia:0}} bbl/día</div>
-        <div class="sub">promedio del año: {{pct_exp_cuenca_2025:1}}% de la producción de la cuenca y USD {{exp_2025_usd_millones:0}} millones (comercio exterior declarado). Otras fuentes oficiales dan valores distintos: ver el contraste</div>
+        <div class="sub">promedio del año: {{pct_exp_cuenca_2025:1}}% de la producción de la cuenca según comercio exterior ({{pct_alt_cuenca_2025:1}}% si se suman los terminales marítimos y el oleoducto a Chile) y USD {{exp_2025_usd_millones:0}} millones declarados</div>
       </div>
       <div class="kpi">
         <div class="label">Concentración exportadora, 2020–2025</div>
@@ -217,7 +217,7 @@
     <p class="act-sub">La serie principal es el crudo de la cuenca Neuquina exportado según las declaraciones de comercio exterior de las empresas (origen por cuenca, todas las vías, con país y valor en USD). Se contrasta con los terminales marítimos (planilla 21) y con el oleoducto a Chile (planilla 20), que no coinciden del todo con ella.</p>
 
     <div class="note">
-      Los volúmenes están en m³ o bbl/día (1 m³ = {{bbl_por_m3:4}} bbl). Los valores en USD son el monto FOB declarado por las empresas; el precio implícito (monto sobre volumen) coincide con la tabla oficial de precios FOB de 2020 y 2021 (correlación {{val_precios_corr:2}} en {{val_precios_meses:0}} meses, diferencia media de {{val_precios_dif_pct:1}}%).
+      Los volúmenes están en m³ o bbl/día (1 m³ = {{bbl_por_m3:4}} bbl). Los valores en USD son el monto FOB declarado por las empresas; el precio implícito (monto sobre volumen) coincide con la tabla oficial de precios FOB de 2020 y 2021 (correlación {{val_precios_corr:2}} en {{val_precios_meses:0}} meses, diferencia media de {{val_precios_dif_pct:1}}%) y acompaña al Brent mensual de la EIA (correlación {{val_brent_corr:2}} en {{val_brent_meses:0}} meses; el promedio anual queda entre {{val_brent_dif_min:1}} y {{val_brent_dif_max:1}} USD/bbl por debajo del Brent).
     </div>
 
     <div class="panel">
@@ -239,13 +239,13 @@
       </div>
     </div>
     <div class="note" style="margin-top:16px;">
-      <strong>Qué se puede afirmar:</strong> con las tres bases (2021, 2022 y 2023), la exportación de crudo de la cuenca crece más que la producción de la cuenca en cada año posterior a la base, y en 2025 también más que la producción de Vaca Muerta. Esa lectura sale de la serie de comercio exterior; con la serie de los terminales marítimos la dirección en 2023 y 2024 cambia según la base, así que depende de la fuente (ver el contraste más abajo).
+      <strong>Qué se puede afirmar:</strong> con las dos fuentes (el comercio exterior, y los terminales marítimos más el oleoducto a Chile) y con las tres bases (2021, 2022 y 2023), la exportación de crudo de la cuenca crece más que la producción de la cuenca en cada año posterior a la base, y el % exportado de la cuenca sube cada año de 2022 a 2025. Lo que difiere entre las fuentes es el nivel, no la dirección (ver el contraste más abajo).
     </div>
 
     <div class="grid-2 even" style="margin-top:24px;">
       <div class="panel">
         <h3>% exportado de la producción de la cuenca</h3>
-        <p class="panel-note">Exportación de crudo de la cuenca / producción de la cuenca, promedio anual</p>
+        <p class="panel-note">Exportación de crudo de la cuenca / producción de la cuenca, promedio anual, según cada fuente</p>
         {{TABLA_PCT_EXPORTADO}}
         <p class="panel-note" style="margin-top:10px; margin-bottom:0;">En 2020 hay exportación declarada en {{exp_2020_meses:0}} de 12 meses y en 2021 en {{exp_2021_meses:0}}: los meses sin exportación declarada cuentan como cero.</p>
       </div>
@@ -262,7 +262,7 @@
       <p class="panel-note">Exportación de crudo neuquino en m³ por año, según cada fuente</p>
       {{TABLA_CONTRASTE}}
       <div class="note alert" style="margin-top:16px; margin-bottom:0;">
-        <strong>Las fuentes no concilian desde 2023.</strong> Hasta 2022 el comercio exterior y los terminales marítimos (Oiltanking y Refinería Bahía Blanca) difieren menos del 3%. Desde 2023, cuando aparece el oleoducto a Chile, el comercio exterior queda entre {{contr_comex_sobre_terminales_2023:2}} y {{contr_comex_sobre_terminales_2024:2}} veces los terminales solos y {{contr_comex_sobre_term_mas_oleo_2023:2}}, {{contr_comex_sobre_term_mas_oleo_2024:2}} y {{contr_comex_sobre_term_mas_oleo_2025:2}} veces los terminales más el oleoducto de la planilla 20. La diferencia no es de calendario (el acumulado 2020–2025 del comercio exterior es {{contr_acum_comex_sobre_term_mas_oleo_2020_2025:2}} veces el de terminales más oleoducto y no converge) y aparece en todos los destinos: para Estados Unidos, Brasil, Perú y Uruguay los terminales marítimos informan más volumen que el comercio exterior. Los datos no permiten decir cuál es la medida correcta; por eso la serie principal es la que mide el origen directamente y las otras se muestran como contraste.
+        <strong>Las fuentes difieren en el nivel desde 2023, no en la dirección.</strong> Hasta 2022 el comercio exterior y los terminales marítimos (Oiltanking y Refinería Bahía Blanca) difieren menos del 3%. Desde 2023, cuando aparece el oleoducto a Chile, el comercio exterior queda entre {{contr_comex_sobre_term_mas_oleo_2024:2}} y {{contr_comex_sobre_term_mas_oleo_2023:2}} veces la suma de terminales y oleoducto. La diferencia no es de calendario (el acumulado 2020–2025 es {{contr_acum_comex_sobre_term_mas_oleo_2020_2025:2}} veces y no converge) y aparece en todos los destinos: para Estados Unidos, Brasil, Perú y Uruguay los terminales marítimos informan más volumen que el comercio exterior. Los datos no permiten decir cuál es la medida correcta; por eso el informe muestra las dos y solo afirma lo que vale con ambas (la dirección). La serie principal es la que mide el origen directamente.
       </div>
     </div>
 
@@ -308,7 +308,7 @@
     <p class="act-sub">Lo que estos datos no permiten afirmar, para que cada cifra se lea con su alcance.</p>
     <div class="methods" style="font-size:14px; max-width:78ch; line-height:1.65;">
       <ul>
-        <li><strong>Dos fuentes oficiales de exportación que no concilian.</strong> La serie principal es el comercio exterior declarado por las empresas ({{comex_registros_n:0}} registros de exportación de crudo por cuenca). Los terminales marítimos (planilla 21) y el oleoducto a Chile (planilla 20) dan otros volúmenes desde 2023. No hay información para decidir cuál es la correcta; el contraste figura en la sección de exportación. Todas las cifras de este informe que dependen de la exportación dependen también de la fuente elegida.</li>
+        <li><strong>Dos fuentes oficiales de exportación con distinto nivel.</strong> La serie principal es el comercio exterior declarado por las empresas ({{comex_registros_n:0}} registros de exportación de crudo por cuenca). Los terminales marítimos (planilla 21) más el oleoducto a Chile (planilla 20) dan otros volúmenes desde 2023: {{pct_alt_cuenca_2025:1}}% de la producción de la cuenca en 2025 contra {{pct_exp_cuenca_2025:1}}%. No hay información para decidir cuál es la correcta, por eso las conclusiones del informe se limitan a lo que vale con ambas: el % exportado sube cada año de 2022 a 2025 y la exportación crece más que la producción. Las cifras de nivel (bbl/día, %, USD) dependen de la fuente.</li>
         <li><strong>Alcance de la serie principal.</strong> Es crudo con origen en la cuenca Neuquina (Neuquén, Río Negro, La Pampa y Mendoza), convencional y no convencional, por todas las vías. No es exportación de Vaca Muerta únicamente, y no se puede separar con estos datos.</li>
         <li><strong>Cobertura temporal.</strong> El comercio exterior está disponible desde enero de 2020; 2020 tiene exportación en {{exp_2020_meses:0}} meses y 2021 en {{exp_2021_meses:0}}. 2026 es parcial (enero a agosto). La producción de Vaca Muerta por pozo y la serie oficial de la cuenca llegan a diciembre de 2025 en las comparaciones, por eso se cierran ahí.</li>
         <li><strong>Producción de septiembre de 2024.</strong> Los archivos por pozo de ese mes quedan {{sep24_dif_cuenca_m3:0}} m³ por debajo del agregado oficial de la cuenca: Shell Argentina no figura en septiembre en el archivo por pozo y sí en agosto y octubre. Por eso la producción de la cuenca usa la serie oficial, y la de Vaca Muerta por pozo queda subestimada en ese mes ({{sep24_shale_sobre_vm_pct:1}}% respecto de la serie oficial de shale) y en unos {{sep24_dif_vm_anual_pct:1}}% en el promedio de 2024.</li>
@@ -327,7 +327,7 @@
 <footer class="site">
   <div class="wrap">
     <div class="methods">
-      <p><strong>Metodología y fuentes.</strong> Datos públicos de datos.energia.gob.ar y ENARGAS (producción por pozo y serie oficial por cuenca, comercio exterior, movimientos de transporte y exportación, registro y capacidad de ductos), procesados con un pipeline de limpieza en Python. Producción en bbl/día ponderada por los días del período; los índices usan el promedio anual del año base; la utilización de ductos excluye los ducto-años con capacidad dudosa. Los números de esta página salen de un registro de cifras generado por los scripts y verificado con pruebas automáticas.</p>
+      <p><strong>Metodología y fuentes.</strong> Datos públicos de datos.energia.gob.ar y ENARGAS (producción por pozo y serie oficial por cuenca, comercio exterior, movimientos de transporte y exportación, registro y capacidad de ductos), procesados con un pipeline de limpieza en Python. Producción en bbl/día ponderada por los días del período; los índices usan el promedio anual del año base; la utilización de ductos excluye los ducto-años con capacidad dudosa. Los números de esta página salen de un registro de cifras generado por los scripts y verificado con pruebas automáticas; la <a href="https://github.com/canelloenzo/vaca-muerta-de-la-cuenca-al-mundo/blob/main/MATRIZ_VERIFICACION.md">matriz de verificación</a> lista cada afirmación, las pruebas que la sostienen y los límites declarados.</p>
       <p>Código, pruebas y registro de cifras: <a href="https://github.com/canelloenzo/vaca-muerta-de-la-cuenca-al-mundo">github.com/canelloenzo/vaca-muerta-de-la-cuenca-al-mundo</a>. Proyecto de portfolio — Enzo · Buenos Aires.</p>
     </div>
   </div>

@@ -13,6 +13,13 @@
     "correlacion": 0.9903,
     "diferencia_media_pct": -1.63
   },
+  "validacion_brent": {
+    "meses": 65,
+    "correlacion": 0.9757,
+    "dif_anual_min": -8.26,
+    "dif_anual_max": -2.65,
+    "meses_sobre_brent": 4
+  },
   "control_produccion": {
     "mes_con_diferencia": "2024-09",
     "shale_oficial_sobre_vm_por_pozo_pct": 8.6,

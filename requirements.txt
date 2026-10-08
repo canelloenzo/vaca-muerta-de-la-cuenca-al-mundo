@@ -2,3 +2,4 @@ pandas
 numpy
 ftfy
 openpyxl
+xlrd

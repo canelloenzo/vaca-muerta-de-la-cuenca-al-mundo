@@ -124,12 +124,24 @@ def test_afirmacion_exportacion_crece_mas_que_produccion_de_la_cuenca():
         assert a.loc[2025, f"idx_exportacion_base{b}"] > a.loc[2025, f"idx_produccion_vm_base{b}"], b
 
 
-def test_afirmacion_con_terminales_la_direccion_en_2024_depende_de_la_base():
-    t = H.web("indices_sensibilidad.csv")
-    def ge(b, y):
-        x = t[(t.base == b) & (t.anio == y)].set_index("serie").indice
-        return x["exportacion_terminales"] > x["produccion_vm"]
-    assert ge(2021, 2024) != ge(2022, 2024)
+def test_afirmacion_vale_con_las_dos_fuentes_y_las_tres_bases():
+    """Texto publicado: con comercio exterior y con terminales + oleoducto a Chile, el índice de exportación supera al de la producción de la cuenca
+    en cada año posterior a la base (bases 2021, 2022 y 2023) y el % exportado sube cada año de 2022 a 2025."""
+    a = H.web("comex_anual.csv").set_index("anio")
+    for b in (2021, 2022, 2023):
+        for y in range(b + 1, 2026):
+            for col in ("idx_exportacion", "idx_exportacion_alt"):
+                assert a.loc[y, f"{col}_base{b}"] > a.loc[y, f"idx_produccion_cuenca_base{b}"], (col, b, y)
+    for col in ("pct_exportado_cuenca", "alt_pct_exportado_cuenca"):
+        assert all(a.loc[y, col] < a.loc[y + 1, col] for y in range(2020, 2025)), col
+
+
+def test_validacion_del_valor_en_usd_contra_el_brent():
+    v = H.web("comex_validacion_brent.csv")
+    r = H.web_json("registro_cifras.json")
+    assert len(v) == r["val_brent_meses"]["valor"] == 65 and v.fecha.max() <= "2025-12-01"
+    assert v.usd_por_bbl.corr(v.brent) > 0.95
+    assert 0 < r["val_brent_dif_min"]["valor"] < r["val_brent_dif_max"]["valor"] < 10        # el precio implícito queda por debajo del Brent cada año
 
 
 def test_porcentaje_exportado_de_la_cuenca():
