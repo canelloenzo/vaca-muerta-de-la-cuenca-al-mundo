@@ -366,6 +366,15 @@ DIVIDE([Exportacion Cuenca (bbl-dia)], [Produccion Cuenca (bbl-dia)])
 ```
 
 ```dax
+% Exportacion sin Pais (no aplica) =
+DIVIDE(
+    CALCULATE([Volumen Exportado Cuenca], Fact_ExportacionComex[pais] = "no aplica"),
+    [Volumen Exportado Cuenca]
+)
+```
+> Parte del volumen exportado de crudo de la cuenca cuyo destino figura como "no aplica" en el comercio exterior. Reemplaza a `% Exportacion con Pais Asignado` de la planilla 21.
+
+```dax
 Indice Exportacion Cuenca (base 2022) =
 VAR ValorBase = CALCULATE([Exportacion Cuenca (bbl-dia)], ALL(Dim_Fecha), Dim_Fecha[anio] = 2022)
 RETURN DIVIDE([Exportacion Cuenca (bbl-dia)], ValorBase) * 100
